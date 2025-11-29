@@ -585,11 +585,11 @@ class OpcionesFragment : Fragment() {
         val inflater = LayoutInflater.from(requireContext())
         val dialogView = inflater.inflate(android.R.layout.simple_list_item_1, null)
         val tv = TextView(requireContext())
-        tv.text = "ADVERTENCIA: Se van a borrar todos los datos de la aplicación. Esta acción no se puede deshacer.\nEspere 5 segundos y marque la casilla para confirmar."
+        tv.text = getString(com.albacontrol.R.string.restore_warning)
         tv.setPadding(20,20,20,20)
 
         val check = CheckBox(requireContext())
-        check.text = "He leído y deseo continuar (activar tras 5s)"
+        check.text = getString(com.albacontrol.R.string.ok)
         check.isEnabled = false
 
         val container = LinearLayout(requireContext())
@@ -602,10 +602,10 @@ class OpcionesFragment : Fragment() {
             .setView(container)
             .setNegativeButton("Cancelar", null)
             .setPositiveButton("Restaurar") { _, _ ->
-                if (check.isChecked) {
+                    if (check.isChecked) {
                     performRestoreApp()
                 } else {
-                    Toast.makeText(requireContext(), "Debes marcar la casilla para confirmar.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(com.albacontrol.R.string.restore_confirm_missing), Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -632,7 +632,7 @@ class OpcionesFragment : Fragment() {
                     positive.isEnabled = true
                     check.setOnCheckedChangeListener { _, isChecked -> positive.isEnabled = isChecked }
                 } else {
-                    tv.text = "ADVERTENCIA: Se van a borrar todos los datos de la aplicación. Esta acción no se puede deshacer.\nEspere ${seconds} segundos y marque la casilla para confirmar."
+                    tv.text = getString(com.albacontrol.R.string.restore_warning).replace("5", seconds.toString())
                     seconds--
                     handler.postDelayed(this, 1000)
                 }

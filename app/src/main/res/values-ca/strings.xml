@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AlbaControl</string>
+    <string name="options_title">Opcions generals</string>
+
+    <string name="new_receptionist">Nou recepcionista</string>
+    <string name="new_location">Nova ubicació</string>
+    <string name="new_email">Nou correu electrònic</string>
+
+    <string name="export">Exportar</string>
+    <string name="op_import">Importar</string>
+    <string name="backup_general">Còpia de seguretat general</string>
+    <string name="restore_app">Restaurar aplicació</string>
+
+    <string name="export_area_title">Exportar %1$s</string>
+    <string name="export_area_message">Vols exportar %1$s ara? Els fitxers es desaran a la carpeta d'exportació de l'aplicació.</string>
+    <string name="export_complete">Export complet: %1$s</string>
+    <string name="export_error">Error exportant: %1$s</string>
+
+    <string name="import_area_title">Importar %1$s</string>
+    <string name="import_complete">Import complet: %1$s</string>
+    <string name="import_error">Error important: %1$s</string>
+
+    <string name="restore_warning">ADVERTÈNCIA: S'eliminaran totes les dades de l'aplicació. Aquesta acció no té marxa enrere.\nEspera 5 segons i marca la casella per confirmar.</string>
+    <string name="restore_confirm_missing">Has de marcar la casella per confirmar.</string>
+    <string name="restore_confirm_title">Restaurar aplicació</string>
+    <string name="restore_completed">Restauració completada. L'aplicació s'ha netejat.</string>
+    <string name="restore_error">Error restaurant: %1$s</string>
+
+    <string name="confirm_delete">Eliminar %1$s?</string>
+    <string name="delete">Eliminar</string>
+    <string name="cancel">Cancel·lar</string>
+    <string name="ok">OK</string>
+    <string name="edit">Editar</string>
+
+    <string name="ocr_passes_toast">Passades OCR: %1$d</string>
+
+    <string name="importing_progress">Important %1$s...</string>
+    <string name="exporting_progress">Exportant %1$s...</string>
+    <string name="restoring_progress">Restaurant aplicació...</string>
+
+    <string name="auto_delete_section">Esborrat automàtic de l'historial</string>
+    <string name="auto_delete_age_label">Esborrar per antiguitat (dies)</string>
+    <string name="auto_delete_count_label">Esborrar per quantitat (màx. PDFs)</string>
+    <string name="cleanup_completed_toast">Neteja automàtica de l'historial completada.</string>
+
+    <string name="add_option_sync">Sincronització (pendent)</string>
+
+    <string name="processing_image">Processant imatge...</string>
+    <string name="ocr_error">Error OCR: %1$s</string>
+    <string name="ocr_applied">OCR aplicat</string>
+    <string name="toast_draft_saved">Esborrany desat (id=%1$d)</string>
+    <string name="toast_draft_error">Error desant esborrany: %1$s</string>
+    <string name="toast_finalized">Document finalitzat (id=%1$d)</string>
+    <string name="toast_email_error">Desat, però no s'ha pogut obrir el client de correu: %1$s</string>
+    <string name="toast_finalize_error">Error finalitzant document: %1$s</string>
+    <string name="photo_deleted">Foto eliminada</string>
+    <string name="undo">Desfer</string>
+    <string name="enter_value">Introdueix un valor</string>
+    <string name="empty_text_not_added">Text buit, no s'ha afegit</string>
+    <string name="provider_required">El camp 'Proveedor' és obligatori.</string>
+    <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
+    <string name="attach_notice">Document adjunt generat per AlbaControl.IA.</string>
+    <string name="pickup_location">Ubicació de recollida: %1$s</string>
+    <string name="receptionist">Recepcionista: %1$s</string>
+    <string name="rgpd_notice">Si us plau, tracteu les dades personals segons el RGPD. Les dades d'aquest document s'utilitzen només per a la gestió logística i la lliurament.</string>
+</resources>

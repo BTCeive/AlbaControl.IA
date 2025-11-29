@@ -10,6 +10,15 @@ import android.widget.Toast
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Aplicar idioma guardado en SharedPreferences antes de inflar vistas
+        try {
+            val prefs = getSharedPreferences("alba_prefs", android.content.Context.MODE_PRIVATE)
+            val tag = prefs.getString("language", null)
+            if (!tag.isNullOrBlank()) {
+                val locales = androidx.core.os.LocaleListCompat.forLanguageTags(tag)
+                androidx.appcompat.app.AppCompatDelegate.setApplicationLocales(locales)
+            }
+        } catch (_: Exception) {}
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {

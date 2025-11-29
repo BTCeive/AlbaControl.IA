@@ -46,4 +46,24 @@
 
     <string name="add_option_sync">Sincronización (pendiente)</string>
 
+    <!-- General messages used in code -->
+    <string name="processing_image">Procesando imagen...</string>
+    <string name="ocr_error">Error OCR: %1$s</string>
+    <string name="ocr_applied">OCR aplicado</string>
+    <string name="toast_draft_saved">Borrador guardado (id=%1$d)</string>
+    <string name="toast_draft_error">Error guardando borrador: %1$s</string>
+    <string name="toast_finalized">Albarán finalizado (id=%1$d)</string>
+    <string name="toast_email_error">Albarán guardado, pero no se pudo abrir el cliente de correo: %1$s</string>
+    <string name="toast_finalize_error">Error finalizando albarán: %1$s</string>
+    <string name="photo_deleted">Foto eliminada</string>
+    <string name="undo">Deshacer</string>
+    <string name="enter_value">Introduce un valor</string>
+    <string name="empty_text_not_added">Texto vacío, no se añade</string>
+    <string name="provider_required">El campo 'Proveedor' es obligatorio.</string>
+    <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
+    <string name="attach_notice">Adjunto albarán generado desde AlbaControl.IA.</string>
+    <string name="pickup_location">Ubicación de recogida: %1$s</string>
+    <string name="receptionist">Recepcionista: %1$s</string>
+    <string name="rgpd_notice">Por favor, trate los datos personales conforme al RGPD. Los datos contenidos en este documento se usan únicamente para la gestión logística y entrega de mercancías.</string>
+
 </resources>

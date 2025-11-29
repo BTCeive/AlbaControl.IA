@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AlbaControl</string>
+    <string name="options_title">Options générales</string>
+
+    <string name="new_receptionist">Nouveau réceptionniste</string>
+    <string name="new_location">Nouvel emplacement</string>
+    <string name="new_email">Nouvel e-mail</string>
+
+    <string name="export">Exporter</string>
+    <string name="op_import">Importer</string>
+    <string name="backup_general">Sauvegarde générale</string>
+    <string name="restore_app">Restaurer l'application</string>
+
+    <string name="export_area_title">Exporter %1$s</string>
+    <string name="export_area_message">Exporter %1$s maintenant ? Les fichiers seront enregistrés dans le dossier d'export de l'application.</string>
+    <string name="export_complete">Export terminé : %1$s</string>
+    <string name="export_error">Erreur d'export : %1$s</string>
+
+    <string name="import_area_title">Importer %1$s</string>
+    <string name="import_complete">Import terminé : %1$s</string>
+    <string name="import_error">Erreur d'import : %1$s</string>
+
+    <string name="restore_warning">AVERTISSEMENT : Toutes les données de l'application seront supprimées. Cette action est irréversible.\nAttendez 5 secondes et cochez la case pour confirmer.</string>
+    <string name="restore_confirm_missing">Vous devez cocher la case pour confirmer.</string>
+    <string name="restore_confirm_title">Restaurer l'application</string>
+    <string name="restore_completed">Restauration terminée. L'application a été nettoyée.</string>
+    <string name="restore_error">Erreur lors de la restauration : %1$s</string>
+
+    <string name="confirm_delete">Supprimer %1$s ?</string>
+    <string name="delete">Supprimer</string>
+    <string name="cancel">Annuler</string>
+    <string name="ok">OK</string>
+    <string name="edit">Modifier</string>
+
+    <string name="ocr_passes_toast">Passages OCR : %1$d</string>
+
+    <string name="importing_progress">Importation de %1$s...</string>
+    <string name="exporting_progress">Exportation de %1$s...</string>
+    <string name="restoring_progress">Restauration de l'application...</string>
+
+    <string name="auto_delete_section">Suppression automatique de l'historique</string>
+    <string name="auto_delete_age_label">Suppression par ancienneté (jours)</string>
+    <string name="auto_delete_count_label">Suppression par quantité (max. PDFs)</string>
+    <string name="cleanup_completed_toast">Nettoyage automatique de l'historique terminé.</string>
+
+    <string name="add_option_sync">Synchronisation (en attente)</string>
+
+    <string name="processing_image">Traitement de l'image...</string>
+    <string name="ocr_error">Erreur OCR : %1$s</string>
+    <string name="ocr_applied">OCR appliqué</string>
+    <string name="toast_draft_saved">Brouillon enregistré (id=%1$d)</string>
+    <string name="toast_draft_error">Erreur lors de l'enregistrement du brouillon : %1$s</string>
+    <string name="toast_finalized">Document finalisé (id=%1$d)</string>
+    <string name="toast_email_error">Enregistré, mais impossible d'ouvrir le client mail : %1$s</string>
+    <string name="toast_finalize_error">Erreur lors de la finalisation : %1$s</string>
+    <string name="photo_deleted">Photo supprimée</string>
+    <string name="undo">Annuler</string>
+    <string name="enter_value">Entrez une valeur</string>
+    <string name="empty_text_not_added">Texte vide, non ajouté</string>
+    <string name="provider_required">Le champ 'Proveedor' est requis.</string>
+    <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
+    <string name="attach_notice">Document joint généré par AlbaControl.IA.</string>
+    <string name="pickup_location">Lieu de collecte : %1$s</string>
+    <string name="receptionist">Réceptionniste : %1$s</string>
+    <string name="rgpd_notice">Veuillez traiter les données personnelles conformément au RGPD. Les données contenues dans ce document sont utilisées uniquement pour la gestion logistique et la livraison des marchandises.</string>
+</resources>

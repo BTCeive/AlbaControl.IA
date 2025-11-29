@@ -45,4 +45,22 @@
     <string name="cleanup_completed_toast">اكتملت عملية تنظيف السجل التلقائي.</string>
 
     <string name="add_option_sync">المزامنة (قيد الانتظار)</string>
+    <string name="processing_image">جارٍ معالجة الصورة...</string>
+    <string name="ocr_error">خطأ OCR: %1$s</string>
+    <string name="ocr_applied">تم تطبيق OCR</string>
+    <string name="toast_draft_saved">تم حفظ المسودة (الرقم=%1$d)</string>
+    <string name="toast_draft_error">خطأ عند حفظ المسودة: %1$s</string>
+    <string name="toast_finalized">تم إنهاء المستند (الرقم=%1$d)</string>
+    <string name="toast_email_error">تم الحفظ، لكن لم يتمكن من فتح عميل البريد: %1$s</string>
+    <string name="toast_finalize_error">خطأ عند إنهاء المستند: %1$s</string>
+    <string name="photo_deleted">تم حذف الصورة</string>
+    <string name="undo">تراجع</string>
+    <string name="enter_value">أدخل قيمة</string>
+    <string name="empty_text_not_added">النص فارغ، لم يتم الإضافة</string>
+    <string name="provider_required">حقل 'Proveedor' مطلوب.</string>
+    <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
+    <string name="attach_notice">المستند المرفق تم إنشاؤه بواسطة AlbaControl.IA.</string>
+    <string name="pickup_location">موقع الاستلام: %1$s</string>
+    <string name="receptionist">الموظف الاستقبال: %1$s</string>
+    <string name="rgpd_notice">يرجى التعامل مع البيانات الشخصية وفقًا للائحة GDPR. تُستخدم البيانات الواردة في هذا المستند فقط لإدارة اللوجستيات والتسليم.</string>
 </resources>

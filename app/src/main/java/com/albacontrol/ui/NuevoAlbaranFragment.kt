@@ -74,7 +74,7 @@ class NuevoAlbaranFragment : Fragment() {
                 if (bmp != null) {
                     onImageCaptured(bmp)
                 } else {
-                    Toast.makeText(requireContext(), "No se pudo decodificar la imagen seleccionada.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), getString(com.albacontrol.R.string.ocr_error, "No se pudo decodificar la imagen seleccionada."), Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -257,9 +257,9 @@ class NuevoAlbaranFragment : Fragment() {
             lifecycleScope.launch {
                 try {
                     val id = withContext(Dispatchers.IO) { db.draftDao().insert(draft) }
-                    Toast.makeText(requireContext(), "Borrador guardado (id=$id)", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), getString(com.albacontrol.R.string.toast_draft_saved, id), Toast.LENGTH_SHORT).show()
                 } catch (e: Exception) {
-                    Toast.makeText(requireContext(), "Error guardando borrador: ${e.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), getString(com.albacontrol.R.string.toast_draft_error, e.message ?: ""), Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -267,10 +267,10 @@ class NuevoAlbaranFragment : Fragment() {
         // Cancelar
         view.findViewById<Button>(R.id.btnCancelar).setOnClickListener {
             val dialog = AlertDialog.Builder(requireContext())
-                .setTitle("Cancelar")
-                .setMessage("¿Descartar cambios y salir?")
-                .setPositiveButton("Sí") { _, _ -> parentFragmentManager.popBackStack() }
-                .setNegativeButton("No", null)
+                .setTitle(getString(com.albacontrol.R.string.cancel))
+                .setMessage(getString(com.albacontrol.R.string.confirm_delete, ""))
+                .setPositiveButton(getString(com.albacontrol.R.string.ok)) { _, _ -> parentFragmentManager.popBackStack() }
+                .setNegativeButton(getString(com.albacontrol.R.string.cancel), null)
                 .create()
             dialog.setOnShowListener {
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.BLACK)
@@ -283,8 +283,8 @@ class NuevoAlbaranFragment : Fragment() {
         view.findViewById<Button>(R.id.btnFinalizar).setOnClickListener {
             val etProveedor = view.findViewById<EditText>(R.id.etProveedor)
             val proveedor = etProveedor.text.toString().trim()
-            if (proveedor.isEmpty()) {
-                Toast.makeText(requireContext(), "El campo 'Proveedor' es obligatorio.", Toast.LENGTH_SHORT).show()
+                if (proveedor.isEmpty()) {
+                Toast.makeText(requireContext(), getString(com.albacontrol.R.string.provider_required), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -337,7 +337,7 @@ class NuevoAlbaranFragment : Fragment() {
                     val completed = com.albacontrol.data.CompletedAlbaran(providerId = null, dataJson = json.toString(), createdAt = System.currentTimeMillis())
                     val id = withContext(Dispatchers.IO) { db.completedDao().insert(completed) }
 
-                    Toast.makeText(requireContext(), "Albarán finalizado (id=$id)", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(com.albacontrol.R.string.toast_finalized, id), Toast.LENGTH_SHORT).show()
                     // Guardar patrón automáticamente al finalizar el albarán (si hay resultado OCR reciente)
                     try {
                         savePatternFromCorrections()
@@ -385,10 +385,10 @@ class NuevoAlbaranFragment : Fragment() {
                         email.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                         startActivity(Intent.createChooser(email, "Enviar albarán"))
                     } catch (e: Exception) {
-                        Toast.makeText(requireContext(), "Albarán guardado, pero no se pudo abrir el cliente de correo: ${e.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), getString(com.albacontrol.R.string.toast_email_error, e.message ?: ""), Toast.LENGTH_LONG).show()
                     }
                 } catch (e: Exception) {
-                    Toast.makeText(requireContext(), "Error finalizando albarán: ${e.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), getString(com.albacontrol.R.string.toast_finalize_error, e.message ?: ""), Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -511,7 +511,7 @@ class NuevoAlbaranFragment : Fragment() {
     private fun onImageCaptured(bitmap: android.graphics.Bitmap) {
         // Cuando se obtiene una imagen, procesarla con ML Kit
         checkSinAlbaran.isChecked = false
-        Toast.makeText(requireContext(), "Procesando imagen...", Toast.LENGTH_SHORT).show()
+    Toast.makeText(requireContext(), getString(com.albacontrol.R.string.processing_image), Toast.LENGTH_SHORT).show()
         // guardar bitmap para posible muestra de plantilla
         lastOcrBitmap = bitmap.copy(bitmap.config ?: android.graphics.Bitmap.Config.ARGB_8888, false)
 
@@ -520,7 +520,7 @@ class NuevoAlbaranFragment : Fragment() {
         com.albacontrol.ml.OcrProcessor.processBitmap(bitmap) { result, error ->
             activity?.runOnUiThread {
                 if (error != null) {
-                    Toast.makeText(requireContext(), "Error OCR: ${error.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), getString(com.albacontrol.R.string.ocr_error, error?.message ?: ""), Toast.LENGTH_LONG).show()
                     return@runOnUiThread
                 }
 
@@ -533,7 +533,7 @@ class NuevoAlbaranFragment : Fragment() {
                             applyTemplateIfExists(result, bitmap)
                         } catch (_: Exception) {}
                     }
-                    Toast.makeText(requireContext(), "OCR aplicado", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(com.albacontrol.R.string.ocr_applied), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -624,7 +624,7 @@ class NuevoAlbaranFragment : Fragment() {
 
                                 // show snackbar with undo
                                 val rootView = requireActivity().findViewById<View>(android.R.id.content) ?: requireView()
-                                Snackbar.make(rootView, "Foto eliminada", Snackbar.LENGTH_LONG).setAction("Deshacer") {
+                                Snackbar.make(rootView, getString(com.albacontrol.R.string.photo_deleted), Snackbar.LENGTH_LONG).setAction(getString(com.albacontrol.R.string.undo)) {
                                     // cancel deletion and restore
                                     pendingDeletionRunnables[path]?.let { handler.removeCallbacks(it) }
                                     pendingDeletionRunnables.remove(path)

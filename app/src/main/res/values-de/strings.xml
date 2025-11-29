@@ -45,4 +45,22 @@
     <string name="cleanup_completed_toast">Automatische Aufräumaktion des Verlaufs abgeschlossen.</string>
 
     <string name="add_option_sync">Synchronisierung (ausstehend)</string>
+    <string name="processing_image">Bild wird verarbeitet...</string>
+    <string name="ocr_error">OCR-Fehler: %1$s</string>
+    <string name="ocr_applied">OCR angewendet</string>
+    <string name="toast_draft_saved">Entwurf gespeichert (id=%1$d)</string>
+    <string name="toast_draft_error">Fehler beim Speichern des Entwurfs: %1$s</string>
+    <string name="toast_finalized">Dokument abgeschlossen (id=%1$d)</string>
+    <string name="toast_email_error">Gespeichert, konnte jedoch Client nicht öffnen: %1$s</string>
+    <string name="toast_finalize_error">Fehler beim Abschließen: %1$s</string>
+    <string name="photo_deleted">Foto gelöscht</string>
+    <string name="undo">Rückgängig</string>
+    <string name="enter_value">Geben Sie einen Wert ein</string>
+    <string name="empty_text_not_added">Leerer Text, nicht hinzugefügt</string>
+    <string name="provider_required">Das Feld 'Proveedor' ist erforderlich.</string>
+    <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
+    <string name="attach_notice">Angehängtes Dokument von AlbaControl.IA.</string>
+    <string name="pickup_location">Abholort: %1$s</string>
+    <string name="receptionist">Empfangsperson: %1$s</string>
+    <string name="rgpd_notice">Bitte behandeln Sie personenbezogene Daten gemäß DSGVO. Die Daten in diesem Dokument werden nur für die Logistik- und Lieferverwaltung verwendet.</string>
 </resources>

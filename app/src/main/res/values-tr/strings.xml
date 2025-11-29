@@ -45,4 +45,22 @@
     <string name="cleanup_completed_toast">Otomatik geçmiş temizleme tamamlandı.</string>
 
     <string name="add_option_sync">Senkronizasyon (beklemede)</string>
+    <string name="processing_image">Görüntü işleniyor...</string>
+    <string name="ocr_error">OCR hatası: %1$s</string>
+    <string name="ocr_applied">OCR uygulandı</string>
+    <string name="toast_draft_saved">Taslak kaydedildi (id=%1$d)</string>
+    <string name="toast_draft_error">Taslak kaydedilirken hata: %1$s</string>
+    <string name="toast_finalized">Belge tamamlandı (id=%1$d)</string>
+    <string name="toast_email_error">Kaydedildi, ancak e-posta istemcisi açılamadı: %1$s</string>
+    <string name="toast_finalize_error">Belge tamamlanırken hata: %1$s</string>
+    <string name="photo_deleted">Fotoğraf silindi</string>
+    <string name="undo">Geri al</string>
+    <string name="enter_value">Bir değer girin</string>
+    <string name="empty_text_not_added">Boş metin, eklenmedi</string>
+    <string name="provider_required">'Proveedor' alanı gereklidir.</string>
+    <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
+    <string name="attach_notice">AlbaControl.IA tarafından oluşturulan belge eklendi.</string>
+    <string name="pickup_location">Teslim alma yeri: %1$s</string>
+    <string name="receptionist">Resepsiyonist: %1$s</string>
+    <string name="rgpd_notice">Lütfen kişisel verileri GDPR'ye uygun şekilde işleyin. Bu belgede bulunan veriler yalnızca lojistik ve teslimat yönetimi için kullanılır.</string>
 </resources>
