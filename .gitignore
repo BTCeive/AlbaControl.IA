@@ -1,0 +1,11 @@
+# Gradle/Android
+.gradle/
+/build/
+/app/build/
+
+# Kotlin/Java
+*.iml
+.idea/
+
+# macOS
+.DS_Store

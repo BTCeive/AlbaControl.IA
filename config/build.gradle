@@ -1,0 +1,7 @@
+// Placeholder build.gradle plantilla
+// Reemplazar por un build.gradle generado por Android Studio o por el scaffold elegido.
+
+// buildscript {
+//     repositories { google(); mavenCentral() }
+//     dependencies { classpath 'com.android.tools.build:gradle:8.0.0' }
+// }

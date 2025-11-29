@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="12dp"
+    android:scrollbars="none"
+    android:overScrollMode="never"
+    android:fadeScrollbars="false"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Opciones generales"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingBottom="8dp" />
+
+        <!-- Recepcionistas -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="4dp">
+
+            <TextView
+                android:id="@+id/tvRecepcionistasTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Recepcionistas" />
+
+            <Button
+                android:id="@+id/btnAddRecepcionistaOptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:minWidth="48dp"
+                android:contentDescription="Añadir recepcionista" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/containerRecepcionistas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="12dp" />
+
+        <!-- Ubicaciones -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="4dp">
+
+            <TextView
+                android:id="@+id/tvUbicacionTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Ubicación de recogida" />
+
+            <Button
+                android:id="@+id/btnAddUbicacionOptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:minWidth="48dp"
+                android:contentDescription="Añadir ubicación" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/containerUbicaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="12dp" />
+
+        <!-- Emails -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="4dp">
+
+            <TextView
+                android:id="@+id/tvEmailsTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Emails de destino automático" />
+
+            <Button
+                android:id="@+id/btnAddEmailOptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:minWidth="48dp"
+                android:contentDescription="Añadir email" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/containerEmails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="16dp" />
+
+        <!-- Idiomas -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Idiomas"
+            android:textStyle="bold"
+            android:paddingBottom="4dp" />
+
+        <Spinner
+            android:id="@+id/spinnerLanguages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            android:paddingBottom="12dp" />
+
+        <!-- Configuración de la app (expandable) -->
+        <TextView
+            android:id="@+id/tvConfigTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Configuración de la app"
+            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvOcrTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sistema OCR" />
+
+        <SeekBar
+            android:id="@+id/seekOcrPasses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="9" />
+
+        <TextView
+            android:id="@+id/tvOcrNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Modificar el comportamiento del sistema OCR puede afectar a la calidad de la información extraída de las fotografías y al rendimiento de su dispositivo."
+            android:textSize="12sp"
+            android:textStyle="italic"
+            android:paddingTop="4dp"
+            android:paddingBottom="12dp" />
+
+        <!-- Backups (expandable) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Backup"
+            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:paddingBottom="6dp" />
+
+        <!-- For each area, row with export/import -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="6dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Borradores" />
+
+            <ImageButton
+                android:id="@+id/btnExportDrafts"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_export"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Exportar" />
+
+            <Space android:layout_width="8dp" android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/btnImportDrafts"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_import"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Importar" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="6dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Historial" />
+
+            <ImageButton
+                android:id="@+id/btnExportHistory"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_export"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Exportar" />
+
+            <Space android:layout_width="8dp" android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/btnImportHistory"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_import"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Importar" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="6dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Proveedores / Productos" />
+
+            <ImageButton
+                android:id="@+id/btnExportProviders"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_export"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Exportar" />
+
+            <Space android:layout_width="8dp" android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/btnImportProviders"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_import"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Importar" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Patrones" />
+
+            <ImageButton
+                android:id="@+id/btnExportPatterns"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_export"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Exportar" />
+
+            <Space android:layout_width="8dp" android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/btnImportPatterns"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_import"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Importar" />
+
+        </LinearLayout>
+
+        <!-- Backup general -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Backup general" />
+
+            <Button
+                android:id="@+id/btnExportBackupAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exportar" />
+
+            <Space android:layout_width="8dp" android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btnImportBackupAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Importar" />
+
+        </LinearLayout>
+
+        <!-- Restaurar app -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Restaurar app" />
+
+            <Button
+                android:id="@+id/btnRestoreApp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restaurar" />
+
+        </LinearLayout>
+
+        <!-- Borrado automático del Historial -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Borrado automático del Historial"
+            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:paddingBottom="6dp" />
+
+        <!-- Por antigüedad -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="6dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Borrado por antigüedad (días)" />
+
+            <EditText
+                android:id="@+id/etAutoDeleteDays"
+                android:layout_width="72dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="4"
+                android:text="365" />
+
+            <Space android:layout_width="8dp" android:layout_height="wrap_content" />
+
+            <Switch
+                android:id="@+id/switchAutoDeleteAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true" />
+
+        </LinearLayout>
+
+        <!-- Por cantidad -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Borrado por cantidad (máx. PDFs)" />
+
+            <EditText
+                android:id="@+id/etAutoDeleteMax"
+                android:layout_width="72dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="4"
+                android:text="500" />
+
+            <Space android:layout_width="8dp" android:layout_height="wrap_content" />
+
+            <Switch
+                android:id="@+id/switchAutoDeleteCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

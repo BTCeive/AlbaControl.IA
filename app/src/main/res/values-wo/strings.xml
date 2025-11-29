@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- NOTE: Placeholder translations in English. Please review with a Wolof speaker and update if needed. -->
+<resources>
+    <string name="app_name">AlbaControl</string>
+    <string name="options_title">General Options</string>
+
+    <string name="new_receptionist">New receptionist</string>
+    <string name="new_location">New location</string>
+    <string name="new_email">New email</string>
+
+    <string name="export">Export</string>
+    <string name="op_import">Import</string>
+    <string name="backup_general">General backup</string>
+    <string name="restore_app">Restore app</string>
+
+    <string name="export_area_title">Export %1$s</string>
+    <string name="export_area_message">Export %1$s now? Files will be saved to the app export folder.</string>
+    <string name="export_complete">Export complete: %1$s</string>
+    <string name="export_error">Export error: %1$s</string>
+
+    <string name="import_area_title">Import %1$s</string>
+    <string name="import_complete">Import complete: %1$s</string>
+    <string name="import_error">Import error: %1$s</string>
+
+    <string name="restore_warning">WARNING: All app data will be removed. This action cannot be undone.&#10;Wait 5 seconds and check the box to confirm.</string>
+    <string name="restore_confirm_missing">You must check the confirm box.</string>
+    <string name="restore_confirm_title">Restore app</string>
+    <string name="restore_completed">Restore completed. App cleaned.</string>
+    <string name="restore_error">Restore error: %1$s</string>
+
+    <string name="confirm_delete">Delete %1$s?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="edit">Edit</string>
+
+    <string name="ocr_passes_toast">OCR passes: %1$d</string>
+
+    <string name="importing_progress">Importing %1$s...</string>
+    <string name="exporting_progress">Exporting %1$s...</string>
+    <string name="restoring_progress">Restoring app...</string>
+
+    <string name="auto_delete_section">Automatic history deletion</string>
+    <string name="auto_delete_age_label">Delete by age (days)</string>
+    <string name="auto_delete_count_label">Delete by count (max PDF)</string>
+    <string name="cleanup_completed_toast">Automatic history cleanup completed.</string>
+
+    <string name="add_option_sync">Sync (pending)</string>
+</resources>

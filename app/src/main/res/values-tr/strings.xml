@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AlbaControl</string>
+    <string name="options_title">Genel Ayarlar</string>
+
+    <string name="new_receptionist">Yeni resepsiyonist</string>
+    <string name="new_location">Yeni konum</string>
+    <string name="new_email">Yeni e-posta</string>
+
+    <string name="export">Dışa aktar</string>
+    <string name="op_import">İçe aktar</string>
+    <string name="backup_general">Genel yedekleme</string>
+    <string name="restore_app">Uygulamayı geri yükle</string>
+
+    <string name="export_area_title">%1$s dışa aktar</string>
+    <string name="export_area_message">%1$s şimdi dışa aktarılsın mı? Dosyalar uygulamanın dışa aktarma klasörüne kaydedilecek.</string>
+    <string name="export_complete">Dışa aktarma tamamlandı: %1$s</string>
+    <string name="export_error">Dışa aktarma hatası: %1$s</string>
+
+    <string name="import_area_title">%1$s içe aktar</string>
+    <string name="import_complete">İçe aktarma tamamlandı: %1$s</string>
+    <string name="import_error">İçe aktarma hatası: %1$s</string>
+
+    <string name="restore_warning">UYARI: Uygulamanın tüm verileri silinecek. Bu işlem geri alınamaz.&#10;5 saniye bekleyin ve onaylamak için kutuyu işaretleyin.</string>
+    <string name="restore_confirm_missing">Onay kutusunu işaretlemelisiniz.</string>
+    <string name="restore_confirm_title">Uygulamayı geri yükle</string>
+    <string name="restore_completed">Geri yükleme tamamlandı. Uygulama temizlendi.</string>
+    <string name="restore_error">Geri yükleme hatası: %1$s</string>
+
+    <string name="confirm_delete">%1$s silinsin mi?</string>
+    <string name="delete">Sil</string>
+    <string name="cancel">İptal</string>
+    <string name="ok">Tamam</string>
+    <string name="edit">Düzenle</string>
+
+    <string name="ocr_passes_toast">OCR adımları: %1$d</string>
+
+    <string name="importing_progress">%1$s içe aktarılıyor...</string>
+    <string name="exporting_progress">%1$s dışa aktarılıyor...</string>
+    <string name="restoring_progress">Uygulama geri yükleniyor...</string>
+
+    <string name="auto_delete_section">Geçmiş için otomatik silme</string>
+    <string name="auto_delete_age_label">Yaşa göre silme (gün)</string>
+    <string name="auto_delete_count_label">Miktara göre silme (maks. PDF)</string>
+    <string name="cleanup_completed_toast">Otomatik geçmiş temizleme tamamlandı.</string>
+
+    <string name="add_option_sync">Senkronizasyon (beklemede)</string>
+</resources>

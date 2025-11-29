@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Solo strings propios de la app; se eliminan overrides de bibliotecas para evitar conflictos de parse -->
+    <string name="app_name">AlbaControl</string>
+    <string name="options_title">Options générales</string>
+    <string name="new_receptionist">Nouvelle réceptionniste</string>
+    <string name="new_location">Nouvel emplacement</string>
+    <string name="new_email">Nouvel email</string>
+    <string name="export">Exporter</string>
+    <string name="op_import">Importer</string>
+    <string name="backup_general">Sauvegarde générale</string>
+    <string name="restore_app">Restaurer l'application</string>
+    <string name="export_area_title">Exporter %1$s</string>
+    <string name="export_area_message">Exporter %1$s maintenant ? Les fichiers seront sauvegardés dans le dossier d'export de l'application.</string>
+    <string name="export_complete">Export terminé : %1$s</string>
+    <string name="export_error">Erreur d'export : %1$s</string>
+    <string name="import_area_title">Importer %1$s</string>
+    <string name="import_complete">Import terminé : %1$s</string>
+    <string name="import_error">Erreur d'import : %1$s</string>
+    <string name="restore_warning">ATTENTION : Toutes les données de l'application vont être supprimées. Cette action est irréversible. Attendez 5 secondes et cochez la case pour confirmer.</string>
+    <string name="restore_confirm_missing">Vous devez cocher la case pour confirmer.</string>
+    <string name="restore_confirm_title">Restaurer l'application</string>
+    <string name="restore_completed">Restauration terminée. L'application a été nettoyée.</string>
+    <string name="restore_error">Erreur lors de la restauration : %1$s</string>
+    <string name="confirm_delete">Supprimer %1$s ?</string>
+    <string name="delete">Supprimer</string>
+    <string name="cancel">Annuler</string>
+    <string name="ok">OK</string>
+    <string name="edit">Modifier</string>
+    <string name="ocr_passes_toast">Passes OCR : %1$d</string>
+    <string name="importing_progress">Importation de %1$s...</string>
+    <string name="exporting_progress">Exportation de %1$s...</string>
+    <string name="restoring_progress">Restauration de l'application...</string>
+    <string name="auto_delete_section">Suppression automatique de l'historique</string>
+    <string name="auto_delete_age_label">Suppression par ancienneté (jours)</string>
+    <string name="auto_delete_count_label">Suppression par quantité (max. PDF)</string>
+    <string name="cleanup_completed_toast">Nettoyage automatique de l'historique terminé.</string>
+    <string name="add_option_sync">Synchronisation (en attente)</string>
+</resources>

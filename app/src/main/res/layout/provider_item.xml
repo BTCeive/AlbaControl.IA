@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+    <!-- Removed transparent background to inherit global window background -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvProviderName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Proveedor X" />
+
+            <TextView
+                android:id="@+id/tvProviderSub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descripción / info" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnDeleteProvider"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_delete"
+            android:contentDescription="Eliminar proveedor" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/productsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:paddingTop="6dp">
+
+        <!-- Product lines will be inflated here -->
+
+    </LinearLayout>
+
+</LinearLayout>

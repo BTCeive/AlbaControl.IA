@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="iconTint">#FF444444</color>
+    <color name="primary">#3F51B5</color>
+    <color name="accent">#FF4081</color>
+    <color name="light_gray">#F2F2F5</color>
+    <color name="gradient_start">#2196F3</color>
+    <color name="gradient_end">#4CAF50</color>
+    <color name="btn_text">#FFFFFF</color>
+    <color name="btn_ripple">#33000000</color>
+    <color name="ic_launcher_background">#0D47A1</color>
+</resources>

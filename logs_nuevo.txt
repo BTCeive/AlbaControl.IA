@@ -1,0 +1,445 @@
+I/SmartPower.com.albacontrol/10217(23381)( 1829): background->idle(3003ms) R(become background) adj=700.
+D/ProcessMemoryCleaner( 1829): Compact memory: com.albacontrol/10217(23381) state=hibernation adj=700 pri=911 usage=9 isKilled=false pss:65724 swap:362
+I/ActivityTaskManager( 1829): START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity bnds=[330,293][503,466] (has extras)} from uid 10103 from pid 3272 callingPackage com.miui.home
+I/SmartPower.com.albacontrol/10217(23381)( 1829): idle->invisible(7611ms) R(become foreground) adj=700.
+D/PerfStubImpl( 1829): perfWarmLaunchBoost: com.albacontrol, -1, 1
+D/KeyguardEditorHelper( 3215): onTopActivityMayChanged, topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}; mState=IDEL
+I/FocusedNotifPromptContr( 3215): onTopActivityMayChanged: topActivity=com.albacontrol
+I/FocusedNotifPromptContr( 3215): topActivityMayChanged: topActivity=com.albacontrol
+D/PerfStubImpl( 1829): perfWarmLaunchBoost: com.albacontrol, -1, 1
+D/CameraBlackCoveredManager( 1829): mForegroundPackage = com.albacontrol mOccupiedPackage = com.miui.face
+D/PerfEngineController( 7490): ForegroundInfo{mForegroundPackageName='com.albacontrol', mForegroundUid=10217, mForegroundPid=23381, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10103, mLastForegroundPid=3272, mMultiWindowForegroundPackageName='com.albacontrol', mMultiWindowForegroundUid=10217, mFlags=0}
+D/A2dpLatencyMode(16692): ForegroundInfo{mForegroundPackageName='com.albacontrol', mForegroundUid=10217, mForegroundPid=23381, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10103, mLastForegroundPid=3272, mMultiWindowForegroundPackageName='com.albacontrol', mMultiWindowForegroundUid=10217, mFlags=0}
+I/GST     (11799): forePkg: com.albacontrol, preForePkg: com.miui.home
+I/ProcessMonitor( 5615): onForegroundInfoChanged: ForegroundInfo{mForegroundPackageName='com.albacontrol', mForegroundUid=10217, mForegroundPid=23381, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10103, mLastForegroundPid=3272, mMultiWindowForegroundPackageName='com.albacontrol', mMultiWindowForegroundUid=10217, mFlags=0}
+D/AppObserver( 3272): ForegroundInfo{mForegroundPackageName='com.albacontrol', mForegroundUid=10217, mForegroundPid=23381, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10103, mLastForegroundPid=3272, mMultiWindowForegroundPackageName='com.albacontrol', mMultiWindowForegroundUid=10217, mFlags=0}
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+D/WindowManager( 1829): wms.Input focus has changed to Window{a7cf5e3 u0 com.albacontrol/com.albacontrol.MainActivity} display=0 updateInputWindows = true
+D/WindowManager( 1829): wms.Update InputWindowHandle: a7cf5e3 com.albacontrol/com.albacontrol.MainActivity, frame=[0,0,0,0], touchableRegion=SkRegion((0,0,1080,2400)), scaleFactor=1.0, transform=null, windowToken=android.os.BinderProxy@870a12, isClone=false, visibal=true, focusable=true, changed=true
+D/WindowManager( 1829): wms.finishDrawingLocked: mDrawState=COMMIT_DRAW_PENDING Window{a7cf5e3 u0 com.albacontrol/com.albacontrol.MainActivity} in Surface(name=com.albacontrol/com.albacontrol.MainActivity)/@0xd9a15c8
+D/MiuiFreeFormGesturePointerEventListener( 1829): finishDrawingWindow: topFullScreenWindow= Window{a7cf5e3 u0 com.albacontrol/com.albacontrol.MainActivity}
+I/SurfaceFlinger( 1258): sf.setTransactionState focusRequest transactionId:7855495348163 frontWin:a7cf5e3 com.albacontrol/com.albacontrol.MainActivity
+I/SmartPower.com.albacontrol/10217(23381)( 1829): invisible->visible(94ms) R(become visible) adj=0.
+I/WindowManager( 1829): wms.showSurfaceRobustly mWin:Window{a7cf5e3 u0 com.albacontrol/com.albacontrol.MainActivity}
+D/SurfaceFlinger( 1258): updateInputFlinger::setFocusedWindow: windowName=a7cf5e3 com.albacontrol/com.albacontrol.MainActivity focusRequests.size=1
+W/RecentsModel( 3272): getRunningTask   taskInfo=TaskInfo{userId=0 taskId=332 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity } baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} origActivity=null realActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} numActivities=1 lastActiveTime=166253622 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@d48d327} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=0 displayCutoutSafeInsets=Rect(0, 93 - 0, 0) topActivityInfo=ActivityInfo{f81f9d4 com.albacontrol.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false}
+W/RecentsModel( 3272): getTaskInfoIgnoreHomeAndFreeform   taskInfo=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}
+E/ActivityManagerWrapper( 3272): getRecentTasks: mainTaskId=332   userId=0   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} }
+I/GoogleInputMethodService( 8267): GoogleInputMethodService.onStartInput():1347 onStartInput(EditorInfo{EditorInfo{packageName=com.albacontrol, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[mParcelledData.dataSize=72], hintText=null, hintLocales=[]}}, false)
+W/RecentsModel( 3272): getRunningTask   taskInfo=TaskInfo{userId=0 taskId=332 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity } baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} origActivity=null realActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} numActivities=1 lastActiveTime=166253642 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@9d1672} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=0 displayCutoutSafeInsets=Rect(0, 93 - 0, 0) topActivityInfo=ActivityInfo{de57ac3 com.albacontrol.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false}
+W/RecentsModel( 3272): getTaskInfoIgnoreHomeAndFreeform   taskInfo=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}
+E/ActivityManagerWrapper( 3272): getRecentTasks: mainTaskId=332   userId=0   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} }
+D/WindowManager( 1829): wms.Update InputWindowHandle: a7cf5e3 com.albacontrol/com.albacontrol.MainActivity, frame=[0,0,0,0], touchableRegion=SkRegion((0,0,1080,2400)), scaleFactor=1.0, transform=null, windowToken=android.os.BinderProxy@870a12, isClone=false, visibal=true, focusable=true, changed=true
+D/MIUIInput( 1829): [MotionEvent] publisher action=0x0, 80864389, channel 'a7cf5e3 com.albacontrol/com.albacontrol.MainActivity (server)'
+D/MIUIInput( 1829): [MotionEvent] publisher action=0x1, 80864547, channel 'a7cf5e3 com.albacontrol/com.albacontrol.MainActivity (server)'
+D/MIUIInput( 1829): [MotionEvent] publisher action=0x0, 80865814, channel 'a7cf5e3 com.albacontrol/com.albacontrol.MainActivity (server)'
+D/MIUIInput( 1829): [MotionEvent] publisher action=0x1, 80865926, channel 'a7cf5e3 com.albacontrol/com.albacontrol.MainActivity (server)'
+D/PerfShielderService( 1829): com.albacontrol|com.albacontrol/com.albacontrol.MainActivity|164|80864667961964|143|5|3
+I/ActivityTaskManager( 1829): START u0 {act=android.media.action.IMAGE_CAPTURE cmp=com.android.camera/.OneShotCamera} from uid 10217 from pid 23381 callingPackage com.albacontrol
+W/MiuiPerfServiceClient( 5087): interceptAndQueuing:23381|com.albacontrol|164|143|80864667961964|Slow issue draw commands|3
+D/WindowManager( 1829): setLockTaskAuth: task=Task{ea6e67b #332 type=standard A=10217:com.albacontrol U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=2} mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
+D/WindowManager( 1829): wms.Update InputWindowHandle: a7cf5e3 com.albacontrol/com.albacontrol.MainActivity, frame=[0,0,0,0], touchableRegion=SkRegion((0,0,1080,2400)), scaleFactor=1.0, transform=null, windowToken=android.os.BinderProxy@870a12, isClone=false, visibal=true, focusable=true, changed=true
+I/GST     (11799): forePkg: com.android.camera, preForePkg: com.albacontrol
+D/PerfEngineController( 7490): ForegroundInfo{mForegroundPackageName='com.android.camera', mForegroundUid=10105, mForegroundPid=23287, mLastForegroundPackageName='com.albacontrol', mLastForegroundUid=10217, mLastForegroundPid=23381, mMultiWindowForegroundPackageName='com.android.camera', mMultiWindowForegroundUid=10105, mFlags=0}
+I/ProcessMonitor( 5615): onForegroundInfoChanged: ForegroundInfo{mForegroundPackageName='com.android.camera', mForegroundUid=10105, mForegroundPid=23287, mLastForegroundPackageName='com.albacontrol', mLastForegroundUid=10217, mLastForegroundPid=23381, mMultiWindowForegroundPackageName='com.android.camera', mMultiWindowForegroundUid=10105, mFlags=0}
+D/A2dpLatencyMode(16692): ForegroundInfo{mForegroundPackageName='com.android.camera', mForegroundUid=10105, mForegroundPid=23287, mLastForegroundPackageName='com.albacontrol', mLastForegroundUid=10217, mLastForegroundPid=23381, mMultiWindowForegroundPackageName='com.android.camera', mMultiWindowForegroundUid=10105, mFlags=0}
+D/AppObserver( 3272): ForegroundInfo{mForegroundPackageName='com.android.camera', mForegroundUid=10105, mForegroundPid=23287, mLastForegroundPackageName='com.albacontrol', mLastForegroundUid=10217, mLastForegroundPid=23381, mMultiWindowForegroundPackageName='com.android.camera', mMultiWindowForegroundUid=10105, mFlags=0}
+I/CameraBooster( 1829): boost prev app: com.albacontrol
+I/CameraBooster( 1829): adj boost for:com.albacontrol, timeout:-1
+D/CAM_CameraIntentManager(23287): The caller:com.albacontrol
+E/CAM_CameraIntentManager(23287): checkCallerLegality: Unknown caller: com.albacontrol
+W/RecentsModel( 3272): getRunningTask   taskInfo=TaskInfo{userId=0 taskId=332 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity } baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} topActivity=ComponentInfo{com.android.camera/com.android.camera.OneShotCamera} origActivity=null realActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} numActivities=2 lastActiveTime=166259155 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@106e0b8} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=0 displayCutoutSafeInsets=Rect(0, 93 - 0, 0) topActivityInfo=ActivityInfo{eb5ee91 com.android.camera.OneShotCamera} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false}
+W/RecentsModel( 3272): getTaskInfoIgnoreHomeAndFreeform   taskInfo=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}
+E/ActivityManagerWrapper( 3272): getRecentTasks: mainTaskId=332   userId=0   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} }
+W/RecentsModel( 3272): getRunningTask   taskInfo=TaskInfo{userId=0 taskId=332 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity } baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} topActivity=ComponentInfo{com.android.camera/com.android.camera.OneShotCamera} origActivity=null realActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} numActivities=2 lastActiveTime=166259224 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@c5c32f5} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=0 displayCutoutSafeInsets=Rect(0, 93 - 0, 0) topActivityInfo=ActivityInfo{946888a com.android.camera.OneShotCamera} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false}
+W/RecentsModel( 3272): getTaskInfoIgnoreHomeAndFreeform   taskInfo=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}
+E/ActivityManagerWrapper( 3272): getRecentTasks: mainTaskId=332   userId=0   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} }
+I/SmartPower.com.albacontrol/10217(23381)( 1829): visible->invisible(5930ms) R(become invisible) adj=100.
+I/SmartPower.com.albacontrol/10217(23381)( 1829): invisible->background(0ms) R(become background) adj=100.
+D/PerfStubImpl( 1829): perfWarmLaunchBoost: com.albacontrol, -1, 1
+I/SmartPower.com.albacontrol/10217(23381)( 1829): background->invisible(2820ms) R(become foreground) adj=0.
+D/CameraBlackCoveredManager( 1829): mForegroundPackage = com.albacontrol mOccupiedPackage = com.android.camera
+I/GST     (11799): forePkg: com.albacontrol, preForePkg: com.android.camera
+D/PerfEngineController( 7490): ForegroundInfo{mForegroundPackageName='com.albacontrol', mForegroundUid=10217, mForegroundPid=23381, mLastForegroundPackageName='com.android.camera', mLastForegroundUid=10105, mLastForegroundPid=23287, mMultiWindowForegroundPackageName='com.albacontrol', mMultiWindowForegroundUid=10217, mFlags=0}
+D/A2dpLatencyMode(16692): ForegroundInfo{mForegroundPackageName='com.albacontrol', mForegroundUid=10217, mForegroundPid=23381, mLastForegroundPackageName='com.android.camera', mLastForegroundUid=10105, mLastForegroundPid=23287, mMultiWindowForegroundPackageName='com.albacontrol', mMultiWindowForegroundUid=10217, mFlags=0}
+I/ProcessMonitor( 5615): onForegroundInfoChanged: ForegroundInfo{mForegroundPackageName='com.albacontrol', mForegroundUid=10217, mForegroundPid=23381, mLastForegroundPackageName='com.android.camera', mLastForegroundUid=10105, mLastForegroundPid=23287, mMultiWindowForegroundPackageName='com.albacontrol', mMultiWindowForegroundUid=10217, mFlags=0}
+D/AppObserver( 3272): ForegroundInfo{mForegroundPackageName='com.albacontrol', mForegroundUid=10217, mForegroundPid=23381, mLastForegroundPackageName='com.android.camera', mLastForegroundUid=10105, mLastForegroundPid=23287, mMultiWindowForegroundPackageName='com.albacontrol', mMultiWindowForegroundUid=10217, mFlags=0}
+I/CameraBooster( 1829): beginInhibitTasks comp: com.albacontrol/.MainActivity
+I/CameraBooster( 1829): adj deboost for:com.albacontrol , 0, timeout: 5s
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+D/WindowManager( 1829): wms.Input focus has changed to Window{a7cf5e3 u0 com.albacontrol/com.albacontrol.MainActivity} display=0 updateInputWindows = true
+D/WindowManager( 1829): wms.Update InputWindowHandle: a7cf5e3 com.albacontrol/com.albacontrol.MainActivity, frame=[0,0,0,0], touchableRegion=SkRegion((0,0,1080,2400)), scaleFactor=1.0, transform=null, windowToken=android.os.BinderProxy@870a12, isClone=false, visibal=true, focusable=true, changed=true
+I/SurfaceFlinger( 1258): sf.setTransactionState focusRequest transactionId:7855495348301 frontWin:a7cf5e3 com.albacontrol/com.albacontrol.MainActivity
+D/SurfaceFlinger( 1258): updateInputFlinger::setFocusedWindow: windowName=a7cf5e3 com.albacontrol/com.albacontrol.MainActivity focusRequests.size=1
+D/WindowManager( 1829): wms.finishDrawingLocked: mDrawState=COMMIT_DRAW_PENDING Window{a7cf5e3 u0 com.albacontrol/com.albacontrol.MainActivity} in Surface(name=com.albacontrol/com.albacontrol.MainActivity)/@0xe16d601
+I/SmartPower.com.albacontrol/10217(23381)( 1829): invisible->visible(109ms) R(become visible) adj=0.
+I/WindowManager( 1829): wms.showSurfaceRobustly mWin:Window{a7cf5e3 u0 com.albacontrol/com.albacontrol.MainActivity}
+D/KeyguardEditorHelper( 3215): onTopActivityMayChanged, topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}; mState=IDEL
+I/FocusedNotifPromptContr( 3215): onTopActivityMayChanged: topActivity=com.albacontrol
+I/FocusedNotifPromptContr( 3215): topActivityMayChanged: topActivity=com.albacontrol
+I/CameraBooster( 1829): process: com.albacontrol spent 680 ms during camera foreground
+W/RecentsModel( 3272): getRunningTask   taskInfo=TaskInfo{userId=0 taskId=332 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity } baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} origActivity=null realActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} numActivities=1 lastActiveTime=166262459 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@55e5efb} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=0 displayCutoutSafeInsets=Rect(0, 93 - 0, 0) topActivityInfo=ActivityInfo{b411b18 com.albacontrol.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false}
+W/RecentsModel( 3272): getTaskInfoIgnoreHomeAndFreeform   taskInfo=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}
+E/ActivityManagerWrapper( 3272): getRecentTasks: mainTaskId=332   userId=0   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} }
+I/GoogleInputMethodService( 8267): GoogleInputMethodService.onStartInput():1347 onStartInput(EditorInfo{EditorInfo{packageName=com.albacontrol, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[mParcelledData.dataSize=72], hintText=null, hintLocales=[]}}, false)
+W/RecentsModel( 3272): getRunningTask   taskInfo=TaskInfo{userId=0 taskId=332 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity } baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} origActivity=null realActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} numActivities=1 lastActiveTime=166262501 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@6a9efd7} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=0 displayCutoutSafeInsets=Rect(0, 93 - 0, 0) topActivityInfo=ActivityInfo{4b8d0c4 com.albacontrol.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false}
+W/RecentsModel( 3272): getTaskInfoIgnoreHomeAndFreeform   taskInfo=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}
+E/ActivityManagerWrapper( 3272): getRecentTasks: mainTaskId=332   userId=0   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} }
+D/WindowManager( 1829): wms.Update InputWindowHandle: a7cf5e3 com.albacontrol/com.albacontrol.MainActivity, frame=[0,0,0,0], touchableRegion=SkRegion((0,0,1080,2400)), scaleFactor=1.0, transform=null, windowToken=android.os.BinderProxy@870a12, isClone=false, visibal=true, focusable=true, changed=true
+D/WindowManager( 1829): setLockTaskAuth: task=Task{ea6e67b #332 type=standard A=10217:com.albacontrol U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=1} mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
+D/MIUIInput( 1829): [MotionEvent] publisher action=0x0, 80870655, channel 'a7cf5e3 com.albacontrol/com.albacontrol.MainActivity (server)'
+D/MIUIInput( 1829): [MotionEvent] publisher action=0x1, 80870764, channel 'a7cf5e3 com.albacontrol/com.albacontrol.MainActivity (server)'
+I/ActivityTaskManager( 1829): START u0 {act=android.intent.action.GET_CONTENT cat=[android.intent.category.OPENABLE] typ=image/* cmp=com.google.android.photopicker/com.android.photopicker.PhotopickerGetContentActivity} from uid 10217 from pid 23381 callingPackage com.albacontrol
+D/WindowManager( 1829): setLockTaskAuth: task=Task{ea6e67b #332 type=standard A=10217:com.albacontrol U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=2} mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
+D/WindowManager( 1829): wms.Update InputWindowHandle: a7cf5e3 com.albacontrol/com.albacontrol.MainActivity, frame=[0,0,0,0], touchableRegion=SkRegion((0,0,1080,2400)), scaleFactor=1.0, transform=null, windowToken=android.os.BinderProxy@870a12, isClone=false, visibal=true, focusable=true, changed=true
+D/WindowManager( 1829): wms.Update InputWindowHandle: a7cf5e3 com.albacontrol/com.albacontrol.MainActivity, frame=[0,0,0,0], touchableRegion=SkRegion((0,0,1080,2400)), scaleFactor=1.0, transform=null, windowToken=android.os.BinderProxy@870a12, isClone=false, visibal=true, focusable=true, changed=true
+D/Boost   ( 1829): hostingType=next-top-activity, hostingName={com.google.android.photopicker/com.android.photopicker.PhotopickerGetContentActivity}, callerPackage=com.albacontrol, isSystem=false, isBoostNeeded=false.
+I/ActivityManager( 1829): Start proc 23861:com.google.android.photopicker/u0a158 for next-top-activity {com.google.android.photopicker/com.android.photopicker.PhotopickerGetContentActivity} caller=com.albacontrol
+I/GST     (11799): forePkg: com.google.android.photopicker, preForePkg: com.albacontrol
+D/A2dpLatencyMode(16692): ForegroundInfo{mForegroundPackageName='com.google.android.photopicker', mForegroundUid=10158, mForegroundPid=23861, mLastForegroundPackageName='com.albacontrol', mLastForegroundUid=10217, mLastForegroundPid=23381, mMultiWindowForegroundPackageName='com.google.android.photopicker', mMultiWindowForegroundUid=10158, mFlags=1}
+D/PerfEngineController( 7490): ForegroundInfo{mForegroundPackageName='com.google.android.photopicker', mForegroundUid=10158, mForegroundPid=23861, mLastForegroundPackageName='com.albacontrol', mLastForegroundUid=10217, mLastForegroundPid=23381, mMultiWindowForegroundPackageName='com.google.android.photopicker', mMultiWindowForegroundUid=10158, mFlags=1}
+I/ProcessMonitor( 5615): onForegroundInfoChanged: ForegroundInfo{mForegroundPackageName='com.google.android.photopicker', mForegroundUid=10158, mForegroundPid=23861, mLastForegroundPackageName='com.albacontrol', mLastForegroundUid=10217, mLastForegroundPid=23381, mMultiWindowForegroundPackageName='com.google.android.photopicker', mMultiWindowForegroundUid=10158, mFlags=1}
+D/AppObserver( 3272): ForegroundInfo{mForegroundPackageName='com.google.android.photopicker', mForegroundUid=10158, mForegroundPid=23861, mLastForegroundPackageName='com.albacontrol', mLastForegroundUid=10217, mLastForegroundPid=23381, mMultiWindowForegroundPackageName='com.google.android.photopicker', mMultiWindowForegroundUid=10158, mFlags=1}
+W/RecentsModel( 3272): getRunningTask   taskInfo=TaskInfo{userId=0 taskId=332 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity } baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} topActivity=ComponentInfo{com.google.android.photopicker/com.android.photopicker.MainActivity} origActivity=null realActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} numActivities=2 lastActiveTime=166263946 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@de4cbad} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=0 displayCutoutSafeInsets=Rect(0, 93 - 0, 0) topActivityInfo=ActivityInfo{5479ee2 com.android.photopicker.PhotopickerGetContentActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false}
+W/RecentsModel( 3272): getTaskInfoIgnoreHomeAndFreeform   taskInfo=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}
+E/ActivityManagerWrapper( 3272): getRecentTasks: mainTaskId=332   userId=0   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} }
+W/RecentsModel( 3272): getRunningTask   taskInfo=TaskInfo{userId=0 taskId=332 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity } baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} topActivity=ComponentInfo{com.google.android.photopicker/com.android.photopicker.MainActivity} origActivity=null realActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} numActivities=2 lastActiveTime=166263963 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@faf75a9} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=0 displayCutoutSafeInsets=Rect(0, 93 - 0, 0) topActivityInfo=ActivityInfo{d44c72e com.android.photopicker.PhotopickerGetContentActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false}
+W/RecentsModel( 3272): getTaskInfoIgnoreHomeAndFreeform   taskInfo=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}
+E/ActivityManagerWrapper( 3272): getRecentTasks: mainTaskId=332   userId=0   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} }
+D/PhotopickerFeatureManager(23861): Beginning feature initialization with config: PhotopickerConfiguration(runtimeEnv=ACTIVITY, action=android.intent.action.GET_CONTENT, callingPackage=com.albacontrol, callingPackageUid=10217, callingPackageLabel=AlbaControl, callingPackageMediaCapabilities=null, accentColor=null, mimeTypes=[image/*], pickImagesInOrder=false, selectionLimit=1, startDestination=DEFAULT, preSelectedUris=null, highlightQueryResultsParams=HighlightQueryResultsParams(queryResultsHighlightType=UNSET_HIGHLIGHT_TYPE, queryResultsHighlightQuery=Search(searchQuery=)), deviceIsDebuggable=false, flags=PhotopickerFlags(CLOUD_ALLOWED_PROVIDERS=[com.google.android.apps.photos], CLOUD_ENFORCE_PROVIDER_ALLOWLIST=true, CLOUD_MEDIA_ENABLED=true, PRIVATE_SPACE_ENABLED=true, MANAGED_SELECTION_ENABLED=true, PICKER_SEARCH_ENABLED=true, PICKER_DATESCRUBBER_ENABLED=false, PICKER_TRANSCODING_ENABLED=true, PICKER_HIGHLIGHT_MEDIA_FEATURE_ENABLED=true, OWNED_PHOTOS_ENABLED=true, MEDIA_GRID_TOUCH_FEATURES_ENABLED=true), sessionId=165192, intent=Intent { act=android.intent.action.GET_CONTENT cat=[android.intent.category.OPENABLE] typ=image/* flg=0x800000 cmp=com.google.android.photopicker/com.android.photopicker.PhotopickerGetContentActivity })
+W/SQLiteLog( 4986): (28) double-quoted string literal: "com.albacontrol"
+D/PerfStubImpl( 1829): perfWarmLaunchBoost: com.albacontrol, -1, 2
+D/WindowManager( 1829): wms.Input focus has changed to Window{a7cf5e3 u0 com.albacontrol/com.albacontrol.MainActivity} display=0 updateInputWindows = true
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+I/SurfaceFlinger( 1258): sf.setTransactionState focusRequest transactionId:7855495348408 frontWin:a7cf5e3 com.albacontrol/com.albacontrol.MainActivity
+D/CameraBlackCoveredManager( 1829): mForegroundPackage = com.albacontrol mOccupiedPackage = com.android.camera
+D/PerfEngineController( 7490): ForegroundInfo{mForegroundPackageName='com.albacontrol', mForegroundUid=10217, mForegroundPid=23381, mLastForegroundPackageName='com.google.android.photopicker', mLastForegroundUid=10158, mLastForegroundPid=23861, mMultiWindowForegroundPackageName='com.albacontrol', mMultiWindowForegroundUid=10217, mFlags=0}
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/GST     (11799): forePkg: com.albacontrol, preForePkg: com.google.android.photopicker
+I/ProcessMonitor( 5615): onForegroundInfoChanged: ForegroundInfo{mForegroundPackageName='com.albacontrol', mForegroundUid=10217, mForegroundPid=23381, mLastForegroundPackageName='com.google.android.photopicker', mLastForegroundUid=10158, mLastForegroundPid=23861, mMultiWindowForegroundPackageName='com.albacontrol', mMultiWindowForegroundUid=10217, mFlags=0}
+D/A2dpLatencyMode(16692): ForegroundInfo{mForegroundPackageName='com.albacontrol', mForegroundUid=10217, mForegroundPid=23381, mLastForegroundPackageName='com.google.android.photopicker', mLastForegroundUid=10158, mLastForegroundPid=23861, mMultiWindowForegroundPackageName='com.albacontrol', mMultiWindowForegroundUid=10217, mFlags=0}
+D/AppObserver( 3272): ForegroundInfo{mForegroundPackageName='com.albacontrol', mForegroundUid=10217, mForegroundPid=23381, mLastForegroundPackageName='com.google.android.photopicker', mLastForegroundUid=10158, mLastForegroundPid=23861, mMultiWindowForegroundPackageName='com.albacontrol', mMultiWindowForegroundUid=10217, mFlags=0}
+D/SurfaceFlinger( 1258): updateInputFlinger::setFocusedWindow: windowName=a7cf5e3 com.albacontrol/com.albacontrol.MainActivity focusRequests.size=1
+I/GoogleInputMethodService( 8267): GoogleInputMethodService.onStartInput():1347 onStartInput(EditorInfo{EditorInfo{packageName=com.albacontrol, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[mParcelledData.dataSize=72], hintText=null, hintLocales=[]}}, false)
+D/KeyguardEditorHelper( 3215): onTopActivityMayChanged, topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}; mState=IDEL
+I/FocusedNotifPromptContr( 3215): onTopActivityMayChanged: topActivity=com.albacontrol
+I/FocusedNotifPromptContr( 3215): topActivityMayChanged: topActivity=com.albacontrol
+W/RecentsModel( 3272): getRunningTask   taskInfo=TaskInfo{userId=0 taskId=332 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity } baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} origActivity=null realActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} numActivities=1 lastActiveTime=166267357 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@68d02cf} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=0 displayCutoutSafeInsets=Rect(0, 93 - 0, 0) topActivityInfo=ActivityInfo{bff745c com.albacontrol.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false}
+W/RecentsModel( 3272): getTaskInfoIgnoreHomeAndFreeform   taskInfo=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}
+I/CameraBooster( 1829): adj deboost for: com.albacontrol begin to execute.
+E/ActivityManagerWrapper( 3272): getRecentTasks: mainTaskId=332   userId=0   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} }
+W/RecentsModel( 3272): getRunningTask   taskInfo=TaskInfo{userId=0 taskId=332 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity } baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} origActivity=null realActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} numActivities=1 lastActiveTime=166267386 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@d00fceb} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=0 displayCutoutSafeInsets=Rect(0, 93 - 0, 0) topActivityInfo=ActivityInfo{f3d7a48 com.albacontrol.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false}
+W/RecentsModel( 3272): getTaskInfoIgnoreHomeAndFreeform   taskInfo=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}
+E/ActivityManagerWrapper( 3272): getRecentTasks: mainTaskId=332   userId=0   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} }
+D/WindowManager( 1829): setLockTaskAuth: task=Task{ea6e67b #332 type=standard A=10217:com.albacontrol U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=1} mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
+D/MIUIInput( 1829): [KeyEvent] publisher action:0x0,  keyCode:4 , 80874981,channel 'a7cf5e3 com.albacontrol/com.albacontrol.MainActivity (server)' 
+D/MIUIInput(23381): [KeyEvent] ViewRootImpl windowName 'com.albacontrol/com.albacontrol.MainActivity', KeyEvent { action=ACTION_DOWN, keyCode=KEYCODE_BACK, scanCode=0, metaState=0, flags=0x48, repeatCount=0, eventTime=80874981000000, downTime=80874981000000, deviceId=-1, source=0x101, displayId=0 }, phoneEventTime=08:47:56.178
+D/MIUIInput( 1829): [KeyEvent] publisher action:0x1,  keyCode:4 , 80875095,channel 'a7cf5e3 com.albacontrol/com.albacontrol.MainActivity (server)' 
+D/MIUIInput(23381): [KeyEvent] ViewRootImpl windowName 'com.albacontrol/com.albacontrol.MainActivity', KeyEvent { action=ACTION_UP, keyCode=KEYCODE_BACK, scanCode=0, metaState=0, flags=0x48, repeatCount=0, eventTime=80875095000000, downTime=80874981000000, deviceId=-1, source=0x101, displayId=0 }, phoneEventTime=08:47:56.292
+D/MIUIInput( 1829): [MotionEvent] publisher action=0x0, 80876509, channel 'a7cf5e3 com.albacontrol/com.albacontrol.MainActivity (server)'
+D/collectorManager( 7490): ThermalScenarioValue setForegroundCounts: com.albacontrol
+D/MIUIInput( 1829): [MotionEvent] publisher action=0x1, 80876682, channel 'a7cf5e3 com.albacontrol/com.albacontrol.MainActivity (server)'
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+D/WindowManager( 1829): wms.Update InputWindowHandle: a7cf5e3 com.albacontrol/com.albacontrol.MainActivity, frame=[0,0,0,0], touchableRegion=SkRegion((0,0,1080,2400)), scaleFactor=1.0, transform=null, windowToken=android.os.BinderProxy@870a12, isClone=false, visibal=true, focusable=true, changed=true
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+I/com.albacontrol(23381): Waiting for a blocking GC ProfileSaver
+I/com.albacontrol(23381): WaitForGcToComplete blocked ProfileSaver on Background for 10.937ms
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+W/NotificationService( 1829): Toast already killed. pkg=com.albacontrol token=android.os.BinderProxy@2819670
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+W/NotificationService( 1829): Toast already killed. pkg=com.albacontrol token=android.os.BinderProxy@a5583d2
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+W/com.albacontrol(23381): Cleared Reference was only reachable from finalizer (only reported once)
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+W/RecentsModel( 3272): getRunningTask   taskInfo=TaskInfo{userId=0 taskId=332 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity } baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} origActivity=null realActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} numActivities=1 lastActiveTime=166277633 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@41f30e1} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=0 displayCutoutSafeInsets=Rect(0, 93 - 0, 0) topActivityInfo=ActivityInfo{1328e06 com.albacontrol.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false}
+W/RecentsModel( 3272): getTaskInfoIgnoreHomeAndFreeform   taskInfo=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+D/TaskView( 3272): TaskView bind task, task=[TaskKey{id=332, stackId=0, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity }, userId=0, lastActiveTime=166267241, windowingMode=1, isThumbnailBlur=false, isScreening=false, topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, mHashCode=10814164}, title=AlbaControl, titleDescription=AlbaControl, bounds=null, isLaunchTarget=true, isStackTask=true, isSystemApp=false, isDockable=true, baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, isLocked=false, isAccessLocked=false, mNeedHide=false] , isLock=false
+D/TaskViewThumbnail( 3272): updateThumbnailScale, t=[TaskKey{id=332, stackId=0, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity }, userId=0, lastActiveTime=166267241, windowingMode=1, isThumbnailBlur=false, isScreening=false, topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, mHashCode=10814164}, title=AlbaControl, titleDescription=AlbaControl, bounds=null, isLaunchTarget=true, isStackTask=true, isSystemApp=false, isDockable=true, baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, isLocked=false, isAccessLocked=false, mNeedHide=false] , mThumbnailBitmapSizeAfterScaled=(469, 985)
+D/TaskView( 3272): TaskView bind task, task=[TaskKey{id=332, stackId=0, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity }, userId=0, lastActiveTime=166267241, windowingMode=1, isThumbnailBlur=false, isScreening=false, topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, mHashCode=10814164}, title=AlbaControl, titleDescription=AlbaControl, bounds=null, isLaunchTarget=true, isStackTask=true, isSystemApp=false, isDockable=true, baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, isLocked=false, isAccessLocked=false, mNeedHide=false] , isLock=false
+D/TaskViewThumbnail( 3272): updateThumbnailScale, t=[TaskKey{id=332, stackId=0, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity }, userId=0, lastActiveTime=166267241, windowingMode=1, isThumbnailBlur=false, isScreening=false, topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, mHashCode=10814164}, title=AlbaControl, titleDescription=AlbaControl, bounds=null, isLaunchTarget=true, isStackTask=true, isSystemApp=false, isDockable=true, baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, isLocked=false, isAccessLocked=false, mNeedHide=false] , mThumbnailBitmapSizeAfterScaled=(469, 985)
+D/TaskView( 3272): TaskView bind task, task=[TaskKey{id=332, stackId=0, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity }, userId=0, lastActiveTime=166267241, windowingMode=1, isThumbnailBlur=false, isScreening=false, topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, mHashCode=10814164}, title=AlbaControl, titleDescription=AlbaControl, bounds=null, isLaunchTarget=true, isStackTask=true, isSystemApp=false, isDockable=true, baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, isLocked=false, isAccessLocked=false, mNeedHide=false] , isLock=false
+D/TaskViewThumbnail( 3272): updateThumbnailScale, t=[TaskKey{id=332, stackId=0, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity }, userId=0, lastActiveTime=166267241, windowingMode=1, isThumbnailBlur=false, isScreening=false, topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, mHashCode=10814164}, title=AlbaControl, titleDescription=AlbaControl, bounds=null, isLaunchTarget=true, isStackTask=true, isSystemApp=false, isDockable=true, baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, isLocked=false, isAccessLocked=false, mNeedHide=false] , mThumbnailBitmapSizeAfterScaled=(469, 985)
+D/PerfEngineController( 7490): ForegroundInfo{mForegroundPackageName='com.miui.home', mForegroundUid=10103, mForegroundPid=3272, mLastForegroundPackageName='com.albacontrol', mLastForegroundUid=10217, mLastForegroundPid=23381, mMultiWindowForegroundPackageName='com.miui.home', mMultiWindowForegroundUid=10103, mFlags=0}
+I/GST     (11799): forePkg: com.miui.home, preForePkg: com.albacontrol
+I/ProcessMonitor( 5615): onForegroundInfoChanged: ForegroundInfo{mForegroundPackageName='com.miui.home', mForegroundUid=10103, mForegroundPid=3272, mLastForegroundPackageName='com.albacontrol', mLastForegroundUid=10217, mLastForegroundPid=23381, mMultiWindowForegroundPackageName='com.miui.home', mMultiWindowForegroundUid=10103, mFlags=0}
+D/A2dpLatencyMode(16692): ForegroundInfo{mForegroundPackageName='com.miui.home', mForegroundUid=10103, mForegroundPid=3272, mLastForegroundPackageName='com.albacontrol', mLastForegroundUid=10217, mLastForegroundPid=23381, mMultiWindowForegroundPackageName='com.miui.home', mMultiWindowForegroundUid=10103, mFlags=0}
+D/AppObserver( 3272): ForegroundInfo{mForegroundPackageName='com.miui.home', mForegroundUid=10103, mForegroundPid=3272, mLastForegroundPackageName='com.albacontrol', mLastForegroundUid=10217, mLastForegroundPid=23381, mMultiWindowForegroundPackageName='com.miui.home', mMultiWindowForegroundUid=10103, mFlags=0}
+W/NotificationService( 1829): Toast already killed. pkg=com.albacontrol token=android.os.BinderProxy@8b4f77c
+D/TaskView( 3272): TaskView bind task, task=[TaskKey{id=332, stackId=0, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity }, userId=0, lastActiveTime=166267241, windowingMode=1, isThumbnailBlur=false, isScreening=false, topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, mHashCode=10814164}, title=AlbaControl, titleDescription=AlbaControl, bounds=null, isLaunchTarget=true, isStackTask=true, isSystemApp=false, isDockable=true, baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, isLocked=false, isAccessLocked=false, mNeedHide=false] , isLock=false
+D/TaskViewThumbnail( 3272): updateThumbnailScale, t=[TaskKey{id=332, stackId=0, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity }, userId=0, lastActiveTime=166267241, windowingMode=1, isThumbnailBlur=false, isScreening=false, topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, mHashCode=10814164}, title=AlbaControl, titleDescription=AlbaControl, bounds=null, isLaunchTarget=true, isStackTask=true, isSystemApp=false, isDockable=true, baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, isLocked=false, isAccessLocked=false, mNeedHide=false] , mThumbnailBitmapSizeAfterScaled=(469, 985)
+D/TaskViewThumbnail( 3272): updateThumbnailScale, t=[TaskKey{id=332, stackId=0, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity }, userId=0, lastActiveTime=166267241, windowingMode=1, isThumbnailBlur=false, isScreening=false, topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, mHashCode=10814164}, title=AlbaControl, titleDescription=AlbaControl, bounds=null, isLaunchTarget=true, isStackTask=true, isSystemApp=false, isDockable=true, baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, isLocked=false, isAccessLocked=false, mNeedHide=false] , mThumbnailBitmapSizeAfterScaled=(469, 985)
+E/ActivityManagerWrapper( 3272): getRecentTasks: mainTaskId=332   userId=0   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} }
+I/SmartPower.com.albacontrol/10217(23381)( 1829): visible->invisible(15427ms) R(become invisible) adj=200.
+I/SmartPower.com.albacontrol/10217(23381)( 1829): invisible->background(1ms) R(become background) adj=200.
+W/Activity(23381): PerfMonitor: Slow Operation: Activity com.albacontrol/.MainActivity onStart took 199ms
+D/RecentsImpl( 3272): mActivityStateObserver com.albacontrol.MainActivity
+W/RecentsImpl( 3272): onResumed className=com.albacontrol.MainActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+D/TaskViewThumbnail( 3272): updateThumbnailScale, t=[TaskKey{id=332, stackId=0, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity }, userId=0, lastActiveTime=166267241, windowingMode=1, isThumbnailBlur=false, isScreening=false, topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, mHashCode=10814164}, title=AlbaControl, titleDescription=AlbaControl, bounds=null, isLaunchTarget=true, isStackTask=true, isSystemApp=false, isDockable=true, baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, isLocked=false, isAccessLocked=false, mNeedHide=false] , mThumbnailBitmapSizeAfterScaled=(469, 985)
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/ActivityManagerWrapper( 3272): getRecentTasks: mainTaskId=332   userId=0   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity} }
+W/Looper  (23381): PerfMonitor looperActivity : package=com.albacontrol/.MainActivity time=1ms latency=336ms  procState=-1  historyMsgCount=41
+W/Looper  (23381): PerfMonitor looperActivity : package=com.albacontrol/.MainActivity time=3ms latency=332ms  procState=-1  historyMsgCount=44
+E/NotificationService( 1829): Package has already queued 5 toasts. Not showing more. Package=com.albacontrol
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Suppressing toast from package com.albacontrol by user request.
+W/Activity(23381): PerfMonitor: Slow Operation: Activity com.albacontrol/.MainActivity onStart took 173ms
+W/Looper  (23381): PerfMonitor looperActivity : package=com.albacontrol/.MainActivity time=13ms latency=313ms  procState=-1  historyMsgCount=58
+I/ActivityThread(23381): Schedule relaunch activity: com.albacontrol.MainActivity
+E/NotificationService( 1829): Suppressing toast from package com.albacontrol by user request.
+D/CoreBackPreview( 1829): Window{a7cf5e3 u0 com.albacontrol/com.albacontrol.MainActivity}: Setting back callback null
+W/InputManager-JNI( 1829): Input channel object 'a7cf5e3 com.albacontrol/com.albacontrol.MainActivity (client)' was disposed without first being removed with the input manager!
+W/Activity(23381): PerfMonitor: Slow Operation: Activity com.albacontrol/.MainActivity onStart took 231ms
+D/CoreBackPreview( 1829): Window{91ea1a4 u0 com.albacontrol/com.albacontrol.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@574e0d3, mPriority=0}
+E/NotificationService( 1829): Suppressing toast from package com.albacontrol by user request.
+I/ActivityTaskManager( 1829): Activity reported stop, but no longer stopping: ActivityRecord{2c67e0a u0 com.albacontrol/.MainActivity} t332} STOPPED
+D/RecentsContainer( 3272): removeTask: [TaskKey{id=332, stackId=0, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.albacontrol/.MainActivity }, userId=0, lastActiveTime=166267241, windowingMode=1, isThumbnailBlur=false, isScreening=false, topActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, mHashCode=10814164}, title=AlbaControl, titleDescription=AlbaControl, bounds=null, isLaunchTarget=true, isStackTask=true, isSystemApp=false, isDockable=true, baseActivity=ComponentInfo{com.albacontrol/com.albacontrol.MainActivity}, isLocked=false, isAccessLocked=false, mNeedHide=false] 
+D/WindowProcessUtils( 1829): remove task: Task{ea6e67b #332 type=standard A=10217:com.albacontrol U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=1}
+I/ProcessSceneCleaner( 1829): SwipeUpClean: kill procName=com.albacontrol info=AS:90018
+I/ActivityManager( 1829): Killing 23381:com.albacontrol/u0a217 (adj 900): SwipeUpClean
+I/WindowManager( 1829): WIN DEATH: Window{91ea1a4 u0 com.albacontrol/com.albacontrol.MainActivity}
+W/InputManager-JNI( 1829): Input channel object '91ea1a4 com.albacontrol/com.albacontrol.MainActivity (client)' was disposed without first being removed with the input manager!
+W/UsageStatsService( 1829): Unexpected activity event reported! (com.albacontrol/com.albacontrol.MainActivity event : 23 instanceId : 90950808)
+W/NotificationService( 1829): Toast already killed. pkg=com.albacontrol token=android.os.BinderProxy@fe3941d
+W/ToastPresenter( 3215): Error calling back com.albacontrol to notify onToastHide()
+W/ToastPresenter( 3215): Error calling back com.albacontrol to notify onToastShow()
+W/NotificationService( 1829): Toast already killed. pkg=com.albacontrol token=android.os.BinderProxy@bd35ac0
+W/ToastPresenter( 3215): Error calling back com.albacontrol to notify onToastHide()
+W/ToastPresenter( 3215): Error calling back com.albacontrol to notify onToastShow()

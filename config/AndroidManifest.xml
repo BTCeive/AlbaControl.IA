@@ -1,0 +1,10 @@
+<manifest package="com.albacontrol.app"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Placeholder AndroidManifest.xml. Reemplazar con el manifest real al scaffoldar el proyecto. -->
+
+    <!-- Permisos necesarios para cámara y almacenamiento (añadir según implementación real) -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+</manifest>

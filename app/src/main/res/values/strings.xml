@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AlbaControl</string>
+    <string name="options_title">Opciones generales</string>
+
+    <string name="new_receptionist">Nueva recepcionista</string>
+    <string name="new_location">Nueva ubicación</string>
+    <string name="new_email">Nuevo email</string>
+
+    <string name="export">Exportar</string>
+    <string name="op_import">Importar</string>
+    <string name="backup_general">Backup general</string>
+    <string name="restore_app">Restaurar app</string>
+
+    <string name="export_area_title">Exportar %1$s</string>
+    <string name="export_area_message">¿Exportar %1$s ahora? Los archivos se guardarán en la carpeta de exportación de la app.</string>
+    <string name="export_complete">Export completo: %1$s</string>
+    <string name="export_error">Error exportando: %1$s</string>
+
+    <string name="import_area_title">Importar %1$s</string>
+    <string name="import_complete">Import completo: %1$s</string>
+    <string name="import_error">Error importando: %1$s</string>
+
+    <string name="restore_warning">ADVERTENCIA: Se van a borrar todos los datos de la aplicación. Esta acción no se puede deshacer.&#10;Espere 5 segundos y marque la casilla para confirmar.</string>
+    <string name="restore_confirm_missing">Debes marcar la casilla para confirmar.</string>
+    <string name="restore_confirm_title">Restaurar app</string>
+    <string name="restore_completed">Restauración completada. La app ha sido limpiada.</string>
+    <string name="restore_error">Error restaurando: %1$s</string>
+
+    <string name="confirm_delete">¿Eliminar %1$s?</string>
+    <string name="delete">Eliminar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="ok">OK</string>
+    <string name="edit">Editar</string>
+
+    <string name="ocr_passes_toast">OCR pasadas: %1$d</string>
+
+    <string name="importing_progress">Importando %1$s...</string>
+    <string name="exporting_progress">Exportando %1$s...</string>
+    <string name="restoring_progress">Restaurando app...</string>
+
+    <string name="auto_delete_section">Borrado automático del Historial</string>
+    <string name="auto_delete_age_label">Borrado por antigüedad (días)</string>
+    <string name="auto_delete_count_label">Borrado por cantidad (máx. PDFs)</string>
+    <string name="cleanup_completed_toast">Limpieza automática de historial completada.</string>
+
+    <string name="add_option_sync">Sincronización (pendiente)</string>
+
+</resources>
