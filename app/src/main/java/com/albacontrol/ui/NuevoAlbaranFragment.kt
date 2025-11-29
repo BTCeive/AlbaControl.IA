@@ -55,6 +55,7 @@ class NuevoAlbaranFragment : Fragment() {
     private lateinit var takePictureLauncher: ActivityResultLauncher<Void?>
     private lateinit var pickImageLauncher: ActivityResultLauncher<String>
     private lateinit var pickPhotosLauncher: ActivityResultLauncher<Array<String>>
+    private lateinit var pickPhotosNoOcrLauncher: ActivityResultLauncher<Array<String>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,6 +87,19 @@ class NuevoAlbaranFragment : Fragment() {
                 } catch (_: Exception) {}
             }
         }
+        // Launcher para añadir fotos SIN OCR (no debe rellenar el formulario)
+        pickPhotosNoOcrLauncher = registerForActivityResult(ActivityResultContracts.OpenMultipleDocuments()) { uris: List<android.net.Uri>? ->
+            if (uris == null || uris.isEmpty()) return@registerForActivityResult
+            for (u in uris) {
+                try {
+                    val bmp = requireActivity().contentResolver.openInputStream(u)?.use { android.graphics.BitmapFactory.decodeStream(it) }
+                    if (bmp != null) {
+                        // Guardar la foto y actualizar miniaturas, pero NO ejecutar OCR
+                        saveBitmapAndAdd(bmp)
+                    }
+                } catch (_: Exception) {}
+            }
+        }
     }
 
     override fun onCreateView(
@@ -110,6 +124,8 @@ class NuevoAlbaranFragment : Fragment() {
                 view.findViewById<EditText>(R.id.etNif).setText(jo.optString("nif", ""))
                 view.findViewById<EditText>(R.id.etNumeroAlbaran).setText(jo.optString("numero_albaran", ""))
                 view.findViewById<EditText>(R.id.etFechaAlbaran).setText(jo.optString("fecha_albaran", ""))
+                // comentarios
+                try { view.findViewById<EditText>(R.id.etComentarios).setText(jo.optString("comments", "")) } catch (_: Exception) {}
 
                 // cargar productos
                 val productsArray = jo.optJSONArray("products")
@@ -175,20 +191,17 @@ class NuevoAlbaranFragment : Fragment() {
             pickImageLauncher.launch("image/*")
         }
 
-        // Botón para guardar patrón a partir de la última lectura OCR y correcciones
-        view.findViewById<Button>(R.id.btnSavePattern)?.setOnClickListener {
-            savePatternFromCorrections()
-        }
+        // El botón "Guardar patrón" se eliminó del layout; el patrón se guardará automáticamente al finalizar
 
         // Contenedor de miniaturas y botón añadir fotografía
         val photoContainer = view.findViewById<LinearLayout>(R.id.photo_container)
         // botón lanzar selector múltiple
         view.findViewById<Button>(R.id.btnAddPhoto).setOnClickListener {
-            // lanzar selector que permite múltiples selecciones
+            // lanzar selector que permite múltiples selecciones SIN OCR (para fotos de desperfectos)
             try {
-                pickPhotosLauncher.launch(arrayOf("image/*"))
+                pickPhotosNoOcrLauncher.launch(arrayOf("image/*"))
             } catch (e: Exception) {
-                // fallback: abrir selector simple
+                // fallback: abrir selector simple y no procesar OCR (usar pickImageLauncher but saving only)
                 pickImageLauncher.launch("image/*")
             }
         }
@@ -207,6 +220,17 @@ class NuevoAlbaranFragment : Fragment() {
             json.put("numero_albaran", etNumero.text.toString())
             json.put("fecha_albaran", etFechaAlb.text.toString())
             json.put("created_at", System.currentTimeMillis())
+            try {
+                val etComments = view.findViewById<EditText>(R.id.etComentarios)
+                json.put("comments", etComments.text.toString())
+            } catch (_: Exception) {}
+            try {
+                val etComments = view.findViewById<EditText>(R.id.etComentarios)
+                json.put("comments", etComments.text.toString())
+            } catch (_: Exception) {}
+            // comentarios
+            val etComments = view.findViewById<EditText>(R.id.etComentarios)
+            json.put("comments", etComments.text.toString())
 
             val productsArray = JSONArray()
             for (i in 0 until productContainer.childCount) {
@@ -274,6 +298,11 @@ class NuevoAlbaranFragment : Fragment() {
             json.put("nif", etNif.text.toString())
             json.put("numero_albaran", etNumero.text.toString())
             json.put("fecha_albaran", etFechaAlb.text.toString())
+            // comentarios
+            try {
+                val etComments = view.findViewById<EditText>(R.id.etComentarios)
+                json.put("comments", etComments.text.toString())
+            } catch (_: Exception) {}
             json.put("created_at", System.currentTimeMillis())
 
             val productsArray = JSONArray()
@@ -309,6 +338,10 @@ class NuevoAlbaranFragment : Fragment() {
                     val id = withContext(Dispatchers.IO) { db.completedDao().insert(completed) }
 
                     Toast.makeText(requireContext(), "Albarán finalizado (id=$id)", Toast.LENGTH_SHORT).show()
+                    // Guardar patrón automáticamente al finalizar el albarán (si hay resultado OCR reciente)
+                    try {
+                        savePatternFromCorrections()
+                    } catch (_: Exception) {}
                     // Abrir cliente de correo con adjunto (asunto/cuerpo/recipientes desde opciones)
                     try {
                         val uri: Uri = FileProvider.getUriForFile(requireContext(), requireContext().packageName + ".fileprovider", pdfFile)
@@ -360,12 +393,116 @@ class NuevoAlbaranFragment : Fragment() {
             }
         }
 
-        // Spinners + botones añadir (placeholders)
+        // Spinners + botones añadir: cargar opciones guardadas y manejar añadir
+        val spinnerUbic = view.findViewById<Spinner>(R.id.spinnerUbicacion)
+        val spinnerRecep = view.findViewById<Spinner>(R.id.spinnerRecepcionista)
+
+        fun loadListFromPrefs(key: String): MutableList<String> {
+            val prefs = requireContext().getSharedPreferences("alba_prefs", android.content.Context.MODE_PRIVATE)
+            val json = prefs.getString(key, "[]") ?: "[]"
+            val list = mutableListOf<String>()
+            try {
+                val arr = org.json.JSONArray(json)
+                for (i in 0 until arr.length()) {
+                    val s = arr.optString(i)
+                    if (!s.isNullOrBlank()) list.add(s)
+                }
+            } catch (_: Exception) {}
+            return list
+        }
+
+        fun saveListToPrefs(key: String, list: List<String>) {
+            val prefs = requireContext().getSharedPreferences("alba_prefs", android.content.Context.MODE_PRIVATE)
+            val arr = org.json.JSONArray()
+            for (s in list) arr.put(s)
+            prefs.edit().putString(key, arr.toString()).apply()
+        }
+
+        fun refreshSpinner(spinner: Spinner, items: List<String>, lastKey: String?) {
+            val display = if (items.isEmpty()) listOf("— Sin datos —") else items
+            val adapter = android.widget.ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, display)
+            spinner.adapter = adapter
+            // seleccionar último usado si existe
+            if (!lastKey.isNullOrBlank()) {
+                val prefs = requireContext().getSharedPreferences("alba_prefs", android.content.Context.MODE_PRIVATE)
+                val last = prefs.getString(lastKey, null)
+                if (!last.isNullOrBlank()) {
+                    val idx = display.indexOf(last)
+                    if (idx >= 0) spinner.setSelection(idx)
+                }
+            }
+        }
+
+        fun showAddDialog(prefKey: String, title: String, hint: String, spinner: Spinner, lastKey: String) {
+            val et = EditText(requireContext())
+            et.hint = hint
+            val dialog = AlertDialog.Builder(requireContext())
+                .setTitle(title)
+                .setView(et)
+                .setPositiveButton("Añadir", null)
+                .setNegativeButton("Cancelar", null)
+                .create()
+            dialog.show()
+            // ahora que el diálogo está mostrado, configurar listener y colores de botones
+            try {
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+                    val v = et.text.toString().trim()
+                    if (v.isBlank()) {
+                        et.error = "Introduce un valor"
+                        return@setOnClickListener
+                    }
+                    val list = loadListFromPrefs(prefKey)
+                    if (!list.contains(v)) {
+                        list.add(0, v) // añadir arriba
+                        saveListToPrefs(prefKey, list)
+                    }
+                    refreshSpinner(spinner, loadListFromPrefs(prefKey), lastKey)
+                    // guardar como último usado
+                    val prefs = requireContext().getSharedPreferences("alba_prefs", android.content.Context.MODE_PRIVATE)
+                    prefs.edit().putString(lastKey, v).apply()
+                    // seleccionar el nuevo elemento
+                    val adapter = spinner.adapter as? android.widget.ArrayAdapter<String>
+                    val pos = (0 until (adapter?.count ?: 0)).firstOrNull { adapter?.getItem(it) == v } ?: -1
+                    if (pos >= 0) spinner.setSelection(pos)
+                    dialog.dismiss()
+                }
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.BLACK)
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(Color.BLACK)
+            } catch (_: Exception) {}
+        }
+
+        // inicializar spinners
+        val ubicList = loadListFromPrefs("ubicaciones")
+        val recepList = loadListFromPrefs("recepcionistas")
+        refreshSpinner(spinnerUbic, ubicList, "last_ubicacion")
+        refreshSpinner(spinnerRecep, recepList, "last_recepcionista")
+
+        // guardar último usado al seleccionar
+        spinnerUbic.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, viewSel: View?, position: Int, id: Long) {
+                val item = parent?.getItemAtPosition(position)?.toString() ?: return
+                if (item == "— Sin datos —") return
+                val prefs = requireContext().getSharedPreferences("alba_prefs", android.content.Context.MODE_PRIVATE)
+                prefs.edit().putString("last_ubicacion", item).apply()
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+        spinnerRecep.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, viewSel: View?, position: Int, id: Long) {
+                val item = parent?.getItemAtPosition(position)?.toString() ?: return
+                if (item == "— Sin datos —") return
+                val prefs = requireContext().getSharedPreferences("alba_prefs", android.content.Context.MODE_PRIVATE)
+                prefs.edit().putString("last_recepcionista", item).apply()
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+
+        // wiring botones añadir
         view.findViewById<ImageButton>(R.id.btnAddUbicacion).setOnClickListener {
-            Toast.makeText(requireContext(), "Añadir ubicación (placeholder)", Toast.LENGTH_SHORT).show()
+            showAddDialog("ubicaciones", "Nueva ubicación de recogida", "Dirección / nota", spinnerUbic, "last_ubicacion")
         }
         view.findViewById<ImageButton>(R.id.btnAddRecepcionista).setOnClickListener {
-            Toast.makeText(requireContext(), "Añadir recepcionista (placeholder)", Toast.LENGTH_SHORT).show()
+            showAddDialog("recepcionistas", "Nuevo recepcionista", "Nombre del recepcionista", spinnerRecep, "last_recepcionista")
         }
 
         return view
@@ -378,25 +515,8 @@ class NuevoAlbaranFragment : Fragment() {
         // guardar bitmap para posible muestra de plantilla
         lastOcrBitmap = bitmap.copy(bitmap.config ?: android.graphics.Bitmap.Config.ARGB_8888, false)
 
-        // Guardar copia de la foto en background y añadir a photoPaths + actualizar miniaturas
-        lifecycleScope.launch {
-            try {
-                withContext(Dispatchers.IO) {
-                    val outDir = requireContext().getExternalFilesDir("history_photos")
-                    outDir?.mkdirs()
-                    val f = java.io.File(outDir, "photo_${System.currentTimeMillis()}.jpg")
-                    f.outputStream().use { fos ->
-                        bitmap.compress(android.graphics.Bitmap.CompressFormat.JPEG, 85, fos)
-                    }
-                    val path = f.absolutePath
-                    // añadir al inicio de la lista
-                    withContext(Dispatchers.Main) {
-                        photoPaths.add(0, path)
-                        updatePhotoThumbnails()
-                    }
-                }
-            } catch (_: Exception) {}
-        }
+        // Guardar copia de la foto y añadir a miniaturas (sincronizado Path handling)
+        saveBitmapAndAdd(bitmap)
         com.albacontrol.ml.OcrProcessor.processBitmap(bitmap) { result, error ->
             activity?.runOnUiThread {
                 if (error != null) {
@@ -416,6 +536,29 @@ class NuevoAlbaranFragment : Fragment() {
                     Toast.makeText(requireContext(), "OCR aplicado", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+    }
+
+    private fun saveBitmapAndAdd(bitmap: android.graphics.Bitmap) {
+        lifecycleScope.launch {
+            try {
+                var path: String? = null
+                withContext(Dispatchers.IO) {
+                    val outDir = requireContext().getExternalFilesDir("history_photos")
+                    outDir?.mkdirs()
+                    val f = java.io.File(outDir, "photo_${System.currentTimeMillis()}.jpg")
+                    f.outputStream().use { fos ->
+                        bitmap.compress(android.graphics.Bitmap.CompressFormat.JPEG, 85, fos)
+                    }
+                    path = f.absolutePath
+                }
+                if (!path.isNullOrBlank()) {
+                    withContext(Dispatchers.Main) {
+                        photoPaths.add(0, path!!)
+                        updatePhotoThumbnails()
+                    }
+                }
+            } catch (_: Exception) {}
         }
     }
 
@@ -709,15 +852,54 @@ class NuevoAlbaranFragment : Fragment() {
         val etNif = view.findViewById<EditText>(R.id.etNif)
 
         val providerKey = etNif.text.toString().ifBlank { etProveedor.text.toString() }
-        if (providerKey.isBlank()) {
+        // Capturar valores en variables locales inmutables para evitar problemas de smart cast/concurrencia
+        val result = lastOcrResult
+        val bmp = lastOcrBitmap
+        if (result == null || bmp == null || result.products.isEmpty()) {
             Toast.makeText(requireContext(), "Necesitas identificar proveedor o NIF para guardar el patrón.", Toast.LENGTH_SHORT).show()
             return
         }
 
-        val result = lastOcrResult
-        val bmp = lastOcrBitmap
-        if (result == null || bmp == null) {
-            Toast.makeText(requireContext(), "No hay resultado OCR reciente para generar patrón.", Toast.LENGTH_SHORT).show()
+        // sólo guardar si el usuario ha corregido al menos un campo relevante
+        val etNumero = view.findViewById<EditText>(R.id.etNumeroAlbaran)
+        val etFechaAlb = view.findViewById<EditText>(R.id.etFechaAlbaran)
+        val etProveedorText = etProveedor.text.toString().trim()
+        val etNifText = etNif.text.toString().trim()
+        val etNumeroText = etNumero.text.toString().trim()
+        val etFechaText = etFechaAlb.text.toString().trim()
+
+        var corrections = 0
+        if (!result.proveedor.isNullOrBlank() && result.proveedor.trim() != etProveedorText) corrections++
+        if (!result.nif.isNullOrBlank() && result.nif.trim() != etNifText) corrections++
+        if (!result.numeroAlbaran.isNullOrBlank() && result.numeroAlbaran.trim() != etNumeroText) corrections++
+        if (!result.fechaAlbaran.isNullOrBlank() && result.fechaAlbaran.trim() != etFechaText) corrections++
+        // también comprobar productos: si hay diferencias en al menos una línea
+        val prodDiff = run {
+            try {
+                val detected = result.products
+                for (i in 0 until productContainer.childCount) {
+                    val item = productContainer.getChildAt(i)
+                    val desc = item.findViewById<EditText>(R.id.etDescripcion).text.toString().trim()
+                    val unid = item.findViewById<EditText>(R.id.etUnidades).text.toString().trim()
+                    val precio = item.findViewById<EditText>(R.id.etPrecio).text.toString().trim()
+                    val imp = item.findViewById<EditText>(R.id.etImporte).text.toString().trim()
+                    if (i < detected.size) {
+                        val p = detected[i]
+                        if ((p.descripcion?.trim() ?: "") != desc) return@run true
+                        if ((p.unidades ?: "") != unid) return@run true
+                        if ((p.precio ?: "") != precio) return@run true
+                        if ((p.importe ?: "") != imp) return@run true
+                    } else {
+                        if (desc.isNotEmpty() || unid.isNotEmpty() || precio.isNotEmpty() || imp.isNotEmpty()) return@run true
+                    }
+                }
+            } catch (_: Exception) {}
+            false
+        }
+        if (prodDiff) corrections++
+
+        if (corrections == 0) {
+            Toast.makeText(requireContext(), "No se detectaron correcciones relevantes; no se guardará muestra.", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -796,10 +978,7 @@ class NuevoAlbaranFragment : Fragment() {
                     }
                 }
 
-                val tpl = com.albacontrol.data.OCRTemplate(providerNif = providerKey, mappings = mappings)
-                withContext(Dispatchers.IO) { db.templateDao().insertTemplate(tpl) }
-
-                // Guardar imagen de muestra
+                // Guardar imagen de muestra y registrar TemplateSample
                 val outDir = requireContext().getExternalFilesDir("templates")
                 outDir?.mkdirs()
                 val file = java.io.File(outDir, "tpl_sample_${System.currentTimeMillis()}.jpg")
@@ -826,7 +1005,49 @@ class NuevoAlbaranFragment : Fragment() {
                 val sample = com.albacontrol.data.TemplateSample(providerNif = providerKey, imagePath = file.absolutePath, fieldMappings = fieldMappings)
                 withContext(Dispatchers.IO) { db.templateDao().insertSample(sample) }
 
-                Toast.makeText(requireContext(), "Plantilla guardada para: $providerKey", Toast.LENGTH_SHORT).show()
+                // contar samples existentes para este provider y, si hay suficientes, agregar/actualizar plantilla
+                val existing = withContext(Dispatchers.IO) { db.templateDao().getAllSamples().filter { it.providerNif == providerKey } }
+                val count = existing.size
+                val MIN_SAMPLES_CREATE_TEMPLATE = com.albacontrol.data.TemplateLearningConfig.MIN_SAMPLES_CREATE_TEMPLATE
+
+                if (count >= MIN_SAMPLES_CREATE_TEMPLATE) {
+                    val aggregated = mutableMapOf<String, String>()
+                    try {
+                        // collect per-field list of bbox arrays
+                        val perField = mutableMapOf<String, MutableList<List<Double>>>()
+                        for (s in existing) {
+                            val m = s.fieldMappings
+                            for ((k, v) in m) {
+                                val bbox = v.split("::").firstOrNull() ?: continue
+                                val parts = bbox.split(',').mapNotNull { it.toDoubleOrNull() }
+                                if (parts.size == 4) {
+                                    perField.getOrPut(k) { mutableListOf() }.add(parts)
+                                }
+                            }
+                        }
+                        for ((k, lists) in perField) {
+                            val xs = lists.map { it[0] }.sorted()
+                            val ys = lists.map { it[1] }.sorted()
+                            val ws = lists.map { it[2] }.sorted()
+                            val hs = lists.map { it[3] }.sorted()
+                            fun median(list: List<Double>): Double {
+                                return if (list.isEmpty()) 0.0 else if (list.size % 2 == 1) list[list.size/2] else (list[list.size/2 - 1] + list[list.size/2]) / 2.0
+                            }
+                            val mx = median(xs)
+                            val my = median(ys)
+                            val mw = median(ws)
+                            val mh = median(hs)
+                            aggregated[k] = String.format(java.util.Locale.US, "%.6f,%.6f,%.6f,%.6f", mx, my, mw, mh)
+                        }
+                        val tpl = com.albacontrol.data.OCRTemplate(providerNif = providerKey, mappings = aggregated)
+                        withContext(Dispatchers.IO) { db.templateDao().insertTemplate(tpl) }
+                        Toast.makeText(requireContext(), "Plantilla creada/actualizada para: $providerKey ($count muestras)", Toast.LENGTH_SHORT).show()
+                    } catch (e: Exception) {
+                        Toast.makeText(requireContext(), "Error creando plantilla agregada: ${e.message}", Toast.LENGTH_LONG).show()
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "Muestra guardada para: $providerKey ($count/$MIN_SAMPLES_CREATE_TEMPLATE)", Toast.LENGTH_SHORT).show()
+                }
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "Error guardando plantilla: ${e.message}", Toast.LENGTH_LONG).show()
             }
@@ -864,7 +1085,7 @@ class NuevoAlbaranFragment : Fragment() {
         // attach watchers to new item for auto-save
         attachWatchersToProductItem(item)
 
-        productContainer.addView(item, 0) // añadir encima del botón
+        productContainer.addView(item) // añadir al final (encima del botón "+ añadir producto")
     }
 
     private var patternSaveJob: Job? = null

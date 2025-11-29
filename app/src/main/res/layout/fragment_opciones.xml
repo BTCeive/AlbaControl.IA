@@ -21,148 +21,255 @@
             android:textSize="18sp"
             android:paddingBottom="8dp" />
 
-        <!-- Recepcionistas -->
+        <!-- Recepcionistas (boxed) -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingBottom="4dp">
-
-            <TextView
-                android:id="@+id/tvRecepcionistasTitle"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Recepcionistas" />
-
-            <Button
-                android:id="@+id/btnAddRecepcionistaOptions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+"
-                android:minWidth="48dp"
-                android:contentDescription="Añadir recepcionista" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/containerRecepcionistas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="12dp" />
+            android:background="@drawable/recep_box_bg"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:elevation="4dp"
+            android:clipToPadding="false">
 
-        <!-- Ubicaciones -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingBottom="4dp">
-
-            <TextView
-                android:id="@+id/tvUbicacionTitle"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ubicación de recogida" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingBottom="4dp">
 
-            <Button
-                android:id="@+id/btnAddUbicacionOptions"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tvRecepcionistasTitle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Recepcionistas" />
+
+                <Button
+                    android:id="@+id/btnAddRecepcionistaOptions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:minWidth="48dp"
+                    android:contentDescription="Añadir recepcionista"
+                    android:elevation="4dp"
+                    android:clipToPadding="false" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/containerRecepcionistas"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="+"
-                android:minWidth="48dp"
-                android:contentDescription="Añadir ubicación" />
+                android:orientation="vertical"
+                android:paddingBottom="12dp" />
 
         </LinearLayout>
 
+        <!-- Ubicaciones (boxed) -->
         <LinearLayout
-            android:id="@+id/containerUbicaciones"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="12dp" />
+            android:background="@drawable/recep_box_bg"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:elevation="4dp"
+            android:clipToPadding="false">
 
-        <!-- Emails -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingBottom="4dp">
-
-            <TextView
-                android:id="@+id/tvEmailsTitle"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Emails de destino automático" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingBottom="4dp">
 
-            <Button
-                android:id="@+id/btnAddEmailOptions"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tvUbicacionTitle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Ubicación de recogida" />
+
+                <Button
+                    android:id="@+id/btnAddUbicacionOptions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:minWidth="48dp"
+                    android:contentDescription="Añadir ubicación"
+                    android:elevation="4dp"
+                    android:clipToPadding="false" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/containerUbicaciones"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="+"
-                android:minWidth="48dp"
-                android:contentDescription="Añadir email" />
+                android:orientation="vertical"
+                android:paddingBottom="12dp" />
 
         </LinearLayout>
 
+        <!-- Emails (boxed) -->
         <LinearLayout
-            android:id="@+id/containerEmails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="16dp" />
+            android:background="@drawable/recep_box_bg"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:elevation="4dp"
+            android:clipToPadding="false">
 
-        <!-- Idiomas -->
-        <TextView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingBottom="4dp">
+
+                <TextView
+                    android:id="@+id/tvEmailsTitle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Emails de destino automático" />
+
+                <Button
+                    android:id="@+id/btnAddEmailOptions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:minWidth="48dp"
+                    android:contentDescription="Añadir email"
+                    android:elevation="4dp"
+                    android:clipToPadding="false" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/containerEmails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="16dp" />
+
+        </LinearLayout>
+
+        <!-- Idiomas (boxed) -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Idiomas"
-            android:textStyle="bold"
-            android:paddingBottom="4dp" />
+            android:orientation="vertical"
+            android:background="@drawable/recep_box_bg"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:elevation="4dp"
+            android:clipToPadding="false">
 
-        <Spinner
-            android:id="@+id/spinnerLanguages"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:spinnerMode="dropdown"
-            android:paddingBottom="12dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Idiomas"
+                android:textStyle="bold"
+                android:paddingBottom="4dp" />
+
+            <Spinner
+                android:id="@+id/spinnerLanguages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:paddingBottom="12dp" />
+
+        </LinearLayout>
 
         <!-- Configuración de la app (expandable) -->
-        <TextView
-            android:id="@+id/tvConfigTitle"
+        <LinearLayout
+            android:id="@+id/llConfigHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Configuración de la app"
-            android:textStyle="bold"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:paddingTop="8dp"
-            android:paddingBottom="4dp" />
+            android:paddingBottom="4dp">
 
-        <TextView
-            android:id="@+id/tvOcrTitle"
+            <TextView
+                android:id="@+id/tvConfigTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Configuración de la app"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvConfigArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="▾"
+                android:textSize="18sp"
+                android:padding="4dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/configContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sistema OCR" />
+            android:orientation="vertical">
 
-        <SeekBar
-            android:id="@+id/seekOcrPasses"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="9" />
+            <TextView
+                android:id="@+id/tvOcrTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sistema OCR" />
 
-        <TextView
-            android:id="@+id/tvOcrNote"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Modificar el comportamiento del sistema OCR puede afectar a la calidad de la información extraída de las fotografías y al rendimiento de su dispositivo."
-            android:textSize="12sp"
-            android:textStyle="italic"
-            android:paddingTop="4dp"
-            android:paddingBottom="12dp" />
+            <SeekBar
+                android:id="@+id/seekOcrPasses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="9" />
+
+            <TextView
+                android:id="@+id/tvOcrNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Modificar el comportamiento del sistema OCR puede afectar a la calidad de la información extraída de las fotografías y al rendimiento de su dispositivo."
+                android:textSize="12sp"
+                android:textStyle="italic"
+                android:paddingTop="4dp"
+                android:paddingBottom="12dp" />
+
+        </LinearLayout>
 
         <!-- Backups (expandable) -->
         <TextView
@@ -193,7 +300,9 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_export"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Exportar" />
+                android:contentDescription="Exportar"
+                android:elevation="4dp"
+                android:clipToPadding="false" />
 
             <Space android:layout_width="8dp" android:layout_height="wrap_content" />
 
@@ -203,7 +312,9 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_import"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Importar" />
+                android:contentDescription="Importar"
+                android:elevation="4dp"
+                android:clipToPadding="false" />
 
         </LinearLayout>
 
@@ -226,7 +337,9 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_export"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Exportar" />
+                android:contentDescription="Exportar"
+                android:elevation="4dp"
+                android:clipToPadding="false" />
 
             <Space android:layout_width="8dp" android:layout_height="wrap_content" />
 
@@ -236,7 +349,9 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_import"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Importar" />
+                android:contentDescription="Importar"
+                android:elevation="4dp"
+                android:clipToPadding="false" />
 
         </LinearLayout>
 
@@ -259,7 +374,9 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_export"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Exportar" />
+                android:contentDescription="Exportar"
+                android:elevation="4dp"
+                android:clipToPadding="false" />
 
             <Space android:layout_width="8dp" android:layout_height="wrap_content" />
 
@@ -269,7 +386,9 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_import"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Importar" />
+                android:contentDescription="Importar"
+                android:elevation="4dp"
+                android:clipToPadding="false" />
 
         </LinearLayout>
 
@@ -292,7 +411,9 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_export"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Exportar" />
+                android:contentDescription="Exportar"
+                android:elevation="4dp"
+                android:clipToPadding="false" />
 
             <Space android:layout_width="8dp" android:layout_height="wrap_content" />
 
@@ -302,7 +423,9 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_import"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Importar" />
+                android:contentDescription="Importar"
+                android:elevation="4dp"
+                android:clipToPadding="false" />
 
         </LinearLayout>
 
@@ -324,7 +447,9 @@
                 android:id="@+id/btnExportBackupAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Exportar" />
+                android:text="Exportar"
+                android:elevation="4dp"
+                android:clipToPadding="false" />
 
             <Space android:layout_width="8dp" android:layout_height="wrap_content" />
 
@@ -332,7 +457,9 @@
                 android:id="@+id/btnImportBackupAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Importar" />
+                android:text="Importar"
+                android:elevation="4dp"
+                android:clipToPadding="false" />
 
         </LinearLayout>
 
@@ -354,7 +481,9 @@
                 android:id="@+id/btnRestoreApp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Restaurar" />
+                android:text="Restaurar"
+                android:elevation="4dp"
+                android:clipToPadding="false" />
 
         </LinearLayout>
 

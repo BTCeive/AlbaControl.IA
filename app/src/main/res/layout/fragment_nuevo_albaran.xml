@@ -2,7 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:scrollbars="none"
+    android:fadeScrollbars="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,84 +39,146 @@
 
         </LinearLayout>
 
-        <!-- Ubicación de recogida + añadir -->
+        <!-- Caja: Ubicación de recogida, Recepcionista y Fecha de creación (mismo estilo que en Opciones) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="8dp">
+            android:orientation="vertical"
+            android:background="@drawable/recep_box_bg"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:elevation="4dp"
+            android:clipToPadding="false">
 
-            <Spinner
-                android:id="@+id/spinnerUbicacion"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content" />
-
-            <ImageButton
-                android:id="@+id/btnAddUbicacion"
-                android:layout_width="wrap_content"
+            <!-- Fecha y hora creación -->
+            <TextView
+                android:id="@+id/tvCreatedAt"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_add"
-                android:contentDescription="Añadir ubicación" />
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Ubicación de recogida + añadir -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+
+                <Spinner
+                    android:id="@+id/spinnerUbicacion"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <ImageButton
+                    android:id="@+id/btnAddUbicacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add"
+                    android:contentDescription="Añadir ubicación" />
+
+            </LinearLayout>
+
+            <!-- Recepcionista + añadir -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+
+                <Spinner
+                    android:id="@+id/spinnerRecepcionista"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <ImageButton
+                    android:id="@+id/btnAddRecepcionista"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add"
+                    android:contentDescription="Añadir recepcionista" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <!-- Recepcionista + añadir -->
+        <!-- Caja: Proveedor, NIF, Nº albarán, Fecha albarán (mismo estilo que en Opciones) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="8dp">
+            android:orientation="vertical"
+            android:background="@drawable/recep_box_bg"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:elevation="4dp"
+            android:clipToPadding="false">
 
-            <Spinner
-                android:id="@+id/spinnerRecepcionista"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content" />
-
-            <ImageButton
-                android:id="@+id/btnAddRecepcionista"
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_add"
-                android:contentDescription="Añadir recepcionista" />
+                android:text="Proveedor"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/etProveedor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Proveedor *"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NIF / CIF"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/etNif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="NIF/CIF"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nº albarán"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/etNumeroAlbaran"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nº albarán"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fecha albarán"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/etFechaAlbaran"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Fecha albarán" />
 
         </LinearLayout>
-
-        <!-- Fecha y hora creación -->
-        <TextView
-            android:id="@+id/tvCreatedAt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Proveedor, NIF, Nº albarán, Fecha albarán -->
-        <EditText
-            android:id="@+id/etProveedor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Proveedor *" />
-
-        <EditText
-            android:id="@+id/etNif"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="NIF/CIF" />
-
-        <EditText
-            android:id="@+id/etNumeroAlbaran"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nº albarán" />
-
-        <EditText
-            android:id="@+id/etFechaAlbaran"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Fecha albarán" />
 
         <!-- Productos: contenedor de boxes -->
         <TextView
@@ -140,7 +204,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="+ añadir producto"
-            android:layout_marginBottom="12dp" />
+            android:layout_marginBottom="12dp"
+            android:elevation="4dp"
+            android:clipToPadding="false" />
 
         <!-- Incidencias y flags -->
         <CheckBox
@@ -180,6 +246,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="+ añadir fotografía"
+            android:layout_marginBottom="12dp"
+            android:elevation="4dp"
+            android:clipToPadding="false" />
+
+        <!-- Comentarios (para desperfectos, roturas, notas) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Comentarios"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/etComentarios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Comentarios sobre desperfectos, incidencias..."
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:gravity="top"
             android:layout_marginBottom="12dp" />
 
         <!-- Botones finales: Finalizar, Guardar Borrador y Cancelar -->
@@ -188,7 +275,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Finalizar"
-            android:layout_marginBottom="12dp" />
+            android:textSize="20sp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:layout_marginBottom="12dp"
+            android:elevation="4dp"
+            android:clipToPadding="false" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -200,18 +292,15 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Guardar Borrador" />
+                android:text="Guardar Borrador"
+                android:elevation="4dp"
+                android:clipToPadding="false" />
 
             <Space
                 android:layout_width="8dp"
                 android:layout_height="wrap_content" />
 
-            <Button
-                android:id="@+id/btnSavePattern"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Guardar patrón" />
+            <!-- Guardar patrón eliminado: ahora se guarda automáticamente al finalizar -->
 
             <Space
                 android:layout_width="8dp"
@@ -222,7 +311,9 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Cancelar" />
+                android:text="Cancelar"
+                android:elevation="4dp"
+                android:clipToPadding="false" />
 
         </LinearLayout>
 

@@ -27,8 +27,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.text.Editable
 import android.text.TextWatcher
+import android.graphics.Color
 
 class OpcionesFragment : Fragment() {
+    private val DEBUG_INTERACTION = false
+    private var debugToastShown = false
 
     private val PREFS = "alba_prefs"
     private val KEY_RECEP = "recepcionistas"
@@ -41,6 +44,7 @@ class OpcionesFragment : Fragment() {
     private val KEY_AUTO_DELETE_COUNT_ENABLED = "auto_delete_count_enabled"
     private val KEY_AUTO_DELETE_COUNT_MAX = "auto_delete_count_max"
     private val KEY_LAST_AUTO_CLEANUP = "last_auto_cleanup_ts"
+    private val KEY_CONFIG_COLLAPSED = "config_collapsed"
 
     private lateinit var containerRecep: LinearLayout
     private lateinit var containerUbic: LinearLayout
@@ -54,9 +58,17 @@ class OpcionesFragment : Fragment() {
     private lateinit var etAutoDeleteDays: EditText
     private lateinit var switchAutoDeleteCount: Switch
     private lateinit var etAutoDeleteMax: EditText
+    private var skipInitialLanguageSelection = true
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_opciones, container, false)
+        if (DEBUG_INTERACTION) {
+            Log.d(TAG, "onCreateView: fragment_opciones inflado")
+            if (!debugToastShown) {
+                Toast.makeText(requireContext(), "Opciones cargando", Toast.LENGTH_SHORT).show()
+                debugToastShown = true
+            }
+        }
 
         containerRecep = view.findViewById(R.id.containerRecepcionistas)
         containerUbic = view.findViewById(R.id.containerUbicaciones)
@@ -70,18 +82,27 @@ class OpcionesFragment : Fragment() {
 
         view.findViewById<View>(R.id.btnAddRecepcionistaOptions).setOnClickListener {
             Log.d(TAG, "Click btnAddRecepcionistaOptions")
-            Toast.makeText(requireContext(), "Añadir recepcionista", Toast.LENGTH_SHORT).show()
-            addOptionDialog(KEY_RECEP, "Nueva recepcionista")
+            addOptionDialog(KEY_RECEP, "Nuevo recepcionista")
+        }
+        view.findViewById<View>(R.id.btnAddRecepcionistaOptions).setOnTouchListener { v, ev ->
+            if (DEBUG_INTERACTION) Log.d(TAG, "Touch btnAddRecepcionistaOptions action=${ev.action}")
+            false
         }
         view.findViewById<View>(R.id.btnAddUbicacionOptions).setOnClickListener {
             Log.d(TAG, "Click btnAddUbicacionOptions")
-            Toast.makeText(requireContext(), "Añadir ubicación", Toast.LENGTH_SHORT).show()
             addOptionDialog(KEY_UBIC, "Nueva ubicación")
+        }
+        view.findViewById<View>(R.id.btnAddUbicacionOptions).setOnTouchListener { v, ev ->
+            if (DEBUG_INTERACTION) Log.d(TAG, "Touch btnAddUbicacionOptions action=${ev.action}")
+            false
         }
         view.findViewById<View>(R.id.btnAddEmailOptions).setOnClickListener {
             Log.d(TAG, "Click btnAddEmailOptions")
-            Toast.makeText(requireContext(), "Añadir email", Toast.LENGTH_SHORT).show()
             addOptionDialog(KEY_EMAILS, "Nuevo email", inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
+        }
+        view.findViewById<View>(R.id.btnAddEmailOptions).setOnTouchListener { v, ev ->
+            if (DEBUG_INTERACTION) Log.d(TAG, "Touch btnAddEmailOptions action=${ev.action}")
+            false
         }
         // Instrumentación rápida para detectar si los clics llegan
         // Ya son Button, no se necesita instrumentación adicional
@@ -112,6 +133,25 @@ class OpcionesFragment : Fragment() {
         loadAutoDeleteOptions()
         performAutoCleanupIfNeeded()
 
+        // Config section collapsible
+        try {
+            val llConfigHeader = view.findViewById<View>(R.id.llConfigHeader)
+            val configContent = view.findViewById<View>(R.id.configContent)
+            val tvConfigArrow = view.findViewById<TextView>(R.id.tvConfigArrow)
+            val prefs = requireContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+            var collapsed = prefs.getBoolean(KEY_CONFIG_COLLAPSED, false)
+            configContent.visibility = if (collapsed) View.GONE else View.VISIBLE
+            tvConfigArrow.rotation = if (collapsed) -90f else 0f
+            llConfigHeader?.setOnClickListener {
+                collapsed = !collapsed
+                configContent.visibility = if (collapsed) View.GONE else View.VISIBLE
+                tvConfigArrow.animate().rotation(if (collapsed) -90f else 0f).setDuration(200).start()
+                prefs.edit().putBoolean(KEY_CONFIG_COLLAPSED, collapsed).apply()
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, "No se pudo inicializar header collapsible: ${e.message}")
+        }
+
         // OCR SeekBar: values 1..10 (seekbar 0..9)
         seekOcr.max = 9
         val prefs = requireContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE)
@@ -130,13 +170,44 @@ class OpcionesFragment : Fragment() {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (DEBUG_INTERACTION) {
+            Log.d(TAG, "onViewCreated: listo para interacción")
+            view.isClickable = true
+            view.setOnTouchListener { _, ev ->
+                Log.d(TAG, "Touch root action=${ev.action} x=${ev.x} y=${ev.y}")
+                false
+            }
+            enumerateClickableViews(view)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (DEBUG_INTERACTION) Log.d(TAG, "onResume: OpcionesFragment visible")
+    }
+
+    private fun enumerateClickableViews(root: View) {
+        if (!DEBUG_INTERACTION) return
+        if (root is ViewGroup) {
+            for (i in 0 until root.childCount) {
+                val c = root.getChildAt(i)
+                if (c.isClickable) {
+                    Log.d(TAG, "Clickable view id=${c.resources.getResourceEntryName(c.id)} class=${c.javaClass.simpleName}")
+                }
+                enumerateClickableViews(c)
+            }
+        }
+    }
+
     // --- Export / Import implementation ---
     private var pendingImportArea: String? = null
     private var pendingImportReplace: Boolean = false
     private lateinit var pickFileLauncher: androidx.activity.result.ActivityResultLauncher<String>
 
     private fun confirmExport(area: String) {
-        AlertDialog.Builder(requireContext())
+        val builder = AlertDialog.Builder(requireContext())
             .setTitle("Exportar $area")
             .setMessage("¿Exportar $area ahora? Los archivos se guardarán en la carpeta de exportación de la app.")
             .setPositiveButton("Exportar") { _, _ ->
@@ -161,12 +232,17 @@ class OpcionesFragment : Fragment() {
                 }
             }
             .setNegativeButton("Cancelar", null)
-            .show()
+
+        val dlg = builder.show()
+        try {
+            dlg.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.BLACK)
+            dlg.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(Color.BLACK)
+        } catch (_: Exception) {}
     }
 
     private fun confirmImport(area: String) {
         val choices = arrayOf("Mezclar", "Sustituir")
-        AlertDialog.Builder(requireContext())
+        val builder = AlertDialog.Builder(requireContext())
             .setTitle("Importar $area")
             .setItems(choices) { _, which ->
                 pendingImportArea = area
@@ -176,7 +252,11 @@ class OpcionesFragment : Fragment() {
                 pickFileLauncher.launch("$mime")
             }
             .setNegativeButton("Cancelar", null)
-            .show()
+
+        val dlg = builder.show()
+        try {
+            dlg.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(Color.BLACK)
+        } catch (_: Exception) {}
     }
 
     private fun handleImportUri(uri: Uri) {
@@ -532,6 +612,12 @@ class OpcionesFragment : Fragment() {
         val dialog = builder.create()
         dialog.show()
 
+        // force button colors
+        try {
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.BLACK)
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(Color.BLACK)
+        } catch (_: Exception) {}
+
         // disable positive button until checkbox enabled and checked
         val positive = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
         positive.isEnabled = false
@@ -836,12 +922,24 @@ class OpcionesFragment : Fragment() {
         spinnerLang.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val tag = langList[position].second
+                // Evitar bucle de recreación: ignorar la primera selección programática
+                if (skipInitialLanguageSelection) {
+                    skipInitialLanguageSelection = false
+                    if (DEBUG_INTERACTION) Log.d(TAG, "setupLanguageSpinner: ignorada selección inicial tag=$tag")
+                    return
+                }
+                // Si no cambia el idioma, no recrear
+                val prevTag = prefs.getString(KEY_LANG, "es") ?: "es"
+                if (prevTag == tag) {
+                    if (DEBUG_INTERACTION) Log.d(TAG, "setupLanguageSpinner: selección igual (prev=$prevTag) sin recrear")
+                    return
+                }
                 prefs.edit().putString(KEY_LANG, tag).apply()
                 try {
                     val locales = LocaleListCompat.forLanguageTags(tag)
                     AppCompatDelegate.setApplicationLocales(locales)
                     activity?.recreate()
-                    Log.d(TAG, "Language changed to $tag")
+                    Log.d(TAG, "Language changed to $tag (prev=$prevTag)")
                 } catch (e: Exception) {
                     Log.e(TAG, "Error applying locale $tag", e)
                 }
@@ -999,7 +1097,12 @@ class OpcionesFragment : Fragment() {
                             removeOption(key, text)
                         }
                         .setNegativeButton("Cancelar", null)
-                        .show()
+                        .show().also { dlg ->
+                            try {
+                                dlg.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.BLACK)
+                                dlg.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(Color.BLACK)
+                            } catch (_: Exception) {}
+                        }
                 }
 
                 container.addView(item)
@@ -1012,7 +1115,7 @@ class OpcionesFragment : Fragment() {
         val et = EditText(requireContext())
         et.inputType = inputType
         et.setText(initial)
-        AlertDialog.Builder(requireContext())
+        val builder = AlertDialog.Builder(requireContext())
             .setTitle(title)
             .setView(et)
             .setPositiveButton("OK") { _, _ ->
@@ -1024,7 +1127,12 @@ class OpcionesFragment : Fragment() {
                 }
             }
             .setNegativeButton("Cancelar", null)
-            .show()
+
+        val dlg = builder.show()
+        try {
+            dlg.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.BLACK)
+            dlg.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(Color.BLACK)
+        } catch (_: Exception) {}
     }
 
     private fun addOption(key: String, value: String) {

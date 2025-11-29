@@ -15,18 +15,24 @@
 
     <ImageButton
         android:id="@+id/btnEditOption"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:src="@drawable/ic_edit"
-        android:contentDescription="Editar" />
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:tint="#000000"
+        android:contentDescription="Editar"
+        android:padding="4dp" />
 
     <Space android:layout_width="8dp" android:layout_height="wrap_content" />
 
     <ImageButton
         android:id="@+id/btnDeleteOption"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:src="@drawable/ic_delete"
-        android:contentDescription="Eliminar" />
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:tint="#000000"
+        android:contentDescription="Eliminar"
+        android:padding="4dp" />
 
 </LinearLayout>

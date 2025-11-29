@@ -15,35 +15,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nuevo albarán"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:elevation="4dp"
+            android:clipToPadding="false" />
 
         <Button
             android:id="@+id/btnBorradores"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Borradores"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:elevation="4dp"
+            android:clipToPadding="false" />
 
         <Button
             android:id="@+id/btnHistorial"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Historial"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:elevation="4dp"
+            android:clipToPadding="false" />
 
         <Button
             android:id="@+id/btnProveedores"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Proveedores / Productos"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:elevation="4dp"
+            android:clipToPadding="false" />
 
         <Button
             android:id="@+id/btnOpciones"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Opciones"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:elevation="4dp"
+            android:clipToPadding="false" />
 
     </LinearLayout>
 
