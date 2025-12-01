@@ -51,4 +51,45 @@
     <string name="home_historial">Historial</string>
     <string name="home_proveedores">Proveïdors / Productes</string>
     <string name="home_opciones">Opcions</string>
+    <!-- Additional UI labels -->
+    <string name="recepcionistas_title">Recepcionistes</string>
+    <string name="pickup_location_title">Ubicació de recollida</string>
+    <string name="auto_destination_emails_title">Correus de destinació automàtica</string>
+    <string name="languages_title">Idiomes</string>
+    <string name="app_configuration_title">Configuració de l’app</string>
+    <string name="ocr_system_title">Sistema OCR</string>
+    <string name="ocr_system_warning">Modificar el comportament de l’OCR pot afectar la qualitat d’extracció i el rendiment del dispositiu.</string>
+    <string name="backup_title">Còpia de seguretat</string>
+    <string name="patterns_title">Patrons</string>
+    <string name="search_suppliers_products_hint">Cercar proveïdors o productes</string>
+    <string name="sample_provider_example">Proveïdor exemple</string>
+    <string name="sample_provider_x">Proveïdor X</string>
+    <string name="sample_description_info">Descripció / info</string>
+    <string name="product_description_label">Descripció del producte</string>
+    <!-- Nuevo Albarán labels -->
+    <string name="camera_button">Càmera</string>
+    <string name="upload_file_button">Pujar fitxer</string>
+    <string name="supplier_label">Proveïdor</string>
+    <string name="tax_id_label">NIF / CIF</string>
+    <string name="albaran_number_label">Nº albarà</string>
+    <string name="albaran_number_hint">Nº albarà</string>
+    <string name="albaran_date_label">Data albarà</string>
+    <string name="albaran_date_hint">Data albarà</string>
+    <string name="products_label">Productes</string>
+    <string name="add_product_button">+ afegir producte</string>
+    <string name="delivery_incident_label">Incidència a l’albarà</string>
+    <string name="no_delivery_note_label">Sense albarà de lliurament</string>
+    <string name="add_photo_button">+ afegir fotografia</string>
+    <string name="comments_label">Comentaris</string>
+    <string name="comments_hint">Comentaris sobre desperfectes, incidències...</string>
+    <string name="finalize_button">Finalitzar</string>
+    <string name="save_draft_button">Desar esborrany</string>
+    <string name="product_label">Producte</string>
+    <string name="incident_label">Incidència</string>
+    <string name="description_label">Descripció</string>
+    <string name="description_hint">Descripció</string>
+    <string name="price_label">Preu</string>
+    <string name="price_hint">Preu</string>
+    <string name="amount_label">Import</string>
+    <string name="amount_hint">Import</string>
 </resources>

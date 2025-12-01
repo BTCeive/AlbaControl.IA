@@ -69,4 +69,45 @@
     <string name="home_historial">السجل</string>
     <string name="home_proveedores">الموردون / المنتجات</string>
     <string name="home_opciones">الإعدادات</string>
+    <!-- Additional UI labels -->
+    <string name="recepcionistas_title">الموظفون في الاستقبال</string>
+    <string name="pickup_location_title">موقع الاستلام</string>
+    <string name="auto_destination_emails_title">رسائل الوجهة التلقائية</string>
+    <string name="languages_title">اللغات</string>
+    <string name="app_configuration_title">إعداد التطبيق</string>
+    <string name="ocr_system_title">نظام OCR</string>
+    <string name="ocr_system_warning">تغيير إعدادات OCR قد يؤثر على جودة الاستخراج وأداء الجهاز.</string>
+    <string name="backup_title">نسخ احتياطي</string>
+    <string name="patterns_title">أنماط</string>
+    <string name="search_suppliers_products_hint">بحث عن موردين أو منتجات</string>
+    <string name="sample_provider_example">مورد مثال</string>
+    <string name="sample_provider_x">مورد X</string>
+    <string name="sample_description_info">وصف / معلومات</string>
+    <string name="product_description_label">وصف المنتج</string>
+    <!-- Nuevo Albarán labels -->
+    <string name="camera_button">كاميرا</string>
+    <string name="upload_file_button">رفع ملف</string>
+    <string name="supplier_label">المورد</string>
+    <string name="tax_id_label">الرقم الضريبي</string>
+    <string name="albaran_number_label">رقم الإذن</string>
+    <string name="albaran_number_hint">رقم الإذن</string>
+    <string name="albaran_date_label">تاريخ الإذن</string>
+    <string name="albaran_date_hint">تاريخ الإذن</string>
+    <string name="products_label">المنتجات</string>
+    <string name="add_product_button">+ إضافة منتج</string>
+    <string name="delivery_incident_label">مشكلة في الإذن</string>
+    <string name="no_delivery_note_label">لا يوجد إذن تسليم</string>
+    <string name="add_photo_button">+ إضافة صورة</string>
+    <string name="comments_label">ملاحظات</string>
+    <string name="comments_hint">ملاحظات حول الأضرار أو المشاكل...</string>
+    <string name="finalize_button">إنهاء</string>
+    <string name="save_draft_button">حفظ المسودة</string>
+    <string name="product_label">منتج</string>
+    <string name="incident_label">مشكلة</string>
+    <string name="description_label">وصف</string>
+    <string name="description_hint">وصف</string>
+    <string name="price_label">السعر</string>
+    <string name="price_hint">السعر</string>
+    <string name="amount_label">المبلغ</string>
+    <string name="amount_hint">المبلغ</string>
 </resources>

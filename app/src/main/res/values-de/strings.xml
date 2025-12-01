@@ -69,4 +69,45 @@
     <string name="home_historial">Verlauf</string>
     <string name="home_proveedores">Lieferanten / Produkte</string>
     <string name="home_opciones">Einstellungen</string>
+    <!-- Additional UI labels -->
+    <string name="recepcionistas_title">Empfangspersonen</string>
+    <string name="pickup_location_title">Abholort</string>
+    <string name="auto_destination_emails_title">Automatische Ziel-E-Mails</string>
+    <string name="languages_title">Sprachen</string>
+    <string name="app_configuration_title">App-Konfiguration</string>
+    <string name="ocr_system_title">OCR-System</string>
+    <string name="ocr_system_warning">Das Ändern des OCR-Verhaltens kann die Extraktionsqualität und die Geräteleistung beeinflussen.</string>
+    <string name="backup_title">Backup</string>
+    <string name="patterns_title">Muster</string>
+    <string name="search_suppliers_products_hint">Lieferanten oder Produkte suchen</string>
+    <string name="sample_provider_example">Beispiel-Lieferant</string>
+    <string name="sample_provider_x">Lieferant X</string>
+    <string name="sample_description_info">Beschreibung / Info</string>
+    <string name="product_description_label">Produktbeschreibung</string>
+    <!-- Nuevo Albarán labels -->
+    <string name="camera_button">Kamera</string>
+    <string name="upload_file_button">Datei hochladen</string>
+    <string name="supplier_label">Lieferant</string>
+    <string name="tax_id_label">Steuer-ID</string>
+    <string name="albaran_number_label">Lieferscheinnr.</string>
+    <string name="albaran_number_hint">Lieferscheinnr.</string>
+    <string name="albaran_date_label">Datum Lieferschein</string>
+    <string name="albaran_date_hint">Datum Lieferschein</string>
+    <string name="products_label">Produkte</string>
+    <string name="add_product_button">+ Produkt hinzufügen</string>
+    <string name="delivery_incident_label">Vorfall im Lieferschein</string>
+    <string name="no_delivery_note_label">Kein Lieferschein</string>
+    <string name="add_photo_button">+ Foto hinzufügen</string>
+    <string name="comments_label">Kommentare</string>
+    <string name="comments_hint">Kommentare zu Schäden, Vorfällen...</string>
+    <string name="finalize_button">Abschließen</string>
+    <string name="save_draft_button">Entwurf speichern</string>
+    <string name="product_label">Produkt</string>
+    <string name="incident_label">Vorfall</string>
+    <string name="description_label">Beschreibung</string>
+    <string name="description_hint">Beschreibung</string>
+    <string name="price_label">Preis</string>
+    <string name="price_hint">Preis</string>
+    <string name="amount_label">Betrag</string>
+    <string name="amount_hint">Betrag</string>
 </resources>

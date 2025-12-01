@@ -71,4 +71,45 @@
     <string name="home_historial">Geçmiş</string>
     <string name="home_proveedores">Tedarikçiler / Ürünler</string>
     <string name="home_opciones">Ayarlar</string>
+    <!-- Additional UI labels -->
+    <string name="recepcionistas_title">Resepsiyonistler</string>
+    <string name="pickup_location_title">Teslim alma konumu</string>
+    <string name="auto_destination_emails_title">Otomatik hedef e-postaları</string>
+    <string name="languages_title">Diller</string>
+    <string name="app_configuration_title">Uygulama yapılandırması</string>
+    <string name="ocr_system_title">OCR Sistemi</string>
+    <string name="ocr_system_warning">OCR davranışını değiştirmek çıkarım kalitesini ve cihaz performansını etkileyebilir.</string>
+    <string name="backup_title">Yedek</string>
+    <string name="patterns_title">Kalıplar</string>
+    <string name="search_suppliers_products_hint">Tedarikçi veya ürün ara</string>
+    <string name="sample_provider_example">Örnek tedarikçi</string>
+    <string name="sample_provider_x">Tedarikçi X</string>
+    <string name="sample_description_info">Açıklama / bilgi</string>
+    <string name="product_description_label">Ürün açıklaması</string>
+    <!-- Nuevo Albarán labels -->
+    <string name="camera_button">Kamera</string>
+    <string name="upload_file_button">Dosya yükle</string>
+    <string name="supplier_label">Tedarikçi</string>
+    <string name="tax_id_label">Vergi No</string>
+    <string name="albaran_number_label">İrsaliye No</string>
+    <string name="albaran_number_hint">İrsaliye No</string>
+    <string name="albaran_date_label">İrsaliye tarihi</string>
+    <string name="albaran_date_hint">İrsaliye tarihi</string>
+    <string name="products_label">Ürünler</string>
+    <string name="add_product_button">+ ürün ekle</string>
+    <string name="delivery_incident_label">İrsaliyede olay</string>
+    <string name="no_delivery_note_label">İrsaliye yok</string>
+    <string name="add_photo_button">+ fotoğraf ekle</string>
+    <string name="comments_label">Yorumlar</string>
+    <string name="comments_hint">Hasar / sorun yorumları...</string>
+    <string name="finalize_button">Tamamla</string>
+    <string name="save_draft_button">Taslağı kaydet</string>
+    <string name="product_label">Ürün</string>
+    <string name="incident_label">Olay</string>
+    <string name="description_label">Açıklama</string>
+    <string name="description_hint">Açıklama</string>
+    <string name="price_label">Fiyat</string>
+    <string name="price_hint">Fiyat</string>
+    <string name="amount_label">Tutar</string>
+    <string name="amount_hint">Tutar</string>
 </resources>

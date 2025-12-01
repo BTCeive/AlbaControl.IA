@@ -51,4 +51,45 @@
     <string name="home_historial">Storico</string>
     <string name="home_proveedores">Fornitori / Prodotti</string>
     <string name="home_opciones">Opzioni</string>
+    <!-- Additional UI labels -->
+    <string name="recepcionistas_title">Receptionist</string>
+    <string name="pickup_location_title">Luogo di ritiro</string>
+    <string name="auto_destination_emails_title">Email di destinazione automatica</string>
+    <string name="languages_title">Lingue</string>
+    <string name="app_configuration_title">Configurazione app</string>
+    <string name="ocr_system_title">Sistema OCR</string>
+    <string name="ocr_system_warning">Modificare il comportamento dell’OCR può influire sulla qualità di estrazione e sulle prestazioni del dispositivo.</string>
+    <string name="backup_title">Backup</string>
+    <string name="patterns_title">Modelli</string>
+    <string name="search_suppliers_products_hint">Cerca fornitori o prodotti</string>
+    <string name="sample_provider_example">Fornitore esempio</string>
+    <string name="sample_provider_x">Fornitore X</string>
+    <string name="sample_description_info">Descrizione / info</string>
+    <string name="product_description_label">Descrizione del prodotto</string>
+    <!-- Nuevo Albarán labels -->
+    <string name="camera_button">Fotocamera</string>
+    <string name="upload_file_button">Carica file</string>
+    <string name="supplier_label">Fornitore</string>
+    <string name="tax_id_label">P. IVA / Cod. Fiscale</string>
+    <string name="albaran_number_label">N° DDT</string>
+    <string name="albaran_number_hint">N° DDT</string>
+    <string name="albaran_date_label">Data DDT</string>
+    <string name="albaran_date_hint">Data DDT</string>
+    <string name="products_label">Prodotti</string>
+    <string name="add_product_button">+ aggiungi prodotto</string>
+    <string name="delivery_incident_label">Incidente nel DDT</string>
+    <string name="no_delivery_note_label">Senza DDT</string>
+    <string name="add_photo_button">+ aggiungi foto</string>
+    <string name="comments_label">Commenti</string>
+    <string name="comments_hint">Commenti su danni, problemi...</string>
+    <string name="finalize_button">Finalizza</string>
+    <string name="save_draft_button">Salva bozza</string>
+    <string name="product_label">Prodotto</string>
+    <string name="incident_label">Incidente</string>
+    <string name="description_label">Descrizione</string>
+    <string name="description_hint">Descrizione</string>
+    <string name="price_label">Prezzo</string>
+    <string name="price_hint">Prezzo</string>
+    <string name="amount_label">Importo</string>
+    <string name="amount_hint">Importo</string>
 </resources>
