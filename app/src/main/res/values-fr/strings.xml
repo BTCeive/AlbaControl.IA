@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<!-- Home labels -->
+	<!-- Clés globales ajoutées pour parité -->
+	<string name="app_name">AlbaControl</string>
+	<string name="options_title">Options générales</string>
+	<string name="add_option_sync">Synchronisation (en attente)</string>
+	<string name="attach_notice">Bon généré depuis AlbaControl.IA.</string>
+	<string name="auto_delete_age_label">Suppression par ancienneté (jours)</string>
+	<string name="auto_delete_count_label">Suppression par quantité (max. PDFs)</string>
+	<string name="auto_delete_section">Suppression automatique de l’historique</string>
+	<string name="backup_general">Sauvegarde générale</string>
+	<string name="cancel">Annuler</string>
+	<string name="cleanup_completed_toast">Nettoyage automatique de l’historique terminé.</string>
+	<string name="confirm_delete">Supprimer %1$s ?</string>
+	<string name="delete">Supprimer</string>
+	<string name="edit">Éditer</string>
+	<string name="empty_text_not_added">Texte vide, non ajouté</string>
+	<string name="enter_value">Entrez une valeur</string>
+	<string name="export">Exporter</string>
+	<string name="export_area_title">Exporter %1$s</string>
+	<string name="export_area_message">Exporter %1$s maintenant ? Les fichiers seront enregistrés dans le dossier d’export de l’application.</string>
+	<string name="export_complete">Export terminé : %1$s</string>
+	<string name="export_error">Erreur export : %1$s</string>
+	<string name="exporting_progress">Exportation de %1$s...</string>
+	<string name="import_area_title">Importer %1$s</string>
+	<string name="import_complete">Import terminé : %1$s</string>
+	<string name="import_error">Erreur import : %1$s</string>
+	<string name="importing_progress">Importation de %1$s...</string>
+	<string name="new_email">Nouvel email</string>
+	<string name="new_location">Nouvelle localisation</string>
+	<string name="new_receptionist">Nouveau réceptionniste</string>
+	<string name="ocr_applied">OCR appliqué</string>
+	<string name="ocr_error">Erreur OCR : %1$s</string>
+	<string name="ocr_passes_toast">Passes OCR : %1$d</string>
+	<string name="ok">OK</string>
+	<string name="op_import">Importer</string>
+	<string name="photo_deleted">Photo supprimée</string>
+	<string name="pickup_location">Lieu de retrait : %1$s</string>
+	<string name="processing_image">Traitement de l’image...</string>
+	<string name="provider_required">Le champ Fournisseur est obligatoire.</string>
+	<string name="receptionist">Réceptionniste : %1$s</string>
+	<string name="restore_app">Restaurer l’application</string>
+	<string name="restore_completed">Restauration terminée. Application nettoyée.</string>
+	<string name="restore_confirm_missing">Vous devez cocher la case pour confirmer.</string>
+	<string name="restore_confirm_title">Restaurer l’application</string>
+	<string name="restore_error">Erreur restauration : %1$s</string>
+	<string name="restore_warning">AVERTISSEMENT : Toutes les données vont être supprimées. Action irréversible.&#10;Attendez 5 secondes puis cochez la case pour confirmer.</string>
+	<string name="restoring_progress">Restauration de l’application...</string>
+	<string name="rgpd_notice">Veuillez traiter les données personnelles conformément au RGPD. Les données de ce document sont utilisées uniquement pour la gestion logistique et la livraison.</string>
+	<string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
+	<string name="toast_draft_error">Erreur en sauvegardant le brouillon : %1$s</string>
+	<string name="toast_draft_saved">Brouillon sauvegardé (id=%1$d)</string>
+	<string name="toast_email_error">Bon sauvegardé, mais impossible d’ouvrir le client mail : %1$s</string>
+	<string name="toast_finalize_error">Erreur en finalisant le bon : %1$s</string>
+	<string name="toast_finalized">Bon finalisé (id=%1$d)</string>
+	<string name="undo">Annuler</string>
 	<string name="home_new_albaran">Nouveau bon de livraison</string>
 	<string name="home_borradores">Brouillons</string>
 	<string name="home_historial">Historique</string>
