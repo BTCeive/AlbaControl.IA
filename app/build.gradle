@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
         // Idiomas empaquetados soportados por la app
-        resConfigs "en", "es", "fr", "de", "it", "ca", "tr", "ar", "wo"
+        resConfigs "en", "es", "fr", "de", "it", "ca", "tr", "ar", "wo", "pt"
     }
 
     buildTypes {
