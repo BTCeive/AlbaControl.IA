@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- NOTE: Placeholder translations in English. Please review with a Wolof speaker and update if needed. -->
+<!-- NOTE: Fallback translations kept in English where Wolof term uncertain. Wolof terms added where reliable. Please schedule review with a Wolof speaker for full validation before production use. -->
 <resources>
     <string name="app_name">AlbaControl</string>
     <string name="options_title">General Options</string>
@@ -65,52 +65,52 @@
     <string name="receptionist">Receptionist: %1$s</string>
     <string name="rgpd_notice">Please handle personal data according to GDPR. The data in this document is used only for logistics and delivery management.</string>
     <!-- Home labels -->
-    <string name="home_new_albaran">Albaran bu bees</string>
-    <string name="home_borradores">Draft yi</string>
-    <string name="home_historial">Historique</string>
-    <string name="home_proveedores">Fournisseurs / Produits</string>
-    <string name="home_opciones">Tann yi</string>
+    <string name="home_new_albaran">Dokument bu bees</string>
+    <string name="home_borradores">Borrans yi</string>
+    <string name="home_historial">Ràññ</string>
+    <string name="home_proveedores">Tàrgay / Jëf yi</string>
+    <string name="home_opciones">Tànneef yi</string>
     <!-- Additional UI labels (Wolof + fallback) -->
-    <string name="recepcionistas_title">Resepsiyonist yi</string>
-    <string name="pickup_location_title">Berab bu ñu jël</string>
-    <string name="auto_destination_emails_title">Emails automatic</string>
-    <string name="languages_title">Làng yi</string>
-    <string name="app_configuration_title">Reglaj app bi</string>
-    <string name="ocr_system_title">Sistém OCR</string>
-    <string name="ocr_system_warning">Soppi OCR mën na yokk wallu néew sa yéene ak performans.</string>
-    <string name="backup_title">Backup</string>
-    <string name="patterns_title">Patron yi</string>
-    <string name="search_suppliers_products_hint">Seet fournisseurs walla produits</string>
-    <string name="sample_provider_example">Fournisseur exemple</string>
-    <string name="sample_provider_x">Fournisseur X</string>
-    <string name="sample_description_info">Description / info</string>
-    <string name="product_description_label">Description produit</string>
+    <string name="recepcionistas_title">Ndaw reception yi</string>
+    <string name="pickup_location_title">Berab jëfandikoo</string>
+    <string name="auto_destination_emails_title">Email yu jot-automatic</string>
+    <string name="languages_title">Kàddu yi</string>
+    <string name="app_configuration_title">Jagg app bi</string>
+    <string name="ocr_system_title">Sistem OCR</string>
+    <string name="ocr_system_warning">Soppi OCR mën na bañ ci yéene te wàññ sa performans appareil bi.</string>
+    <string name="backup_title">Denc bi</string>
+    <string name="patterns_title">Njumte yi</string>
+    <string name="search_suppliers_products_hint">Wut tàrgay walla jëf yi</string>
+    <string name="sample_provider_example">Tàrgay xamle</string>
+    <string name="sample_provider_x">Tàrgay X</string>
+    <string name="sample_description_info">Tectal / xibaar</string>
+    <string name="product_description_label">Tectal jëf</string>
     <!-- Nuevo Albarán labels -->
-    <string name="camera_button">Kamera</string>
-    <string name="upload_file_button">Upload fichier</string>
-    <string name="supplier_label">Fournisseur</string>
-    <string name="tax_id_label">Tax ID</string>
-    <string name="albaran_number_label">Numéro</string>
-    <string name="albaran_number_hint">Numéro</string>
-    <string name="albaran_date_label">Date</string>
-    <string name="albaran_date_hint">Date</string>
-    <string name="products_label">Produits</string>
-    <string name="add_product_button">+ rën produit</string>
-    <string name="delivery_incident_label">Incident document bi</string>
-    <string name="no_delivery_note_label">Amul document</string>
-    <string name="add_photo_button">+ rën photo</string>
-    <string name="comments_label">Commentaires</string>
-    <string name="comments_hint">Notes ci dommages walla incidents...</string>
-    <string name="finalize_button">Finaliser</string>
-    <string name="save_draft_button">Sauvegarder draft</string>
-    <string name="product_label">Produit</string>
-    <string name="incident_label">Incident</string>
-    <string name="description_label">Description</string>
-    <string name="description_hint">Description</string>
-    <string name="price_label">Prix</string>
-    <string name="price_hint">Prix</string>
-    <string name="amount_label">Montant</string>
-    <string name="amount_hint">Montant</string>
+    <string name="camera_button">Kamera bi</string>
+    <string name="upload_file_button">Yeb fichier</string>
+    <string name="supplier_label">Tàrgay</string>
+    <string name="tax_id_label">Nir tax</string>
+    <string name="albaran_number_label">Nimero</string>
+    <string name="albaran_number_hint">Nimero</string>
+    <string name="albaran_date_label">Bes</string>
+    <string name="albaran_date_hint">Bes</string>
+    <string name="products_label">Jëf yi</string>
+    <string name="add_product_button">+ yok jëf</string>
+    <string name="delivery_incident_label">Jafe-jafe document bi</string>
+    <string name="no_delivery_note_label">Amul bon</string>
+    <string name="add_photo_button">+ yok foto</string>
+    <string name="comments_label">Nettali yi</string>
+    <string name="comments_hint">Nettali ci làkkaar ak jafe-jafe...</string>
+    <string name="finalize_button">Jeexal</string>
+    <string name="save_draft_button">Denc borrans</string>
+    <string name="product_label">Jëf</string>
+    <string name="incident_label">Jafe-jafe</string>
+    <string name="description_label">Tectal</string>
+    <string name="description_hint">Tectal</string>
+    <string name="price_label">Njïngal</string>
+    <string name="price_hint">Njïngal</string>
+    <string name="amount_label">Loxoy</string>
+    <string name="amount_hint">Loxoy</string>
     <!-- Added parity keys (PLACEHOLDER / MIXED) -->
     <string name="cleanup_completed_deleted">Automatic history cleanup done. Deleted items: %1$d</string>
     <string name="delete_provider_title">Delete provider</string>
