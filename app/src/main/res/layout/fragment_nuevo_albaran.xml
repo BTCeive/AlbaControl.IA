@@ -24,7 +24,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Cámara" />
+                android:text="@string/camera_button" />
 
             <Space
                 android:layout_width="8dp"
@@ -35,7 +35,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Subir archivo" />
+                android:text="@string/upload_file_button" />
 
         </LinearLayout>
 
@@ -126,7 +126,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Proveedor"
+                android:text="@string/supplier_label"
                 android:textStyle="bold"
                 android:layout_marginBottom="4dp" />
 
@@ -140,7 +140,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NIF / CIF"
+                android:text="@string/tax_id_label"
                 android:textStyle="bold"
                 android:layout_marginBottom="4dp" />
 
@@ -154,7 +154,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nº albarán"
+                android:text="@string/albaran_number_label"
                 android:textStyle="bold"
                 android:layout_marginBottom="4dp" />
 
@@ -162,13 +162,13 @@
                 android:id="@+id/etNumeroAlbaran"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nº albarán"
+                android:hint="@string/albaran_number_hint"
                 android:layout_marginBottom="12dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fecha albarán"
+                android:text="@string/albaran_date_label"
                 android:textStyle="bold"
                 android:layout_marginBottom="4dp" />
 
@@ -176,7 +176,7 @@
                 android:id="@+id/etFechaAlbaran"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Fecha albarán" />
+                android:hint="@string/albaran_date_hint" />
 
         </LinearLayout>
 
@@ -184,7 +184,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Productos"
+            android:text="@string/products_label"
             android:textStyle="bold"
             android:layout_marginTop="12dp" />
 
@@ -203,7 +203,7 @@
             android:id="@+id/btnAddProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="+ añadir producto"
+            android:text="@string/add_product_button"
             android:layout_marginBottom="12dp"
             android:elevation="4dp"
             android:clipToPadding="false" />
@@ -213,13 +213,13 @@
             android:id="@+id/checkIncidenciaAlbaran"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Incidencia en el albarán" />
+            android:text="@string/delivery_incident_label" />
 
         <CheckBox
             android:id="@+id/checkSinAlbaran"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sin albarán de entrega"
+            android:text="@string/no_delivery_note_label"
             android:checked="true"
             android:layout_marginBottom="12dp" />
 
@@ -245,7 +245,7 @@
             android:id="@+id/btnAddPhoto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="+ añadir fotografía"
+            android:text="@string/add_photo_button"
             android:layout_marginBottom="12dp"
             android:elevation="4dp"
             android:clipToPadding="false" />
@@ -254,7 +254,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Comentarios"
+            android:text="@string/comments_label"
             android:textStyle="bold"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="4dp" />
@@ -263,7 +263,7 @@
             android:id="@+id/etComentarios"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Comentarios sobre desperfectos, incidencias..."
+            android:hint="@string/comments_hint"
             android:inputType="textMultiLine"
             android:minLines="3"
             android:gravity="top"
@@ -274,7 +274,7 @@
             android:id="@+id/btnFinalizar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Finalizar"
+            android:text="@string/finalize_button"
             android:textSize="20sp"
             android:paddingTop="14dp"
             android:paddingBottom="14dp"
@@ -292,7 +292,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Guardar Borrador"
+                android:text="@string/save_draft_button"
                 android:elevation="4dp"
                 android:clipToPadding="false" />
 
@@ -311,7 +311,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Cancelar"
+                android:text="@string/cancel"
                 android:elevation="4dp"
                 android:clipToPadding="false" />
 

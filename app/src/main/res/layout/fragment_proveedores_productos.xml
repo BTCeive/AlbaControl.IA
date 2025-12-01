@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="Buscar proveedores o productos"/>
+            android:hint="@string/search_suppliers_products_hint"/>
 
         <ImageButton
             android:id="@+id/btnSearch"

@@ -43,6 +43,7 @@
     <string name="auto_delete_age_label">Borrado por antigüedad (días)</string>
     <string name="auto_delete_count_label">Borrado por cantidad (máx. PDFs)</string>
     <string name="cleanup_completed_toast">Limpieza automática de historial completada.</string>
+    <string name="cleanup_completed_deleted">Limpieza automática de historial completada. Elementos eliminados: %1$d</string>
 
     <string name="add_option_sync">Sincronización (pendiente)</string>
 
@@ -59,11 +60,113 @@
     <string name="undo">Deshacer</string>
     <string name="enter_value">Introduce un valor</string>
     <string name="empty_text_not_added">Texto vacío, no se añade</string>
-    <string name="provider_required">El campo 'Proveedor' es obligatorio.</string>
+    <string name="provider_required">El campo Proveedor es obligatorio.</string>
     <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
     <string name="attach_notice">Adjunto albarán generado desde AlbaControl.IA.</string>
     <string name="pickup_location">Ubicación de recogida: %1$s</string>
     <string name="receptionist">Recepcionista: %1$s</string>
     <string name="rgpd_notice">Por favor, trate los datos personales conforme al RGPD. Los datos contenidos en este documento se usan únicamente para la gestión logística y entrega de mercancías.</string>
+
+    <!-- Additional ui strings for full i18n -->
+    <string name="delete_provider_title">Eliminar proveedor</string>
+    <string name="delete_provider_message">¿Eliminar todas las entradas de este proveedor del historial?</string>
+    <string name="delete_product_title">Eliminar producto</string>
+    <string name="delete_product_message">¿Eliminar este producto de todos los albaranes del proveedor?</string>
+    <string name="no_pdf_generated">No se ha generado PDF para este albarán</string>
+    <string name="no_pdf_to_send">No hay PDF para enviar</string>
+    <string name="file_not_found">Archivo no encontrado: %1$s</string>
+    <string name="delete_draft_title">Eliminar borrador</string>
+    <string name="delete_draft_message">¿Quieres eliminar este borrador?</string>
+    <string name="options_loading">Opciones cargando</string>
+
+    <string name="need_identify_provider">Necesitas identificar proveedor o NIF para guardar el patrón.</string>
+    <string name="no_corrections">No se detectaron correcciones relevantes; no se guardará muestra.</string>
+    <string name="no_valid_bboxes">No se han detectado bboxes válidos para los campos; no se guardará patrón.</string>
+
+    <string name="tpl_created">Plantilla creada/actualizada para: %1$s (%2$d muestras)</string>
+    <string name="tpl_create_error">Error creando plantilla agregada: %1$s</string>
+    <string name="sample_saved">Muestra guardada para: %1$s (%2$d/%3$d)</string>
+    <string name="tpl_save_error">Error guardando plantilla: %1$s</string>
+    <string name="confirm_delete_this_product">¿Seguro que quieres eliminar este producto?</string>
+    <string name="delete_albaran_title">Eliminar albarán</string>
+    <string name="delete_albaran_message">¿Quieres eliminar este albarán del historial?</string>
+    <string name="choice_merge">Mezclar</string>
+    <string name="choice_replace">Sustituir</string>
+    <string name="already_exists">Ya existe: %1$s</string>
+    <string name="added">Añadido: %1$s</string>
+    <string name="restore">Restaurar</string>
+
+    <!-- Added for NuevoAlbaranFragment i18n -->
+    <string name="image_decode_error">No se pudo decodificar la imagen seleccionada.</string>
+    <string name="created_at">Creado: %1$s</string>
+    <string name="no_data">— Sin datos —</string>
+    <string name="add">Añadir</string>
+    <string name="new_location_hint">Dirección / nota</string>
+    <string name="new_receptionist_hint">Nombre del recepcionista</string>
+    <string name="send_chooser">Enviar albarán</string>
+    <!-- PDF generation strings -->
+    <string name="pdf_title">Albarán</string>
+    <string name="pdf_provider">Proveedor: %1$s</string>
+    <string name="pdf_number">Número: %1$s</string>
+    <string name="pdf_created_at">Fecha creación: %1$s</string>
+    <string name="pdf_col_descripcion">Descripción</string>
+    <string name="pdf_col_unid">Unid.</string>
+    <string name="pdf_col_precio">Precio</string>
+    <string name="pdf_col_importe">Importe</string>
+    <string name="pdf_total">Importe total: %.2f €</string>
+    <string name="products_count">Productos: %1$d</string>
+    <string name="open_pdf">Abrir PDF</string>
+
+    <!-- Home labels -->
+    <string name="home_new_albaran">Nuevo albarán</string>
+    <string name="home_borradores">Borradores</string>
+    <string name="home_historial">Historial</string>
+    <string name="home_proveedores">Proveedores / Productos</string>
+    <string name="home_opciones">Opciones</string>
+
+    <!-- Additional UI labels (global) -->
+    <string name="recepcionistas_title">Recepcionistas</string>
+    <string name="pickup_location_title">Ubicación de recogida</string>
+    <string name="auto_destination_emails_title">Emails de destino automático</string>
+    <string name="languages_title">Idiomas</string>
+    <string name="app_configuration_title">Configuración de la app</string>
+    <string name="ocr_system_title">Sistema OCR</string>
+    <string name="ocr_system_warning">Modificar el comportamiento del sistema OCR puede afectar a la calidad de la información extraída de las fotografías y al rendimiento de su dispositivo.</string>
+    <string name="backup_title">Backup</string>
+    <string name="patterns_title">Patrones</string>
+    <string name="search_suppliers_products_hint">Buscar proveedores o productos</string>
+
+    <!-- Sample / placeholder items -->
+    <string name="sample_provider_example">Proveedor ejemplo</string>
+    <string name="sample_provider_x">Proveedor X</string>
+    <string name="sample_description_info">Descripción / info</string>
+    <string name="product_description_label">Descripción del producto</string>
+
+    <!-- Nuevo Albarán labels -->
+    <string name="camera_button">Cámara</string>
+    <string name="upload_file_button">Subir archivo</string>
+    <string name="supplier_label">Proveedor</string>
+    <string name="tax_id_label">NIF / CIF</string>
+    <string name="albaran_number_label">Nº albarán</string>
+    <string name="albaran_number_hint">Nº albarán</string>
+    <string name="albaran_date_label">Fecha albarán</string>
+    <string name="albaran_date_hint">Fecha albarán</string>
+    <string name="products_label">Productos</string>
+    <string name="add_product_button">+ añadir producto</string>
+    <string name="delivery_incident_label">Incidencia en el albarán</string>
+    <string name="no_delivery_note_label">Sin albarán de entrega</string>
+    <string name="add_photo_button">+ añadir fotografía</string>
+    <string name="comments_label">Comentarios</string>
+    <string name="comments_hint">Comentarios sobre desperfectos, incidencias...</string>
+    <string name="finalize_button">Finalizar</string>
+    <string name="save_draft_button">Guardar Borrador</string>
+    <string name="product_label">Producto</string>
+    <string name="incident_label">Incidencia</string>
+    <string name="description_label">Descripción</string>
+    <string name="description_hint">Descripción</string>
+    <string name="price_label">Precio</string>
+    <string name="price_hint">Precio</string>
+    <string name="amount_label">Importe</string>
+    <string name="amount_hint">Importe</string>
 
 </resources>

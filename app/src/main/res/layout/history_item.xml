@@ -23,7 +23,7 @@
             android:id="@+id/tvHistoryProvider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Proveedor ejemplo" />
+            android:text="@string/sample_provider_example" />
 
     </LinearLayout>
 

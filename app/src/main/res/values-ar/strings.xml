@@ -21,7 +21,7 @@
     <string name="import_complete">اكتمل الاستيراد: %1$s</string>
     <string name="import_error">خطأ أثناء الاستيراد: %1$s</string>
 
-    <string name="restore_warning">تحذير: سيتم حذف جميع بيانات التطبيق. لا يمكن التراجع عن هذا الإجراء.&#10;انتظر 5 ثوانٍ ثم ضع علامة في المربع للتأكيد.</string>
+    <string name="restore_warning">تحذير: سيتم حذف جميع بيانات التطبيق. لا يمكن التراجع عن هذا الإجراء.&amp;#10;انتظر 5 ثوانٍ ثم ضع علامة في المربع للتأكيد.</string>
     <string name="restore_confirm_missing">يجب عليك تحديد مربع التأكيد.</string>
     <string name="restore_confirm_title">استعادة التطبيق</string>
     <string name="restore_completed">اكتمل الاستعادة. تم تنظيف التطبيق.</string>
@@ -57,10 +57,16 @@
     <string name="undo">تراجع</string>
     <string name="enter_value">أدخل قيمة</string>
     <string name="empty_text_not_added">النص فارغ، لم يتم الإضافة</string>
-    <string name="provider_required">حقل 'Proveedor' مطلوب.</string>
+    <string name="provider_required">حقل ’Proveedor’ مطلوب.</string>
     <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
     <string name="attach_notice">المستند المرفق تم إنشاؤه بواسطة AlbaControl.IA.</string>
     <string name="pickup_location">موقع الاستلام: %1$s</string>
     <string name="receptionist">الموظف الاستقبال: %1$s</string>
     <string name="rgpd_notice">يرجى التعامل مع البيانات الشخصية وفقًا للائحة GDPR. تُستخدم البيانات الواردة في هذا المستند فقط لإدارة اللوجستيات والتسليم.</string>
+    <!-- Home labels -->
+    <string name="home_new_albaran">إذن تسليم جديد</string>
+    <string name="home_borradores">المسودات</string>
+    <string name="home_historial">السجل</string>
+    <string name="home_proveedores">الموردون / المنتجات</string>
+    <string name="home_opciones">الإعدادات</string>
 </resources>

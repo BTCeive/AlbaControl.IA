@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Opciones generales"
+            android:text="@string/options_title"
             android:textStyle="bold"
             android:textSize="18sp"
             android:paddingBottom="8dp" />
@@ -47,7 +47,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Recepcionistas" />
+                    android:text="@string/recepcionistas_title" />
 
                 <Button
                     android:id="@+id/btnAddRecepcionistaOptions"
@@ -101,7 +101,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Ubicación de recogida" />
+                    android:text="@string/pickup_location_title" />
 
                 <Button
                     android:id="@+id/btnAddUbicacionOptions"
@@ -155,7 +155,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Emails de destino automático" />
+                    android:text="@string/auto_destination_emails_title" />
 
                 <Button
                     android:id="@+id/btnAddEmailOptions"
@@ -200,7 +200,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Idiomas"
+                android:text="@string/languages_title"
                 android:textStyle="bold"
                 android:paddingBottom="4dp" />
 
@@ -228,7 +228,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Configuración de la app"
+                android:text="@string/app_configuration_title"
                 android:textStyle="bold" />
 
             <TextView
@@ -251,7 +251,7 @@
                 android:id="@+id/tvOcrTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sistema OCR" />
+                android:text="@string/ocr_system_title" />
 
             <SeekBar
                 android:id="@+id/seekOcrPasses"
@@ -263,7 +263,7 @@
                 android:id="@+id/tvOcrNote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Modificar el comportamiento del sistema OCR puede afectar a la calidad de la información extraída de las fotografías y al rendimiento de su dispositivo."
+                android:text="@string/ocr_system_warning"
                 android:textSize="12sp"
                 android:textStyle="italic"
                 android:paddingTop="4dp"
@@ -275,7 +275,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Backup"
+            android:text="@string/backup_title"
             android:textStyle="bold"
             android:paddingTop="8dp"
             android:paddingBottom="6dp" />
@@ -292,7 +292,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Borradores" />
+                android:text="@string/home_borradores" />
 
             <ImageButton
                 android:id="@+id/btnExportDrafts"
@@ -329,7 +329,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Historial" />
+                android:text="@string/home_historial" />
 
             <ImageButton
                 android:id="@+id/btnExportHistory"
@@ -366,7 +366,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Proveedores / Productos" />
+                android:text="@string/home_proveedores" />
 
             <ImageButton
                 android:id="@+id/btnExportProviders"
@@ -403,7 +403,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Patrones" />
+                android:text="@string/patterns_title" />
 
             <ImageButton
                 android:id="@+id/btnExportPatterns"
@@ -441,13 +441,13 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Backup general" />
+                android:text="@string/backup_general" />
 
             <Button
                 android:id="@+id/btnExportBackupAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Exportar"
+                android:text="@string/export"
                 android:elevation="4dp"
                 android:clipToPadding="false" />
 
@@ -457,7 +457,7 @@
                 android:id="@+id/btnImportBackupAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Importar"
+                android:text="@string/op_import"
                 android:elevation="4dp"
                 android:clipToPadding="false" />
 
@@ -475,13 +475,13 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Restaurar app" />
+                android:text="@string/restore_app" />
 
             <Button
                 android:id="@+id/btnRestoreApp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Restaurar"
+                android:text="@string/restore"
                 android:elevation="4dp"
                 android:clipToPadding="false" />
 
@@ -491,7 +491,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Borrado automático del Historial"
+            android:text="@string/auto_delete_section"
             android:textStyle="bold"
             android:paddingTop="8dp"
             android:paddingBottom="6dp" />

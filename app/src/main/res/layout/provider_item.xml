@@ -23,13 +23,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Proveedor X" />
+                android:text="@string/sample_provider_x" />
 
             <TextView
                 android:id="@+id/tvProviderSub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Descripción / info" />
+                android:text="@string/sample_description_info" />
 
         </LinearLayout>
 
@@ -38,7 +38,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/ic_delete"
-            android:contentDescription="Eliminar proveedor" />
+            android:contentDescription="@string/delete_provider_title" />
 
     </LinearLayout>
 

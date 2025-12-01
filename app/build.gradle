@@ -15,8 +15,8 @@ android {
         targetSdk 34
         versionCode 1
         versionName "1.0"
-        // Limitar idiomas empaquetados para evitar fallo en "values-fr" temporalmente
-        resConfigs "en", "es"
+        // Idiomas empaquetados soportados por la app
+        resConfigs "en", "es", "fr", "de", "it", "ca", "tr", "ar", "wo"
     }
 
     buildTypes {

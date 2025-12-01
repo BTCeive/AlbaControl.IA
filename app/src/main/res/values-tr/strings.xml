@@ -21,9 +21,9 @@
     <string name="import_complete">İçe aktarma tamamlandı: %1$s</string>
     <string name="import_error">İçe aktarma hatası: %1$s</string>
 
-    <string name="restore_warning">UYARI: Uygulamanın tüm verileri silinecek. Bu işlem geri alınamaz.&#10;5 saniye bekleyin ve onaylamak için kutuyu işaretleyin.</string>
+    <string name="restore_warning">UYARI: Uygulamanın tüm verileri silinecek. Bu işlem geri alınamaz.&amp;#10;5 saniye bekleyin ve onaylamak için kutuyu işaretleyin.</string>
     <string name="restore_confirm_missing">Onay kutusunu işaretlemelisiniz.</string>
-    <string name="restore_confirm_title">Uygulamayı geri yükle</string>
+    <string name="restore_confirm_title">Uygulamı geri yükle</string>
     <string name="restore_completed">Geri yükleme tamamlandı. Uygulama temizlendi.</string>
     <string name="restore_error">Geri yükleme hatası: %1$s</string>
 
@@ -57,10 +57,18 @@
     <string name="undo">Geri al</string>
     <string name="enter_value">Bir değer girin</string>
     <string name="empty_text_not_added">Boş metin, eklenmedi</string>
-    <string name="provider_required">'Proveedor' alanı gereklidir.</string>
+    <string name="provider_required">Proveedor alanı gereklidir.</string>
     <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
     <string name="attach_notice">AlbaControl.IA tarafından oluşturulan belge eklendi.</string>
     <string name="pickup_location">Teslim alma yeri: %1$s</string>
     <string name="receptionist">Resepsiyonist: %1$s</string>
-    <string name="rgpd_notice">Lütfen kişisel verileri GDPR'ye uygun şekilde işleyin. Bu belgede bulunan veriler yalnızca lojistik ve teslimat yönetimi için kullanılır.</string>
+    <string name="rgpd_notice">Lütfen kişisel verileri GDPR’ye uygun şekilde işleyin. Bu belgede bulunan veriler yalnızca lojistik ve teslimat yönetimi için kullanılır.</string>
+    <string name="common_signin_button_text_long">Google’da oturum aç</string>
+    <string name="material_clock_toggle_content_description">ÖÖ veya ÖS’yi seçin</string>
+    <!-- Home labels -->
+    <string name="home_new_albaran">Yeni irsaliye</string>
+    <string name="home_borradores">Taslaklar</string>
+    <string name="home_historial">Geçmiş</string>
+    <string name="home_proveedores">Tedarikçiler / Ürünler</string>
+    <string name="home_opciones">Ayarlar</string>
 </resources>

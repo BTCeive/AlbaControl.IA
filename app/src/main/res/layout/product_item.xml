@@ -19,13 +19,13 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Producto" />
+            android:text="@string/product_label" />
 
         <CheckBox
             android:id="@+id/checkIncidencia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Incidencia" />
+            android:text="@string/incident_label" />
 
         <ImageButton
             android:id="@+id/btnDeleteProduct"
@@ -39,7 +39,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Descripción"
+        android:text="@string/description_label"
         android:textStyle="bold"
         android:layout_marginBottom="4dp" />
 
@@ -47,7 +47,7 @@
         android:id="@+id/etDescripcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Descripción"
+        android:hint="@string/description_hint"
         android:layout_marginBottom="12dp" />
 
     <LinearLayout
@@ -87,7 +87,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Precio"
+                android:text="@string/price_label"
                 android:textStyle="bold"
                 android:layout_marginBottom="4dp" />
 
@@ -95,7 +95,7 @@
                 android:id="@+id/etPrecio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Precio" />
+                android:hint="@string/price_hint" />
 
         </LinearLayout>
 
@@ -110,7 +110,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Importe"
+                android:text="@string/amount_label"
                 android:textStyle="bold"
                 android:layout_marginBottom="4dp" />
 
@@ -118,7 +118,7 @@
                 android:id="@+id/etImporte"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Importe" />
+                android:hint="@string/amount_hint" />
 
         </LinearLayout>
 
