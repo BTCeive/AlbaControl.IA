@@ -57,7 +57,7 @@
     <string name="undo">تراجع</string>
     <string name="enter_value">أدخل قيمة</string>
     <string name="empty_text_not_added">النص فارغ، لم يتم الإضافة</string>
-    <string name="provider_required">حقل ’Proveedor’ مطلوب.</string>
+    <string name="provider_required">حقل المورد مطلوب.</string>
     <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
     <string name="attach_notice">المستند المرفق تم إنشاؤه بواسطة AlbaControl.IA.</string>
     <string name="pickup_location">موقع الاستلام: %1$s</string>

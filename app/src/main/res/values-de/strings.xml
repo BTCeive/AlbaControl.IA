@@ -57,7 +57,7 @@
     <string name="undo">Rückgängig</string>
     <string name="enter_value">Geben Sie einen Wert ein</string>
     <string name="empty_text_not_added">Leerer Text, nicht hinzugefügt</string>
-    <string name="provider_required">Das Feld ’Proveedor’ ist erforderlich.</string>
+    <string name="provider_required">Das Feld Lieferant ist erforderlich.</string>
     <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
     <string name="attach_notice">Angehängtes Dokument von AlbaControl.IA.</string>
     <string name="pickup_location">Abholort: %1$s</string>

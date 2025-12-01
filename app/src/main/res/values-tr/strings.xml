@@ -57,7 +57,7 @@
     <string name="undo">Geri al</string>
     <string name="enter_value">Bir değer girin</string>
     <string name="empty_text_not_added">Boş metin, eklenmedi</string>
-    <string name="provider_required">Proveedor alanı gereklidir.</string>
+    <string name="provider_required">Tedarikçi alanı gereklidir.</string>
     <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
     <string name="attach_notice">AlbaControl.IA tarafından oluşturulan belge eklendi.</string>
     <string name="pickup_location">Teslim alma yeri: %1$s</string>
