@@ -23,7 +23,7 @@
 
     <string name="restore_warning">UYARI: Uygulamanın tüm verileri silinecek. Bu işlem geri alınamaz.&amp;#10;5 saniye bekleyin ve onaylamak için kutuyu işaretleyin.</string>
     <string name="restore_confirm_missing">Onay kutusunu işaretlemelisiniz.</string>
-    <string name="restore_confirm_title">Uygulamı geri yükle</string>
+    <string name="restore_confirm_title">Uygulamayı geri yükle</string>
     <string name="restore_completed">Geri yükleme tamamlandı. Uygulama temizlendi.</string>
     <string name="restore_error">Geri yükleme hatası: %1$s</string>
 

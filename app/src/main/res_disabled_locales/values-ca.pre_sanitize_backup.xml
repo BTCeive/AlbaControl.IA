@@ -10,39 +10,39 @@
     <string name="export">Exporta</string>
     <string name="op_import">Importa</string>
     <string name="backup_general">Còpia de seguretat general</string>
-    <string name="restore_app">Restaura l'aplicació</string>
+    <string name="restore_app">Restaura l’aplicació</string>
 
     <string name="export_area_title">Exporta %1$s</string>
-    <string name="export_area_message">Vols exportar %1$s ara? Els fitxers es desaran a la carpeta d'exportació de l'aplicació.</string>
+    <string name="export_area_message">Vols exportar %1$s ara? Els fitxers es desaran a la carpeta d’exportació de l’aplicació.</string>
     <string name="export_complete">Exportació completada: %1$s</string>
-    <string name="export_error">Error d'exportació: %1$s</string>
+    <string name="export_error">Error d’exportació: %1$s</string>
 
     <string name="import_area_title">Importa %1$s</string>
     <string name="import_complete">Importació completada: %1$s</string>
-    <string name="import_error">Error d'importació: %1$s</string>
+    <string name="import_error">Error d’importació: %1$s</string>
 
-    <string name="restore_warning">AVÍS: Totes les dades de l'aplicació s'eliminaran. Aquesta acció no es pot desfer.&#10;Espera 5 segons i marca la casella per confirmar.</string>
+    <string name="restore_warning">AVÍS: Totes les dades de l’aplicació s’eliminaran. Aquesta acció no es pot desfer.&#10;Espera 5 segons i marca la casella per confirmar.</string>
     <string name="restore_confirm_missing">Has de marcar la casella per confirmar.</string>
-    <string name="restore_confirm_title">Restaura l'aplicació</string>
+    <string name="restore_confirm_title">Restaura l’aplicació</string>
     <string name="restore_completed">Restaura completat. Aplicació neta.</string>
     <string name="restore_error">Error en restaurar: %1$s</string>
 
     <string name="confirm_delete">Eliminar %1$s?</string>
     <string name="delete">Elimina</string>
     <string name="cancel">Cancel·la</string>
-    <string name="ok">D'acord</string>
+    <string name="ok">D’acord</string>
     <string name="edit">Edita</string>
 
     <string name="ocr_passes_toast">Passos OCR: %1$d</string>
 
-    <string name="importing_progress">S'està important %1$s...</string>
-    <string name="exporting_progress">S'està exportant %1$s...</string>
-    <string name="restoring_progress">Restaurant l'aplicació...</string>
+    <string name="importing_progress">S’està important %1$s...</string>
+    <string name="exporting_progress">S’està exportant %1$s...</string>
+    <string name="restoring_progress">Restaurant l’aplicació...</string>
 
-    <string name="auto_delete_section">Esborrat automàtic de l'historial</string>
+    <string name="auto_delete_section">Esborrat automàtic de l’historial</string>
     <string name="auto_delete_age_label">Esborrar per antiguitat (dies)</string>
     <string name="auto_delete_count_label">Esborrar per quantitat (màx. PDF)</string>
-    <string name="cleanup_completed_toast">Neteja automàtica de l'historial completada.</string>
+    <string name="cleanup_completed_toast">Neteja automàtica de l’historial completada.</string>
 
     <string name="add_option_sync">Sincronització (pendent)</string>
 </resources>

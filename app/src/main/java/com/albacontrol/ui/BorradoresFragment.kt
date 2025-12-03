@@ -81,9 +81,9 @@ class BorradoresFragment : Fragment() {
 
             holder.btnDelete.setOnClickListener {
                 val dialog = AlertDialog.Builder(requireContext())
-                    .setTitle("Eliminar borrador")
-                    .setMessage("¿Quieres eliminar este borrador?")
-                    .setPositiveButton("Eliminar") { _, _ ->
+                    .setTitle(getString(R.string.delete_draft_title))
+                    .setMessage(getString(R.string.delete_draft_message))
+                    .setPositiveButton(getString(R.string.delete)) { _, _ ->
                         lifecycleScope.launch {
                             val db = AppDatabase.getInstance(requireContext())
                             withContext(Dispatchers.IO) { db.draftDao().deleteById(draft.id) }
@@ -91,7 +91,7 @@ class BorradoresFragment : Fragment() {
                             notifyItemRemoved(position)
                         }
                     }
-                    .setNegativeButton("Cancelar", null)
+                    .setNegativeButton(getString(R.string.cancel), null)
                     .create()
                 dialog.setOnShowListener {
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.BLACK)

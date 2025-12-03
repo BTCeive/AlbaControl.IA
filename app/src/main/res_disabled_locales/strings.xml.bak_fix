@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AlbaControl</string>
+    <string name="options_title">Genel Ayarlar</string>
+
+    <string name="new_receptionist">Yeni resepsiyonist</string>
+    <string name="new_location">Yeni konum</string>
+    <string name="new_email">Yeni e-posta</string>
+
+    <string name="export">D&#305;&#351;a aktar</string>
+    <string name="op_import">&#304;&#231;e aktar</string>
+    <string name="backup_general">Genel yedekleme</string>
+    <string name="restore_app">Uygulamay&#305; geri y&#252;kle</string>
+
+    <string name="export_area_title">%1$s d&#305;&#351;a aktar</string>
+    <string name="export_area_message">%1$s &#351;imdi d&#305;&#351;a aktar&#305;ls&#305;n m&#305;? Dosyalar uygulaman&#305;n d&#305;&#351;a aktarma klas&#246;r&#252;ne kaydedilecek.</string>
+    <string name="export_complete">D&#305;&#351;a aktarma tamamland&#305;: %1$s</string>
+    <string name="export_error">D&#305;&#351;a aktarma hatas&#305;: %1$s</string>
+
+    <string name="import_area_title">%1$s i&#231;e aktar</string>
+    <string name="import_complete">&#304;&#231;e aktarma tamamland&#305;: %1$s</string>
+    <string name="import_error">&#304;&#231;e aktarma hatas&#305;: %1$s</string>
+
+    <string name="restore_warning">UYARI: Uygulaman&#305;n t&#252;m verileri silinecek. Bu i&#351;lem geri al&#305;namaz.&#10;5 saniye bekleyin ve onaylamak i&#231;in kutuyu i&#351;aretleyin.</string>
+    <string name="restore_confirm_missing">Onay kutusunu i&#351;aretlemelisiniz.</string>
+    <string name="restore_confirm_title">Uygulamay&#305; geri y&#252;kle</string>
+    <string name="restore_completed">Geri y&#252;kleme tamamland&#305;. Uygulama temizlendi.</string>
+    <string name="restore_error">Geri y&#252;kleme hatas&#305;: %1$s</string>
+
+    <string name="confirm_delete">%1$s silinsin mi?</string>
+    <string name="delete">Sil</string>
+    <string name="cancel">&#304;ptal</string>
+    <string name="ok">Tamam</string>
+    <string name="edit">D&#252;zenle</string>
+
+    <string name="ocr_passes_toast">OCR ad&#305;mlar&#305;: %1$d</string>
+
+    <string name="importing_progress">%1$s i&#231;e aktar&#305;l&#305;yor...</string>
+    <string name="exporting_progress">%1$s d&#305;&#351;a aktar&#305;l&#305;yor...</string>
+    <string name="restoring_progress">Uygulama geri y&#252;kleniyor...</string>
+
+    <string name="auto_delete_section">Ge&#231;mi&#351; i&#231;in otomatik silme</string>
+    <string name="auto_delete_age_label">Ya&#351;a g&#246;re silme (g&#252;n)</string>
+    <string name="auto_delete_count_label">Miktara g&#246;re silme (maks. PDF)</string>
+    <string name="cleanup_completed_toast">Otomatik ge&#231;mi&#351; temizleme tamamland&#305;.</string>
+
+    <string name="add_option_sync">Senkronizasyon (beklemede)</string>
+    <string name="processing_image">G&#246;r&#252;nt&#252; i&#351;leniyor...</string>
+    <string name="ocr_error">OCR hatas&#305;: %1$s</string>
+    <string name="ocr_applied">OCR uyguland&#305;</string>
+    <string name="toast_draft_saved">Taslak kaydedildi (id=%1$d)</string>
+    <string name="toast_draft_error">Taslak kaydedilirken hata: %1$s</string>
+    <string name="toast_finalized">Belge tamamland&#305; (id=%1$d)</string>
+    <string name="toast_email_error">Kaydedildi, ancak e-posta istemcisi a&#231;&#305;lamad&#305;: %1$s</string>
+    <string name="toast_finalize_error">Belge tamamlan&#305;rken hata: %1$s</string>
+    <string name="photo_deleted">Foto&#287;raf silindi</string>
+    <string name="undo">Geri al</string>
+    <string name="enter_value">Bir de&#287;er girin</string>
+    <string name="empty_text_not_added">Bo&#351; metin, eklenmedi</string>
+    <string name="provider_required">Proveedor alan&#305; gereklidir.</string>
+    <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
+    <string name="attach_notice">AlbaControl.IA taraf&#305;ndan olu&#351;turulan belge eklendi.</string>
+    <string name="pickup_location">Teslim alma yeri: %1$s</string>
+    <string name="receptionist">Resepsiyonist: %1$s</string>
+    <string name="rgpd_notice">L&#252;tfen ki&#351;isel verileri GDPR'ye uygun &#351;ekilde i&#351;leyin. Bu belgede bulunan veriler yaln&#305;zca lojistik ve teslimat y&#246;netimi i&#231;in kullan&#305;l&#305;r.</string>
+</resources>

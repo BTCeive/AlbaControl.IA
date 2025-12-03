@@ -61,7 +61,7 @@
     <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
     <string name="attach_notice">المستند المرفق تم إنشاؤه بواسطة AlbaControl.IA.</string>
     <string name="pickup_location">موقع الاستلام: %1$s</string>
-    <string name="receptionist">الموظف الاستقبال: %1$s</string>
+    <string name="receptionist">موظف الاستقبال: %1$s</string>
     <string name="rgpd_notice">يرجى التعامل مع البيانات الشخصية وفقًا للائحة GDPR. تُستخدم البيانات الواردة في هذا المستند فقط لإدارة اللوجستيات والتسليم.</string>
     <!-- Home labels -->
     <string name="home_new_albaran">إذن تسليم جديد</string>

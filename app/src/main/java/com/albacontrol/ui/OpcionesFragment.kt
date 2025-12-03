@@ -65,7 +65,7 @@ class OpcionesFragment : Fragment() {
         if (DEBUG_INTERACTION) {
             Log.d(TAG, "onCreateView: fragment_opciones inflado")
             if (!debugToastShown) {
-                Toast.makeText(requireContext(), "Opciones cargando", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.options_loading), Toast.LENGTH_SHORT).show()
                 debugToastShown = true
             }
         }
@@ -82,7 +82,7 @@ class OpcionesFragment : Fragment() {
 
         view.findViewById<View>(R.id.btnAddRecepcionistaOptions).setOnClickListener {
             Log.d(TAG, "Click btnAddRecepcionistaOptions")
-            addOptionDialog(KEY_RECEP, "Nuevo recepcionista")
+            addOptionDialog(KEY_RECEP, getString(R.string.new_receptionist))
         }
         view.findViewById<View>(R.id.btnAddRecepcionistaOptions).setOnTouchListener { v, ev ->
             if (DEBUG_INTERACTION) Log.d(TAG, "Touch btnAddRecepcionistaOptions action=${ev.action}")
@@ -90,7 +90,7 @@ class OpcionesFragment : Fragment() {
         }
         view.findViewById<View>(R.id.btnAddUbicacionOptions).setOnClickListener {
             Log.d(TAG, "Click btnAddUbicacionOptions")
-            addOptionDialog(KEY_UBIC, "Nueva ubicación")
+            addOptionDialog(KEY_UBIC, getString(R.string.new_location))
         }
         view.findViewById<View>(R.id.btnAddUbicacionOptions).setOnTouchListener { v, ev ->
             if (DEBUG_INTERACTION) Log.d(TAG, "Touch btnAddUbicacionOptions action=${ev.action}")
@@ -98,7 +98,7 @@ class OpcionesFragment : Fragment() {
         }
         view.findViewById<View>(R.id.btnAddEmailOptions).setOnClickListener {
             Log.d(TAG, "Click btnAddEmailOptions")
-            addOptionDialog(KEY_EMAILS, "Nuevo email", inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
+            addOptionDialog(KEY_EMAILS, getString(R.string.new_email), inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
         }
         view.findViewById<View>(R.id.btnAddEmailOptions).setOnTouchListener { v, ev ->
             if (DEBUG_INTERACTION) Log.d(TAG, "Touch btnAddEmailOptions action=${ev.action}")
@@ -163,7 +163,7 @@ class OpcionesFragment : Fragment() {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 val passes = (seekBar?.progress ?: 0) + 1
                 prefs.edit().putInt(KEY_OCR, passes).apply()
-                Toast.makeText(requireContext(), "OCR pasadas: $passes", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.ocr_passes_toast, passes), Toast.LENGTH_SHORT).show()
             }
         })
 
@@ -208,10 +208,10 @@ class OpcionesFragment : Fragment() {
 
     private fun confirmExport(area: String) {
         val builder = AlertDialog.Builder(requireContext())
-            .setTitle("Exportar $area")
-            .setMessage("¿Exportar $area ahora? Los archivos se guardarán en la carpeta de exportación de la app.")
-            .setPositiveButton("Exportar") { _, _ ->
-                showProgress("Exportando $area...")
+            .setTitle(getString(R.string.export_area_title, area))
+            .setMessage(getString(R.string.export_area_message, area))
+            .setPositiveButton(getString(R.string.export)) { _, _ ->
+                showProgress(getString(R.string.exporting_progress, area))
                 lifecycleScope.launch {
                     try {
                         withContext(Dispatchers.IO) {
@@ -223,15 +223,15 @@ class OpcionesFragment : Fragment() {
                                 "BackupGeneral" -> exportBackupAll()
                             }
                         }
-                        Toast.makeText(requireContext(), "Export completo: $area", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), getString(R.string.export_complete, area), Toast.LENGTH_SHORT).show()
                     } catch (e: Exception) {
-                        Toast.makeText(requireContext(), "Error exportando: ${e.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), getString(R.string.export_error, e.message ?: ""), Toast.LENGTH_LONG).show()
                     } finally {
                         hideProgress()
                     }
                 }
             }
-            .setNegativeButton("Cancelar", null)
+            .setNegativeButton(getString(R.string.cancel), null)
 
         val dlg = builder.show()
         try {
@@ -241,9 +241,9 @@ class OpcionesFragment : Fragment() {
     }
 
     private fun confirmImport(area: String) {
-        val choices = arrayOf("Mezclar", "Sustituir")
+        val choices = arrayOf(getString(R.string.choice_merge), getString(R.string.choice_replace))
         val builder = AlertDialog.Builder(requireContext())
-            .setTitle("Importar $area")
+            .setTitle(getString(R.string.import_area_title, area))
             .setItems(choices) { _, which ->
                 pendingImportArea = area
                 pendingImportReplace = (which == 1)
@@ -251,7 +251,7 @@ class OpcionesFragment : Fragment() {
                 val mime = if (area == "Historial" || area == "BackupGeneral") "application/zip" else "application/json"
                 pickFileLauncher.launch("$mime")
             }
-            .setNegativeButton("Cancelar", null)
+            .setNegativeButton(getString(R.string.cancel), null)
 
         val dlg = builder.show()
         try {
@@ -262,7 +262,7 @@ class OpcionesFragment : Fragment() {
     private fun handleImportUri(uri: Uri) {
         val area = pendingImportArea ?: return
         val replace = pendingImportReplace
-        showProgress("Importando $area...")
+        showProgress(getString(R.string.importing_progress, area))
         lifecycleScope.launch {
             try {
                 withContext(Dispatchers.IO) {
@@ -274,9 +274,9 @@ class OpcionesFragment : Fragment() {
                         "BackupGeneral" -> importBackupAll(uri, replace)
                     }
                 }
-                Toast.makeText(requireContext(), "Import completo: $area", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.import_complete, area), Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
-                Toast.makeText(requireContext(), "Error importando: ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), getString(R.string.import_error, e.message ?: ""), Toast.LENGTH_LONG).show()
             } finally {
                 hideProgress()
             }
@@ -598,10 +598,10 @@ class OpcionesFragment : Fragment() {
         container.addView(check)
 
         val builder = AlertDialog.Builder(requireContext())
-            .setTitle("Restaurar app")
+            .setTitle(getString(R.string.restore_confirm_title))
             .setView(container)
-            .setNegativeButton("Cancelar", null)
-            .setPositiveButton("Restaurar") { _, _ ->
+            .setNegativeButton(getString(R.string.cancel), null)
+            .setPositiveButton(getString(R.string.restore)) { _, _ ->
                     if (check.isChecked) {
                     performRestoreApp()
                 } else {
@@ -644,7 +644,7 @@ class OpcionesFragment : Fragment() {
     private fun performRestoreApp() {
         lifecycleScope.launch {
             try {
-                showProgress("Restaurando app...")
+                showProgress(getString(R.string.restoring_progress))
                 withContext(Dispatchers.IO) {
                     Log.d(TAG, "performRestoreApp: iniciando restauración (replace)")
                     val db = com.albacontrol.data.AppDatabase.getInstance(requireContext())
@@ -669,11 +669,11 @@ class OpcionesFragment : Fragment() {
                     }
                     Log.d(TAG, "performRestoreApp: restauración IO completada")
                 }
-                Toast.makeText(requireContext(), "Restauración completada. La app ha sido limpiada.", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), getString(R.string.restore_completed), Toast.LENGTH_LONG).show()
                 Log.d(TAG, "performRestoreApp: restauración finalizada con éxito")
             } catch (e: Exception) {
                 Log.e(TAG, "performRestoreApp: error durante restauración", e)
-                Toast.makeText(requireContext(), "Error restaurando: ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), getString(R.string.restore_error, e.message ?: ""), Toast.LENGTH_LONG).show()
             }
                 hideProgress()
         }
@@ -904,10 +904,18 @@ class OpcionesFragment : Fragment() {
         // Use flag emojis and language names for simplicity
         // languages display names and corresponding BCP-47 tags
         val langList = listOf(
-            Pair("🇪🇸 Español", "es"),
-            Pair("🇬🇧 English", "en"),
-            Pair("🇫🇷 Français", "fr"),
-            Pair("🇩🇪 Deutsch", "de")
+            Pair("\uD83C\uDDEA\uD83C\uDDF8 Español", "es"),
+            Pair("\uD83C\uDDEC\uD83C\uDDE7 English", "en"),
+            Pair("\uD83C\uDDF5\uD83C\uDDF9 Português", "pt"),
+            Pair("\uD83C\uDDEB\uD83C\uDDF7 Français", "fr"),
+            Pair("\uD83C\uDDE9\uD83C\uDDEA Deutsch", "de"),
+            Pair("\uD83C\uDDEE\uD83C\uDDF9 Italiano", "it"),
+            // No existe bandera oficial Unicode para Cataluña; se usa prefijo textual
+            Pair("CAT Català", "ca"),
+            Pair("\uD83C\uDDF9\uD83C\uDDF7 Türkçe", "tr"),
+            Pair("\uD83C\uDDF8\uD83C\uDDE6 العربية", "ar"),
+            // Wolof mayoritario en Senegal: se usa bandera de Senegal
+            Pair("\uD83C\uDDF8\uD83C\uDDF3 Wolof", "wo")
         )
         val languages = langList.map { it.first }
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, languages)
@@ -938,8 +946,14 @@ class OpcionesFragment : Fragment() {
                 try {
                     val locales = LocaleListCompat.forLanguageTags(tag)
                     AppCompatDelegate.setApplicationLocales(locales)
+                    Toast.makeText(requireContext(), "Idioma: ${langList[position].first}", Toast.LENGTH_SHORT).show()
+                    // Forzar recarga: recrear actividad y navegar a Home
                     activity?.recreate()
-                    Log.d(TAG, "Language changed to $tag (prev=$prevTag)")
+                    try {
+                        requireActivity().supportFragmentManager.beginTransaction()
+                            .replace(com.albacontrol.R.id.fragment_container, com.albacontrol.ui.HomeFragment())
+                            .commitAllowingStateLoss()
+                    } catch (_: Exception) {}
                 } catch (e: Exception) {
                     Log.e(TAG, "Error applying locale $tag", e)
                 }
@@ -1066,7 +1080,7 @@ class OpcionesFragment : Fragment() {
             // Mostrar toast solo si realmente se eliminó algo
             if (deletedCount > 0) {
                 prefs.edit().putLong(KEY_LAST_AUTO_CLEANUP, now).apply()
-                activity?.runOnUiThread { Toast.makeText(requireContext(), "Limpieza automática de historial completada. Elementos eliminados: $deletedCount", Toast.LENGTH_SHORT).show() }
+                activity?.runOnUiThread { Toast.makeText(requireContext(), getString(R.string.cleanup_completed_deleted, deletedCount), Toast.LENGTH_SHORT).show() }
             } else {
                 prefs.edit().putLong(KEY_LAST_AUTO_CLEANUP, now).apply()
                 Log.d(TAG, "performAutoCleanupIfNeeded: no se eliminaron elementos, no se muestra toast")
@@ -1086,17 +1100,17 @@ class OpcionesFragment : Fragment() {
                 tv.text = text
 
                 btnEdit.setOnClickListener {
-                    addOptionDialog(key, "Editar", initial = text)
+                    addOptionDialog(key, getString(R.string.edit), initial = text)
                 }
 
                 btnDelete.setOnClickListener {
                     AlertDialog.Builder(requireContext())
-                        .setTitle("Eliminar")
-                        .setMessage("¿Eliminar '$text'?")
-                        .setPositiveButton("Eliminar") { _, _ ->
+                        .setTitle(getString(R.string.delete))
+                        .setMessage(getString(R.string.confirm_delete, text))
+                        .setPositiveButton(getString(R.string.delete)) { _, _ ->
                             removeOption(key, text)
                         }
-                        .setNegativeButton("Cancelar", null)
+                        .setNegativeButton(getString(R.string.cancel), null)
                         .show().also { dlg ->
                             try {
                                 dlg.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.BLACK)
@@ -1118,15 +1132,15 @@ class OpcionesFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
             .setTitle(title)
             .setView(et)
-            .setPositiveButton("OK") { _, _ ->
+            .setPositiveButton(getString(R.string.ok)) { _, _ ->
                 val text = et.text.toString().trim()
                 if (text.isNotEmpty()) {
                     addOption(key, text)
                 } else {
-                    Toast.makeText(requireContext(), "Texto vacío, no se añade", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.empty_text_not_added), Toast.LENGTH_SHORT).show()
                 }
             }
-            .setNegativeButton("Cancelar", null)
+            .setNegativeButton(getString(R.string.cancel), null)
 
         val dlg = builder.show()
         try {
@@ -1140,13 +1154,13 @@ class OpcionesFragment : Fragment() {
         val arr = JSONArray(prefs.getString(key, "[]"))
         // avoid duplicates
         for (i in 0 until arr.length()) if (arr.optString(i) == value) {
-            Toast.makeText(requireContext(), "Ya existe: $value", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.already_exists, value), Toast.LENGTH_SHORT).show()
             return
         }
         arr.put(value)
         prefs.edit().putString(key, arr.toString()).apply()
         loadOptions()
-        Toast.makeText(requireContext(), "Añadido: $value", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), getString(R.string.added, value), Toast.LENGTH_SHORT).show()
     }
 
     private fun removeOption(key: String, value: String) {

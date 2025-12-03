@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import com.albacontrol.R
 
 class HomeFragment : Fragment() {
-    private val TAG = "HomeFragment"
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,22 +55,5 @@ class HomeFragment : Fragment() {
         return view
     }
 
-    override fun onResume() {
-        super.onResume()
-        try {
-            val locales = androidx.appcompat.app.AppCompatDelegate.getApplicationLocales()
-            android.util.Log.d(TAG, "localeTags=" + locales.toLanguageTags())
-            val ctx = requireContext()
-            val sNew = ctx.getString(com.albacontrol.R.string.home_new_albaran)
-            val sBor = ctx.getString(com.albacontrol.R.string.home_borradores)
-            val sHist = ctx.getString(com.albacontrol.R.string.home_historial)
-            val sProv = ctx.getString(com.albacontrol.R.string.home_proveedores)
-            val sOpt = ctx.getString(com.albacontrol.R.string.home_opciones)
-            android.util.Log.d(TAG, "home_new_albaran=" + sNew)
-            android.util.Log.d(TAG, "home_borradores=" + sBor)
-            android.util.Log.d(TAG, "home_historial=" + sHist)
-            android.util.Log.d(TAG, "home_proveedores=" + sProv)
-            android.util.Log.d(TAG, "home_opciones=" + sOpt)
-        } catch (_: Exception) {}
-    }
+    // Removed temporary locale debug logging.
 }

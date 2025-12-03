@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AlbaControl</string>
+    <string name="ok">OK</string>
     <string name="options_title">Opzioni generali</string>
-
     <string name="new_receptionist">Nuova receptionist</string>
     <string name="new_location">Nuova posizione</string>
     <string name="new_email">Nuova email</string>
@@ -11,9 +11,8 @@
     <string name="op_import">Importa</string>
     <string name="backup_general">Backup generale</string>
     <string name="restore_app">Ripristina app</string>
-
     <string name="export_area_title">Esporta %1$s</string>
-    <string name="export_area_message">Esportare %1$s ora? I file verranno salvati nella cartella di esportazione dell'app.</string>
+    <string name="export_area_message">Esportare %1$s ora? I file verranno salvati nella cartella di esportazione dell’app.</string>
     <string name="export_complete">Esportazione completata: %1$s</string>
     <string name="export_error">Errore esportazione: %1$s</string>
 
@@ -21,7 +20,7 @@
     <string name="import_complete">Importazione completata: %1$s</string>
     <string name="import_error">Errore importazione: %1$s</string>
 
-    <string name="restore_warning">ATTENZIONE: Tutti i dati dell'app verranno eliminati. Questa azione non può essere annullata.&#10;Attendere 5 secondi e selezionare la casella per confermare.</string>
+    <string name="restore_warning">ATTENZIONE: Tutti i dati dell’app verranno eliminati. Questa azione non può essere annullata.&#10;Attendere 5 secondi e selezionare la casella per confermare.</string>
     <string name="restore_confirm_missing">Devi selezionare la casella per confermare.</string>
     <string name="restore_confirm_title">Ripristina app</string>
     <string name="restore_completed">Ripristino completato. App pulita.</string>
@@ -29,15 +28,13 @@
 
     <string name="confirm_delete">Eliminare %1$s?</string>
     <string name="delete">Elimina</string>
-    <string name="cancel">Annulla</string>
-    <string name="ok">OK</string>
     <string name="edit">Modifica</string>
 
     <string name="ocr_passes_toast">Passaggi OCR: %1$d</string>
 
     <string name="importing_progress">Importazione di %1$s...</string>
     <string name="exporting_progress">Esportazione di %1$s...</string>
-    <string name="restoring_progress">Ripristino dell'app...</string>
+    <string name="restoring_progress">Ripristino dell’app...</string>
 
     <string name="auto_delete_section">Cancellazione automatica della cronologia</string>
     <string name="auto_delete_age_label">Cancellazione per età (giorni)</string>

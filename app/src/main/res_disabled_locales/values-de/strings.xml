@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AlbaControl</string>
+    <string name="options_title">Allgemeine Optionen</string>
+
+    <string name="new_receptionist">Neue Empfangsperson</string>
+    <string name="new_location">Neuer Ort</string>
+    <string name="new_email">Neue E-Mail</string>
+
+    <string name="export">Exportieren</string>
+    <string name="op_import">Importieren</string>
+    <string name="backup_general">Allgemeines Backup</string>
+    <string name="restore_app">App wiederherstellen</string>
+
+    <string name="export_area_title">%1$s exportieren</string>
+    <string name="export_area_message">%1$s jetzt exportieren? Die Dateien werden im Export-Ordner der App gespeichert.</string>
+    <string name="export_complete">Export abgeschlossen: %1$s</string>
+    <string name="export_error">Fehler beim Export: %1$s</string>
+
+    <string name="import_area_title">%1$s importieren</string>
+    <string name="import_complete">Import abgeschlossen: %1$s</string>
+    <string name="import_error">Fehler beim Import: %1$s</string>
+
+    <string name="restore_warning">WARNUNG: Alle Anwendungsdaten werden gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.&#10;Warten Sie 5 Sekunden und aktivieren Sie das Kästchen, um zu bestätigen.</string>
+    <string name="restore_confirm_missing">Sie müssen das Kästchen aktivieren, um zu bestätigen.</string>
+    <string name="restore_confirm_title">App wiederherstellen</string>
+    <string name="restore_completed">Wiederherstellung abgeschlossen. App bereinigt.</string>
+    <string name="restore_error">Fehler bei der Wiederherstellung: %1$s</string>
+
+    <string name="confirm_delete">%1$s löschen?</string>
+    <string name="delete">Löschen</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="ok">OK</string>
+    <string name="edit">Bearbeiten</string>
+
+    <string name="ocr_passes_toast">OCR-Durchläufe: %1$d</string>
+
+    <string name="importing_progress">Importiere %1$s...</string>
+    <string name="exporting_progress">Exportiere %1$s...</string>
+    <string name="restoring_progress">Stelle App wieder her...</string>
+
+    <string name="auto_delete_section">Automatisches Löschen des Verlaufs</string>
+    <string name="auto_delete_age_label">Löschen nach Alter (Tage)</string>
+    <string name="auto_delete_count_label">Löschen nach Anzahl (max. PDFs)</string>
+    <string name="cleanup_completed_toast">Automatische Aufräumaktion des Verlaufs abgeschlossen.</string>
+
+    <string name="add_option_sync">Synchronisierung (ausstehend)</string>
+    <string name="processing_image">Bild wird verarbeitet...</string>
+    <string name="ocr_error">OCR-Fehler: %1$s</string>
+    <string name="ocr_applied">OCR angewendet</string>
+    <string name="toast_draft_saved">Entwurf gespeichert (id=%1$d)</string>
+    <string name="toast_draft_error">Fehler beim Speichern des Entwurfs: %1$s</string>
+    <string name="toast_finalized">Dokument abgeschlossen (id=%1$d)</string>
+    <string name="toast_email_error">Gespeichert, konnte jedoch Client nicht öffnen: %1$s</string>
+    <string name="toast_finalize_error">Fehler beim Abschließen: %1$s</string>
+    <string name="photo_deleted">Foto gelöscht</string>
+    <string name="undo">Rückgängig</string>
+    <string name="enter_value">Geben Sie einen Wert ein</string>
+    <string name="empty_text_not_added">Leerer Text, nicht hinzugefügt</string>
+    <string name="provider_required">Das Feld 'Proveedor' ist erforderlich.</string>
+    <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
+    <string name="attach_notice">Angehängtes Dokument von AlbaControl.IA.</string>
+    <string name="pickup_location">Abholort: %1$s</string>
+    <string name="receptionist">Empfangsperson: %1$s</string>
+    <string name="rgpd_notice">Bitte behandeln Sie personenbezogene Daten gemäß DSGVO. Die Daten in diesem Dokument werden nur für die Logistik- und Lieferverwaltung verwendet.</string>
+</resources>

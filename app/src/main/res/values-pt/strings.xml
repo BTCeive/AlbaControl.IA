@@ -112,8 +112,8 @@
     <string name="pdf_col_descripcion">Descrição</string>
     <string name="pdf_col_unid">Unid.</string>
     <string name="pdf_col_precio">Preço</string>
-    <string name="pdf_col_importe">Importe</string>
-    <string name="pdf_total">Importe total: %.2f €</string>
+    <string name="pdf_col_importe">Valor</string>
+    <string name="pdf_total">Valor total: %.2f €</string>
     <string name="products_count">Produtos: %1$d</string>
     <string name="open_pdf">Abrir PDF</string>
 
@@ -166,6 +166,6 @@
     <string name="description_hint">Descrição</string>
     <string name="price_label">Preço</string>
     <string name="price_hint">Preço</string>
-    <string name="amount_label">Importe</string>
-    <string name="amount_hint">Importe</string>
+    <string name="amount_label">Valor</string>
+    <string name="amount_hint">Valor</string>
 </resources>

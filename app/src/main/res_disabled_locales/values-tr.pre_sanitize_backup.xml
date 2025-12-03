@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Fallback seguro generado automáticamente: basado en values/strings.xml -->
+    <string name="app_name">AlbaControl</string>
+    <string name="options_title">Opciones generales</string>
+
+    <string name="new_receptionist">Nueva recepcionista</string>
+    <string name="new_location">Nueva ubicación</string>
+    <string name="new_email">Nuevo email</string>
+
+    <string name="export">Exportar</string>
+    <string name="op_import">Importar</string>
+    <string name="backup_general">Backup general</string>
+    <string name="restore_app">Restaurar app</string>
+
+    <string name="export_area_title">Exportar %1$s</string>
+    <string name="export_area_message">¿Exportar %1$s ahora? Los archivos se guardarán en la carpeta de exportación de la app.</string>
+    <string name="export_complete">Export completo: %1$s</string>
+    <string name="export_error">Error exportando: %1$s</string>
+
+    <string name="import_area_title">Importar %1$s</string>
+    <string name="import_complete">Import completo: %1$s</string>
+    <string name="import_error">Error importando: %1$s</string>
+
+    <string name="restore_warning">ADVERTENCIA: Se van a borrar todos los datos de la aplicación. Esta acción no se puede deshacer.&#10;Espere 5 segundos y marque la casilla para confirmar.</string>
+    <string name="restore_confirm_missing">Debes marcar la casilla para confirmar.</string>
+    <string name="restore_confirm_title">Restaurar app</string>
+    <string name="restore_completed">Restauración completada. La app ha sido limpiada.</string>
+    <string name="restore_error">Error restaurando: %1$s</string>
+
+    <string name="confirm_delete">¿Eliminar %1$s?</string>
+    <string name="delete">Eliminar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="ok">OK</string>
+    <string name="edit">Editar</string>
+
+    <string name="ocr_passes_toast">OCR pasadas: %1$d</string>
+
+    <string name="importing_progress">Importando %1$s...</string>
+    <string name="exporting_progress">Exportando %1$s...</string>
+    <string name="restoring_progress">Restaurando app...</string>
+
+    <string name="auto_delete_section">Borrado automático del Historial</string>
+    <string name="auto_delete_age_label">Borrado por antigüedad (días)</string>
+    <string name="auto_delete_count_label">Borrado por cantidad (máx. PDFs)</string>
+    <string name="cleanup_completed_toast">Limpieza automática de historial completada.</string>
+    <string name="cleanup_completed_deleted">Limpieza automática de historial completada. Elementos eliminados: %1$d</string>
+
+    <string name="add_option_sync">Sincronización (pendiente)</string>
+
+    <string name="processing_image">Procesando imagen...</string>
+    <string name="ocr_error">Error OCR: %1$s</string>
+    <string name="ocr_applied">OCR aplicado</string>
+    <string name="toast_draft_saved">Borrador guardado (id=%1$d)</string>
+    <string name="toast_draft_error">Error guardando borrador: %1$s</string>
+    <string name="toast_finalized">Albarán finalizado (id=%1$d)</string>
+    <string name="toast_email_error">Albarán guardado, pero no se pudo abrir el cliente de correo: %1$s</string>
+    <string name="toast_finalize_error">Error finalizando albarán: %1$s</string>
+    <string name="photo_deleted">Foto eliminada</string>
+    <string name="undo">Deshacer</string>
+    <string name="enter_value">Introduce un valor</string>
+    <string name="empty_text_not_added">Texto vacío, no se añade</string>
+    <string name="provider_required">El campo Proveedor es obligatorio.</string>
+    <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
+    <string name="attach_notice">Adjunto albarán generado desde AlbaControl.IA.</string>
+    <string name="pickup_location">Ubicación de recogida: %1$s</string>
+    <string name="receptionist">Recepcionista: %1$s</string>
+    <string name="rgpd_notice">Por favor, trate los datos personales conforme al RGPD. Los datos contenidos en este documento se usan únicamente para la gestión logística y entrega de mercancías.</string>
+
+    <string name="pdf_col_unid">Unid.</string>
+</resources>

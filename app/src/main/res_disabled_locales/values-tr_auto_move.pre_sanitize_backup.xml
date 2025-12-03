@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AlbaControl</string>
+    <string name="options_title">Genel Ayarlar</string>
+
+    <string name="new_receptionist">Yeni resepsiyonist</string>
+    <string name="new_location">Yeni konum</string>
+    <string name="new_email">Yeni e-posta</string>
+
+    <string name="export">Dışa aktar</string>
+    <string name="op_import">İçe aktar</string>
+    <string name="backup_general">Genel yedekleme</string>
+    <string name="restore_app">Uygulamayı geri yükle</string>
+
+    <string name="export_area_title">%1$s dışa aktar</string>
+    <string name="export_area_message">%1$s şimdi dışa aktarılsın mı? Dosyalar uygulamanın dışa aktarma klasörüne kaydedilecek.</string>
+    <string name="export_complete">Dışa aktarma tamamlandı: %1$s</string>
+    <string name="export_error">Dışa aktarma hatası: %1$s</string>
+
+    <string name="import_area_title">%1$s içe aktar</string>
+    <string name="import_complete">İçe aktarma tamamlandı: %1$s</string>
+    <string name="import_error">İçe aktarma hatası: %1$s</string>
+
+    <string name="restore_warning">UYARI: Uygulamanın tüm verileri silinecek. Bu işlem geri alınamaz.&amp;#10;5 saniye bekleyin ve onaylamak için kutuyu işaretleyin.</string>
+    <string name="restore_confirm_missing">Onay kutusunu işaretlemelisiniz.</string>
+    <string name="restore_confirm_title">Uygulamayı geri yükle</string>
+    <string name="restore_completed">Geri yükleme tamamlandı. Uygulama temizlendi.</string>
+    <string name="restore_error">Geri yükleme hatası: %1$s</string>
+
+    <string name="confirm_delete">%1$s silinsin mi?</string>
+    <string name="delete">Sil</string>
+    <string name="cancel">İptal</string>
+    <string name="ok">Tamam</string>
+    <string name="edit">Düzenle</string>
+
+    <string name="ocr_passes_toast">OCR adımları: %1$d</string>
+
+    <string name="importing_progress">%1$s içe aktarılıyor...</string>
+    <string name="exporting_progress">%1$s dışa aktarılıyor...</string>
+    <string name="restoring_progress">Uygulama geri yükleniyor...</string>
+
+    <string name="auto_delete_section">Geçmiş için otomatik silme</string>
+    <string name="auto_delete_age_label">Yaşa göre silme (gün)</string>
+    <string name="auto_delete_count_label">Miktara göre silme (maks. PDF)</string>
+    <string name="cleanup_completed_toast">Otomatik geçmiş temizleme tamamlandı.</string>
+
+    <string name="add_option_sync">Senkronizasyon (beklemede)</string>
+    <string name="processing_image">Görüntü işleniyor...</string>
+    <string name="ocr_error">OCR hatası: %1$s</string>
+    <string name="ocr_applied">OCR uygulandı</string>
+    <string name="toast_draft_saved">Taslak kaydedildi (id=%1$d)</string>
+    <string name="toast_draft_error">Taslak kaydedilirken hata: %1$s</string>
+    <string name="toast_finalized">Belge tamamlandı (id=%1$d)</string>
+    <string name="toast_email_error">Kaydedildi, ancak e-posta istemcisi açılamadı: %1$s</string>
+    <string name="toast_finalize_error">Belge tamamlanırken hata: %1$s</string>
+    <string name="photo_deleted">Fotoğraf silindi</string>
+    <string name="undo">Geri al</string>
+    <string name="enter_value">Bir değer girin</string>
+    <string name="empty_text_not_added">Boş metin, eklenmedi</string>
+    <string name="provider_required">Proveedor alanı gereklidir.</string>
+    <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
+    <string name="attach_notice">AlbaControl.IA tarafından oluşturulan belge eklendi.</string>
+    <string name="pickup_location">Teslim alma yeri: %1$s</string>
+    <string name="receptionist">Resepsiyonist: %1$s</string>
+    <string name="rgpd_notice">Lütfen kişisel verileri GDPR’ye uygun şekilde işleyin. Bu belgede bulunan veriler yalnızca lojistik ve teslimat yönetimi için kullanılır.</string>
+    <string name="common_signin_button_text_long">Google’da oturum aç</string>
+    <string name="material_clock_toggle_content_description">ÖÖ veya ÖS’yi seçin</string>
+</resources>

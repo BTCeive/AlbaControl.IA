@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ألبا كونترول</string>
+    <string name="options_title">الإعدادات العامة</string>
+
+    <string name="new_receptionist">موظف استقبال جديد</string>
+    <string name="new_location">موقع جديد</string>
+    <string name="new_email">بريد إلكتروني جديد</string>
+
+    <string name="export">تصدير</string>
+    <string name="op_import">استيراد</string>
+    <string name="backup_general">نسخ احتياطي عام</string>
+    <string name="restore_app">استعادة التطبيق</string>
+
+    <string name="export_area_title">تصدير %1$s</string>
+    <string name="export_area_message">هل تريد تصدير %1$s الآن؟ سيتم حفظ الملفات في مجلد التصدير للتطبيق.</string>
+    <string name="export_complete">اكتمل التصدير: %1$s</string>
+    <string name="export_error">خطأ أثناء التصدير: %1$s</string>
+
+    <string name="import_area_title">استيراد %1$s</string>
+    <string name="import_complete">اكتمل الاستيراد: %1$s</string>
+    <string name="import_error">خطأ أثناء الاستيراد: %1$s</string>
+
+    <string name="restore_warning">تحذير: سيتم حذف جميع بيانات التطبيق. لا يمكن التراجع عن هذا الإجراء.&#10;انتظر 5 ثوانٍ ثم ضع علامة في المربع للتأكيد.</string>
+    <string name="restore_confirm_missing">يجب عليك تحديد مربع التأكيد.</string>
+    <string name="restore_confirm_title">استعادة التطبيق</string>
+    <string name="restore_completed">اكتمل الاستعادة. تم تنظيف التطبيق.</string>
+    <string name="restore_error">خطأ أثناء الاستعادة: %1$s</string>
+
+    <string name="confirm_delete">هل تريد حذف %1$s؟</string>
+    <string name="delete">حذف</string>
+    <string name="cancel">إلغاء</string>
+    <string name="ok">موافق</string>
+    <string name="edit">تعديل</string>
+
+    <string name="ocr_passes_toast">مرات تمرير OCR: %1$d</string>
+
+    <string name="importing_progress">جارٍ استيراد %1$s...</string>
+    <string name="exporting_progress">جارٍ تصدير %1$s...</string>
+    <string name="restoring_progress">جارٍ استعادة التطبيق...</string>
+
+    <string name="auto_delete_section">الحذف التلقائي للسجل</string>
+    <string name="auto_delete_age_label">حذف حسب العمر (أيام)</string>
+    <string name="auto_delete_count_label">حذف حسب العدد (أقصى PDF)</string>
+    <string name="cleanup_completed_toast">اكتملت عملية تنظيف السجل التلقائي.</string>
+
+    <string name="add_option_sync">المزامنة (قيد الانتظار)</string>
+    <string name="processing_image">جارٍ معالجة الصورة...</string>
+    <string name="ocr_error">خطأ OCR: %1$s</string>
+    <string name="ocr_applied">تم تطبيق OCR</string>
+    <string name="toast_draft_saved">تم حفظ المسودة (الرقم=%1$d)</string>
+    <string name="toast_draft_error">خطأ عند حفظ المسودة: %1$s</string>
+    <string name="toast_finalized">تم إنهاء المستند (الرقم=%1$d)</string>
+    <string name="toast_email_error">تم الحفظ، لكن لم يتمكن من فتح عميل البريد: %1$s</string>
+    <string name="toast_finalize_error">خطأ عند إنهاء المستند: %1$s</string>
+    <string name="photo_deleted">تم حذف الصورة</string>
+    <string name="undo">تراجع</string>
+    <string name="enter_value">أدخل قيمة</string>
+    <string name="empty_text_not_added">النص فارغ، لم يتم الإضافة</string>
+    <string name="provider_required">حقل 'Proveedor' مطلوب.</string>
+    <string name="send_email_subject">AlbaControl.IA _ %1$s _ %2$s _ %3$s</string>
+    <string name="attach_notice">المستند المرفق تم إنشاؤه بواسطة AlbaControl.IA.</string>
+    <string name="pickup_location">موقع الاستلام: %1$s</string>
+    <string name="receptionist">الموظف الاستقبال: %1$s</string>
+    <string name="rgpd_notice">يرجى التعامل مع البيانات الشخصية وفقًا للائحة GDPR. تُستخدم البيانات الواردة في هذا المستند فقط لإدارة اللوجستيات والتسليم.</string>
+</resources>

@@ -32,7 +32,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_delete"
-            android:contentDescription="Eliminar producto" />
+            android:contentDescription="Eliminar producto"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true" />
 
     </LinearLayout>
 

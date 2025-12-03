@@ -151,13 +151,13 @@ class ProveedoresProductosFragment : Fragment() {
                 holder.tvName.text = entry.name
             }
 
-            holder.tvSub.text = "Productos: ${entry.products.size}"
+            holder.tvSub.text = getString(R.string.products_count, entry.products.size)
 
             holder.btnDelete.setOnClickListener {
                 AlertDialog.Builder(requireContext())
-                    .setTitle("Eliminar proveedor")
-                    .setMessage("¿Eliminar todas las entradas de este proveedor del historial?")
-                    .setPositiveButton("Eliminar") { _, _ ->
+                    .setTitle(getString(R.string.delete_provider_title))
+                    .setMessage(getString(R.string.delete_provider_message))
+                    .setPositiveButton(getString(R.string.delete)) { _, _ ->
                         lifecycleScope.launch {
                             val db = AppDatabase.getInstance(requireContext())
                             withContext(Dispatchers.IO) {
@@ -175,7 +175,7 @@ class ProveedoresProductosFragment : Fragment() {
                             loadProviders()
                         }
                     }
-                    .setNegativeButton("Cancelar", null)
+                    .setNegativeButton(getString(R.string.cancel), null)
                     .show()
             }
 
@@ -196,11 +196,11 @@ class ProveedoresProductosFragment : Fragment() {
                 }
 
                 val btnDel = line.findViewById<ImageButton>(R.id.btnDeleteProductLine)
-                btnDel.setOnClickListener {
+                    btnDel.setOnClickListener {
                     AlertDialog.Builder(requireContext())
-                        .setTitle("Eliminar producto")
-                        .setMessage("¿Eliminar este producto de todos los albaranes del proveedor?")
-                        .setPositiveButton("Eliminar") { _, _ ->
+                        .setTitle(getString(R.string.delete_product_title))
+                        .setMessage(getString(R.string.delete_product_message))
+                        .setPositiveButton(getString(R.string.delete)) { _, _ ->
                             lifecycleScope.launch {
                                 val db = AppDatabase.getInstance(requireContext())
                                 withContext(Dispatchers.IO) {
@@ -233,7 +233,7 @@ class ProveedoresProductosFragment : Fragment() {
                                 loadProviders()
                             }
                         }
-                        .setNegativeButton("Cancelar", null)
+                        .setNegativeButton(getString(R.string.cancel), null)
                         .show()
                 }
 

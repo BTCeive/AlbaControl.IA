@@ -1,0 +1,47 @@
+Locale: values-ar
+ - Keys reportadas en Gradle: provider_required
+ - Gradle: /home/lorenzo/Escritorio/proyect/AlbaControl.IA/app/src/main/res/values-ar/strings.xml:64:4: Failed to flatten XML for resource 'provider_required' with error: Invalid unicode escape sequence in string
+ - Sin problemas obvios detectados por patrón
+
+Locale: values-ca
+ - Keys reportadas en Gradle: auto_delete_section, cleanup_completed_toast, export_area_message, export_error, exporting_progress, import_error, importing_progress, ok, restore_app, restore_confirm_title, restore_warning, restoring_progress
+ - Gradle: /home/lorenzo/Escritorio/proyect/AlbaControl.IA/app/src/main/res/values-ca/strings.xml:11:4: Failed to flatten XML for resource 'auto_delete_section' with error: Invalid unicode escape sequence in string
+ - Gradle: /home/lorenzo/.gradle/caches/8.11.1/transforms/2c43ec027360ee3e56761047c8508c3c/transformed/material-1.9.0/res/values-ca/values-ca.xml:13:4: Failed to flatten XML for resource 'cleanup_completed_toast' with error: Invalid unicode escape sequence in string
+ - Gradle: /home/lorenzo/Escritorio/proyect/AlbaControl.IA/app/src/main/res/values-ca/strings.xml:14:4: Failed to flatten XML for resource 'export_area_message' with error: Invalid unicode escape sequence in string
+ - Gradle: /home/lorenzo/Escritorio/proyect/AlbaControl.IA/app/src/main/res/values-ca/strings.xml:38:4: Failed to flatten XML for resource 'export_error' with error: Invalid unicode escape sequence in string
+ - Gradle: /home/lorenzo/.gradle/caches/8.11.1/transforms/2c43ec027360ee3e56761047c8508c3c/transformed/material-1.9.0/res/values-ca/values-ca.xml:15:4: Failed to flatten XML for resource 'exporting_progress' with error: Invalid unicode escape sequence in string
+ - Gradle: /home/lorenzo/Escritorio/proyect/AlbaControl.IA/app/src/main/res/values-ca/strings.xml:37:4: Failed to flatten XML for resource 'import_error' with error: Invalid unicode escape sequence in string
+ - Gradle: /home/lorenzo/.gradle/caches/8.11.1/transforms/2c43ec027360ee3e56761047c8508c3c/transformed/material-1.9.0/res/values-ca/values-ca.xml:17:4: Failed to flatten XML for resource 'importing_progress' with error: Invalid unicode escape sequence in string
+ - Gradle: /home/lorenzo/Escritorio/proyect/AlbaControl.IA/app/src/main/res/values-ca/strings.xml:10:4: Failed to flatten XML for resource 'ok' with error: Invalid unicode escape sequence in string
+ - Gradle: /home/lorenzo/Escritorio/proyect/AlbaControl.IA/app/src/main/res/values-ca/strings.xml:26:4: Failed to flatten XML for resource 'restore_app' with error: Invalid unicode escape sequence in string
+ - Gradle: /home/lorenzo/Escritorio/proyect/AlbaControl.IA/app/src/main/res/values-ca/strings.xml:27:4: Failed to flatten XML for resource 'restore_confirm_title' with error: Invalid unicode escape sequence in string
+ - [literal-\n] línea 24: <string name="restore_warning">AVÍS: Totes les dades de l'aplicació s'eliminaran. Aquesta acció no es pot desfer.\nEspera 5 segons i marca la casella per confirmar.</string>
+
+Locale: values-de
+ - Keys reportadas en Gradle: provider_required
+ - Gradle: /home/lorenzo/Escritorio/proyect/AlbaControl.IA/app/src/main/res/values-de/strings.xml:64:4: Failed to flatten XML for resource 'provider_required' with error: Invalid unicode escape sequence in string
+ - Sin problemas obvios detectados por patrón
+
+Locale: values-it
+ - Keys reportadas en Gradle: export_area_message, restore_warning, restoring_progress
+ - Gradle: /home/lorenzo/Escritorio/proyect/AlbaControl.IA/app/src/main/res/values-it/strings.xml:14:4: Failed to flatten XML for resource 'export_area_message' with error: Invalid unicode escape sequence in string
+ - Gradle: /home/lorenzo/Escritorio/proyect/AlbaControl.IA/app/src/main/res/values-it/strings.xml:39:4: Failed to flatten XML for resource 'restore_warning' with error: Invalid unicode escape sequence in string
+ - Gradle: /home/lorenzo/.gradle/caches/8.11.1/transforms/b460d64ee60da6258db801269973dc75/transformed/appcompat-1.6.1/res/values-it/values-it.xml:29:4: Failed to flatten XML for resource 'restoring_progress' with error: Invalid unicode escape sequence in string
+ - [literal-\n] línea 24: <string name="restore_warning">ATTENZIONE: Tutti i dati dell'app verranno eliminati. Questa azione non può essere annullata.\nAttendere 5 secondi e selezionare la casella per confe
+
+Locale: values-tr
+ - Keys reportadas en Gradle: common_signin_button_text_long, material_clock_toggle_content_description, rgpd_notice
+ - Gradle: /home/lorenzo/Escritorio/proyect/AlbaControl.IA/app/src/main/res/values-tr/strings.xml:30:4: Failed to flatten XML for resource 'common_signin_button_text_long' with error: Invalid unicode escape sequence in string
+ - Gradle: /home/lorenzo/.gradle/caches/8.11.1/transforms/2c43ec027360ee3e56761047c8508c3c/transformed/material-1.9.0/res/values-tr/values-tr.xml:19:4: Failed to flatten XML for resource 'material_clock_toggle_content_description' with error: Invalid unicode escape sequence in string
+ - Gradle: /home/lorenzo/.gradle/caches/8.11.1/transforms/b460d64ee60da6258db801269973dc75/transformed/appcompat-1.6.1/res/values-tr/values-tr.xml:29:4: Failed to flatten XML for resource 'rgpd_notice' with error: Invalid unicode escape sequence in string
+ - Sin problemas obvios detectados por patrón
+
+Locale: values-tr_auto_move
+ - Keys reportadas en Gradle: common_signin_button_text_long, material_clock_toggle_content_description, rgpd_notice
+ - Gradle: /home/lorenzo/Escritorio/proyect/AlbaControl.IA/app/src/main/res/values-tr/strings.xml:30:4: Failed to flatten XML for resource 'common_signin_button_text_long' with error: Invalid unicode escape sequence in string
+ - Gradle: /home/lorenzo/.gradle/caches/8.11.1/transforms/2c43ec027360ee3e56761047c8508c3c/transformed/material-1.9.0/res/values-tr/values-tr.xml:19:4: Failed to flatten XML for resource 'material_clock_toggle_content_description' with error: Invalid unicode escape sequence in string
+ - Gradle: /home/lorenzo/.gradle/caches/8.11.1/transforms/b460d64ee60da6258db801269973dc75/transformed/appcompat-1.6.1/res/values-tr/values-tr.xml:29:4: Failed to flatten XML for resource 'rgpd_notice' with error: Invalid unicode escape sequence in string
+ - Sin problemas obvios detectados por patrón
+
+Locale: values-tr_auto_move_moved_by_script
+ - Sin problemas obvios detectados por patrón

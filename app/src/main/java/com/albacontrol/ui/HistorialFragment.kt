@@ -73,7 +73,7 @@ class HistorialFragment : Fragment() {
             holder.btnView.setOnClickListener {
                 if (pdfPath.isNullOrEmpty()) {
                     // No hay PDF guardado
-                    android.widget.Toast.makeText(requireContext(), "No se ha generado PDF para este albarán", android.widget.Toast.LENGTH_SHORT).show()
+                    android.widget.Toast.makeText(requireContext(), getString(R.string.no_pdf_generated), android.widget.Toast.LENGTH_SHORT).show()
                 } else {
                     openPdf(File(pdfPath))
                 }
@@ -81,7 +81,7 @@ class HistorialFragment : Fragment() {
 
             holder.btnSend.setOnClickListener {
                 if (pdfPath.isNullOrEmpty()) {
-                    android.widget.Toast.makeText(requireContext(), "No hay PDF para enviar", android.widget.Toast.LENGTH_SHORT).show()
+                    android.widget.Toast.makeText(requireContext(), getString(R.string.no_pdf_to_send), android.widget.Toast.LENGTH_SHORT).show()
                 } else {
                     shareFile(File(pdfPath))
                 }
@@ -89,9 +89,9 @@ class HistorialFragment : Fragment() {
 
             holder.btnDelete.setOnClickListener {
                 AlertDialog.Builder(requireContext())
-                    .setTitle("Eliminar albarán")
-                    .setMessage("¿Quieres eliminar este albarán del historial?")
-                    .setPositiveButton("Eliminar") { _, _ ->
+                    .setTitle(getString(R.string.delete_albaran_title))
+                    .setMessage(getString(R.string.delete_albaran_message))
+                    .setPositiveButton(getString(R.string.delete)) { _, _ ->
                         lifecycleScope.launch {
                             val db = AppDatabase.getInstance(requireContext())
                             withContext(Dispatchers.IO) { db.completedDao().deleteById(item.id) }
@@ -99,7 +99,7 @@ class HistorialFragment : Fragment() {
                             notifyItemRemoved(position)
                         }
                     }
-                    .setNegativeButton("Cancelar", null)
+                    .setNegativeButton(getString(R.string.cancel), null)
                     .show()
             }
         }
@@ -117,7 +117,7 @@ class HistorialFragment : Fragment() {
 
     private fun openPdf(file: File) {
         if (!file.exists()) {
-            android.widget.Toast.makeText(requireContext(), "Archivo no encontrado: ${file.path}", android.widget.Toast.LENGTH_LONG).show()
+            android.widget.Toast.makeText(requireContext(), getString(R.string.file_not_found, file.path), android.widget.Toast.LENGTH_LONG).show()
             return
         }
 
@@ -125,12 +125,12 @@ class HistorialFragment : Fragment() {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.setDataAndType(uri, "application/pdf")
         intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(Intent.createChooser(intent, "Abrir PDF"))
+        startActivity(Intent.createChooser(intent, getString(R.string.open_pdf)))
     }
 
     private fun shareFile(file: File) {
         if (!file.exists()) {
-            android.widget.Toast.makeText(requireContext(), "Archivo no encontrado: ${file.path}", android.widget.Toast.LENGTH_LONG).show()
+            android.widget.Toast.makeText(requireContext(), getString(R.string.file_not_found, file.path), android.widget.Toast.LENGTH_LONG).show()
             return
         }
         val uri: Uri = FileProvider.getUriForFile(requireContext(), requireContext().packageName + ".fileprovider", file)
@@ -138,6 +138,6 @@ class HistorialFragment : Fragment() {
         share.type = "application/pdf"
         share.putExtra(Intent.EXTRA_STREAM, uri)
         share.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-        startActivity(Intent.createChooser(share, "Enviar albarán"))
+        startActivity(Intent.createChooser(share, getString(R.string.send_chooser)))
     }
 }

@@ -22,6 +22,9 @@ interface TemplateDao {
     @Query("DELETE FROM ocr_templates")
     suspend fun deleteAllTemplates()
 
+    @Query("DELETE FROM ocr_templates WHERE providerNif = :providerNif")
+    suspend fun deleteTemplateForProvider(providerNif: String)
+
     @Query("DELETE FROM template_samples")
     suspend fun deleteAllSamples()
 }

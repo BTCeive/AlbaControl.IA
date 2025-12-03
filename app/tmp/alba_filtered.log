@@ -1,0 +1,1507 @@
+12-03 12:01:08.359 E/AndroidRuntime(29653): FATAL EXCEPTION: main
+12-03 12:01:08.359 E/AndroidRuntime(29653): Process: com.albacontrol, PID: 29653
+12-03 12:01:08.359 E/AndroidRuntime(29653): kotlin.UninitializedPropertyAccessException: lateinit property pickImageLauncher has not been initialized
+12-03 12:01:08.359 E/AndroidRuntime(29653): 	at com.albacontrol.ui.NuevoAlbaranFragment.onCreateView$lambda$5(NuevoAlbaranFragment.kt:132)
+12-03 12:01:08.359 E/AndroidRuntime(29653): 	at com.albacontrol.ui.NuevoAlbaranFragment.$r8$lambda$jYofDFR93QIhIHJJZ2v9awH3A6w(Unknown Source:0)
+12-03 12:01:08.359 E/AndroidRuntime(29653): 	at com.albacontrol.ui.NuevoAlbaranFragment$$ExternalSyntheticLambda17.onClick(D8$$SyntheticClass:0)
+12-03 12:01:08.359 E/AndroidRuntime(29653): 	at android.view.View.performClick(View.java:7600)
+12-03 12:01:08.359 E/AndroidRuntime(29653): 	at android.view.View.performClickInternal(View.java:7577)
+12-03 12:01:08.359 E/AndroidRuntime(29653): 	at android.view.View.-$$Nest$mperformClickInternal(Unknown Source:0)
+12-03 12:01:08.359 E/AndroidRuntime(29653): 	at android.view.View$PerformClick.run(View.java:30186)
+12-03 12:01:08.359 E/AndroidRuntime(29653): 	at android.os.Handler.handleCallback(Handler.java:942)
+12-03 12:01:08.359 E/AndroidRuntime(29653): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+12-03 12:01:08.359 E/AndroidRuntime(29653): 	at android.os.Looper.loopOnce(Looper.java:211)
+12-03 12:01:08.359 E/AndroidRuntime(29653): 	at android.os.Looper.loop(Looper.java:300)
+12-03 12:01:08.359 E/AndroidRuntime(29653): 	at android.app.ActivityThread.main(ActivityThread.java:8503)
+12-03 12:01:08.359 E/AndroidRuntime(29653): 	at java.lang.reflect.Method.invoke(Native Method)
+12-03 12:01:08.359 E/AndroidRuntime(29653): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:561)
+12-03 12:01:08.359 E/AndroidRuntime(29653): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:954)
+12-03 12:01:13.254 E/AndroidRuntime(29708): FATAL EXCEPTION: main
+12-03 12:01:13.254 E/AndroidRuntime(29708): Process: com.albacontrol, PID: 29708
+12-03 12:01:13.254 E/AndroidRuntime(29708): kotlin.UninitializedPropertyAccessException: lateinit property pickImageLauncher has not been initialized
+12-03 12:01:13.254 E/AndroidRuntime(29708): 	at com.albacontrol.ui.NuevoAlbaranFragment.onCreateView$lambda$5(NuevoAlbaranFragment.kt:132)
+12-03 12:01:13.254 E/AndroidRuntime(29708): 	at com.albacontrol.ui.NuevoAlbaranFragment.$r8$lambda$jYofDFR93QIhIHJJZ2v9awH3A6w(Unknown Source:0)
+12-03 12:01:13.254 E/AndroidRuntime(29708): 	at com.albacontrol.ui.NuevoAlbaranFragment$$ExternalSyntheticLambda17.onClick(D8$$SyntheticClass:0)
+12-03 12:01:13.254 E/AndroidRuntime(29708): 	at android.view.View.performClick(View.java:7600)
+12-03 12:01:13.254 E/AndroidRuntime(29708): 	at android.view.View.performClickInternal(View.java:7577)
+12-03 12:01:13.254 E/AndroidRuntime(29708): 	at android.view.View.-$$Nest$mperformClickInternal(Unknown Source:0)
+12-03 12:01:13.254 E/AndroidRuntime(29708): 	at android.view.View$PerformClick.run(View.java:30186)
+12-03 12:01:13.254 E/AndroidRuntime(29708): 	at android.os.Handler.handleCallback(Handler.java:942)
+12-03 12:01:13.254 E/AndroidRuntime(29708): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+12-03 12:01:13.254 E/AndroidRuntime(29708): 	at android.os.Looper.loopOnce(Looper.java:211)
+12-03 12:01:13.254 E/AndroidRuntime(29708): 	at android.os.Looper.loop(Looper.java:300)
+12-03 12:01:13.254 E/AndroidRuntime(29708): 	at android.app.ActivityThread.main(ActivityThread.java:8503)
+12-03 12:01:13.254 E/AndroidRuntime(29708): 	at java.lang.reflect.Method.invoke(Native Method)
+12-03 12:01:13.254 E/AndroidRuntime(29708): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:561)
+12-03 12:01:13.254 E/AndroidRuntime(29708): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:954)
+12-03 12:01:18.215 E/AndroidRuntime(29793): FATAL EXCEPTION: main
+12-03 12:01:18.215 E/AndroidRuntime(29793): Process: com.albacontrol, PID: 29793
+12-03 12:01:18.215 E/AndroidRuntime(29793): kotlin.UninitializedPropertyAccessException: lateinit property pickImageLauncher has not been initialized
+12-03 12:01:18.215 E/AndroidRuntime(29793): 	at com.albacontrol.ui.NuevoAlbaranFragment.onCreateView$lambda$5(NuevoAlbaranFragment.kt:132)
+12-03 12:01:18.215 E/AndroidRuntime(29793): 	at com.albacontrol.ui.NuevoAlbaranFragment.$r8$lambda$jYofDFR93QIhIHJJZ2v9awH3A6w(Unknown Source:0)
+12-03 12:01:18.215 E/AndroidRuntime(29793): 	at com.albacontrol.ui.NuevoAlbaranFragment$$ExternalSyntheticLambda17.onClick(D8$$SyntheticClass:0)
+12-03 12:01:18.215 E/AndroidRuntime(29793): 	at android.view.View.performClick(View.java:7600)
+12-03 12:01:18.215 E/AndroidRuntime(29793): 	at android.view.View.performClickInternal(View.java:7577)
+12-03 12:01:18.215 E/AndroidRuntime(29793): 	at android.view.View.-$$Nest$mperformClickInternal(Unknown Source:0)
+12-03 12:01:18.215 E/AndroidRuntime(29793): 	at android.view.View$PerformClick.run(View.java:30186)
+12-03 12:01:18.215 E/AndroidRuntime(29793): 	at android.os.Handler.handleCallback(Handler.java:942)
+12-03 12:01:18.215 E/AndroidRuntime(29793): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+12-03 12:01:18.215 E/AndroidRuntime(29793): 	at android.os.Looper.loopOnce(Looper.java:211)
+12-03 12:01:18.215 E/AndroidRuntime(29793): 	at android.os.Looper.loop(Looper.java:300)
+12-03 12:01:18.215 E/AndroidRuntime(29793): 	at android.app.ActivityThread.main(ActivityThread.java:8503)
+12-03 12:01:18.215 E/AndroidRuntime(29793): 	at java.lang.reflect.Method.invoke(Native Method)
+12-03 12:01:18.215 E/AndroidRuntime(29793): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:561)
+12-03 12:01:18.215 E/AndroidRuntime(29793): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:954)
+12-03 12:02:08.515 E/AndroidRuntime(29846): FATAL EXCEPTION: main
+12-03 12:02:08.515 E/AndroidRuntime(29846): Process: com.albacontrol, PID: 29846
+12-03 12:02:08.515 E/AndroidRuntime(29846): kotlin.UninitializedPropertyAccessException: lateinit property pickImageLauncher has not been initialized
+12-03 12:02:08.515 E/AndroidRuntime(29846): 	at com.albacontrol.ui.NuevoAlbaranFragment.onCreateView$lambda$5(NuevoAlbaranFragment.kt:132)
+12-03 12:02:08.515 E/AndroidRuntime(29846): 	at com.albacontrol.ui.NuevoAlbaranFragment.$r8$lambda$jYofDFR93QIhIHJJZ2v9awH3A6w(Unknown Source:0)
+12-03 12:02:08.515 E/AndroidRuntime(29846): 	at com.albacontrol.ui.NuevoAlbaranFragment$$ExternalSyntheticLambda17.onClick(D8$$SyntheticClass:0)
+12-03 12:02:08.515 E/AndroidRuntime(29846): 	at android.view.View.performClick(View.java:7600)
+12-03 12:02:08.515 E/AndroidRuntime(29846): 	at android.view.View.performClickInternal(View.java:7577)
+12-03 12:02:08.515 E/AndroidRuntime(29846): 	at android.view.View.-$$Nest$mperformClickInternal(Unknown Source:0)
+12-03 12:02:08.515 E/AndroidRuntime(29846): 	at android.view.View$PerformClick.run(View.java:30186)
+12-03 12:02:08.515 E/AndroidRuntime(29846): 	at android.os.Handler.handleCallback(Handler.java:942)
+12-03 12:02:08.515 E/AndroidRuntime(29846): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+12-03 12:02:08.515 E/AndroidRuntime(29846): 	at android.os.Looper.loopOnce(Looper.java:211)
+12-03 12:02:08.515 E/AndroidRuntime(29846): 	at android.os.Looper.loop(Looper.java:300)
+12-03 12:02:08.515 E/AndroidRuntime(29846): 	at android.app.ActivityThread.main(ActivityThread.java:8503)
+12-03 12:02:08.515 E/AndroidRuntime(29846): 	at java.lang.reflect.Method.invoke(Native Method)
+12-03 12:02:08.515 E/AndroidRuntime(29846): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:561)
+12-03 12:02:08.515 E/AndroidRuntime(29846): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:954)
+12-03 12:10:42.028 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:42.059 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:42.402 D/AlbaTpl ( 2564): applyTemplateIfExists: candidates nif='B59803825' proveedor='BIMBO'
+12-03 12:10:42.411 D/AlbaTpl ( 2564): template matching candidatesSet=[b59803825, bimbo, 211125, 009005, 729765, clcas, 42, lluretdemar, 17310, 59803825, totaluds, 66, 16868, 84354174, ccigoitiamadrid, 1, 28022, abdelilah, 19723, enhmlloret, 0, 030300, clcastell, girona, magdalenaudslbe, 16, magdalenalbe, 8, tel, 900, 125, 375, regmercmadridtomo36818folio99sección8hojam382167inscripción, 17, 2023000078202023000007870]
+12-03 12:10:42.602 D/AlbaTpl ( 2564): matched template provider='a84354174' mappings=[proveedor, nif, numero_albaran, fecha_albaran, product_row, product_unidades, product_precio, product_importe] score=9.450042349742224
+12-03 12:10:42.689 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:42.699 D/AlbaTpl ( 2564): applied field=proveedor text='BIMBO' from bbox=0.149306,0.229004,0.154514,0.021484
+12-03 12:10:43.129 D/AlbaTpl ( 2564): applied field=product_row text='BIMBO DELEG:GIRONA CD:009005 CLIENTE:729765 SERHS FOOD AREA S L CL CA FECHA 21/11/25 17310 LcuRET DE MAR CIF:B59803825 COD 42 496125 498455 TOTAL UDS :66 A84354174 RUTERO:16868 Poligono Industrial Las Mercedes C/Cigoilia, 1 28022 Madrid C.CLIENTE 0030008016 PRODUCTOS 21/11/2025 06:15:30 Pegar identicket: 29918 TRANSP0:19723 ABDELILAH SERVIDO EN:HM LLORET TDA-030300 CL CASTELL 42 17310 GIRONA N.ALBARAN 168683744 MAGDALENA 16 UDS LBE MAGDALENA LBE 0/% 8u ROUTE 16868 1 03 UDS TEL :900 125 375 30 36 Recibí conforme firma: Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a ENVI2023/000007820;ENVI2023/000007870' from bbox=0.110243,0.229980,0.747396,0.466309
+12-03 12:10:43.534 D/AlbaTpl ( 2564): applied field=product_unidades text='BIMBO DELEG:GIRONA CD:009005 CLIENTE:729765 SERHS FOOD AREA S L CL CA FECHA 21/11/25 17310 LcuRET DE MAR CIF:B59803825 COD 42 496125 498455 TOTAL UDS :66 A84354174 RUTERO:16868 Poligono Industrial Las Mercedes C/Cigoilia, 1 28022 Madrid C.CLIENTE 0030008016 PRODUCTOS 21/11/2025 06:15:30 Pegar identicket: 29918 TRANSP0:19723 ABDELILAH SERVIDO EN:HM LLORET TDA-030300 CL CASTELL 42 17310 GIRONA N.ALBARAN 168683744 MAGDALENA 16 UDS LBE MAGDALENA LBE 0/% 8u ROUTE 16868 1 03 UDS TEL :900 125 375 30 36 Recibí conforme firma: Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a ENVI2023/000007820;ENVI2023/000007870' from bbox=0.110243,0.229980,0.747396,0.466309
+12-03 12:10:43.872 D/AlbaTpl ( 2564): applied field=product_precio text='ustrial Las Mercedes 28022 Madrid 21/11/2025 06:15:30 TRANSP0:19723 ABDELILAH SERVID0 EN:HM LLORET TDA-030300 CL CASTELL 42 17310 GIRONA N.ALBARAN 168683744 DS LBE 0/% 8u ROUTE 16868 1 UDS 30 TEL :900 125 36 03 Recibíi conforme firma: o 99, sección 8, hoja M-382167, in: D07870' from bbox=0.428819,0.229980,0.322049,0.466309
+12-03 12:10:43.898 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:44.504 D/AlbaTpl ( 2564): added product row with desc='' unidades='BIMBO
+12-03 12:10:44.504 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:44.504 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:44.504 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:44.504 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:44.504 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:44.504 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:44.504 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:44.504 D/AlbaTpl ( 2564): COD
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 42
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 496125
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 498455
+12-03 12:10:44.504 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:44.504 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:44.504 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:44.504 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:44.504 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:44.504 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:44.504 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:44.504 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 29918
+12-03 12:10:44.504 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:44.504 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:44.504 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:44.504 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:44.504 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:44.504 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:44.504 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 16868
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:44.504 D/AlbaTpl ( 2564): UDS
+12-03 12:10:44.504 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 30
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 36
+12-03 12:10:44.504 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:44.504 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:44.504 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:44.504 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:44.504 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:44.504 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:44.504 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:44.504 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:44.504 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 16868
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 1
+12-03 12:10:44.504 D/AlbaTpl ( 2564): UDS
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 30
+12-03 12:10:44.504 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 36
+12-03 12:10:44.504 D/AlbaTpl ( 2564): 03
+12-03 12:10:44.504 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:44.504 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:44.504 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:45.021 D/AlbaTpl ( 2564): added product row with desc='' unidades='BIMBO
+12-03 12:10:45.021 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:45.021 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:45.021 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:45.021 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:45.021 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:45.021 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:45.021 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:45.021 D/AlbaTpl ( 2564): COD
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 42
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 496125
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 498455
+12-03 12:10:45.021 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:45.021 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:45.021 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:45.021 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:45.021 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:45.021 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:45.021 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:45.021 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 29918
+12-03 12:10:45.021 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:45.021 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:45.021 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:45.021 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:45.021 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:45.021 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:45.021 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 16868
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:45.021 D/AlbaTpl ( 2564): UDS
+12-03 12:10:45.021 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 30
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 36
+12-03 12:10:45.021 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:45.021 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:45.021 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:45.021 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:45.021 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:45.021 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:45.021 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:45.021 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:45.021 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 16868
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 1
+12-03 12:10:45.021 D/AlbaTpl ( 2564): UDS
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 30
+12-03 12:10:45.021 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 36
+12-03 12:10:45.021 D/AlbaTpl ( 2564): 03
+12-03 12:10:45.021 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:45.021 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:45.021 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:45.514 D/AlbaTpl ( 2564): added product row with desc='CL CAS' unidades='BIMBO
+12-03 12:10:45.514 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:45.514 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:45.514 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:45.514 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:45.514 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:45.514 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:45.514 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:45.514 D/AlbaTpl ( 2564): COD
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 42
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 496125
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 498455
+12-03 12:10:45.514 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:45.514 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:45.514 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:45.514 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:45.514 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:45.514 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:45.514 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:45.514 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 29918
+12-03 12:10:45.514 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:45.514 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:45.514 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:45.514 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:45.514 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:45.514 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:45.514 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 16868
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:45.514 D/AlbaTpl ( 2564): UDS
+12-03 12:10:45.514 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 30
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 36
+12-03 12:10:45.514 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:45.514 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:45.514 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:45.514 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:45.514 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:45.514 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:45.514 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:45.514 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:45.514 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 16868
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 1
+12-03 12:10:45.514 D/AlbaTpl ( 2564): UDS
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 30
+12-03 12:10:45.514 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 36
+12-03 12:10:45.514 D/AlbaTpl ( 2564): 03
+12-03 12:10:45.514 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:45.514 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:45.514 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:46.019 D/AlbaTpl ( 2564): added product row with desc='LLURET DE MAR' unidades='BIMBO
+12-03 12:10:46.019 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:46.019 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:46.019 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:46.019 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:46.019 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:46.019 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:46.019 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:46.019 D/AlbaTpl ( 2564): COD
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 42
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 496125
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 498455
+12-03 12:10:46.019 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:46.019 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:46.019 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:46.019 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:46.019 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:46.019 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:46.019 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:46.019 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 29918
+12-03 12:10:46.019 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:46.019 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:46.019 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:46.019 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:46.019 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:46.019 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:46.019 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 16868
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:46.019 D/AlbaTpl ( 2564): UDS
+12-03 12:10:46.019 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 30
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 36
+12-03 12:10:46.019 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:46.019 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:46.019 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:46.019 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:46.019 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:46.019 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:46.019 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:46.019 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:46.019 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 16868
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 1
+12-03 12:10:46.019 D/AlbaTpl ( 2564): UDS
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 30
+12-03 12:10:46.019 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 36
+12-03 12:10:46.019 D/AlbaTpl ( 2564): 03
+12-03 12:10:46.019 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:46.019 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:46.019 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:46.494 D/AlbaTpl ( 2564): added product row with desc='' unidades='BIMBO
+12-03 12:10:46.494 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:46.494 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:46.494 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:46.494 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:46.494 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:46.494 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:46.494 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:46.494 D/AlbaTpl ( 2564): COD
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 42
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 496125
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 498455
+12-03 12:10:46.494 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:46.494 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:46.494 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:46.494 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:46.494 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:46.494 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:46.494 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:46.494 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 29918
+12-03 12:10:46.494 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:46.494 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:46.494 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:46.494 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:46.494 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:46.494 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:46.494 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 16868
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:46.494 D/AlbaTpl ( 2564): UDS
+12-03 12:10:46.494 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 30
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 36
+12-03 12:10:46.494 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:46.494 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:46.494 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:46.494 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:46.494 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:46.494 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:46.494 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:46.494 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:46.494 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 16868
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 1
+12-03 12:10:46.494 D/AlbaTpl ( 2564): UDS
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 30
+12-03 12:10:46.494 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 36
+12-03 12:10:46.494 D/AlbaTpl ( 2564): 03
+12-03 12:10:46.494 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:46.494 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:46.494 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:46.559 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:47.004 D/AlbaTpl ( 2564): added product row with desc='TOTAL UDS' unidades='BIMBO
+12-03 12:10:47.004 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:47.004 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:47.004 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:47.004 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:47.004 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:47.004 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:47.004 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:47.004 D/AlbaTpl ( 2564): COD
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 42
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 496125
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 498455
+12-03 12:10:47.004 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:47.004 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:47.004 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:47.004 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:47.004 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:47.004 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:47.004 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:47.004 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 29918
+12-03 12:10:47.004 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:47.004 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:47.004 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:47.004 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:47.004 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:47.004 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:47.004 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 16868
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:47.004 D/AlbaTpl ( 2564): UDS
+12-03 12:10:47.004 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 30
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 36
+12-03 12:10:47.004 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:47.004 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:47.004 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:47.004 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:47.004 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:47.004 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:47.004 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:47.004 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:47.004 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 16868
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 1
+12-03 12:10:47.004 D/AlbaTpl ( 2564): UDS
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 30
+12-03 12:10:47.004 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 36
+12-03 12:10:47.004 D/AlbaTpl ( 2564): 03
+12-03 12:10:47.004 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:47.004 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:47.004 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:47.455 D/AlbaTpl ( 2564): added product row with desc='' unidades='BIMBO
+12-03 12:10:47.455 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:47.455 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:47.455 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:47.455 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:47.455 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:47.455 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:47.455 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:47.455 D/AlbaTpl ( 2564): COD
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 42
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 496125
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 498455
+12-03 12:10:47.455 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:47.455 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:47.455 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:47.455 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:47.455 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:47.455 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:47.455 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:47.455 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 29918
+12-03 12:10:47.455 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:47.455 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:47.455 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:47.455 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:47.455 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:47.455 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:47.455 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 16868
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:47.455 D/AlbaTpl ( 2564): UDS
+12-03 12:10:47.455 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 30
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 36
+12-03 12:10:47.455 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:47.455 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:47.455 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:47.455 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:47.455 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:47.455 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:47.455 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:47.455 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:47.455 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 16868
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 1
+12-03 12:10:47.455 D/AlbaTpl ( 2564): UDS
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 30
+12-03 12:10:47.455 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 36
+12-03 12:10:47.455 D/AlbaTpl ( 2564): 03
+12-03 12:10:47.455 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:47.455 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:47.455 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:47.972 D/AlbaTpl ( 2564): added product row with desc='' unidades='BIMBO
+12-03 12:10:47.972 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:47.972 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:47.972 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:47.972 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:47.972 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:47.972 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:47.972 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:47.972 D/AlbaTpl ( 2564): COD
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 42
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 496125
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 498455
+12-03 12:10:47.972 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:47.972 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:47.972 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:47.972 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:47.972 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:47.972 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:47.972 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:47.972 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 29918
+12-03 12:10:47.972 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:47.972 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:47.972 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:47.972 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:47.972 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:47.972 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:47.972 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 16868
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:47.972 D/AlbaTpl ( 2564): UDS
+12-03 12:10:47.972 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 30
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 36
+12-03 12:10:47.972 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:47.972 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:47.972 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:47.972 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:47.972 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:47.972 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:47.972 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:47.972 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:47.972 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 16868
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 1
+12-03 12:10:47.972 D/AlbaTpl ( 2564): UDS
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 30
+12-03 12:10:47.972 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 36
+12-03 12:10:47.972 D/AlbaTpl ( 2564): 03
+12-03 12:10:47.972 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:47.972 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:47.972 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:48.411 D/AlbaTpl ( 2564): added product row with desc='C/Cig oitia, Madrid' unidades='BIMBO
+12-03 12:10:48.411 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:48.411 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:48.411 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:48.411 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:48.411 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:48.411 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:48.411 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:48.411 D/AlbaTpl ( 2564): COD
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 42
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 496125
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 498455
+12-03 12:10:48.411 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:48.411 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:48.411 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:48.411 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:48.411 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:48.411 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:48.411 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:48.411 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 29918
+12-03 12:10:48.411 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:48.411 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:48.411 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:48.411 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:48.411 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:48.411 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:48.411 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 16868
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:48.411 D/AlbaTpl ( 2564): UDS
+12-03 12:10:48.411 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 30
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 36
+12-03 12:10:48.411 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:48.411 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:48.411 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:48.411 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:48.411 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:48.411 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:48.411 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:48.411 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:48.411 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 16868
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 1
+12-03 12:10:48.411 D/AlbaTpl ( 2564): UDS
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 30
+12-03 12:10:48.411 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 36
+12-03 12:10:48.411 D/AlbaTpl ( 2564): 03
+12-03 12:10:48.411 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:48.411 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:48.411 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:48.569 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:48.917 D/AlbaTpl ( 2564): added product row with desc='ABDELILAH' unidades='BIMBO
+12-03 12:10:48.917 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:48.917 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:48.917 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:48.917 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:48.917 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:48.917 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:48.917 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:48.917 D/AlbaTpl ( 2564): COD
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 42
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 496125
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 498455
+12-03 12:10:48.917 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:48.917 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:48.917 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:48.917 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:48.917 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:48.917 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:48.917 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:48.917 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 29918
+12-03 12:10:48.917 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:48.917 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:48.917 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:48.917 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:48.917 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:48.917 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:48.917 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 16868
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:48.917 D/AlbaTpl ( 2564): UDS
+12-03 12:10:48.917 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 30
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 36
+12-03 12:10:48.917 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:48.917 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:48.917 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:48.917 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:48.917 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:48.917 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:48.917 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:48.917 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:48.917 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 16868
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 1
+12-03 12:10:48.917 D/AlbaTpl ( 2564): UDS
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 30
+12-03 12:10:48.917 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 36
+12-03 12:10:48.917 D/AlbaTpl ( 2564): 03
+12-03 12:10:48.917 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:48.917 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:48.917 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:49.092 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:49.399 D/AlbaTpl ( 2564): added product row with desc='EN:HM LLORET' unidades='BIMBO
+12-03 12:10:49.399 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:49.399 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:49.399 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:49.399 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:49.399 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:49.399 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:49.399 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:49.399 D/AlbaTpl ( 2564): COD
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 42
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 496125
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 498455
+12-03 12:10:49.399 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:49.399 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:49.399 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:49.399 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:49.399 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:49.399 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:49.399 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:49.399 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 29918
+12-03 12:10:49.399 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:49.399 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:49.399 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:49.399 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:49.399 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:49.399 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:49.399 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 16868
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:49.399 D/AlbaTpl ( 2564): UDS
+12-03 12:10:49.399 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 30
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 36
+12-03 12:10:49.399 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:49.399 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:49.399 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:49.399 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:49.399 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:49.399 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:49.399 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:49.399 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:49.399 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 16868
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 1
+12-03 12:10:49.399 D/AlbaTpl ( 2564): UDS
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 30
+12-03 12:10:49.399 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 36
+12-03 12:10:49.399 D/AlbaTpl ( 2564): 03
+12-03 12:10:49.399 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:49.399 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:49.399 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:49.844 D/AlbaTpl ( 2564): added product row with desc='CL CASTELL' unidades='BIMBO
+12-03 12:10:49.844 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:49.844 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:49.844 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:49.844 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:49.844 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:49.844 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:49.844 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:49.844 D/AlbaTpl ( 2564): COD
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 42
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 496125
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 498455
+12-03 12:10:49.844 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:49.844 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:49.844 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:49.844 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:49.844 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:49.844 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:49.844 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:49.844 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 29918
+12-03 12:10:49.844 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:49.844 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:49.844 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:49.844 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:49.844 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:49.844 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:49.844 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 16868
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:49.844 D/AlbaTpl ( 2564): UDS
+12-03 12:10:49.844 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 30
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 36
+12-03 12:10:49.844 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:49.844 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:49.844 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:49.844 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:49.844 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:49.844 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:49.844 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:49.844 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:49.844 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 16868
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 1
+12-03 12:10:49.844 D/AlbaTpl ( 2564): UDS
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 30
+12-03 12:10:49.844 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 36
+12-03 12:10:49.844 D/AlbaTpl ( 2564): 03
+12-03 12:10:49.844 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:49.844 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:49.844 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:50.168 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:50.337 D/AlbaTpl ( 2564): added product row with desc='GIRONA' unidades='BIMBO
+12-03 12:10:50.337 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:50.337 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:50.337 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:50.337 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:50.337 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:50.337 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:50.337 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:50.337 D/AlbaTpl ( 2564): COD
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 42
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 496125
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 498455
+12-03 12:10:50.337 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:50.337 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:50.337 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:50.337 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:50.337 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:50.337 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:50.337 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:50.337 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 29918
+12-03 12:10:50.337 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:50.337 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:50.337 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:50.337 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:50.337 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:50.337 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:50.337 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 16868
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:50.337 D/AlbaTpl ( 2564): UDS
+12-03 12:10:50.337 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 30
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 36
+12-03 12:10:50.337 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:50.337 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:50.337 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:50.337 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:50.337 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:50.337 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:50.337 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:50.337 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:50.337 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 16868
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 1
+12-03 12:10:50.337 D/AlbaTpl ( 2564): UDS
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 30
+12-03 12:10:50.337 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 36
+12-03 12:10:50.337 D/AlbaTpl ( 2564): 03
+12-03 12:10:50.337 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:50.337 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:50.337 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:50.700 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:50.819 D/AlbaTpl ( 2564): added product row with desc='MAGDALENA UDS LBE' unidades='BIMBO
+12-03 12:10:50.819 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:50.819 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:50.819 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:50.819 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:50.819 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:50.819 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:50.819 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:50.819 D/AlbaTpl ( 2564): COD
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 42
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 496125
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 498455
+12-03 12:10:50.819 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:50.819 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:50.819 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:50.819 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:50.819 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:50.819 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:50.819 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:50.819 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 29918
+12-03 12:10:50.819 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:50.819 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:50.819 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:50.819 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:50.819 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:50.819 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:50.819 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 16868
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:50.819 D/AlbaTpl ( 2564): UDS
+12-03 12:10:50.819 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 30
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 36
+12-03 12:10:50.819 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:50.819 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:50.819 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:50.819 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:50.819 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:50.819 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:50.819 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:50.819 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:50.819 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 16868
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 1
+12-03 12:10:50.819 D/AlbaTpl ( 2564): UDS
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 30
+12-03 12:10:50.819 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 36
+12-03 12:10:50.819 D/AlbaTpl ( 2564): 03
+12-03 12:10:50.819 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:50.819 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:50.819 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:51.264 D/AlbaTpl ( 2564): added product row with desc='MAGDALENA LBE' unidades='BIMBO
+12-03 12:10:51.264 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:51.264 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:51.264 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:51.264 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:51.264 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:51.264 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:51.264 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:51.264 D/AlbaTpl ( 2564): COD
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 42
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 496125
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 498455
+12-03 12:10:51.264 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:51.264 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:51.264 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:51.264 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:51.264 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:51.264 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:51.264 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:51.264 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 29918
+12-03 12:10:51.264 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:51.264 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:51.264 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:51.264 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:51.264 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:51.264 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:51.264 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 16868
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:51.264 D/AlbaTpl ( 2564): UDS
+12-03 12:10:51.264 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 30
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 36
+12-03 12:10:51.264 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:51.264 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:51.264 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:51.264 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:51.264 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:51.264 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:51.264 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:51.264 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:51.264 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 16868
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 1
+12-03 12:10:51.264 D/AlbaTpl ( 2564): UDS
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 30
+12-03 12:10:51.264 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 36
+12-03 12:10:51.264 D/AlbaTpl ( 2564): 03
+12-03 12:10:51.264 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:51.264 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:51.264 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:51.659 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:51.719 D/AlbaTpl ( 2564): added product row with desc='TEL' unidades='BIMBO
+12-03 12:10:51.719 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:51.719 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:51.719 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:51.719 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:51.719 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:51.719 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:51.719 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:51.719 D/AlbaTpl ( 2564): COD
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 42
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 496125
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 498455
+12-03 12:10:51.719 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:51.719 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:51.719 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:51.719 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:51.719 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:51.719 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:51.719 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:51.719 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 29918
+12-03 12:10:51.719 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:51.719 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:51.719 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:51.719 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:51.719 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:51.719 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:51.719 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 16868
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:51.719 D/AlbaTpl ( 2564): UDS
+12-03 12:10:51.719 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 30
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 36
+12-03 12:10:51.719 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:51.719 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:51.719 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:51.719 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:51.719 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:51.719 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:51.719 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:51.719 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:51.719 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 16868
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 1
+12-03 12:10:51.719 D/AlbaTpl ( 2564): UDS
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 30
+12-03 12:10:51.719 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 36
+12-03 12:10:51.719 D/AlbaTpl ( 2564): 03
+12-03 12:10:51.719 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:51.719 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:51.719 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:52.165 D/AlbaTpl ( 2564): added product row with desc='Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M-382167, inscripción' unidades='BIMBO
+12-03 12:10:52.165 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:52.165 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:52.165 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:52.165 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:52.165 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:52.165 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:52.165 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:52.165 D/AlbaTpl ( 2564): COD
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 42
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 496125
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 498455
+12-03 12:10:52.165 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:52.165 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:52.165 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:52.165 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:52.165 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:52.165 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:52.165 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:52.165 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 29918
+12-03 12:10:52.165 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:52.165 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:52.165 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:52.165 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:52.165 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:52.165 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:52.165 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 16868
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:52.165 D/AlbaTpl ( 2564): UDS
+12-03 12:10:52.165 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 30
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 36
+12-03 12:10:52.165 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:52.165 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:52.165 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:52.165 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:52.165 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:52.165 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:52.165 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:52.165 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:52.165 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 16868
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 1
+12-03 12:10:52.165 D/AlbaTpl ( 2564): UDS
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 30
+12-03 12:10:52.165 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 36
+12-03 12:10:52.165 D/AlbaTpl ( 2564): 03
+12-03 12:10:52.165 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:52.165 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:52.165 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:52.601 D/AlbaTpl ( 2564): added product row with desc='' unidades='BIMBO
+12-03 12:10:52.601 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:10:52.601 D/AlbaTpl ( 2564): CD:009005
+12-03 12:10:52.601 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:10:52.601 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:10:52.601 D/AlbaTpl ( 2564): CL CA
+12-03 12:10:52.601 D/AlbaTpl ( 2564): FECHA
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:10:52.601 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:10:52.601 D/AlbaTpl ( 2564): COD
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 42
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 496125
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 498455
+12-03 12:10:52.601 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:10:52.601 D/AlbaTpl ( 2564): A84354174
+12-03 12:10:52.601 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:10:52.601 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:10:52.601 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:10:52.601 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 0030008016
+12-03 12:10:52.601 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:52.601 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 29918
+12-03 12:10:52.601 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:52.601 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:10:52.601 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:52.601 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:52.601 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:10:52.601 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:10:52.601 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 16868
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 1 03
+12-03 12:10:52.601 D/AlbaTpl ( 2564): UDS
+12-03 12:10:52.601 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 30
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 36
+12-03 12:10:52.601 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:10:52.601 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:10:52.601 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:10:52.601 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:10:52.601 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:10:52.601 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:10:52.601 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 168683744
+12-03 12:10:52.601 D/AlbaTpl ( 2564): DS LBE
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:10:52.601 D/AlbaTpl ( 2564): ROUTE
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 16868
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 1
+12-03 12:10:52.601 D/AlbaTpl ( 2564): UDS
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 30
+12-03 12:10:52.601 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 36
+12-03 12:10:52.601 D/AlbaTpl ( 2564): 03
+12-03 12:10:52.601 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:10:52.601 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:10:52.601 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:10:52.755 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:53.789 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:53.794 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:54.062 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:54.765 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:55.467 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:56.009 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:56.425 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:57.456 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:59.550 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:59.569 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:59.599 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:59.653 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:59.706 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:59.758 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:59.810 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:59.866 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:10:59.919 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:11:02.644 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:11:05.209 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:11:05.559 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:11:07.434 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:11:07.767 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:11:10.485 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:11:10.849 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:11:13.209 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:11:13.539 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:11:57.523 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:11:57.952 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:11:58.753 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:11:59.774 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:01.406 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:01.651 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:02.257 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:03.027 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:03.592 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:04.181 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:04.500 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:04.517 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:07.001 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:07.494 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:07.993 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:10.218 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:10.380 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:15.620 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:15.772 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:16.581 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:17.038 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:17.575 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:18.332 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:20.694 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:21.079 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:21.546 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:23.180 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:24.099 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:24.921 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:25.335 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:27.222 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:28.194 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:31.177 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:31.546 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:35.297 D/AlbaTpl ( 2564): savePatternFromCorrections: entry
+12-03 12:12:35.349 D/AlbaTpl ( 2564): inserted TemplateSample id=26 provider='a84354174' image='/storage/emulated/0/Android/data/com.albacontrol/files/templates/tpl_sample_1764760355302.jpg' mappings=[proveedor, nif, numero_albaran, fecha_albaran, product_row, product_unidades, product_precio, product_importe]
+12-03 12:12:35.368 D/AlbaTpl ( 2564): inserted OCRTemplate id=17 provider='a84354174' mappings=[proveedor, nif, numero_albaran, fecha_albaran, product_row, product_unidades, product_precio, product_importe]
+12-03 12:12:50.518 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:50.522 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:50.797 D/AlbaTpl ( 2564): applyTemplateIfExists: candidates nif='B59803825' proveedor='BIMBO'
+12-03 12:12:50.798 D/AlbaTpl ( 2564): template matching candidatesSet=[b59803825, bimbo, 211125, 009005, 729765, clcas, 42, lluretdemar, 17310, 59803825, totaluds, 66, 16868, 84354174, ccigoitiamadrid, 1, 28022, abdelilah, 19723, enhmlloret, 0, 030300, clcastell, girona, magdalenaudslbe, 16, magdalenalbe, 8, tel, 900, 125, 375, regmercmadridtomo36818folio99sección8hojam382167inscripción, 17, 2023000078202023000007870]
+12-03 12:12:50.920 D/AlbaTpl ( 2564): matched template provider='a84354174' mappings=[proveedor, nif, numero_albaran, fecha_albaran, product_row, product_unidades, product_precio, product_importe] score=9.450042349742224
+12-03 12:12:50.979 D/AlbaTpl ( 2564): scheduleAutoSavePattern: disabled (save only at finalize)
+12-03 12:12:50.980 D/AlbaTpl ( 2564): applied field=proveedor text='BIMBO' from bbox=0.149306,0.229004,0.154514,0.021484
+12-03 12:12:51.276 D/AlbaTpl ( 2564): applied field=product_row text='BIMBO DELEG:GIRONA CD:009005 CLIENTE:729765 SERHS FOOD AREA S L CL CA FECHA 21/11/25 17310 LcuRET DE MAR CIF:B59803825 COD 42 496125 498455 TOTAL UDS :66 A84354174 RUTERO:16868 Poligono Industrial Las Mercedes C/Cigoilia, 1 28022 Madrid C.CLIENTE 0030008016 PRODUCTOS 21/11/2025 06:15:30 Pegar identicket: 29918 TRANSP0:19723 ABDELILAH SERVIDO EN:HM LLORET TDA-030300 CL CASTELL 42 17310 GIRONA N.ALBARAN 168683744 MAGDALENA 16 UDS LBE MAGDALENA LBE 0/% 8u ROUTE 16868 1 03 UDS TEL :900 125 375 30 36 Recibí conforme firma: Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a ENVI2023/000007820;ENVI2023/000007870' from bbox=0.110243,0.229980,0.747396,0.466309
+12-03 12:12:51.522 D/AlbaTpl ( 2564): applied field=product_unidades text='BIMBO DELEG:GIRONA CD:009005 CLIENTE:729765 SERHS FOOD AREA S L CL CA FECHA 21/11/25 17310 LcuRET DE MAR CIF:B59803825 COD 42 496125 498455 TOTAL UDS :66 A84354174 RUTERO:16868 Poligono Industrial Las Mercedes C/Cigoilia, 1 28022 Madrid C.CLIENTE 0030008016 PRODUCTOS 21/11/2025 06:15:30 Pegar identicket: 29918 TRANSP0:19723 ABDELILAH SERVIDO EN:HM LLORET TDA-030300 CL CASTELL 42 17310 GIRONA N.ALBARAN 168683744 MAGDALENA 16 UDS LBE MAGDALENA LBE 0/% 8u ROUTE 16868 1 03 UDS TEL :900 125 375 30 36 Recibí conforme firma: Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a ENVI2023/000007820;ENVI2023/000007870' from bbox=0.110243,0.229980,0.747396,0.466309
+12-03 12:12:51.666 D/AlbaTpl ( 2564): applied field=product_precio text='ustrial Las Mercedes 28022 Madrid 21/11/2025 06:15:30 TRANSP0:19723 ABDELILAH SERVID0 EN:HM LLORET TDA-030300 CL CASTELL 42 17310 GIRONA N.ALBARAN 168683744 DS LBE 0/% 8u ROUTE 16868 1 UDS 30 TEL :900 125 36 03 Recibíi conforme firma: o 99, sección 8, hoja M-382167, in: D07870' from bbox=0.428819,0.229980,0.322049,0.466309
+12-03 12:12:52.080 D/AlbaTpl ( 2564): added product row with desc='' unidades='BIMBO
+12-03 12:12:52.080 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:12:52.080 D/AlbaTpl ( 2564): CD:009005
+12-03 12:12:52.080 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:12:52.080 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:12:52.080 D/AlbaTpl ( 2564): CL CA
+12-03 12:12:52.080 D/AlbaTpl ( 2564): FECHA
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:12:52.080 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:12:52.080 D/AlbaTpl ( 2564): COD
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 42
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 496125
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 498455
+12-03 12:12:52.080 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:12:52.080 D/AlbaTpl ( 2564): A84354174
+12-03 12:12:52.080 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:12:52.080 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:12:52.080 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:12:52.080 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 0030008016
+12-03 12:12:52.080 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:12:52.080 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 29918
+12-03 12:12:52.080 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:12:52.080 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:12:52.080 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:12:52.080 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 168683744
+12-03 12:12:52.080 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:12:52.080 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:12:52.080 D/AlbaTpl ( 2564): ROUTE
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 16868
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 1 03
+12-03 12:12:52.080 D/AlbaTpl ( 2564): UDS
+12-03 12:12:52.080 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 30
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 36
+12-03 12:12:52.080 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:12:52.080 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:12:52.080 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:12:52.080 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:12:52.080 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:12:52.080 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:12:52.080 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 168683744
+12-03 12:12:52.080 D/AlbaTpl ( 2564): DS LBE
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:12:52.080 D/AlbaTpl ( 2564): ROUTE
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 16868
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 1
+12-03 12:12:52.080 D/AlbaTpl ( 2564): UDS
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 30
+12-03 12:12:52.080 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 36
+12-03 12:12:52.080 D/AlbaTpl ( 2564): 03
+12-03 12:12:52.080 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:12:52.080 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:12:52.080 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:12:52.517 D/AlbaTpl ( 2564): added product row with desc='' unidades='BIMBO
+12-03 12:12:52.517 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:12:52.517 D/AlbaTpl ( 2564): CD:009005
+12-03 12:12:52.517 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:12:52.517 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:12:52.517 D/AlbaTpl ( 2564): CL CA
+12-03 12:12:52.517 D/AlbaTpl ( 2564): FECHA
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:12:52.517 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:12:52.517 D/AlbaTpl ( 2564): COD
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 42
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 496125
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 498455
+12-03 12:12:52.517 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:12:52.517 D/AlbaTpl ( 2564): A84354174
+12-03 12:12:52.517 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:12:52.517 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:12:52.517 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:12:52.517 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 0030008016
+12-03 12:12:52.517 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:12:52.517 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 29918
+12-03 12:12:52.517 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:12:52.517 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:12:52.517 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:12:52.517 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 168683744
+12-03 12:12:52.517 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:12:52.517 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:12:52.517 D/AlbaTpl ( 2564): ROUTE
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 16868
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 1 03
+12-03 12:12:52.517 D/AlbaTpl ( 2564): UDS
+12-03 12:12:52.517 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 30
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 36
+12-03 12:12:52.517 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:12:52.517 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:12:52.517 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:12:52.517 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:12:52.517 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:12:52.517 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:12:52.517 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 168683744
+12-03 12:12:52.517 D/AlbaTpl ( 2564): DS LBE
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:12:52.517 D/AlbaTpl ( 2564): ROUTE
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 16868
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 1
+12-03 12:12:52.517 D/AlbaTpl ( 2564): UDS
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 30
+12-03 12:12:52.517 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 36
+12-03 12:12:52.517 D/AlbaTpl ( 2564): 03
+12-03 12:12:52.517 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:12:52.517 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:12:52.517 D/AlbaTpl ( 2564): D07870' importe=''
+12-03 12:12:52.991 D/AlbaTpl ( 2564): added product row with desc='CL CAS' unidades='BIMBO
+12-03 12:12:52.991 D/AlbaTpl ( 2564): DELEG:GIRONA
+12-03 12:12:52.991 D/AlbaTpl ( 2564): CD:009005
+12-03 12:12:52.991 D/AlbaTpl ( 2564): CLIENTE:729765
+12-03 12:12:52.991 D/AlbaTpl ( 2564): SERHS FOOD AREA S L
+12-03 12:12:52.991 D/AlbaTpl ( 2564): CL CA
+12-03 12:12:52.991 D/AlbaTpl ( 2564): FECHA
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 21/11/25
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 17310 LcuRET DE MAR
+12-03 12:12:52.991 D/AlbaTpl ( 2564): CIF:B59803825
+12-03 12:12:52.991 D/AlbaTpl ( 2564): COD
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 42
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 496125
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 498455
+12-03 12:12:52.991 D/AlbaTpl ( 2564): TOTAL UDS :66
+12-03 12:12:52.991 D/AlbaTpl ( 2564): A84354174
+12-03 12:12:52.991 D/AlbaTpl ( 2564): RUTERO:16868
+12-03 12:12:52.991 D/AlbaTpl ( 2564): Poligono Industrial Las Mercedes
+12-03 12:12:52.991 D/AlbaTpl ( 2564): C/Cigoilia, 1 28022 Madrid
+12-03 12:12:52.991 D/AlbaTpl ( 2564): C.CLIENTE
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 0030008016
+12-03 12:12:52.991 D/AlbaTpl ( 2564): PRODUCTOS
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:12:52.991 D/AlbaTpl ( 2564): Pegar identicket:
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 29918
+12-03 12:12:52.991 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:12:52.991 D/AlbaTpl ( 2564): SERVIDO EN:HM LLORET TDA-030300
+12-03 12:12:52.991 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:12:52.991 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 168683744
+12-03 12:12:52.991 D/AlbaTpl ( 2564): MAGDALENA 16 UDS LBE
+12-03 12:12:52.991 D/AlbaTpl ( 2564): MAGDALENA LBE 0/% 8u
+12-03 12:12:52.991 D/AlbaTpl ( 2564): ROUTE
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 16868
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 1 03
+12-03 12:12:52.991 D/AlbaTpl ( 2564): UDS
+12-03 12:12:52.991 D/AlbaTpl ( 2564): TEL :900 125 375
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 30
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 36
+12-03 12:12:52.991 D/AlbaTpl ( 2564): Recibí conforme firma:
+12-03 12:12:52.991 D/AlbaTpl ( 2564): Reg. Merc. Madrid Tomo 36818, folio 99, sección 8, hoja M -382167, inscripción 17a
+12-03 12:12:52.991 D/AlbaTpl ( 2564): ENVI2023/000007820;ENVI2023/000007870' precio='ustrial Las Mercedes
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 28022 Madrid
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 21/11/2025 06:15:30
+12-03 12:12:52.991 D/AlbaTpl ( 2564): TRANSP0:19723 ABDELILAH
+12-03 12:12:52.991 D/AlbaTpl ( 2564): SERVID0 EN:HM LLORET TDA-030300
+12-03 12:12:52.991 D/AlbaTpl ( 2564): CL CASTELL 42
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 17310 GIRONA
+12-03 12:12:52.991 D/AlbaTpl ( 2564): N.ALBARAN
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 168683744
+12-03 12:12:52.991 D/AlbaTpl ( 2564): DS LBE
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 0/% 8u
+12-03 12:12:52.991 D/AlbaTpl ( 2564): ROUTE
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 16868
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 1
+12-03 12:12:52.991 D/AlbaTpl ( 2564): UDS
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 30
+12-03 12:12:52.991 D/AlbaTpl ( 2564): TEL :900 125
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 36
+12-03 12:12:52.991 D/AlbaTpl ( 2564): 03
+12-03 12:12:52.991 D/AlbaTpl ( 2564): Recibíi conforme firma:
+12-03 12:12:52.991 D/AlbaTpl ( 2564): o 99, sección 8, hoja M-382167, in:
+12-03 12:12:52.991 D/AlbaTpl ( 2564): D07870' importe=''
