@@ -6,9 +6,11 @@ import android.graphics.Bitmap.Config
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.opencv.android.Utils
-import org.opencv.core.*
+import org.opencv.core.Mat
+import org.opencv.core.Point
+import org.opencv.core.Size
 import org.opencv.imgproc.Imgproc
+import org.opencv.android.Utils
 import java.io.File
 
 /**
@@ -71,7 +73,10 @@ object DocumentPreprocessorOpenCv {
             val pts = docCnt.toArray()
             val ordered = orderPoints(pts)
 
-            val (tl, tr, br, bl) = ordered
+            val tl = ordered[0]
+            val tr = ordered[1]
+            val br = ordered[2]
+            val bl = ordered[3]
             val widthA = distance(br, bl)
             val widthB = distance(tr, tl)
             val maxWidth = Math.max(widthA, widthB).toInt()
@@ -122,12 +127,12 @@ object DocumentPreprocessorOpenCv {
 
     private fun orderPoints(pts: Array<Point>): Array<Point> {
         // order: tl, tr, br, bl
-        val sumSorted = pts.sortedBy { it.x + it.y }
-        val diffSorted = pts.sortedBy { it.y - it.x }
-        val tl = sumSorted.first()
-        val br = sumSorted.last()
-        val tr = diffSorted.first()
-        val bl = diffSorted.last()
+        val sumSorted: List<Point> = pts.sortedBy { p: Point -> p.x + p.y }
+        val diffSorted: List<Point> = pts.sortedBy { p: Point -> p.y - p.x }
+        val tl: Point = sumSorted.first()
+        val br: Point = sumSorted.last()
+        val tr: Point = diffSorted.first()
+        val bl: Point = diffSorted.last()
         return arrayOf(tl, tr, br, bl)
     }
 
