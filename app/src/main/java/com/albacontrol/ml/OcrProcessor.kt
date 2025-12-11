@@ -27,6 +27,8 @@ data class OCRResult(
     val fechaAlbaran: String?,
     val fechaBBox: Rect?,
     val products: List<OCRProduct>
+    ,
+    val allBlocks: List<Pair<String, Rect>> = emptyList()
 )
 
 object OcrProcessor {
