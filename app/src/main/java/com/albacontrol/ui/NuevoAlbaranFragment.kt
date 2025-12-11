@@ -788,7 +788,7 @@ class NuevoAlbaranFragment : Fragment() {
                             objectDetector = com.albacontrol.ml.DetectorHelper.createDetector(requireContext(), "models/model.tflite")
                         }
                         val det = objectDetector
-                            if (det != null) {
+                        if (det != null) {
                             val detections = com.albacontrol.ml.DetectorHelper.detectBitmap(det, preprocessedBitmap, requireContext())
                             android.util.Log.d("AlbaTpl", "Detector run: detections=${detections.size}")
                         }
