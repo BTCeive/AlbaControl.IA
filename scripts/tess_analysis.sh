@@ -154,7 +154,8 @@ for df in debug_files:
             pred_norm = normalize(agg)
             ld = levenshtein(pred_norm, truth_norm)
             cer = ld / max(1, len(truth_norm)) if truth_norm else (len(pred_norm) if pred_norm else 0)
-            print("    {label}: CER={cer:.3f} truth='{truth}' pred_sample='{agg[:40]}'".format(label=label,cer=cer,truth=truth))
+            # include agg explicitly to avoid KeyError in .format
+            print("    {label}: CER={cer:.3f} truth='{truth}' pred_sample='{pred}'".format(label=label,cer=cer,truth=truth,pred=agg[:40]))
     print()
 PY
 
