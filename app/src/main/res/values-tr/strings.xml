@@ -64,7 +64,7 @@
     <string name="receptionist">Resepsiyonist: %1$s</string>
     <string name="rgpd_notice">Lütfen kişisel verileri GDPR’ye uygun şekilde işleyin. Bu belgede bulunan veriler yalnızca lojistik ve teslimat yönetimi için kullanılır.</string>
     <!-- translation removed: key not present in default locale -->
-    <string name="material_clock_toggle_content_description">ÖÖ veya ÖS’yi seçin</string>
+    <!-- translation removed: key not present in default locale -->
     <!-- Home labels -->
     <string name="home_new_albaran">Yeni irsaliye</string>
     <string name="home_borradores">Taslaklar</string>
