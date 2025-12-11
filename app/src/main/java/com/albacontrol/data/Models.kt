@@ -62,7 +62,11 @@ data class CompletedAlbaran(
 data class OCRTemplate(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val providerNif: String,
-    @ColumnInfo(name = "mappings") val mappings: Map<String, String> // fieldName -> bboxNormalized (x,y,w,h) as string
+    @ColumnInfo(name = "mappings") val mappings: Map<String, String>, // fieldName -> bboxNormalized (x,y,w,h) as string
+    val version: Int = 1,
+    val active: Boolean = true,
+    val createdFromSampleIds: String? = null,
+    val fieldConfidence: Map<String, String>? = null
 )
 
 @Entity(tableName = "template_samples")
@@ -72,5 +76,7 @@ data class TemplateSample(
     val providerNif: String,
     val imagePath: String,
     @ColumnInfo(name = "field_mappings") val fieldMappings: Map<String, String>, // fieldName -> bbox+recognizedText
-    val createdAt: Long = Date().time
+    val createdAt: Long = Date().time,
+    val normalizedFields: Map<String, String>? = null,
+    val fieldConfidences: Map<String, String>? = null
 )

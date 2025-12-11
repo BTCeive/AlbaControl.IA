@@ -14,7 +14,10 @@ data class OCRProduct(
     val importe: String?,
     val incidencia: Boolean = false,
     val bbox: Rect?,
-    val numericElementBBoxes: List<Rect> = emptyList()
+    val numericElementBBoxes: List<Rect> = emptyList(),
+    val unidadesBBox: Rect? = null,
+    val precioBBox: Rect? = null,
+    val importeBBox: Rect? = null
 )
 
 data class OCRResult(

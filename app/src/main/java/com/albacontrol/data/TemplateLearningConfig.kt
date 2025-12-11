@@ -11,4 +11,9 @@ object TemplateLearningConfig {
     // Pesos para combinar IoU y similitud de texto en el scoring
     const val IOU_WEIGHT: Double = 0.7
     const val TEXT_SIM_WEIGHT: Double = 0.3
+    // Weight for embedding similarity (additional signal when available)
+    const val EMBEDDING_WEIGHT: Double = 0.0
+
+    // Cooldown time for automatic sample saves (ms)
+    const val AUTO_SAVE_COOLDOWN_MS: Long = 30000L
 }

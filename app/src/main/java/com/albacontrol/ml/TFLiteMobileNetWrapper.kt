@@ -10,4 +10,5 @@ class TFLiteMobileNetWrapper(private val context: Context) {
     fun runInference(bitmap: android.graphics.Bitmap): FloatArray? {
         return null
     }
+    fun close() {}
 }

@@ -2098,7 +2098,7 @@ class NuevoAlbaranFragment : Fragment() {
                             version = nextVersion,
                             active = true,
                             createdFromSampleIds = createdFrom.joinToString(","),
-                            fieldConfidence = fieldConfidence
+                            fieldConfidence = fieldConfidence.mapValues { it.value.toString() }
                         )
 
                         var tplId: Long = -1

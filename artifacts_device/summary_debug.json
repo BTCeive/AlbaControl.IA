@@ -1,0 +1,18 @@
+{
+  "summary": {
+    "total_images": 4,
+    "provider_correct": 0,
+    "nif_correct": 0,
+    "number_correct": 0,
+    "date_correct": 0,
+    "provider_cer_sum": 3.8,
+    "nif_cer_sum": 4.0,
+    "provider_accuracy": 0.0,
+    "nif_accuracy": 0.0,
+    "number_accuracy": 0.0,
+    "date_accuracy": 0.0,
+    "avg_provider_cer": 0.95,
+    "avg_nif_cer": 1.0
+  },
+  "files": 4
+}
