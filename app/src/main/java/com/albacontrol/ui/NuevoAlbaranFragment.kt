@@ -1,17 +1,5 @@
 package com.albacontrol.ui
 
-// Temporary conservative stubs/constants to satisfy references introduced
-// by OCR/template patches. These are safe placeholders and should be
-// replaced by proper implementations later.
-private const val EMBEDDING_WEIGHT: Float = 1.0f
-private const val AUTO_SAVE_COOLDOWN_MS: Long = 30000L
-private val normalizedFields: Map<String, String> = emptyMap()
-private val fieldConfidences: Map<String, Float> = emptyMap()
-private const val version: Int = 1
-private const val active: Boolean = false
-private val createdFromSampleIds: List<Long> = emptyList()
-private const val fieldConfidence: Float = 0.0f
-
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -49,6 +37,18 @@ import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.Date
+
+// Temporary conservative stubs/constants to satisfy references introduced
+// by OCR/template patches. These are safe placeholders and should be
+// replaced by proper implementations later.
+private const val EMBEDDING_WEIGHT: Float = 1.0f
+private const val AUTO_SAVE_COOLDOWN_MS: Long = 30000L
+private val normalizedFields: Map<String, String> = emptyMap()
+private val fieldConfidences: Map<String, Float> = emptyMap()
+private const val version: Int = 1
+private const val active: Boolean = false
+private val createdFromSampleIds: List<Long> = emptyList()
+private const val fieldConfidence: Float = 0.0f
 
 class NuevoAlbaranFragment : Fragment() {
 
@@ -805,19 +805,17 @@ class NuevoAlbaranFragment : Fragment() {
     
     /**
      * Process image with Tesseract OCR (optimized for photographed documents)
-                    for (entry in blocks) {
-                        val bText: String = entry.first
-                        val bRect: android.graphics.Rect = entry.second
-                        val bNorm = normalize(bText)
-                        if (bNorm.isEmpty()) continue
-                        val maxLen = kotlin.math.max(wNorm.length, bNorm.length)
-                        if (bNorm.length < (wNorm.length * 0.25).toInt()) continue
-                        fun levenshteinWord(a: CharSequence, b: CharSequence): Int {
+     */
+    private fun processWithTesseractOcr(bitmap: android.graphics.Bitmap) {
+        lifecycleScope.launch {
+            try {
+                // Show progress dialog
+                val progressDialog = android.app.ProgressDialog(requireContext()).apply {
                     setMessage("Procesando documento...")
                     setCancelable(false)
                     show()
                 }
-                
+
                 // Process with OCR via centralized OcrProcessor (uses Tesseract under the hood)
                 val tesseractResult = withContext(Dispatchers.IO) {
                     kotlinx.coroutines.suspendCancellableCoroutine<com.albacontrol.ml.OCRResult?> { cont ->
@@ -831,9 +829,9 @@ class NuevoAlbaranFragment : Fragment() {
                         }
                     }
                 }
-                
+
                 progressDialog.dismiss()
-                
+
                 if (tesseractResult != null) {
                     Log.d("AlbaTpl", "Tesseract OCR: success - proveedor='${tesseractResult.proveedor}' nif='${tesseractResult.nif}' numero='${tesseractResult.numeroAlbaran}' fecha='${tesseractResult.fechaAlbaran}'")
                     lastOcrResult = tesseractResult
