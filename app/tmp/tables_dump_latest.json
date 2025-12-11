@@ -1,0 +1,99 @@
+{
+  "exported_at": 1764875561310,
+  "template_samples": [
+    {
+      "id": 1,
+      "providerNif": "a84354174",
+      "imagePath": "\/storage\/emulated\/0\/Android\/data\/com.albacontrol\/files\/templates\/tpl_sample_1764875388661.jpg",
+      "fieldMappings": {
+        "proveedor": "0.322049,0.214844,0.253472,0.013672::BIMBO",
+        "nif": "0.321181,0.229980,0.091146,0.009277::B59803825",
+        "numero_albaran": "0.430556,0.389160,0.085069,0.007813::",
+        "fecha_albaran": "0.141493,0.383789,0.070313,0.009277::21\/11\/25",
+        "product_row": "0.110243,0.229980,0.747396,0.466309::",
+        "product_unidades": "0.110243,0.229980,0.747396,0.466309::",
+        "product_precio": "0.428819,0.229980,0.322049,0.466309::",
+        "product_importe": "0.756944,0.229980,0.024306,0.466309::"
+      },
+      "normalizedFields": {},
+      "fieldConfidences": {},
+      "createdAt": 1764875388699
+    },
+    {
+      "id": 2,
+      "providerNif": "b59803825",
+      "imagePath": "\/storage\/emulated\/0\/Android\/data\/com.albacontrol\/files\/templates\/tpl_sample_1764875421544.jpg",
+      "fieldMappings": {
+        "proveedor": "0.149306,0.229004,0.154514,0.021484::BIMBO",
+        "nif": "0.144965,0.349121,0.108507,0.009277::B59803825",
+        "numero_albaran": "0.430556,0.377441,0.082465,0.007324::",
+        "fecha_albaran": "0.141493,0.383789,0.070313,0.009277::21\/11\/25",
+        "product_row": "0.110243,0.229980,0.747396,0.466309::"
+      },
+      "normalizedFields": {},
+      "fieldConfidences": {},
+      "createdAt": 1764875421591
+    },
+    {
+      "id": 3,
+      "providerNif": "a84354174",
+      "imagePath": "\/storage\/emulated\/0\/Android\/data\/com.albacontrol\/files\/templates\/tpl_sample_1764875535605.jpg",
+      "fieldMappings": {
+        "proveedor": "0.322049,0.214844,0.253472,0.013672::BIMBO",
+        "nif": "0.321181,0.229980,0.091146,0.009277::B59803825",
+        "numero_albaran": "0.430556,0.389160,0.085069,0.007813::",
+        "fecha_albaran": "0.141493,0.383789,0.070313,0.009277::21\/11\/25",
+        "product_row": "0.110243,0.229980,0.747396,0.466309::",
+        "product_unidades": "0.110243,0.229980,0.747396,0.466309::",
+        "product_precio": "0.428819,0.229980,0.322049,0.466309::",
+        "product_importe": "0.756944,0.229980,0.024306,0.466309::"
+      },
+      "normalizedFields": {},
+      "fieldConfidences": {},
+      "createdAt": 1764875535645
+    },
+    {
+      "id": 4,
+      "providerNif": "b59803825",
+      "imagePath": "\/storage\/emulated\/0\/Android\/data\/com.albacontrol\/files\/templates\/tpl_sample_1764875561263.jpg",
+      "fieldMappings": {
+        "proveedor": "0.149306,0.229004,0.154514,0.021484::BIMBO",
+        "nif": "0.144965,0.349121,0.108507,0.009277::B59803825",
+        "numero_albaran": "0.430556,0.377441,0.082465,0.007324::",
+        "fecha_albaran": "0.141493,0.383789,0.070313,0.009277::21\/11\/25",
+        "product_row": "0.110243,0.229980,0.747396,0.466309::"
+      },
+      "normalizedFields": {},
+      "fieldConfidences": {},
+      "createdAt": 1764875561303
+    }
+  ],
+  "ocr_templates": [
+    {
+      "providerNif": "a84354174",
+      "mappings": {
+        "proveedor": "0.322049,0.214844,0.253472,0.013672",
+        "nif": "0.321181,0.229980,0.091146,0.009277",
+        "numero_albaran": "0.430556,0.389160,0.085069,0.007813",
+        "fecha_albaran": "0.141493,0.383789,0.070313,0.009277",
+        "product_row": "0.110243,0.229980,0.747396,0.466309",
+        "product_unidades": "0.110243,0.229980,0.747396,0.466309",
+        "product_precio": "0.428819,0.229980,0.322049,0.466309",
+        "product_importe": "0.756944,0.229980,0.024306,0.466309"
+      },
+      "version": 1,
+      "active": true,
+      "created_from_samples": "1,3",
+      "field_confidence": {
+        "proveedor": 1,
+        "nif": 1,
+        "numero_albaran": 1,
+        "fecha_albaran": 1,
+        "product_row": 1,
+        "product_unidades": 1,
+        "product_precio": 1,
+        "product_importe": 1
+      }
+    }
+  ]
+}
