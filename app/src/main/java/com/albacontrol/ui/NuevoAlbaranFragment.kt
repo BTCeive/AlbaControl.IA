@@ -409,7 +409,7 @@ class NuevoAlbaranFragment : Fragment() {
         view.findViewById<Button>(R.id.btnFinalizar).setOnClickListener {
             val etProveedor = view.findViewById<EditText>(R.id.etProveedor)
             val proveedor = etProveedor.text.toString().trim()
-                if (proveedor.isEmpty()) {
+            if (proveedor.isEmpty()) {
                 Toast.makeText(requireContext(), getString(com.albacontrol.R.string.provider_required), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }

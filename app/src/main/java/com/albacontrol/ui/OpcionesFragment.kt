@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import android.util.Log
 import java.io.*
+import java.util.Locale
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 import androidx.activity.result.contract.ActivityResultContracts
@@ -547,9 +548,9 @@ class OpcionesFragment : Fragment() {
             tplDao.deleteAllSamples(); tplDao.deleteAllTemplates()
         }
 
-        tmpDir.listFiles()?.forEach { f ->
+            tmpDir.listFiles()?.forEach { f ->
             try {
-                val name = f.name.toLowerCase()
+                val name = f.name.toLowerCase(Locale.ROOT)
                 when {
                         name.contains("draft") && name.endsWith(".json") -> importDraftsFromFile(f, false)
                     name.contains("providers") && name.endsWith(".json") -> importProvidersFileFromFile(f, false)
@@ -863,7 +864,7 @@ class OpcionesFragment : Fragment() {
                         val arr = org.json.JSONArray(manifestStr)
                         for (i in 0 until arr.length()) manifestItems.add(arr.getJSONObject(i))
                     } catch (_: Exception) {}
-                } else if (name.toLowerCase().endsWith(".pdf")) {
+                } else if (name.toLowerCase(Locale.ROOT).endsWith(".pdf")) {
                     val outFile = File(historyDir, name)
                     FileOutputStream(outFile).use { fos ->
                         zis.copyTo(fos)

@@ -26,18 +26,18 @@ object DocumentPreprocessorOpenCv {
         withContext(Dispatchers.Default) {
             try {
                 com.albacontrol.util.DebugLogger.init(context)
-                com.albacontrol.util.DebugLogger.log("DocumentPreprocessorOpenCv", "preprocessAndSavePdfWithOpenCv: start (w=${bitmap.width}, h=${bitmap.height})")
+                com.albacontrol.util.DebugLogger.log("DocPreprocOpenCv", "preprocessAndSavePdfWithOpenCv: start (w=${bitmap.width}, h=${bitmap.height})")
                 // Fallback to simple preprocessor which is more reliable for Tesseract
                 val (denoised, pdf) = DocumentPreprocessor.preprocessAndSavePdf(context, bitmap, outPdf, maxDim)
-                if (pdf != null) com.albacontrol.util.DebugLogger.log("DocumentPreprocessorOpenCv", "saved preproc PDF=${pdf.absolutePath}")
+                if (pdf != null) com.albacontrol.util.DebugLogger.log("DocPreprocOpenCv", "saved preproc PDF=${pdf.absolutePath}")
                 // also try to save denoised image for inspection
                 try {
                     denoised?.let { bmp -> com.albacontrol.util.DebugLogger.saveCrop(context, bmp, "preproc_${System.currentTimeMillis()}.png") }
                 } catch (_: Exception) {}
-                com.albacontrol.util.DebugLogger.log("DocumentPreprocessorOpenCv", "preprocessAndSavePdfWithOpenCv: finished")
+                com.albacontrol.util.DebugLogger.log("DocPreprocOpenCv", "preprocessAndSavePdfWithOpenCv: finished")
                 return@withContext Pair(denoised, pdf)
             } catch (e: Exception) {
-                com.albacontrol.util.DebugLogger.logException("DocumentPreprocessorOpenCv", e)
+                com.albacontrol.util.DebugLogger.logException("DocPreprocOpenCv", e)
                 return@withContext Pair(bitmap, null)
             }
         }
@@ -190,7 +190,7 @@ object DocumentPreprocessorOpenCv {
             try { at.release() } catch (_: Exception) {}
             try { atColor.release() } catch (_: Exception) {}
         } catch (e: Exception) {
-            Log.w("DocumentPreprocessorOpenCv", "generateVariants failed: ${e.message}")
+            Log.w("DocPreprocOpenCv", "generateVariants failed: ${e.message}")
             // fallback: return the original
             out.clear()
             out.add(srcBmp)
