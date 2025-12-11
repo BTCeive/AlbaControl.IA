@@ -125,54 +125,50 @@ object TessOcrProcessor {
             }
 
             return@withContext com.albacontrol.ml.OCRResult(proveedor, null, nif, null, numero, null, fecha, null, products, lines.map { it to Rect(0,0,bitmap.width, bitmap.height) })
-                com.albacontrol.util.DebugLogger.log("TessOcrProcessor", "processBitmap: extracted text length=${text.length}")
-                return@withContext com.albacontrol.ml.OCRResult(proveedor, null, nif, null, numero, null, fecha, null, products, lines.map { it to Rect(0,0,bitmap.width, bitmap.height) })
             } finally {
                 api.clear()
                 api.end()
             }
     }
 
-}
-
-// Focused OCR passes helper
-enum class FieldType { DEFAULT, NIF, NUMBER, DATE }
-
-suspend fun ocrCrop(bitmap: Bitmap, fieldType: FieldType = FieldType.DEFAULT): String = withContext(Dispatchers.IO) {
-    // This helper performs a focused Tesseract pass using a short-lived TessBaseAPI
-    try {
-        val api = TessBaseAPI()
+    // Focused OCR passes helper (exposed as suspend function)
+    suspend fun ocrCrop(bitmap: Bitmap, fieldType: FieldType = FieldType.DEFAULT): String = withContext(Dispatchers.IO) {
         try {
-            // Attempt to initialize with default data path (TessOcrProcessor.init should have prepared tess/)
-            // If init() in the app set up tessdata properly, an empty init may succeed depending on the build.
-            api.init("", "spa")
-        } catch (_: Exception) {}
+            val api = TessBaseAPI()
+            try {
+                try { api.init("", "spa") } catch (_: Exception) {}
 
-        when (fieldType) {
-            FieldType.NIF -> {
-                try { api.setVariable("tessedit_char_whitelist", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ") } catch (_: Exception) {}
-                api.setPageSegMode(7)
+                when (fieldType) {
+                    FieldType.NIF -> {
+                        try { api.setVariable("tessedit_char_whitelist", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ") } catch (_: Exception) {}
+                        api.setPageSegMode(7)
+                    }
+                    FieldType.NUMBER -> {
+                        try { api.setVariable("tessedit_char_whitelist", "0123456789") } catch (_: Exception) {}
+                        api.setPageSegMode(7)
+                    }
+                    FieldType.DATE -> {
+                        try { api.setVariable("tessedit_char_whitelist", "0123456789/.-") } catch (_: Exception) {}
+                        api.setPageSegMode(7)
+                    }
+                    else -> {
+                        try { api.setVariable("tessedit_char_whitelist", "") } catch (_: Exception) {}
+                        api.setPageSegMode(3)
+                    }
+                }
+
+                api.setImage(bitmap)
+                val txt = try { api.utF8Text ?: "" } catch (_: Exception) { "" }
+                return@withContext txt
+            } finally {
+                try { api.clear() } catch (_: Exception) {}
+                try { api.end() } catch (_: Exception) {}
             }
-            FieldType.NUMBER -> {
-                try { api.setVariable("tessedit_char_whitelist", "0123456789") } catch (_: Exception) {}
-                api.setPageSegMode(7)
-            }
-            FieldType.DATE -> {
-                try { api.setVariable("tessedit_char_whitelist", "0123456789/.-") } catch (_: Exception) {}
-                api.setPageSegMode(7)
-            }
-            else -> {
-                try { api.setVariable("tessedit_char_whitelist", "") } catch (_: Exception) {}
-                api.setPageSegMode(3)
-            }
+        } catch (_: Exception) {
+            return@withContext ""
         }
-
-        api.setImage(bitmap)
-        val txt = try { api.utF8Text ?: "" } catch (_: Exception) { "" }
-        try { api.clear() } catch (_: Exception) {}
-        try { api.end() } catch (_: Exception) {}
-        return@withContext txt
-    } catch (_: Exception) {
-        return@withContext ""
     }
+
 }
+
+enum class FieldType { DEFAULT, NIF, NUMBER, DATE }

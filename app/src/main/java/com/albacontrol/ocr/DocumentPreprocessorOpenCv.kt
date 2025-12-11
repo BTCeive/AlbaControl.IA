@@ -137,8 +137,6 @@ object DocumentPreprocessorOpenCv {
         return Math.hypot(dx, dy)
     }
 
-}
-
     /**
      * Generate simple preprocessing variants: original, CLAHE, adaptiveThreshold.
      * Returns a list of Bitmaps (in the same order).
@@ -192,3 +190,5 @@ object DocumentPreprocessorOpenCv {
         }
         return out
     }
+
+}

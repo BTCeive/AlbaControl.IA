@@ -457,7 +457,7 @@ class NuevoAlbaranFragment : Fragment() {
                                 val pdfOcr = withContext(Dispatchers.IO) {
                                     kotlinx.coroutines.suspendCancellableCoroutine<com.albacontrol.ml.OCRResult?> { cont ->
                                         try {
-                                            com.albacontrol.ml.OcrProcessor.processBitmap(requireContext(), pdfBmp) { res, err ->
+                                            com.albacontrol.ml.OcrProcessor.processBitmap(pdfBmp) { res, err ->
                                                 if (err != null) cont.resumeWith(Result.failure(err)) else cont.resumeWith(Result.success(res))
                                             }
                                         } catch (e: Exception) { cont.resumeWith(Result.failure(e)) }
@@ -808,7 +808,7 @@ class NuevoAlbaranFragment : Fragment() {
                 val tesseractResult = withContext(Dispatchers.IO) {
                     kotlinx.coroutines.suspendCancellableCoroutine<com.albacontrol.ml.OCRResult?> { cont ->
                         try {
-                            com.albacontrol.ml.OcrProcessor.processBitmap(requireContext(), bitmap) { res, err ->
+                            com.albacontrol.ml.OcrProcessor.processBitmap(bitmap) { res, err ->
                                 if (err != null) cont.resumeWith(Result.failure(err))
                                 else cont.resumeWith(Result.success(res))
                             }
