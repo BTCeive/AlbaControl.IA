@@ -1016,7 +1016,14 @@ class NuevoAlbaranFragment : Fragment() {
             text.split(Regex("\\s+")).forEach { tkn -> if (tkn.length >= 4) candidatesSet.add(normalizeKey(tkn)) }
         }
 
-        candidatesSet.removeIf { it.isBlank() }
+                // remove blank candidates in a way compatible with older Android APIs
+                val iter = candidatesSet.iterator()
+                while (iter.hasNext()) {
+                    val v = iter.next()
+                    if (v == null || v.isBlank()) {
+                        iter.remove()
+                    }
+                }
         if (candidatesSet.isEmpty()) {
             Log.d("AlbaTpl", "no candidates extracted from OCR to match templates")
             return
