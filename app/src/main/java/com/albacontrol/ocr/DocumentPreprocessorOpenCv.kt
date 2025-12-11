@@ -90,7 +90,7 @@ object DocumentPreprocessorOpenCv {
             // Sanity check: if detected document is too small, it's likely noise or a wrong contour.
             // Return null to fallback to simple preprocessing (full image).
             if (maxWidth < 500 || maxHeight < 500) {
-                android.util.Log.w("AlbaTpl", "DocumentPreprocessorOpenCv: detected document too small (${maxWidth}x${maxHeight}), falling back to full image")
+                android.util.Log.w("AlbaTpl", "DocPreprocOpenCv: detected document too small (${maxWidth}x${maxHeight}), falling back to full image")
                 return null
             }
 
@@ -122,7 +122,7 @@ object DocumentPreprocessorOpenCv {
         android.util.Log.d("AlbaTpl", "DocumentPreprocessorOpenCv: applied CLAHE (skipping manual threshold)")
         return colored
         } catch (e: Exception) {
-            Log.w("DocumentPreprocessorOCV", "detect warp failed: ${e.message}")
+            Log.w("DocPreprocOpenCv", "detect warp failed: ${e.message}")
             return null
         }
     }

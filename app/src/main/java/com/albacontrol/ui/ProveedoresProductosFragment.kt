@@ -197,10 +197,10 @@ class ProveedoresProductosFragment : Fragment() {
 
                 val btnDel = line.findViewById<ImageButton>(R.id.btnDeleteProductLine)
                 btnDel.setOnClickListener {
-                  AlertDialog.Builder(requireContext())
-                      .setTitle(getString(R.string.delete_product_title))
-                      .setMessage(getString(R.string.delete_product_message))
-                      .setPositiveButton(getString(R.string.delete)) { _, _ ->
+                    AlertDialog.Builder(requireContext())
+                        .setTitle(getString(R.string.delete_product_title))
+                        .setMessage(getString(R.string.delete_product_message))
+                        .setPositiveButton(getString(R.string.delete)) { _, _ ->
                             lifecycleScope.launch {
                                 val db = AppDatabase.getInstance(requireContext())
                                 withContext(Dispatchers.IO) {

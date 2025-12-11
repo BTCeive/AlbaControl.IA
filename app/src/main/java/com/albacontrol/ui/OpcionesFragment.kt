@@ -548,9 +548,9 @@ class OpcionesFragment : Fragment() {
             tplDao.deleteAllSamples(); tplDao.deleteAllTemplates()
         }
 
-            tmpDir.listFiles()?.forEach { f ->
+        tmpDir.listFiles()?.forEach { f ->
             try {
-                val name = f.name.toLowerCase(Locale.ROOT)
+                val name = f.name.lowercase(Locale.ROOT)
                 when {
                         name.contains("draft") && name.endsWith(".json") -> importDraftsFromFile(f, false)
                     name.contains("providers") && name.endsWith(".json") -> importProvidersFileFromFile(f, false)
@@ -864,7 +864,7 @@ class OpcionesFragment : Fragment() {
                         val arr = org.json.JSONArray(manifestStr)
                         for (i in 0 until arr.length()) manifestItems.add(arr.getJSONObject(i))
                     } catch (_: Exception) {}
-                } else if (name.toLowerCase(Locale.ROOT).endsWith(".pdf")) {
+                } else if (name.toLowerCase().endsWith(".pdf")) {
                     val outFile = File(historyDir, name)
                     FileOutputStream(outFile).use { fos ->
                         zis.copyTo(fos)
