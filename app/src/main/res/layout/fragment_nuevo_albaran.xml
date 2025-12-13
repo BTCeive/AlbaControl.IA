@@ -293,7 +293,7 @@
                 android:id="@+id/btnGuardarBorrador"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:text="@string/save_draft_button"
                 android:elevation="4dp"
                 android:clipToPadding="false" />
@@ -312,7 +312,7 @@
                 android:id="@+id/btnCancelar"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:text="@string/cancel"
                 android:elevation="4dp"
                 android:clipToPadding="false" />

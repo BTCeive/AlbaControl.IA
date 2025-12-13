@@ -179,6 +179,14 @@ class ProveedoresProductosFragment : Fragment() {
                     .show()
             }
 
+            // Desplegar automáticamente si hay búsqueda activa y hay coincidencias en productos
+            val shouldAutoExpand = !highlight.isNullOrEmpty() && entry.products.any { 
+                it.lowercase(Locale.getDefault()).contains(highlight.lowercase(Locale.getDefault()))
+            }
+            
+            // Establecer visibilidad inicial
+            holder.productsContainer.visibility = if (shouldAutoExpand) View.VISIBLE else View.GONE
+
             // toggle products list
             holder.itemView.setOnClickListener {
                 holder.productsContainer.visibility = if (holder.productsContainer.visibility == View.GONE) View.VISIBLE else View.GONE

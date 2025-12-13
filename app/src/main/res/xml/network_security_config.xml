@@ -7,3 +7,4 @@
         <domain includeSubdomains="true">10.0.2.2</domain> <!-- Emulador Android -->
     </domain-config>
 </network-security-config>
+
