@@ -537,7 +537,7 @@ class OpcionesFragment : Fragment() {
         extractZipToDir(target, tmpDir)
 
         // Now inspect tmpDir and route files to the existing import handlers
-        // If replace==true, clear targets first
+        // If replace==true, clear targets first (do it once here, then pass false to avoid double deletion)
         if (replace) {
             val db = com.albacontrol.data.AppDatabase.getInstance(requireContext())
             // delete drafts
@@ -551,6 +551,7 @@ class OpcionesFragment : Fragment() {
             tplDao.deleteAllSamples(); tplDao.deleteAllTemplates()
         }
 
+        // Pass false to individual importers since we already cleared data if replace=true
         tmpDir.listFiles()?.forEach { f ->
             try {
                 val name = f.name.lowercase(Locale.ROOT)
