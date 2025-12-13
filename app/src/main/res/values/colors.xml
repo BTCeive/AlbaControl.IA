@@ -1,12 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="iconTint">#FF444444</color>
-    <color name="primary">#3F51B5</color>
-    <color name="accent">#FF4081</color>
-    <color name="light_gray">#F2F2F5</color>
-    <color name="gradient_start">#2196F3</color>
-    <color name="gradient_end">#4CAF50</color>
+    <!-- Colores principales con degradado azul a verde -->
+    <color name="primary">#1E88E5</color>
+    <color name="primary_dark">#1565C0</color>
+    <color name="accent">#26C6DA</color>
+    
+    <!-- Degradado azul a verde -->
+    <color name="gradient_start">#1E88E5</color>
+    <color name="gradient_mid">#26A69A</color>
+    <color name="gradient_end">#43A047</color>
+    
+    <!-- Fondos -->
+    <color name="background">#F5F7FA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="card_background">#FFFFFF</color>
+    
+    <!-- Textos -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#BDBDBD</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    
+    <!-- Botones -->
     <color name="btn_text">#FFFFFF</color>
-    <color name="btn_ripple">#33000000</color>
-    <color name="ic_launcher_background">#0D47A1</color>
+    <color name="btn_ripple">#40FFFFFF</color>
+    
+    <!-- Dividers y bordes -->
+    <color name="divider">#E0E0E0</color>
+    <color name="border_light">#EEEEEE</color>
+    
+    <!-- Sombras -->
+    <color name="shadow_light">#1A000000</color>
+    <color name="shadow_medium">#33000000</color>
+    
+    <!-- Estados -->
+    <color name="success">#43A047</color>
+    <color name="warning">#FFA726</color>
+    <color name="error">#EF5350</color>
+    <color name="info">#29B6F6</color>
+    
+    <!-- Legacy -->
+    <color name="iconTint">#757575</color>
+    <color name="light_gray">#F5F7FA</color>
+    <color name="ic_launcher_background">#1565C0</color>
 </resources>

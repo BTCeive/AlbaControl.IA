@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Sombra del botón -->
+    <!-- Sombra -->
     <item
         android:top="0dp"
         android:left="2dp"
@@ -8,11 +8,11 @@
         android:bottom="6dp">
         <shape android:shape="rectangle">
             <corners android:radius="14dp" />
-            <solid android:color="@color/shadow_medium" />
+            <solid android:color="@color/shadow_light" />
         </shape>
     </item>
     
-    <!-- Botón con degradado -->
+    <!-- Botón secundario -->
     <item
         android:top="0dp"
         android:left="0dp"
@@ -20,12 +20,10 @@
         android:bottom="4dp">
         <shape android:shape="rectangle">
             <corners android:radius="14dp" />
-            <gradient
-                android:angle="135"
-                android:startColor="@color/gradient_start"
-                android:centerColor="@color/gradient_mid"
-                android:endColor="@color/gradient_end"
-                android:type="linear" />
+            <solid android:color="@color/surface" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/primary" />
         </shape>
     </item>
 </layer-list>
