@@ -73,6 +73,12 @@
     <string name="recepcionistas_title">الموظفون في الاستقبال</string>
     <string name="pickup_location_title">موقع الاستلام</string>
     <string name="auto_destination_emails_title">رسائل الوجهة التلقائية</string>
+    <string name="preferred_email_app_title">تطبيق البريد الإلكتروني المفضل</string>
+    <string name="email_app_chooser">اختر في كل مرة</string>
+    <string name="email_app_gmail">Gmail</string>
+    <string name="email_app_outlook">Outlook</string>
+    <string name="email_app_protonmail">ProtonMail</string>
+    <string name="email_app_other">تطبيق آخر</string>
     <string name="languages_title">اللغات</string>
     <string name="app_configuration_title">إعداد التطبيق</string>
     <string name="ocr_system_title">نظام OCR</string>

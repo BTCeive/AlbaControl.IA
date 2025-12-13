@@ -2,10 +2,12 @@ package com.albacontrol.data
 
 object TemplateLearningConfig {
     // Número mínimo de muestras requeridas para crear/actualizar una plantilla
-    const val MIN_SAMPLES_CREATE_TEMPLATE: Int = 2
+    // Reducido a 1 para facilitar pruebas (en producción debería ser 2-3)
+    const val MIN_SAMPLES_CREATE_TEMPLATE: Int = 1
 
     // Umbrales de scoring para aplicar/confirmar plantillas
-    const val SCORE_APPLY_THRESHOLD: Double = 0.65
+    // Reducido a 0.60 para permitir matching basado en IoU cuando OCR falla
+    const val SCORE_APPLY_THRESHOLD: Double = 0.60
     const val SCORE_CONFIRM_THRESHOLD: Double = 0.45
 
     // Pesos para combinar IoU y similitud de texto en el scoring

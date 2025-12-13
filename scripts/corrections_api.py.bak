@@ -1,0 +1,95 @@
+#!/usr/bin/env python3
+from flask import Flask, request, jsonify
+from pathlib import Path
+import json
+from datetime import datetime
+import re
+from datetime import datetime as _dt
+
+OUT_DIR = Path("artifacts_device/persisted_corrections")
+OUT_DIR.mkdir(parents=True, exist_ok=True)
+
+app = Flask(__name__)
+
+# NIF/CIF basic normalization
+def normalize_nif(nif):
+    if not nif:
+        return ""
+    s = re.sub(r'[^A-Za-z0-9]', '', str(nif)).upper()
+    return s
+
+def valid_iso_date(s):
+    if not s:
+        return False
+    try:
+        # Accept YYYY-MM-DD or full ISO
+        _dt.fromisoformat(s)
+        return True
+    except Exception:
+        # try common fallback dd/mm/YYYY
+        try:
+            _dt.strptime(s, "%d/%m/%Y")
+            return True
+        except Exception:
+            return False
+
+def validate_payload(p):
+    if not isinstance(p, dict):
+        return False, "payload must be a JSON object"
+    if not p.get("debug_id"):
+        return False, "missing debug_id"
+    if not (p.get("template_id") or p.get("nif")):
+        return False, "missing template_id or nif"
+    # normalize nif
+    if p.get("nif"):
+        p["nif"] = normalize_nif(p["nif"])
+    # normalize proveedor
+    if p.get("proveedor"):
+        p["proveedor"] = str(p["proveedor"]).strip()
+    # validate date if present
+    if p.get("fecha_albaran") and not valid_iso_date(p.get("fecha_albaran")):
+        return False, "fecha_albaran must be ISO date YYYY-MM-DD or ISO format"
+    # validate productos structure if present
+    prods = p.get("productos")
+    if prods is not None:
+        if not isinstance(prods, list):
+            return False, "productos must be a list"
+        for i, row in enumerate(prods):
+            if not isinstance(row, dict):
+                return False, f"producto at index {i} must be an object"
+            if not row.get("descripcion"):
+                return False, f"producto at index {i} missing descripcion"
+            if "unidades" in row:
+                try:
+                    float(row["unidades"])
+                except Exception:
+                    return False, f"producto at index {i} unidades must be numeric"
+            if "precio_unitario" in row:
+                try:
+                    float(row["precio_unitario"])
+                except Exception:
+                    return False, f"producto at index {i} precio_unitario must be numeric"
+    return True, p
+
+@app.route("/api/v1/corrections", methods=["POST"])
+def receive_correction():
+    try:
+        payload = request.get_json(force=True)
+    except Exception as e:
+        return jsonify({"ok": False, "error": "invalid json", "detail": str(e)}), 400
+    ok, info = validate_payload(payload)
+    if not ok:
+        return jsonify({"ok": False, "error": info}), 400
+    # write file with timestamp
+    ts = datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
+    debug = payload.get("debug_id", "debug_unknown")
+    fname = OUT_DIR / f"{debug}_corr_{ts}.json"
+    fname.write_text(json.dumps(info, ensure_ascii=False, indent=2), encoding="utf-8")
+    return jsonify({"ok": True, "path": str(fname)}), 201
+
+@app.route("/api/v1/health", methods=["GET"])
+def health():
+    return jsonify({"ok": True, "persisted_dir": str(OUT_DIR)})
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5001, debug=False)

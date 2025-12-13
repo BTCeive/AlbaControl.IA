@@ -74,6 +74,12 @@
     <string name="recepcionistas_title">Ndaw reception yi</string>
     <string name="pickup_location_title">Berab jëfandikoo</string>
     <string name="auto_destination_emails_title">Email yu jot-automatic</string>
+    <string name="preferred_email_app_title">Aplikasion email bu bëgg</string>
+    <string name="email_app_chooser">Tann ci yëp yoon</string>
+    <string name="email_app_gmail">Gmail</string>
+    <string name="email_app_outlook">Outlook</string>
+    <string name="email_app_protonmail">ProtonMail</string>
+    <string name="email_app_other">Beneen aplikasion</string>
     <string name="languages_title">Kàddu yi</string>
     <string name="app_configuration_title">Jagg app bi</string>
     <string name="ocr_system_title">Sistem OCR</string>

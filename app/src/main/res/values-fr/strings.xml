@@ -65,6 +65,12 @@
 	<string name="recepcionistas_title">Réceptionnistes</string>
 	<string name="pickup_location_title">Lieu de retrait</string>
 	<string name="auto_destination_emails_title">Emails de destination automatique</string>
+	<string name="preferred_email_app_title">Application e-mail préférée</string>
+	<string name="email_app_chooser">Choisir à chaque fois</string>
+	<string name="email_app_gmail">Gmail</string>
+	<string name="email_app_outlook">Outlook</string>
+	<string name="email_app_protonmail">ProtonMail</string>
+	<string name="email_app_other">Autre application</string>
 	<string name="languages_title">Langues</string>
 	<string name="app_configuration_title">Configuration de l’application</string>
 	<string name="ocr_system_title">Système OCR</string>

@@ -15,6 +15,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.resume
 import android.content.Intent
 import android.graphics.pdf.PdfDocument
 import android.graphics.Color
@@ -162,14 +164,23 @@ class NuevoAlbaranFragment : Fragment() {
         // Inicializar Tesseract OCR en background (para fallback cuando ML Kit falle)
         lifecycleScope.launch(Dispatchers.IO) {
             try {
+                Log.d("AlbaTpl", "Attempting to initialize Tesseract...")
                 val success = com.albacontrol.ml.TesseractOcrProcessor.init(requireContext())
                 if (success) {
-                    Log.d("AlbaTpl", "Tesseract initialized successfully")
+                    Log.d("AlbaTpl", "✓ Tesseract initialized successfully")
                 } else {
-                    Log.w("AlbaTpl", "Tesseract initialization failed")
+                    Log.w("AlbaTpl", "✗ Tesseract initialization failed - check tessdata files")
+                    // Verificar si existen los archivos de datos
+                    val tessDataDir = requireContext().getExternalFilesDir("tessdata")
+                    Log.d("AlbaTpl", "TessData directory: ${tessDataDir?.absolutePath}")
+                    Log.d("AlbaTpl", "TessData exists: ${tessDataDir?.exists()}")
+                    tessDataDir?.listFiles()?.forEach { file ->
+                        Log.d("AlbaTpl", "TessData file: ${file.name} (${file.length()} bytes)")
+                    }
                 }
             } catch (e: Exception) {
-                Log.e("AlbaTpl", "Tesseract init error: ${e.message}")
+                Log.e("AlbaTpl", "Tesseract init error: ${e.message}", e)
+                e.printStackTrace()
             }
         }
 
@@ -424,6 +435,23 @@ class NuevoAlbaranFragment : Fragment() {
             json.put("nif", etNif.text.toString())
             json.put("numero_albaran", etNumero.text.toString())
             json.put("fecha_albaran", etFechaAlb.text.toString())
+            
+            // Recepcionista y ubicación
+            try {
+                val spinnerRecep = view.findViewById<Spinner>(R.id.spinnerRecepcionista)
+                val recep = spinnerRecep.selectedItem?.toString() ?: ""
+                json.put("recepcionista", recep)
+            } catch (_: Exception) { json.put("recepcionista", "") }
+            
+            try {
+                val spinnerUbic = view.findViewById<Spinner>(R.id.spinnerUbicacion)
+                val ubic = spinnerUbic.selectedItem?.toString() ?: ""
+                json.put("ubicacion_recogida", ubic)
+            } catch (_: Exception) { json.put("ubicacion_recogida", "") }
+            
+            // Sin albarán
+            json.put("sin_albaran", checkSinAlbaran.isChecked)
+            
             // comentarios
             try {
                 val etComments = view.findViewById<EditText>(R.id.etComentarios)
@@ -438,6 +466,7 @@ class NuevoAlbaranFragment : Fragment() {
             json.put("created_at", System.currentTimeMillis())
 
             val productsArray = JSONArray()
+            var tieneIncidencias = false
             for (i in 0 until productContainer.childCount) {
                 val item = productContainer.getChildAt(i)
                 val desc = item.findViewById<EditText>(R.id.etDescripcion).text.toString()
@@ -445,6 +474,8 @@ class NuevoAlbaranFragment : Fragment() {
                 val precio = item.findViewById<EditText>(R.id.etPrecio).text.toString()
                 val importe = item.findViewById<EditText>(R.id.etImporte).text.toString()
                 val inc = item.findViewById<CheckBox>(R.id.checkIncidencia).isChecked
+                
+                if (inc) tieneIncidencias = true
 
                 val p = JSONObject()
                 p.put("descripcion", desc)
@@ -455,6 +486,7 @@ class NuevoAlbaranFragment : Fragment() {
                 productsArray.put(p)
             }
             json.put("products", productsArray)
+            json.put("tiene_incidencias", tieneIncidencias)
 
             // Generar PDF y guardar CompletedAlbaran usando coroutines
             val db = AppDatabase.getInstance(requireContext())
@@ -503,6 +535,14 @@ class NuevoAlbaranFragment : Fragment() {
                         val saveJob = savePatternFromCorrections()
                         try { saveJob.join() } catch (_: Exception) {}
                     } catch (_: Exception) {}
+                    
+                    // Enviar corrección al backend API para aprendizaje
+                    try {
+                        sendCorrectionToBackend(json, lastOcrResult, lastOcrBitmap)
+                    } catch (e: Exception) {
+                        Log.e("AlbaTpl", "Error al enviar corrección al backend: ${e.message}", e)
+                        // No mostrar error al usuario, es opcional
+                    }
                     // Abrir cliente de correo con adjunto (asunto/cuerpo/recipientes desde opciones)
                     try {
                         val uri: Uri = FileProvider.getUriForFile(requireContext(), requireContext().packageName + ".fileprovider", pdfFile)
@@ -544,7 +584,24 @@ class NuevoAlbaranFragment : Fragment() {
                         email.putExtra(Intent.EXTRA_TEXT, body.toString())
                         email.putExtra(Intent.EXTRA_STREAM, uri)
                         email.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                        startActivity(Intent.createChooser(email, getString(R.string.send_chooser)))
+                        
+                        // Verificar si hay app de email preferida configurada
+                        val preferredEmailApp = prefs.getString("preferred_email_app", "") ?: ""
+                        if (preferredEmailApp.isNotBlank()) {
+                            // Abrir directamente la app preferida
+                            email.setPackage(preferredEmailApp)
+                            try {
+                                startActivity(email)
+                            } catch (e: Exception) {
+                                // Si la app no está instalada, mostrar chooser
+                                Log.w("AlbaTpl", "App preferida no disponible: $preferredEmailApp, mostrando chooser")
+                                email.setPackage(null)
+                                startActivity(Intent.createChooser(email, getString(R.string.send_chooser)))
+                            }
+                        } else {
+                            // Mostrar chooser si no hay app preferida
+                            startActivity(Intent.createChooser(email, getString(R.string.send_chooser)))
+                        }
                     } catch (e: Exception) {
                         Toast.makeText(requireContext(), getString(com.albacontrol.R.string.toast_email_error, e.message ?: ""), Toast.LENGTH_LONG).show()
                     }
@@ -708,9 +765,6 @@ class NuevoAlbaranFragment : Fragment() {
                     Log.d("AlbaTpl", "NuevoAlbaranFragment: Tesseract initialized successfully")
                 } else {
                     Log.w("AlbaTpl", "NuevoAlbaranFragment: Tesseract initialization failed")
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(requireContext(), "Advertencia: OCR no disponible. Verifique los archivos de idioma.", Toast.LENGTH_LONG).show()
-                    }
                 }
             } catch (e: Exception) {
                 Log.e("AlbaTpl", "NuevoAlbaranFragment: Tesseract init error: ${e.message}")
@@ -724,6 +778,7 @@ class NuevoAlbaranFragment : Fragment() {
         // New capture -> allow OCR/template to repopulate products and reset auto-populate lock
         productsManuallyEdited = false
         autoPopulateDone = false
+        Log.d("AlbaTpl", "onImageCaptured: reset flags - autoPopulateDone=false, productsManuallyEdited=false")
         // Validate resolution
         if (bitmap.width < 500 || bitmap.height < 500) {
             Log.e("AlbaTpl", "onImageCaptured: Rejected low resolution image (${bitmap.width}x${bitmap.height})")
@@ -733,7 +788,6 @@ class NuevoAlbaranFragment : Fragment() {
 
         // Cuando se obtiene una imagen, procesarla con Tesseract OCR
         checkSinAlbaran.isChecked = false
-        Toast.makeText(requireContext(), getString(com.albacontrol.R.string.processing_image), Toast.LENGTH_SHORT).show()
         // guardar bitmap para posible muestra de plantilla
         lastOcrBitmap = bitmap.copy(bitmap.config ?: android.graphics.Bitmap.Config.ARGB_8888, false)
 
@@ -835,11 +889,17 @@ class NuevoAlbaranFragment : Fragment() {
                 if (tesseractResult != null) {
                     Log.d("AlbaTpl", "Tesseract OCR: success - proveedor='${tesseractResult.proveedor}' nif='${tesseractResult.nif}' numero='${tesseractResult.numeroAlbaran}' fecha='${tesseractResult.fechaAlbaran}'")
                     lastOcrResult = tesseractResult
-                    applyOcrResultToForm(tesseractResult)
+                    
+                    // IMPORTANTE: Aplicar plantilla ANTES de OCR para que la plantilla tenga prioridad
                     try {
+                        Log.d("AlbaTpl", "Attempting to apply template before OCR form population")
                         applyTemplateIfExists(tesseractResult, bitmap)
-                    } catch (_: Exception) {}
-                    Toast.makeText(requireContext(), getString(com.albacontrol.R.string.ocr_applied), Toast.LENGTH_SHORT).show()
+                    } catch (e: Exception) {
+                        Log.e("AlbaTpl", "Error applying template: ${e.message}", e)
+                    }
+                    
+                    // Luego aplicar OCR solo si no hay plantilla o para campos vacíos
+                    applyOcrResultToForm(tesseractResult)
                 } else {
                     Log.e("AlbaTpl", "Tesseract OCR: failed to process image")
                     Toast.makeText(requireContext(), "Error procesando documento. Intente de nuevo.", Toast.LENGTH_LONG).show()
@@ -972,26 +1032,21 @@ class NuevoAlbaranFragment : Fragment() {
             }
 
             if (bestTpl != null) {
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(requireContext(), getString(R.string.ocr_applied) + ": " + bestTpl.providerNif, Toast.LENGTH_SHORT).show()
-                }
                 applySpecificTemplate(bestTpl, bmp, result, overwrite = false)
             }
         }
     }
 
     private suspend fun applyTemplateIfExists(result: com.albacontrol.ml.OCRResult, bitmap: android.graphics.Bitmap) {
-        if (autoPopulateDone) {
-            Log.d("AlbaTpl", "applyTemplateIfExists: skipped because autoPopulateDone=true")
-            return
-        }
-        Log.d("AlbaTpl", "applyTemplateIfExists: candidates nif='${result.nif}' proveedor='${result.proveedor}'")
+        // NO verificar autoPopulateDone aquí - las plantillas deben aplicarse siempre que existan
+        Log.d("AlbaTpl", "applyTemplateIfExists: entry - candidates nif='${result.nif}' proveedor='${result.proveedor}'")
         val db = com.albacontrol.data.AppDatabase.getInstance(requireContext())
 
         // Construir un conjunto amplio de candidatos a partir de todo el texto OCR disponible
+        // Usar OcrUtils para consistencia en la normalización
         fun normalizeKey(s: String?): String {
             if (s == null) return ""
-            return s.filter { it.isLetterOrDigit() }.lowercase().trim()
+            return com.albacontrol.util.OcrUtils.normalizeToken(s)
         }
 
         val candidatesSet = mutableSetOf<String>()
@@ -1073,16 +1128,57 @@ class NuevoAlbaranFragment : Fragment() {
                 val pNorm = normalizeKey(t.providerNif)
                 val pDigits = digitsOnly(pNorm)
                 var textMatches = 0
+                var bestTextMatch = 0.0
+                
                 if (pNorm.isNotBlank()) {
                     for (cand in candidatesList) {
-                        val candDigits = digitsOnly(cand)
-                        if (cand == pNorm || cand.contains(pNorm) || pNorm.contains(cand) ||
-                            (pDigits.isNotBlank() && candDigits.isNotBlank() && (pDigits == candDigits || pDigits.contains(candDigits) || candDigits.contains(pDigits)))) {
+                        val candNorm = normalizeKey(cand)
+                        val candDigits = digitsOnly(candNorm)
+                        
+                        // Exact match (score 1.0)
+                        if (candNorm == pNorm) {
                             textMatches++
+                            bestTextMatch = kotlin.math.max(bestTextMatch, 1.0)
+                            continue
+                        }
+                        
+                        // Contains match (score 0.8-0.95 based on length ratio)
+                        if (candNorm.contains(pNorm) || pNorm.contains(candNorm)) {
+                            // Dar mejor score si la longitud es similar (más específico)
+                            val lenRatio = minOf(candNorm.length, pNorm.length).toDouble() / maxOf(candNorm.length, pNorm.length).toDouble()
+                            val score = 0.8 + (lenRatio * 0.15) // 0.8 a 0.95
+                            textMatches++
+                            bestTextMatch = kotlin.math.max(bestTextMatch, score)
+                            continue
+                        }
+                        
+                        // NIF digit matching (score 0.6-0.9 based on overlap)
+                        if (pDigits.isNotBlank() && candDigits.isNotBlank()) {
+                            if (pDigits == candDigits) {
+                                textMatches++
+                                bestTextMatch = kotlin.math.max(bestTextMatch, 0.9)
+                            } else {
+                                val overlap = calculateDigitOverlap(pDigits, candDigits)
+                                if (overlap > 0.5) {
+                                    textMatches++
+                                    bestTextMatch = kotlin.math.max(bestTextMatch, 0.6 + overlap * 0.3)
+                                }
+                            }
+                        }
+                        
+                        // Fuzzy match usando OcrUtils (score 0.5-0.7)
+                        // Threshold reducido de 0.7 a 0.5 para ser más permisivo
+                        if (com.albacontrol.util.OcrUtils.fuzzyContains(candNorm, pNorm, 0.5)) {
+                            val ratio = levenshteinRatio(candNorm, pNorm)
+                            textMatches++
+                            bestTextMatch = kotlin.math.max(bestTextMatch, 0.5 + ratio * 0.2)
                         }
                     }
                 }
-                val textScore = if (textMatches > 0) 1.0 else 0.0
+                
+                // Usar el mejor match en lugar de binario
+                val textScore = bestTextMatch
+                Log.d("AlbaTpl", "Template '${t.providerNif}': textScore=$textScore (matches=$textMatches)")
 
                 var iouSum = 0.0
                 var iouCount = 0
@@ -1129,8 +1225,14 @@ class NuevoAlbaranFragment : Fragment() {
                 val wEmb = com.albacontrol.data.TemplateLearningConfig.EMBEDDING_WEIGHT
                 val totalW = wIou + wText + wEmb
                 if (totalW <= 0.0) return 0.0
-                return (wIou * iouScore + wText * textScore + wEmb * embScore) / totalW
-            } catch (_: Exception) { return 0.0 }
+                
+                val finalScore = (wIou * iouScore + wText * textScore + wEmb * embScore) / totalW
+                Log.d("AlbaTpl", "Template '${t.providerNif}': finalScore=$finalScore (iou=$iouScore text=$textScore emb=$embScore)")
+                return finalScore
+            } catch (e: Exception) { 
+                Log.e("AlbaTpl", "Error computing template score for '${t.providerNif}': ${e.message}", e)
+                return 0.0 
+            }
         }
 
         var bestTpl: com.albacontrol.data.OCRTemplate? = null
@@ -1145,21 +1247,28 @@ class NuevoAlbaranFragment : Fragment() {
             } catch (_: Exception) {}
         }
 
+        Log.d("AlbaTpl", "Template matching complete: bestScore=$bestScore threshold=${com.albacontrol.data.TemplateLearningConfig.SCORE_APPLY_THRESHOLD} bestTpl=${bestTpl?.providerNif}")
+        
         if (bestTpl != null && bestScore >= com.albacontrol.data.TemplateLearningConfig.SCORE_APPLY_THRESHOLD) {
              // Show feedback to user about template application
              withContext(Dispatchers.Main) {
                  val sampleCount = try {
-                     allSamples.count { it.providerNif.trim().lowercase() == bestTpl.providerNif.trim().lowercase() }
-                 } catch (_: Exception) { 0 }
-                 Toast.makeText(
-                     requireContext(), 
-                     "✓ Plantilla aplicada: ${bestTpl.providerNif} (${sampleCount} muestras, confianza: ${(bestScore * 100).toInt()}%)",
-                     Toast.LENGTH_SHORT
-                 ).show()
-             }
+                     val bestTplKey = normalizeProviderKey(bestTpl.providerNif)
+                     allSamples.count { normalizeProviderKey(it.providerNif) == bestTplKey }
+                } catch (_: Exception) { 0 }
+                // Plantilla aplicada silenciosamente (sin toast para usuario final)
+            }
+            Log.d("AlbaTpl", "Applying template '${bestTpl.providerNif}' with score $bestScore")
              applySpecificTemplate(bestTpl, bitmap, result)
+             // Marcar que ya se aplicó contenido para evitar que OCR sobrescriba
+             autoPopulateDone = true
+             Log.d("AlbaTpl", "Template applied, set autoPopulateDone=true")
         } else {
-             Log.d("AlbaTpl", "no matching template found (score=$bestScore)")
+             if (bestTpl != null) {
+                 Log.d("AlbaTpl", "Template '${bestTpl.providerNif}' found but score $bestScore below threshold ${com.albacontrol.data.TemplateLearningConfig.SCORE_APPLY_THRESHOLD}")
+             } else {
+                 Log.d("AlbaTpl", "No matching template found (checked ${templates.size} templates)")
+             }
         }
     }
 
@@ -1263,9 +1372,51 @@ class NuevoAlbaranFragment : Fragment() {
                 deltaY = median(sortedY)
                 Log.d("AlbaTpl", "Final Alignment (Median of ${detectedOffsets.size} anchors): deltaX=$deltaX, deltaY=$deltaY")
             } else {
-                Log.d("AlbaTpl", "Alignment: No anchors found. Defaulting to 0 offset.")
+                Log.w("AlbaTpl", "Alignment: No anchors found. Defaulting to 0 offset. This may cause misalignment.")
+                // Intentar usar un offset basado en la posición del primer bloque OCR si está disponible
+                if (result.allBlocks.isNotEmpty()) {
+                    val firstBlock = result.allBlocks.first()
+                    val firstRect = firstBlock.second
+                    if (firstRect != null) {
+                        // Usar un pequeño offset basado en la posición del primer bloque
+                        // Esto es una heurística simple para documentos con desplazamiento pequeño
+                        val estimatedOffsetX = (firstRect.left.toFloat() / bw) - 0.1f // Asumir que el documento empieza ~10% desde la izquierda
+                        val estimatedOffsetY = (firstRect.top.toFloat() / bh) - 0.1f
+                        deltaX = estimatedOffsetX.coerceIn(-0.2f, 0.2f) // Limitar el offset
+                        deltaY = estimatedOffsetY.coerceIn(-0.2f, 0.2f)
+                        Log.d("AlbaTpl", "Using estimated offset from first block: deltaX=$deltaX deltaY=$deltaY")
+                    }
+                }
             }
         }
+
+        // Obtener las muestras originales para extraer el texto reconocido
+        val samples = try {
+            withContext(Dispatchers.IO) {
+                val db = AppDatabase.getInstance(requireContext())
+                db.templateDao().getAllSamples().filter {
+                    normalizeProviderKey(it.providerNif) == normalizeProviderKey(chosenTpl.providerNif)
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("AlbaTpl", "Failed to load samples: ${e.message}")
+            emptyList()
+        }
+        
+        // Extraer el texto más común de las muestras para cada campo
+        val fieldTexts = mutableMapOf<String, String>()
+        for (sample in samples) {
+            for ((fieldName, mappingValue) in sample.fieldMappings) {
+                // mappingValue tiene formato "bbox::recognizedText"
+                val textPart = mappingValue.substringAfter("::", "").trim()
+                // Filtrar valores vacíos, "null" literal, y otros valores inválidos
+                if (textPart.isNotEmpty() && textPart != "null" && textPart.length > 1) {
+                    fieldTexts[fieldName] = textPart
+                }
+            }
+        }
+        
+        Log.d("AlbaTpl", "applyTemplate: extracted texts from samples: $fieldTexts")
 
         for ((field, bboxStr) in chosenTpl.mappings) {
             try {
@@ -1276,59 +1427,51 @@ class NuevoAlbaranFragment : Fragment() {
                 val w = parts[2].toFloat()
                 val h = parts[3].toFloat()
                 
-                val alignedX = x + deltaX
-                val alignedY = y + deltaY
+                // Usar el texto guardado en las muestras en lugar de hacer OCR de nuevo
+                val text = fieldTexts[field]
+                Log.d("AlbaTpl", "applyTemplate: field=$field using stored text='$text'")
                 
-                try {
-                    // Add 10% padding
-                    val padW = w * 0.10f
-                    val padH = h * 0.10f
-                    
-                    val cropX = ((alignedX - padW) * bw).toInt().coerceIn(0, bw.toInt() - 1)
-                    val cropY = ((alignedY - padH) * bh).toInt().coerceIn(0, bh.toInt() - 1)
-                    val cropW = ((w + 2 * padW) * bw).toInt().coerceAtMost(bw.toInt() - cropX)
-                    val cropH = ((h + 2 * padH) * bh).toInt().coerceAtMost(bh.toInt() - cropY)
-                    
-                    if (cropW > 0 && cropH > 0) {
-                        val crop = android.graphics.Bitmap.createBitmap(bitmap, cropX, cropY, cropW, cropH)
-                        Log.d("AlbaTpl", "applyTemplate: field=$field bboxStr=$bboxStr aligned=($alignedX,$alignedY) pixels=($cropX,$cropY,$cropW,$cropH)")
-
-                        val visionRes = withContext(Dispatchers.IO) {
-                            try {
-                                com.albacontrol.ml.TessOcrProcessor.processBitmap(requireContext(), crop)
-                            } catch (e: Exception) {
-                                null
-                            }
-                        }
-
-                        val text = (visionRes?.proveedor ?: visionRes?.allBlocks?.joinToString(" ") { it.first })?.trim()
-                        if (!text.isNullOrBlank()) {
-                            withContext(Dispatchers.Main) {
-                                val view = requireView()
-                                when (field) {
-                                    "proveedor" -> {
-                                        val et = view.findViewById<EditText>(R.id.etProveedor)
-                                        if ((overwrite && (userEdited["proveedor"] != true)) || et.text.isBlank()) et.setText(text)
-                                    }
-                                    "nif" -> {
-                                        val et = view.findViewById<EditText>(R.id.etNif)
-                                        if ((overwrite && (userEdited["nif"] != true)) || et.text.isBlank()) et.setText(text)
-                                    }
-                                    "numero_albaran" -> {
-                                        val et = view.findViewById<EditText>(R.id.etNumeroAlbaran)
-                                        if ((overwrite && (userEdited["numero_albaran"] != true)) || et.text.isBlank()) et.setText(text)
-                                    }
-                                    "fecha_albaran" -> {
-                                        val et = view.findViewById<EditText>(R.id.etFechaAlbaran)
-                                        if ((overwrite && (userEdited["fecha_albaran"] != true)) || et.text.isBlank()) et.setText(text)
-                                    }
-                                    else -> {}
+                if (!text.isNullOrBlank()) {
+                    withContext(Dispatchers.Main) {
+                        val view = requireView()
+                        when (field) {
+                            "proveedor" -> {
+                                val et = view.findViewById<EditText>(R.id.etProveedor)
+                                if ((overwrite && (userEdited["proveedor"] != true)) || et.text.isBlank()) {
+                                    et.setText(text)
+                                    Log.d("AlbaTpl", "applyTemplate: set proveedor='$text'")
                                 }
                             }
+                            "nif" -> {
+                                val et = view.findViewById<EditText>(R.id.etNif)
+                                if ((overwrite && (userEdited["nif"] != true)) || et.text.isBlank()) {
+                                    et.setText(text)
+                                    Log.d("AlbaTpl", "applyTemplate: set nif='$text'")
+                                }
+                            }
+                            "numero_albaran" -> {
+                                val et = view.findViewById<EditText>(R.id.etNumeroAlbaran)
+                                if ((overwrite && (userEdited["numero_albaran"] != true)) || et.text.isBlank()) {
+                                    et.setText(text)
+                                    Log.d("AlbaTpl", "applyTemplate: set numero_albaran='$text'")
+                                }
+                            }
+                            "fecha_albaran" -> {
+                                val et = view.findViewById<EditText>(R.id.etFechaAlbaran)
+                                if ((overwrite && (userEdited["fecha_albaran"] != true)) || et.text.isBlank()) {
+                                    et.setText(text)
+                                    Log.d("AlbaTpl", "applyTemplate: set fecha_albaran='$text'")
+                                }
+                            }
+                            else -> {}
                         }
                     }
-                } catch (_: Exception) {}
-            } catch (_: Exception) {}
+                } else {
+                    Log.w("AlbaTpl", "applyTemplate: field=$field has no stored text")
+                }
+            } catch (e: Exception) {
+                Log.e("AlbaTpl", "applyTemplate: error processing field=$field: ${e.message}", e)
+            }
         }
 
         try {
@@ -1380,14 +1523,18 @@ class NuevoAlbaranFragment : Fragment() {
                                         if (cright <= cleft) continue
                                         
                                         val crop = android.graphics.Bitmap.createBitmap(bitmap, cleft, rowTop, cright - cleft, rowBottom - rowTop)
-                                        val ocrRes = withContext(Dispatchers.IO) {
-                                            try {
-                                                com.albacontrol.ml.TessOcrProcessor.processBitmap(requireContext(), crop)
-                                            } catch (e: Exception) {
-                                                null
+                                        val txt = suspendCancellableCoroutine<String> { continuation ->
+                                            com.albacontrol.ml.OcrProcessor.processBitmap(crop) { mlKitResult, error ->
+                                                if (error != null) {
+                                                    Log.e("AlbaTpl", "applyTemplate: product OCR error for key=$key: ${error.message}")
+                                                    continuation.resume("")
+                                                } else if (mlKitResult != null) {
+                                                    continuation.resume(mlKitResult.allBlocks.joinToString(" ") { it.first }.trim())
+                                                } else {
+                                                    continuation.resume("")
+                                                }
                                             }
                                         }
-                                        val txt = (ocrRes?.proveedor ?: ocrRes?.allBlocks?.joinToString(" ") { it.first })?.trim() ?: ""
                                         when (key) {
                                             "product_unidades" -> unidadesText.append(txt)
                                             "product_precio" -> precioText.append(txt)
@@ -1413,6 +1560,49 @@ class NuevoAlbaranFragment : Fragment() {
             }
         } catch (_: Exception) {}
         
+        // Aplicar productos guardados directamente desde las muestras (nuevo sistema)
+        try {
+            // Agrupar productos por índice
+            val productIndices = mutableSetOf<Int>()
+            for (key in fieldTexts.keys) {
+                if (key.startsWith("product_") && key.contains("_desc")) {
+                    val idx = key.removePrefix("product_").removeSuffix("_desc").toIntOrNull()
+                    if (idx != null) productIndices.add(idx)
+                }
+            }
+            
+            if (productIndices.isNotEmpty()) {
+                Log.d("AlbaTpl", "applyTemplate: found ${productIndices.size} products in samples")
+                withContext(Dispatchers.Main) {
+                    // Limpiar productos existentes y añadir los de la plantilla
+                    productContainer.removeAllViews()
+                    
+                    for (idx in productIndices.sorted()) {
+                        val desc = fieldTexts["product_${idx}_desc"] ?: ""
+                        val units = fieldTexts["product_${idx}_units"] ?: ""
+                        val price = fieldTexts["product_${idx}_price"] ?: ""
+                        val total = fieldTexts["product_${idx}_total"] ?: ""
+                        
+                        if (desc.isNotEmpty()) {
+                            val inflater = LayoutInflater.from(requireContext())
+                            val item = inflater.inflate(R.layout.product_item, productContainer, false)
+                            item.findViewById<EditText>(R.id.etDescripcion).setText(desc)
+                            item.findViewById<EditText>(R.id.etUnidades).setText(units)
+                            item.findViewById<EditText>(R.id.etPrecio).setText(price)
+                            item.findViewById<EditText>(R.id.etImporte).setText(total)
+                            attachWatchersToProductItem(item)
+                            productContainer.addView(item)
+                            Log.d("AlbaTpl", "applyTemplate: added product $idx: desc='$desc' units='$units' price='$price' total='$total'")
+                        }
+                    }
+                }
+            } else {
+                Log.d("AlbaTpl", "applyTemplate: no products found in samples")
+            }
+        } catch (e: Exception) {
+            Log.e("AlbaTpl", "applyTemplate: error applying products: ${e.message}", e)
+        }
+        
         try {
             val providerKey = chosenTpl.providerNif.trim().lowercase()
             if (providerKey.isNotBlank()) {
@@ -1431,8 +1621,9 @@ class NuevoAlbaranFragment : Fragment() {
     }
 
     private fun applyOcrResultToForm(result: com.albacontrol.ml.OCRResult) {
+        // Verificar si ya se aplicó para evitar sobrescribir ediciones del usuario
         if (autoPopulateDone) {
-            Log.d("AlbaTpl", "applyOcrResultToForm: skipped because autoPopulateDone=true")
+            Log.d("AlbaTpl", "applyOcrResultToForm: skipped because autoPopulateDone=true (user already has data)")
             return
         }
         val view = requireView()
@@ -1494,10 +1685,10 @@ class NuevoAlbaranFragment : Fragment() {
             Log.d("AlbaTpl", "applyOcrResultToForm: products skipped auto-population because user edited products")
         }
 
-        // Mark that we've auto-populated the form from OCR; further automatic updates
-        // (e.g., on scroll or reapplication) should not overwrite user edits.
+        // Mark that we've auto-populated the form from OCR or template
+        // Further automatic updates should not overwrite user edits
         autoPopulateDone = true
-
+        Log.d("AlbaTpl", "applyOcrResultToForm: completed, set autoPopulateDone=true")
     }
 
     private fun savePatternFromCorrections(): kotlinx.coroutines.Job {
@@ -1507,13 +1698,12 @@ class NuevoAlbaranFragment : Fragment() {
         val etNif = view.findViewById<EditText>(R.id.etNif)
 
         val providerKeyRaw = etNif.text.toString().ifBlank { etProveedor.text.toString() }
-        val providerKey = providerKeyRaw.trim().lowercase()
+        val providerKey = normalizeProviderKey(providerKeyRaw)
         // Capturar valores en variables locales inmutables para evitar problemas de smart cast/concurrencia
         val result = lastOcrResult
         val bmp = lastOcrBitmap
         if (result == null || bmp == null) {
             Log.d("AlbaTpl", "savePatternFromCorrections: missing result or bitmap or products - aborting")
-            Toast.makeText(requireContext(), getString(R.string.need_identify_provider), Toast.LENGTH_SHORT).show()
             return lifecycleScope.launch { }
         }
 
@@ -1557,7 +1747,6 @@ class NuevoAlbaranFragment : Fragment() {
 
         if (corrections == 0) {
             Log.d("AlbaTpl", "savePatternFromCorrections: no corrections detected - aborting")
-            Toast.makeText(requireContext(), getString(R.string.no_corrections), Toast.LENGTH_SHORT).show()
             return lifecycleScope.launch { }
         }
 
@@ -1617,12 +1806,14 @@ class NuevoAlbaranFragment : Fragment() {
                                         }
                     
                     // Second pass: fuzzy contains match using OcrUtils (tolerant to OCR noise)
+                    // Reducir threshold para ser más permisivo
                     if (bestWordRect == null) {
                         for (entry in result.allBlocks) {
                             val bText: String = entry.first
                             val bRect: android.graphics.Rect = entry.second
                             // use fuzzyContains which normalizes and applies Levenshtein ratio
-                            if (com.albacontrol.util.OcrUtils.fuzzyContains(bText, word, 0.6)) {
+                            // Threshold reducido de 0.6 a 0.4 para ser más permisivo
+                            if (com.albacontrol.util.OcrUtils.fuzzyContains(bText, word, 0.4)) {
                                 // Check spatial proximity to already found words
                                 if (foundRects.isNotEmpty()) {
                                     val avgY = foundRects.map { r: android.graphics.Rect -> r.centerY() }.average()
@@ -1888,7 +2079,6 @@ class NuevoAlbaranFragment : Fragment() {
         }
 
         if (mappings.isEmpty()) {
-            Toast.makeText(requireContext(), getString(R.string.no_valid_bboxes), Toast.LENGTH_SHORT).show()
             return lifecycleScope.launch { }
         }
 
@@ -2004,18 +2194,37 @@ class NuevoAlbaranFragment : Fragment() {
                     }
                 }
 
-                // fieldMappings: bbox::recognizedText
+                // fieldMappings: bbox::correctedText (usar texto corregido por el usuario, no el OCR original)
                 val fieldMappings = mutableMapOf<String, String>()
                 for ((k, v) in mappings) {
-                    val recognized = when (k) {
-                        "proveedor" -> result.proveedor ?: ""
-                        "nif" -> result.nif ?: ""
-                        "numero_albaran" -> result.numeroAlbaran ?: ""
-                        "fecha_albaran" -> result.fechaAlbaran ?: ""
+                    val correctedText = when (k) {
+                        "proveedor" -> etProveedorText
+                        "nif" -> etNifText
+                        "numero_albaran" -> etNumeroText
+                        "fecha_albaran" -> etFechaText
                         "product_row" -> ""
                         else -> ""
                     }
-                    fieldMappings[k] = "$v::$recognized"
+                    fieldMappings[k] = "$v::$correctedText"
+                    Log.d("AlbaTpl", "savePattern: storing field=$k correctedText='$correctedText'")
+                }
+                
+                // Guardar productos individuales del formulario
+                for (i in 0 until productContainer.childCount) {
+                    val item = productContainer.getChildAt(i)
+                    val desc = item.findViewById<EditText>(R.id.etDescripcion).text.toString().trim()
+                    val units = item.findViewById<EditText>(R.id.etUnidades).text.toString().trim()
+                    val price = item.findViewById<EditText>(R.id.etPrecio).text.toString().trim()
+                    val total = item.findViewById<EditText>(R.id.etImporte).text.toString().trim()
+                    
+                    if (desc.isNotEmpty()) {
+                        // Guardar cada campo del producto por separado
+                        fieldMappings["product_${i}_desc"] = "::$desc"
+                        if (units.isNotEmpty()) fieldMappings["product_${i}_units"] = "::$units"
+                        if (price.isNotEmpty()) fieldMappings["product_${i}_price"] = "::$price"
+                        if (total.isNotEmpty()) fieldMappings["product_${i}_total"] = "::$total"
+                        Log.d("AlbaTpl", "savePattern: storing product $i: desc='$desc' units='$units' price='$price' total='$total'")
+                    }
                 }
 
                 // include embedding (if available) in normalizedFields map
@@ -2048,15 +2257,35 @@ class NuevoAlbaranFragment : Fragment() {
                         try { exportTablesToExternal(db) } catch (_: Exception) {}
                 } catch (e: Exception) {
                     Log.e("AlbaTpl", "insertSample error for provider='${providerKey}': ${e.message}")
-                    Toast.makeText(requireContext(), getString(R.string.tpl_save_error, e.message ?: ""), Toast.LENGTH_LONG).show()
                 }
 
                 // contar samples existentes para este provider y, si hay suficientes, agregar/actualizar plantilla
-                val existing = try { withContext(Dispatchers.IO) { db.templateDao().getAllSamples().filter { it.providerNif.trim().lowercase() == providerKey } } } catch (e: Exception) { Log.e("AlbaTpl", "countSamples error: ${'$'}{e.message}"); emptyList<com.albacontrol.data.TemplateSample>() }
+                val existing = try { 
+                    withContext(Dispatchers.IO) { 
+                        val allSamples = db.templateDao().getAllSamples()
+                        Log.d("AlbaTpl", "Total samples in DB: ${allSamples.size}")
+                        val filtered = allSamples.filter { 
+                            val sampleKey = normalizeProviderKey(it.providerNif)
+                            val matches = sampleKey == providerKey
+                            if (matches) {
+                                Log.d("AlbaTpl", "Sample matches provider '$providerKey': id=${it.id} providerNif='${it.providerNif}'")
+                            }
+                            matches
+                        }
+                        Log.d("AlbaTpl", "Found ${filtered.size} samples for provider '$providerKey'")
+                        filtered
+                    } 
+                } catch (e: Exception) { 
+                    Log.e("AlbaTpl", "countSamples error: ${e.message}", e)
+                    emptyList<com.albacontrol.data.TemplateSample>() 
+                }
                 val count = existing.size
                 val MIN_SAMPLES_CREATE_TEMPLATE = com.albacontrol.data.TemplateLearningConfig.MIN_SAMPLES_CREATE_TEMPLATE
+                
+                Log.d("AlbaTpl", "Template creation check: count=$count MIN_SAMPLES=$MIN_SAMPLES_CREATE_TEMPLATE provider='$providerKey'")
 
                 if (count >= MIN_SAMPLES_CREATE_TEMPLATE) {
+                    Log.d("AlbaTpl", "Creating/updating template for provider '$providerKey' from $count samples")
                     val aggregated = mutableMapOf<String, String>()
                     try {
                         // collect per-field list of bbox arrays
@@ -2072,6 +2301,10 @@ class NuevoAlbaranFragment : Fragment() {
                             }
                         }
                         for ((k, lists) in perField) {
+                            if (lists.isEmpty()) {
+                                Log.w("AlbaTpl", "Field '$k' has no samples, skipping")
+                                continue
+                            }
                             val xs = lists.map { it[0] }.sorted()
                             val ys = lists.map { it[1] }.sorted()
                             val ws = lists.map { it[2] }.sorted()
@@ -2084,6 +2317,12 @@ class NuevoAlbaranFragment : Fragment() {
                             val mw = median(ws)
                             val mh = median(hs)
                             aggregated[k] = String.format(java.util.Locale.US, "%.6f,%.6f,%.6f,%.6f", mx, my, mw, mh)
+                            Log.d("AlbaTpl", "Aggregated field '$k': median=($mx,$my,$mw,$mh) from ${lists.size} samples")
+                        }
+                        
+                        if (aggregated.isEmpty()) {
+                            Log.e("AlbaTpl", "No fields aggregated for template! This should not happen.")
+                            return@launch
                         }
                         // compute field confidences: proportion of samples that contained the field
                         val fieldConfidence = mutableMapOf<String, Double>()
@@ -2096,7 +2335,11 @@ class NuevoAlbaranFragment : Fragment() {
                         }
 
                         // determine version: if existing template exists, increment version
-                        val existingTpl = withContext(Dispatchers.IO) { db.templateDao().getAllTemplates().firstOrNull { it.providerNif.trim().lowercase() == providerKey } }
+                        val existingTpl = withContext(Dispatchers.IO) { 
+                            db.templateDao().getAllTemplates().firstOrNull { 
+                                normalizeProviderKey(it.providerNif) == providerKey 
+                            } 
+                        }
                         val nextVersion = (existingTpl?.version ?: 0) + 1
 
                         val tpl = com.albacontrol.data.OCRTemplate(
@@ -2112,9 +2355,23 @@ class NuevoAlbaranFragment : Fragment() {
                         try {
                             tplId = withContext(Dispatchers.IO) {
                                 // insert (REPLACE semantics via DAO) - previous template will be replaced but we keep version metadata
-                                db.templateDao().insertTemplate(tpl) as Long
+                                val insertedId = db.templateDao().insertTemplate(tpl)
+                                Log.d("AlbaTpl", "Template inserted with ID: $insertedId")
+                                insertedId
                             }
-                            Log.d("AlbaTpl", "inserted/updated OCRTemplate id=${tplId} provider='${providerKey}' version=${nextVersion} mappings=${aggregated.keys} confidences=${fieldConfidence}")
+                            Log.d("AlbaTpl", "inserted/updated OCRTemplate id=${tplId} provider='${providerKey}' version=${nextVersion} mappings=${aggregated.keys.size} fields confidences=${fieldConfidence.size} fields")
+                            
+                            // Verificar que la plantilla se guardó correctamente
+                            val verifyTpl = withContext(Dispatchers.IO) {
+                                db.templateDao().getAllTemplates().firstOrNull { 
+                                    normalizeProviderKey(it.providerNif) == providerKey 
+                                }
+                            }
+                            if (verifyTpl != null) {
+                                Log.d("AlbaTpl", "Template verification: OK - found template with ${verifyTpl.mappings.size} mappings")
+                            } else {
+                                Log.e("AlbaTpl", "Template verification: FAILED - template not found after insert!")
+                            }
                                         try {
                                         withContext(Dispatchers.IO) {
                                         try {
@@ -2129,14 +2386,8 @@ class NuevoAlbaranFragment : Fragment() {
                                     }
                                 } catch (_: Exception) {}
                                 try { exportTablesToExternal(db) } catch (_: Exception) {}
-                            Toast.makeText(
-                                requireContext(), 
-                                "✓ Plantilla creada para '$providerKey' desde ${count} muestras - ${aggregated.size} campos",
-                                Toast.LENGTH_SHORT
-                            ).show()
                         } catch (e: Exception) {
                             Log.e("AlbaTpl", "insertTemplate error for provider='${providerKey}': ${e.message}")
-                            Toast.makeText(requireContext(), getString(R.string.tpl_create_error, e.message ?: ""), Toast.LENGTH_LONG).show()
                         }
 
                         // log current counts after template insert
@@ -2147,18 +2398,191 @@ class NuevoAlbaranFragment : Fragment() {
                         } catch (_: Exception) {}
                     } catch (e: Exception) {
                         Log.d("AlbaTpl", "error creating template: ${e.message}")
-                        Toast.makeText(requireContext(), getString(R.string.tpl_create_error, e.message ?: ""), Toast.LENGTH_LONG).show()
                     }
-                } else {
-                    Toast.makeText(
-                        requireContext(), 
-                        "✓ Muestra guardada para '$providerKey' (${count}/${MIN_SAMPLES_CREATE_TEMPLATE}) - ${mappings.size} campos aprendidos",
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
             } catch (e: Exception) {
                 Log.d("AlbaTpl", "error saving pattern: ${e.message}")
-                Toast.makeText(requireContext(), getString(R.string.tpl_save_error, e.message ?: ""), Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    /**
+     * Envía una corrección al backend API cuando el usuario finaliza un albarán.
+     * Solo envía si hay correcciones detectadas (diferencias entre OCR y valores finales).
+     */
+    private fun sendCorrectionToBackend(
+        formJson: JSONObject,
+        ocrResult: com.albacontrol.ml.OCRResult?,
+        bitmap: android.graphics.Bitmap?
+    ) {
+        Log.d("AlbaTpl", "sendCorrectionToBackend: entry - ocrResult=${ocrResult != null} bitmap=${bitmap != null}")
+        
+        if (ocrResult == null || bitmap == null) {
+            Log.w("AlbaTpl", "sendCorrectionToBackend: skipping (no OCR result or bitmap)")
+            return
+        }
+        
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                Log.d("AlbaTpl", "sendCorrectionToBackend: starting coroutine")
+                val view = try { requireView() } catch (_: Exception) { null }
+                val etProveedor = view?.findViewById<EditText>(R.id.etProveedor)
+                val etNif = view?.findViewById<EditText>(R.id.etNif)
+                val etNumero = view?.findViewById<EditText>(R.id.etNumeroAlbaran)
+                val etFecha = view?.findViewById<EditText>(R.id.etFechaAlbaran)
+                
+                val proveedorFinal = etProveedor?.text?.toString()?.trim() ?: ""
+                val nifFinal = etNif?.text?.toString()?.trim() ?: ""
+                val numeroFinal = etNumero?.text?.toString()?.trim() ?: ""
+                val fechaFinal = etFecha?.text?.toString()?.trim() ?: ""
+                
+                // Verificar si hay correcciones (diferencias entre OCR y valores finales)
+                var hasCorrections = false
+                if (!ocrResult.proveedor.isNullOrBlank() && ocrResult.proveedor.trim() != proveedorFinal) hasCorrections = true
+                if (!ocrResult.nif.isNullOrBlank() && ocrResult.nif.trim() != nifFinal) hasCorrections = true
+                if (!ocrResult.numeroAlbaran.isNullOrBlank() && ocrResult.numeroAlbaran.trim() != numeroFinal) hasCorrections = true
+                if (!ocrResult.fechaAlbaran.isNullOrBlank() && ocrResult.fechaAlbaran.trim() != fechaFinal) hasCorrections = true
+                
+                // También verificar productos
+                val productosArray = formJson.optJSONArray("productos")
+                if (productosArray != null && productosArray.length() > 0) {
+                    // Si hay productos en el formulario, considerar que puede haber correcciones
+                    hasCorrections = true
+                }
+                
+                if (!hasCorrections) {
+                    Log.d("AlbaTpl", "sendCorrectionToBackend: no corrections detected, skipping")
+                    return@launch
+                }
+                
+                // Construir payload de corrección
+                val debugId = "debug_${System.currentTimeMillis()}_${nifFinal.takeIf { it.isNotEmpty() } ?: proveedorFinal.take(8)}"
+                val nifNormalized = if (nifFinal.isNotEmpty()) {
+                    com.albacontrol.util.OcrUtils.normalizeToken(nifFinal).uppercase()
+                } else null
+                
+                // Construir array de productos en formato esperado por el backend
+                val productosBackend = org.json.JSONArray()
+                if (productosArray != null) {
+                    for (i in 0 until productosArray.length()) {
+                        val p = productosArray.getJSONObject(i)
+                        val prodObj = JSONObject()
+                        prodObj.put("descripcion", p.optString("descripcion", ""))
+                        val unidades = p.optString("unidades", "")
+                        if (unidades.isNotEmpty()) {
+                            try {
+                                prodObj.put("unidades", unidades.toDoubleOrNull() ?: 0.0)
+                            } catch (_: Exception) {
+                                prodObj.put("unidades", 0.0)
+                            }
+                        }
+                        val precio = p.optString("precio", "")
+                        if (precio.isNotEmpty()) {
+                            try {
+                                prodObj.put("precio_unitario", precio.toDoubleOrNull() ?: 0.0)
+                            } catch (_: Exception) {
+                                prodObj.put("precio_unitario", 0.0)
+                            }
+                        }
+                        val importe = p.optString("importe", "")
+                        if (importe.isNotEmpty()) {
+                            try {
+                                prodObj.put("importe_linea", importe.toDoubleOrNull() ?: 0.0)
+                            } catch (_: Exception) {
+                                prodObj.put("importe_linea", 0.0)
+                            }
+                        }
+                        productosBackend.put(prodObj)
+                    }
+                }
+                
+                // Construir correcciones de campos individuales
+                val fieldCorrections = mutableMapOf<String, com.albacontrol.util.CorrectionsApiClient.CorrectionFieldData>()
+                
+                // Helper para normalizar bbox a formato [x_min, y_min, x_max, y_max] 0..1
+                fun normalizeBBox(rect: android.graphics.Rect?): List<Double>? {
+                    if (rect == null || bitmap == null) return null
+                    val bw = bitmap.width.toFloat()
+                    val bh = bitmap.height.toFloat()
+                    if (bw <= 0 || bh <= 0) return null
+                    return listOf(
+                        (rect.left.toFloat() / bw).toDouble(),
+                        (rect.top.toFloat() / bh).toDouble(),
+                        (rect.right.toFloat() / bw).toDouble(),
+                        (rect.bottom.toFloat() / bh).toDouble()
+                    )
+                }
+                
+                // Proveedor
+                if (proveedorFinal.isNotEmpty() && ocrResult.proveedor?.trim() != proveedorFinal) {
+                    fieldCorrections["etProveedor"] = com.albacontrol.util.CorrectionsApiClient.CorrectionFieldData(
+                        correctedText = proveedorFinal,
+                        confidenceBefore = null, // TODO: obtener de OCR si está disponible
+                        bbox = normalizeBBox(ocrResult.proveedorBBox),
+                        notes = "Corregido de '${ocrResult.proveedor}' a '$proveedorFinal'"
+                    )
+                }
+                
+                // NIF
+                if (nifFinal.isNotEmpty() && ocrResult.nif?.trim() != nifFinal) {
+                    fieldCorrections["etNif"] = com.albacontrol.util.CorrectionsApiClient.CorrectionFieldData(
+                        correctedText = nifFinal,
+                        bbox = normalizeBBox(ocrResult.nifBBox),
+                        notes = "Corregido de '${ocrResult.nif}' a '$nifFinal'"
+                    )
+                }
+                
+                // Número albarán
+                if (numeroFinal.isNotEmpty() && ocrResult.numeroAlbaran?.trim() != numeroFinal) {
+                    fieldCorrections["etNumeroAlbaran"] = com.albacontrol.util.CorrectionsApiClient.CorrectionFieldData(
+                        correctedText = numeroFinal,
+                        bbox = normalizeBBox(ocrResult.numeroBBox),
+                        notes = "Corregido de '${ocrResult.numeroAlbaran}' a '$numeroFinal'"
+                    )
+                }
+                
+                // Fecha
+                if (fechaFinal.isNotEmpty() && ocrResult.fechaAlbaran?.trim() != fechaFinal) {
+                    fieldCorrections["etFechaAlbaran"] = com.albacontrol.util.CorrectionsApiClient.CorrectionFieldData(
+                        correctedText = fechaFinal,
+                        bbox = normalizeBBox(ocrResult.fechaBBox),
+                        notes = "Corregido de '${ocrResult.fechaAlbaran}' a '$fechaFinal'"
+                    )
+                }
+                
+                // Construir template_id si hay plantilla para este proveedor
+                val templateId = if (nifNormalized != null) {
+                    val db = com.albacontrol.data.AppDatabase.getInstance(requireContext())
+                    val templates = db.templateDao().getAllTemplates()
+                    templates.firstOrNull { 
+                        com.albacontrol.util.OcrUtils.normalizeToken(it.providerNif).uppercase() == nifNormalized 
+                    }?.let { "tpl_${nifNormalized}_v${it.version}" }
+                } else null
+                
+                val payload = com.albacontrol.util.CorrectionsApiClient.buildCorrectionPayload(
+                    debugId = debugId,
+                    nif = nifNormalized,
+                    proveedor = proveedorFinal.takeIf { it.isNotEmpty() },
+                    numeroAlbaran = numeroFinal.takeIf { it.isNotEmpty() },
+                    fechaAlbaran = fechaFinal.takeIf { it.isNotEmpty() },
+                    productos = productosBackend.takeIf { productosBackend.length() > 0 },
+                    templateId = templateId,
+                    fieldCorrections = fieldCorrections.takeIf { it.isNotEmpty() }
+                )
+                
+                // Enviar al backend
+                Log.d("AlbaTpl", "sendCorrectionToBackend: calling CorrectionsApiClient.sendCorrection with debugId=$debugId")
+                Log.d("AlbaTpl", "sendCorrectionToBackend: payload size=${payload.toString().length} bytes")
+                
+                val success = com.albacontrol.util.CorrectionsApiClient.sendCorrection(payload)
+                if (success) {
+                    Log.d("AlbaTpl", "✓ Corrección enviada exitosamente al backend: $debugId")
+                } else {
+                    Log.w("AlbaTpl", "✗ No se pudo enviar corrección al backend: $debugId")
+                }
+            } catch (e: Exception) {
+                Log.e("AlbaTpl", "Error al construir/enviar corrección: ${e.message}", e)
+                e.printStackTrace()
             }
         }
     }
@@ -2247,7 +2671,7 @@ class NuevoAlbaranFragment : Fragment() {
                     !uiProv.isNullOrBlank() -> uiProv
                     else -> result.nif?.ifBlank { result.proveedor } ?: (result.proveedor ?: "")
                 }
-                val providerKey = providerKeyRaw.trim().lowercase()
+                val providerKey = normalizeProviderKey(providerKeyRaw)
                 if (providerKey.isBlank()) {
                     Log.d("AlbaTpl", "saveSampleFromOcr: provider key empty - aborting")
                     return@launch
@@ -2418,6 +2842,7 @@ class NuevoAlbaranFragment : Fragment() {
         val etUnid = item.findViewById<EditText>(R.id.etUnidades)
         val etPrecio = item.findViewById<EditText>(R.id.etPrecio)
         val etImporte = item.findViewById<EditText>(R.id.etImporte)
+        val checkIncidencia = item.findViewById<CheckBox>(R.id.checkIncidencia)
 
         val watcher = object : android.text.TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -2428,6 +2853,10 @@ class NuevoAlbaranFragment : Fragment() {
                 try {
                     if (etDesc.hasFocus() || etUnid.hasFocus() || etPrecio.hasFocus() || etImporte.hasFocus()) {
                         productsManuallyEdited = true
+                        // Marcar automáticamente la casilla de incidencia cuando se edita un campo
+                        if (checkIncidencia != null && !checkIncidencia.isChecked) {
+                            checkIncidencia.isChecked = true
+                        }
                     }
                 } catch (_: Exception) {}
             }
@@ -2706,6 +3135,62 @@ class NuevoAlbaranFragment : Fragment() {
         return out
     }
 
+    /**
+     * Normaliza una clave de proveedor (NIF o nombre) para uso consistente en matching.
+     * Elimina espacios, símbolos y convierte a minúsculas, similar a OcrUtils.normalizeToken
+     * pero preservando la estructura para NIFs.
+     */
+    private fun normalizeProviderKey(key: String?): String {
+        if (key.isNullOrBlank()) return ""
+        // Normalizar usando OcrUtils para consistencia
+        val normalized = com.albacontrol.util.OcrUtils.normalizeToken(key)
+        // Si parece un NIF (tiene dígitos y letras), mantener mayúsculas para la letra final
+        // pero para matching usamos minúsculas
+        return normalized.lowercase()
+    }
+    
+    /**
+     * Calcula el ratio de similitud Levenshtein entre dos strings (0.0 a 1.0).
+     */
+    private fun levenshteinRatio(a: String, b: String): Double {
+        if (a.isEmpty() && b.isEmpty()) return 1.0
+        if (a.isEmpty() || b.isEmpty()) return 0.0
+        val distance = levenshteinDistance(a, b)
+        val maxLen = kotlin.math.max(a.length, b.length)
+        return 1.0 - (distance.toDouble() / maxLen.toDouble())
+    }
+    
+    /**
+     * Calcula la distancia de Levenshtein entre dos strings.
+     */
+    private fun levenshteinDistance(a: String, b: String): Int {
+        val n = a.length
+        val m = b.length
+        val dp = Array(n + 1) { IntArray(m + 1) }
+        for (i in 0..n) dp[i][0] = i
+        for (j in 0..m) dp[0][j] = j
+        for (i in 1..n) {
+            for (j in 1..m) {
+                val cost = if (a[i - 1] == b[j - 1]) 0 else 1
+                dp[i][j] = minOf(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost)
+            }
+        }
+        return dp[n][m]
+    }
+    
+    /**
+     * Calcula el overlap de dígitos entre dos strings (útil para matching de NIFs).
+     * Retorna un valor entre 0.0 y 1.0 indicando qué proporción de dígitos coinciden.
+     */
+    private fun calculateDigitOverlap(digits1: String, digits2: String): Double {
+        if (digits1.isEmpty() || digits2.isEmpty()) return 0.0
+        val set1 = digits1.toSet()
+        val set2 = digits2.toSet()
+        val intersection = set1.intersect(set2).size
+        val union = set1.union(set2).size
+        return if (union > 0) intersection.toDouble() / union.toDouble() else 0.0
+    }
+
     private fun iou(a: android.graphics.Rect, b: android.graphics.Rect): Double {
         val interLeft = maxOf(a.left, b.left)
         val interTop = maxOf(a.top, b.top)
@@ -2725,6 +3210,10 @@ class NuevoAlbaranFragment : Fragment() {
         val provider = json.optString("proveedor", "")
         val number = json.optString("numero_albaran", "")
         val createdAt = json.optLong("created_at", System.currentTimeMillis())
+        val recepcionista = json.optString("recepcionista", "")
+        val ubicacion = json.optString("ubicacion_recogida", "")
+        val sinAlbaran = json.optBoolean("sin_albaran", false)
+        val tieneIncidencias = json.optBoolean("tiene_incidencias", false)
 
         val outDir = requireContext().getExternalFilesDir("history")
         outDir?.mkdirs()
@@ -2751,7 +3240,42 @@ class NuevoAlbaranFragment : Fragment() {
         canvas.drawText(getString(R.string.pdf_number, number), 40f, y, paint)
         y += 18f
         canvas.drawText(getString(R.string.pdf_created_at, java.text.SimpleDateFormat("yyyy.MM.dd HH:mm", java.util.Locale.getDefault()).format(java.util.Date(createdAt))), 40f, y, paint)
-        y += 22f
+        y += 18f
+        
+        // Recepcionista y Ubicación
+        if (recepcionista.isNotBlank()) {
+            canvas.drawText("Recepcionista: $recepcionista", 40f, y, paint)
+            y += 18f
+        }
+        if (ubicacion.isNotBlank()) {
+            canvas.drawText("Ubicación de recogida: $ubicacion", 40f, y, paint)
+            y += 18f
+        }
+        
+        // Incidencias (resaltado en amarillo si hay)
+        val paintYellow = Paint()
+        paintYellow.color = android.graphics.Color.YELLOW
+        paintYellow.style = Paint.Style.FILL
+        
+        val incidenciasText = "Incidencias: ${if (tieneIncidencias) "SÍ" else "NO"}"
+        if (tieneIncidencias) {
+            // Dibujar fondo amarillo
+            val textWidth = paint.measureText(incidenciasText)
+            canvas.drawRect(38f, y - 12f, 42f + textWidth, y + 4f, paintYellow)
+        }
+        canvas.drawText(incidenciasText, 40f, y, paint)
+        y += 18f
+        
+        // Sin albarán (solo si está marcado, resaltado en amarillo)
+        if (sinAlbaran) {
+            val sinAlbaranText = "Sin albarán de entrega"
+            val textWidth = paint.measureText(sinAlbaranText)
+            canvas.drawRect(38f, y - 12f, 42f + textWidth, y + 4f, paintYellow)
+            canvas.drawText(sinAlbaranText, 40f, y, paint)
+            y += 18f
+        }
+        
+        y += 8f
 
         // Productos como tabla simple
         val products = json.optJSONArray("products") ?: JSONArray()
@@ -2776,6 +3300,7 @@ class NuevoAlbaranFragment : Fragment() {
             val unidades = p.optString("unidades", "")
             val precio = p.optString("precio", "")
             val importe = p.optString("importe", "")
+            val tieneIncidencia = p.optBoolean("incidencia", false)
 
             // wrap description if too long
             val maxDescWidth = (unidadesCol - descCol - 8).toInt()
@@ -2796,6 +3321,12 @@ class NuevoAlbaranFragment : Fragment() {
                     canvas = page.canvas
                     y = 40f
                 }
+                
+                // Dibujar fondo amarillo si tiene incidencia
+                if (tieneIncidencia && li == 0) {
+                    canvas.drawRect(leftCol - 2f, y - 12f, pageWidth - 40f, y + 4f, paintYellow)
+                }
+                
                 if (li == 0) {
                     canvas.drawText(ltext, descCol, y, paint)
                     canvas.drawText(unidades, unidadesCol, y, paint)

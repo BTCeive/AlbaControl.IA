@@ -75,6 +75,12 @@
     <string name="recepcionistas_title">Resepsiyonistler</string>
     <string name="pickup_location_title">Teslim alma konumu</string>
     <string name="auto_destination_emails_title">Otomatik hedef e-postaları</string>
+    <string name="preferred_email_app_title">Tercih edilen e-posta uygulaması</string>
+    <string name="email_app_chooser">Her seferinde seç</string>
+    <string name="email_app_gmail">Gmail</string>
+    <string name="email_app_outlook">Outlook</string>
+    <string name="email_app_protonmail">ProtonMail</string>
+    <string name="email_app_other">Diğer uygulama</string>
     <string name="languages_title">Diller</string>
     <string name="app_configuration_title">Uygulama yapılandırması</string>
     <string name="ocr_system_title">OCR Sistemi</string>

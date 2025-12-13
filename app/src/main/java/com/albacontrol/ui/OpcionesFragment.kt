@@ -46,12 +46,14 @@ class OpcionesFragment : Fragment() {
     private val KEY_AUTO_DELETE_COUNT_MAX = "auto_delete_count_max"
     private val KEY_LAST_AUTO_CLEANUP = "last_auto_cleanup_ts"
     private val KEY_CONFIG_COLLAPSED = "config_collapsed"
+    private val KEY_PREFERRED_EMAIL_APP = "preferred_email_app"
 
     private lateinit var containerRecep: LinearLayout
     private lateinit var containerUbic: LinearLayout
     private lateinit var containerEmails: LinearLayout
     private lateinit var spinnerLang: Spinner
     private lateinit var seekOcr: SeekBar
+    private lateinit var spinnerEmailApp: Spinner
     private var progressDialog: AlertDialog? = null
     private val TAG = "OpcionesFragment"
     // UI for auto-delete
@@ -76,6 +78,7 @@ class OpcionesFragment : Fragment() {
         containerEmails = view.findViewById(R.id.containerEmails)
         spinnerLang = view.findViewById(R.id.spinnerLanguages)
         seekOcr = view.findViewById(R.id.seekOcrPasses)
+        spinnerEmailApp = view.findViewById(R.id.spinnerEmailApp)
         switchAutoDeleteAge = view.findViewById(R.id.switchAutoDeleteAge)
         etAutoDeleteDays = view.findViewById(R.id.etAutoDeleteDays)
         switchAutoDeleteCount = view.findViewById(R.id.switchAutoDeleteCount)
@@ -130,24 +133,24 @@ class OpcionesFragment : Fragment() {
         }
 
         setupLanguageSpinner()
+        setupEmailAppSpinner()
         loadOptions()
         loadAutoDeleteOptions()
         performAutoCleanupIfNeeded()
 
-        // Config section collapsible
+        // Config section collapsible (siempre colapsado al abrir)
         try {
             val llConfigHeader = view.findViewById<View>(R.id.llConfigHeader)
             val configContent = view.findViewById<View>(R.id.configContent)
             val tvConfigArrow = view.findViewById<TextView>(R.id.tvConfigArrow)
-            val prefs = requireContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-            var collapsed = prefs.getBoolean(KEY_CONFIG_COLLAPSED, false)
+            var collapsed = true  // Siempre empieza colapsado
             configContent.visibility = if (collapsed) View.GONE else View.VISIBLE
             tvConfigArrow.rotation = if (collapsed) -90f else 0f
             llConfigHeader?.setOnClickListener {
                 collapsed = !collapsed
                 configContent.visibility = if (collapsed) View.GONE else View.VISIBLE
                 tvConfigArrow.animate().rotation(if (collapsed) -90f else 0f).setDuration(200).start()
-                prefs.edit().putBoolean(KEY_CONFIG_COLLAPSED, collapsed).apply()
+                // No guardamos el estado - siempre empieza colapsado
             }
         } catch (e: Exception) {
             Log.d(TAG, "No se pudo inicializar header collapsible: ${e.message}")
@@ -958,6 +961,106 @@ class OpcionesFragment : Fragment() {
                 } catch (e: Exception) {
                     Log.e(TAG, "Error applying locale $tag", e)
                 }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+    }
+
+    private fun setupEmailAppSpinner() {
+        val prefs = requireContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+        val packageManager = requireContext().packageManager
+        
+        // Usar un Set para evitar duplicados
+        val seenPackages = mutableSetOf<String>()
+        val appList = mutableListOf<Pair<String, String>>()
+        appList.add(Pair(getString(R.string.email_app_chooser), ""))
+        
+        // Método 1: Intentar con ACTION_SENDTO y mailto: (más específico)
+        try {
+            val mailtoIntent = Intent(Intent.ACTION_SENDTO)
+            mailtoIntent.data = Uri.parse("mailto:")
+            val mailtoApps = packageManager.queryIntentActivities(mailtoIntent, 0)
+            
+            for (resolveInfo in mailtoApps) {
+                val packageName = resolveInfo.activityInfo.packageName
+                if (packageName !in seenPackages) {
+                    val appName = resolveInfo.loadLabel(packageManager).toString()
+                    appList.add(Pair(appName, packageName))
+                    seenPackages.add(packageName)
+                }
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error querying mailto apps: ${e.message}")
+        }
+        
+        // Método 2: Si no encontró apps, usar ACTION_SEND con message/rfc822 y filtrar
+        if (seenPackages.isEmpty()) {
+            try {
+                val sendIntent = Intent(Intent.ACTION_SEND)
+                sendIntent.type = "message/rfc822"
+                val sendApps = packageManager.queryIntentActivities(sendIntent, 0)
+                
+                // Lista de packages conocidos que NO son de email (para filtrar)
+                val excludePackages = setOf(
+                    "com.android.bluetooth",
+                    "com.google.android.apps.nbu.files", // Files by Google (Quick Share)
+                    "com.samsung.android.app.sharelive", // Quick Share Samsung
+                    "com.google.android.gms", // Google Play Services
+                    "android", // Sistema Android genérico
+                    "com.whatsapp",
+                    "com.facebook.orca",
+                    "com.telegram.messenger",
+                    "com.snapchat.android"
+                )
+                
+                for (resolveInfo in sendApps) {
+                    val packageName = resolveInfo.activityInfo.packageName
+                    // Filtrar packages excluidos y duplicados
+                    if (packageName !in seenPackages && packageName !in excludePackages) {
+                        // Filtrar también por nombre de actividad que contenga palabras clave de email
+                        val activityName = resolveInfo.activityInfo.name.lowercase()
+                        val packageLower = packageName.lowercase()
+                        val isLikelyEmail = packageLower.contains("mail") || 
+                                          packageLower.contains("email") ||
+                                          activityName.contains("mail") ||
+                                          activityName.contains("compose")
+                        
+                        if (isLikelyEmail) {
+                            val appName = resolveInfo.loadLabel(packageManager).toString()
+                            appList.add(Pair(appName, packageName))
+                            seenPackages.add(packageName)
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error querying send apps: ${e.message}")
+            }
+        }
+        
+        // Ordenar alfabéticamente (excepto la primera opción "Elegir cada vez")
+        val sortedApps = appList.drop(1).sortedBy { it.first }
+        val finalList = mutableListOf(appList[0]) + sortedApps
+        
+        Log.d(TAG, "setupEmailAppSpinner: found ${finalList.size - 1} email apps")
+        for (app in finalList) {
+            Log.d(TAG, "  - ${app.first} (${app.second})")
+        }
+        
+        val displayNames = finalList.map { it.first }
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, displayNames)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerEmailApp.adapter = adapter
+
+        val savedPackage = prefs.getString(KEY_PREFERRED_EMAIL_APP, "") ?: ""
+        val pos = finalList.indexOfFirst { it.second == savedPackage }
+        if (pos >= 0) spinnerEmailApp.setSelection(pos)
+
+        spinnerEmailApp.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val packageName = finalList[position].second
+                val appName = finalList[position].first
+                prefs.edit().putString(KEY_PREFERRED_EMAIL_APP, packageName).apply()
+                Log.d(TAG, "setupEmailAppSpinner: seleccionada app='$appName' package='$packageName'")
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }

@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  corrections-api:
+    build: .
+    image: corrections-api:latest
+    container_name: corrections_api
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./artifacts_device:/home/appuser/artifacts_device:rw
+    environment:
+      - PYTHONUNBUFFERED=1

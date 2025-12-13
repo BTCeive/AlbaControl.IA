@@ -179,7 +179,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="16dp" />
+                android:paddingBottom="8dp" />
+
+            <!-- Selector de app de email preferida -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/preferred_email_app_title"
+                android:textStyle="bold"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp" />
+
+            <Spinner
+                android:id="@+id/spinnerEmailApp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp" />
 
         </LinearLayout>
 
@@ -269,9 +284,7 @@
                 android:paddingTop="4dp"
                 android:paddingBottom="12dp" />
 
-        </LinearLayout>
-
-        <!-- Backups (expandable) -->
+            <!-- Backups (expandable) -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -443,21 +456,25 @@
                 android:layout_height="wrap_content"
                 android:text="@string/backup_general" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnExportBackupAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/export"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_export"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Exportar"
                 android:elevation="4dp"
                 android:clipToPadding="false" />
 
             <Space android:layout_width="8dp" android:layout_height="wrap_content" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnImportBackupAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/op_import"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_import"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Importar"
                 android:elevation="4dp"
                 android:clipToPadding="false" />
 
@@ -559,6 +576,9 @@
                 android:checked="true" />
 
         </LinearLayout>
+
+        </LinearLayout>
+        <!-- Fin de configContent -->
 
     </LinearLayout>
 

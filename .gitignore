@@ -9,3 +9,20 @@
 
 # macOS
 .DS_Store
+
+# Artifacts y logs de pruebas
+artifacts_device/
+tmp/
+*.log
+*.tgz
+*.tar.gz
+
+# Archivos temporales
+0{count++}END{print
+
+# Python cache
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
