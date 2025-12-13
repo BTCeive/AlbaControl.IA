@@ -138,7 +138,7 @@
     <string name="confirm_delete_this_product">Dieses Produkt wirklich löschen?</string>
     <string name="delete_albaran_title">Lieferschein löschen</string>
     <string name="delete_albaran_message">Möchten Sie diesen Lieferschein aus dem Verlauf löschen?</string>
-    <string name="choice_merge">Zusammenführen</string>
+    <string name="choice_merge">Kombinieren</string>
     <string name="choice_replace">Ersetzen</string>
     <string name="already_exists">Existiert bereits: %1$s</string>
     <string name="added">Hinzugefügt: %1$s</string>

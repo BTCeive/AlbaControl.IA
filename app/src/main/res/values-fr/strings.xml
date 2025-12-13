@@ -132,7 +132,7 @@
 	<string name="confirm_delete_this_product">Supprimer définitivement ce produit ?</string>
 	<string name="delete_albaran_title">Supprimer bon</string>
 	<string name="delete_albaran_message">Supprimer ce bon de l’historique ?</string>
-	<string name="choice_merge">Fusionner</string>
+	<string name="choice_merge">Combiner</string>
 	<string name="choice_replace">Remplacer</string>
 	<string name="already_exists">Existe déjà : %1$s</string>
 	<string name="added">Ajouté : %1$s</string>

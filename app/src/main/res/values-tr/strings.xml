@@ -140,7 +140,7 @@
     <string name="confirm_delete_this_product">Bu ürünü silmek istediğinize emin misiniz?</string>
     <string name="delete_albaran_title">Belgeyi sil</string>
     <string name="delete_albaran_message">Bu belgeyi geçmişten silmek istiyor musunuz?</string>
-    <string name="choice_merge">Birleştir</string>
+    <string name="choice_merge">Kombine Et</string>
     <string name="choice_replace">Değiştir</string>
     <string name="already_exists">Zaten var: %1$s</string>
     <string name="added">Eklendi: %1$s</string>

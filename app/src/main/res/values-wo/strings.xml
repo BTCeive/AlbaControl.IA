@@ -139,7 +139,7 @@
     <string name="confirm_delete_this_product">Sure delete this product?</string>
     <string name="delete_albaran_title">Delete document</string>
     <string name="delete_albaran_message">Delete this document from history?</string>
-    <string name="choice_merge">Merge</string>
+    <string name="choice_merge">Combine</string>
     <string name="choice_replace">Replace</string>
     <string name="already_exists">Already exists: %1$s</string>
     <string name="added">Added: %1$s</string>

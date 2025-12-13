@@ -138,7 +138,7 @@
     <string name="confirm_delete_this_product">Segur que vols eliminar aquest producte?</string>
     <string name="delete_albaran_title">Eliminar document</string>
     <string name="delete_albaran_message">Vols eliminar aquest document de l’historial?</string>
-    <string name="choice_merge">Fusionar</string>
+    <string name="choice_merge">Combinar</string>
     <string name="choice_replace">Substituir</string>
     <string name="already_exists">Ja existeix: %1$s</string>
     <string name="added">Afegit: %1$s</string>

@@ -90,7 +90,7 @@
     <string name="confirm_delete_this_product">¿Seguro que quieres eliminar este producto?</string>
     <string name="delete_albaran_title">Eliminar albarán</string>
     <string name="delete_albaran_message">¿Quieres eliminar este albarán del historial?</string>
-    <string name="choice_merge">Mezclar</string>
+    <string name="choice_merge">Combinar</string>
     <string name="choice_replace">Sustituir</string>
     <string name="already_exists">Ya existe: %1$s</string>
     <string name="added">Añadido: %1$s</string>
