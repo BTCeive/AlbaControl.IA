@@ -137,6 +137,7 @@ class OpcionesFragment : Fragment() {
         loadOptions()
         loadAutoDeleteOptions()
         performAutoCleanupIfNeeded()
+        setupAppInfoSection()
 
         // Config section collapsible (siempre colapsado al abrir)
         try {
@@ -1280,6 +1281,142 @@ class OpcionesFragment : Fragment() {
         loadOptions()
     }
 
+    private fun setupAppInfoSection() {
+        try {
+            val headerAppInfo = view?.findViewById<View>(R.id.headerAppInfo)
+            val appInfoContent = view?.findViewById<View>(R.id.appInfoContent)
+            val arrowAppInfo = view?.findViewById<TextView>(R.id.arrowAppInfo)
+            val btnDetailedHelp = view?.findViewById<Button>(R.id.btnDetailedHelp)
+            val tvContactMessage = view?.findViewById<TextView>(R.id.tvContactMessage)
+
+            // Siempre empieza colapsado
+            var collapsed = true
+            appInfoContent?.visibility = View.GONE
+            arrowAppInfo?.rotation = -90f
+
+            // Toggle collapse/expand
+            headerAppInfo?.setOnClickListener {
+                collapsed = !collapsed
+                appInfoContent?.visibility = if (collapsed) View.GONE else View.VISIBLE
+                arrowAppInfo?.animate()?.rotation(if (collapsed) -90f else 0f)?.setDuration(200)?.start()
+            }
+
+            // Botón de ayuda detallada
+            btnDetailedHelp?.setOnClickListener {
+                showDetailedHelpDialog()
+            }
+
+            // Mensaje de contacto con enlace clickeable
+            tvContactMessage?.apply {
+                val message = getString(R.string.contact_message)
+                val here = getString(R.string.contact_here)
+                val fullText = "$message $here"
+                
+                text = fullText
+                setTextColor(android.graphics.Color.parseColor("#212121"))
+                
+                // Hacer clickeable la palabra "AQUÍ"
+                val spannableString = android.text.SpannableString(fullText)
+                val startIndex = fullText.indexOf(here)
+                if (startIndex >= 0) {
+                    val clickableSpan = object : android.text.style.ClickableSpan() {
+                        override fun onClick(widget: View) {
+                            openContactEmail()
+                        }
+                        override fun updateDrawState(ds: android.text.TextPaint) {
+                            super.updateDrawState(ds)
+                            ds.color = android.graphics.Color.parseColor("#1E88E5")
+                            ds.isUnderlineText = true
+                        }
+                    }
+                    spannableString.setSpan(
+                        clickableSpan,
+                        startIndex,
+                        startIndex + here.length,
+                        android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    text = spannableString
+                    movementMethod = android.text.method.LinkMovementMethod.getInstance()
+                }
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "setupAppInfoSection: error", e)
+        }
+    }
+
+    private fun showDetailedHelpDialog() {
+        val message = """
+            📸 <b>Nuevo Albarán</b>
+            
+            1. Pulsa el botón grande "+" en el menú principal
+            2. Sube una foto o archivo del albarán
+            3. La app procesará la imagen y rellenará automáticamente los campos
+            
+            ✏️ <b>Corrige los datos</b>
+            
+            • Revisa todos los campos extraídos
+            • Corrige cualquier error que encuentres
+            • Añade productos si faltan
+            • Marca incidencias si las hay
+            
+            Esto es muy importante: cada corrección ayuda a la app a aprender del proveedor.
+            
+            🎯 <b>Siguientes albaranes</b>
+            
+            Los próximos documentos del mismo proveedor se reconocerán mucho mejor automáticamente gracias a tu corrección.
+            
+            💾 <b>Guardar y Finalizar</b>
+            
+            • <b>Guardar Borrador</b>: Guarda el albarán para completarlo más tarde
+            • <b>Finalizar</b>: Genera el PDF y lo envía por email
+            • <b>Cancelar</b>: Descarta los cambios
+            
+            📋 <b>Otras secciones</b>
+            
+            • <b>Borradores</b>: Albaranes guardados sin finalizar
+            • <b>Historial</b>: Albaranes finalizados y enviados
+            • <b>Proveedores/Productos</b>: Base de datos de proveedores conocidos
+            • <b>Opciones</b>: Configuración de la app
+        """.trimIndent()
+
+        val formattedMessage = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            android.text.Html.fromHtml(message, android.text.Html.FROM_HTML_MODE_LEGACY)
+        } else {
+            @Suppress("DEPRECATION")
+            android.text.Html.fromHtml(message)
+        }
+
+        val messageView = TextView(requireContext()).apply {
+            text = formattedMessage
+            setPadding(60, 40, 60, 20)
+            textSize = 14f
+            setLineSpacing(6f, 1f)
+        }
+
+        val scrollView = android.widget.ScrollView(requireContext()).apply {
+            addView(messageView)
+        }
+
+        AlertDialog.Builder(requireContext())
+            .setTitle(getString(R.string.detailed_help_title))
+            .setView(scrollView)
+            .setPositiveButton("OK", null)
+            .show()
+    }
+
+    private fun openContactEmail() {
+        try {
+            val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
+                data = android.net.Uri.parse("mailto:")
+                putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.contact_email)))
+                putExtra(Intent.EXTRA_SUBJECT, "AlbaControl - Ayuda/Sugerencias")
+            }
+            startActivity(emailIntent)
+        } catch (e: Exception) {
+            Toast.makeText(requireContext(), "No se pudo abrir el cliente de email", Toast.LENGTH_SHORT).show()
+            Log.e(TAG, "openContactEmail: error", e)
+        }
+    }
 
 }
 

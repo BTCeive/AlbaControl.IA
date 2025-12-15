@@ -142,6 +142,12 @@
     <string name="email_app_other">Otra app</string>
     <string name="languages_title">Idiomas</string>
     <string name="app_configuration_title">Configuración de la app</string>
+    <string name="app_info_help_title">Información de la app / Ayuda</string>
+    <string name="detailed_help_title">Ayuda detallada</string>
+    <string name="contact_title">Contacto</string>
+    <string name="contact_message">Para más ayuda o sugerencias sobre la app, contacta con nuestro servicio por email</string>
+    <string name="contact_here">AQUÍ</string>
+    <string name="contact_email">BTCeibe+helpAlbaControl@protonmail.com</string>
     <string name="ocr_system_title">Sistema OCR</string>
     <string name="ocr_system_warning">Modificar el comportamiento del sistema OCR puede afectar a la calidad de la información extraída de las fotografías y al rendimiento de su dispositivo.</string>
     <string name="backup_title">Backup</string>
