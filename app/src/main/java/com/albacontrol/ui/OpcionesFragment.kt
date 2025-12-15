@@ -915,8 +915,8 @@ class OpcionesFragment : Fragment() {
             Pair("\uD83C\uDDEB\uD83C\uDDF7 Français", "fr"),
             Pair("\uD83C\uDDE9\uD83C\uDDEA Deutsch", "de"),
             Pair("\uD83C\uDDEE\uD83C\uDDF9 Italiano", "it"),
-            // Cataluña: usando bandera de España con indicador CAT
-            Pair("\uD83C\uDDEA\uD83C\uDDF8 Català", "ca"),
+            // Cataluña: usando emoji de bandera catalana
+            Pair("🏴 Català", "ca"),
             Pair("\uD83C\uDDF9\uD83C\uDDF7 Türkçe", "tr"),
             Pair("\uD83C\uDDF8\uD83C\uDDE6 العربية", "ar"),
             // Wolof mayoritario en Senegal: se usa bandera de Senegal
