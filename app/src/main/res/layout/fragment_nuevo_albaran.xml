@@ -295,6 +295,9 @@
                 android:layout_weight="1"
                 android:layout_height="56dp"
                 android:text="@string/save_draft_button"
+                android:textSize="14sp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:elevation="4dp"
                 android:clipToPadding="false" />
 
@@ -314,6 +317,9 @@
                 android:layout_weight="1"
                 android:layout_height="56dp"
                 android:text="@string/cancel"
+                android:textSize="14sp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:elevation="4dp"
                 android:clipToPadding="false" />
 
