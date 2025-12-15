@@ -121,8 +121,8 @@ class OpcionesFragment : Fragment() {
         view.findViewById<ImageButton>(R.id.btnExportPatterns).setOnClickListener { confirmExport("Patrones") }
         view.findViewById<ImageButton>(R.id.btnImportPatterns).setOnClickListener { confirmImport("Patrones") }
         // Backup general (export/import everything at once)
-        view.findViewById<Button>(R.id.btnExportBackupAll).setOnClickListener { confirmExport("BackupGeneral") }
-        view.findViewById<Button>(R.id.btnImportBackupAll).setOnClickListener { confirmImport("BackupGeneral") }
+        view.findViewById<ImageButton>(R.id.btnExportBackupAll).setOnClickListener { confirmExport("BackupGeneral") }
+        view.findViewById<ImageButton>(R.id.btnImportBackupAll).setOnClickListener { confirmImport("BackupGeneral") }
 
         // Restaurar app (borrar datos)
         view.findViewById<Button>(R.id.btnRestoreApp).setOnClickListener { confirmRestoreApp() }
