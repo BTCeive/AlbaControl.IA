@@ -123,6 +123,12 @@
     <string name="home_historial">Historial</string>
     <string name="home_proveedores">Proveedores / Productos</string>
     <string name="home_opciones">Opciones</string>
+    <string name="home_help">Ayuda</string>
+    
+    <!-- Help dialog -->
+    <string name="help_title">¿Cómo usar AlbaControl?</string>
+    <string name="help_message">📸 <b>Nuevo Albarán</b>\n\nSube una foto o archivo del albarán. La app lo rellenará automáticamente.\n\n✏️ <b>Corrige los datos</b>\n\nRevisa y corrige cualquier error. Esto ayuda a la app a aprender del proveedor.\n\n🎯 <b>Siguientes albaranes</b>\n\nLos próximos documentos del mismo proveedor se reconocerán mucho mejor automáticamente.</string>
+    <string name="help_more_info">Más información</string>
 
     <!-- Additional UI labels (global) -->
     <string name="recepcionistas_title">Recepcionistas</string>

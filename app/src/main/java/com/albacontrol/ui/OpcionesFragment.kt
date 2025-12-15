@@ -915,8 +915,8 @@ class OpcionesFragment : Fragment() {
             Pair("\uD83C\uDDEB\uD83C\uDDF7 Français", "fr"),
             Pair("\uD83C\uDDE9\uD83C\uDDEA Deutsch", "de"),
             Pair("\uD83C\uDDEE\uD83C\uDDF9 Italiano", "it"),
-            // Cataluña: usando emoji de bandera catalana
-            Pair("🏴 Català", "ca"),
+            // Cataluña: usando secuencia de bandera catalana (🏴󠁥󠁳󠁣󠁴󠁿)
+            Pair("\uD83C\uDFF4\uDB40\uDC65\uDB40\uDC73\uDB40\uDC63\uDB40\uDC74\uDB40\uDC7F Català", "ca"),
             Pair("\uD83C\uDDF9\uD83C\uDDF7 Türkçe", "tr"),
             Pair("\uD83C\uDDF8\uD83C\uDDE6 العربية", "ar"),
             // Wolof mayoritario en Senegal: se usa bandera de Senegal
