@@ -480,84 +480,6 @@
 
         </LinearLayout>
 
-        <!-- Información de la app / Ayuda (expandable) -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="16dp"
-            android:paddingBottom="8dp">
-
-            <LinearLayout
-                android:id="@+id/headerAppInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:paddingBottom="8dp"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="@string/app_info_help_title"
-                    android:textStyle="bold"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/arrowAppInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="▼"
-                    android:textSize="16sp"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/appInfoContent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="8dp">
-
-                <!-- Ayuda detallada -->
-                <Button
-                    android:id="@+id/btnDetailedHelp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detailed_help_title"
-                    android:elevation="4dp"
-                    android:layout_marginBottom="12dp"
-                    android:clipToPadding="false" />
-
-                <!-- Contacto -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/contact_title"
-                    android:textStyle="bold"
-                    android:textSize="14sp"
-                    android:paddingBottom="8dp" />
-
-                <TextView
-                    android:id="@+id/tvContactMessage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:paddingBottom="16dp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
         <!-- Restaurar app -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -657,6 +579,84 @@
 
         </LinearLayout>
         <!-- Fin de configContent -->
+
+        <!-- Información de la app / Ayuda (expandable) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp">
+
+            <LinearLayout
+                android:id="@+id/headerAppInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingBottom="8dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_info_help_title"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/arrowAppInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="▼"
+                    android:textSize="16sp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/appInfoContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="8dp">
+
+                <!-- Ayuda detallada -->
+                <Button
+                    android:id="@+id/btnDetailedHelp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/detailed_help_title"
+                    android:elevation="4dp"
+                    android:layout_marginBottom="12dp"
+                    android:clipToPadding="false" />
+
+                <!-- Contacto -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contact_title"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:paddingBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/tvContactMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:paddingBottom="16dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
