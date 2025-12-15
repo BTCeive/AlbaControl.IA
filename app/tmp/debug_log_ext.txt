@@ -1,5 +1,0 @@
-$tsSample,SAMPLE,provider=a84354174,id=1,image=/storage/emulated/0/Android/data/com.albacontrol/files/templates/tpl_sample_1764875388661.jpg
-$ts,SAMPLE,provider=b59803825,id=$sampleId,image=/storage/emulated/0/Android/data/com.albacontrol/files/templates/tpl_sample_1764875421544.jpg
-$tsSample,SAMPLE,provider=a84354174,id=3,image=/storage/emulated/0/Android/data/com.albacontrol/files/templates/tpl_sample_1764875535605.jpg
-$tsTpl,TEMPLATE,provider=a84354174,id=1,version=1
-$ts,SAMPLE,provider=b59803825,id=$sampleId,image=/storage/emulated/0/Android/data/com.albacontrol/files/templates/tpl_sample_1764875561263.jpg

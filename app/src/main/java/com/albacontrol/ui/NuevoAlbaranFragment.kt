@@ -61,9 +61,7 @@ class NuevoAlbaranFragment : Fragment() {
 
     private var lastOcrResult: com.albacontrol.ml.OCRResult? = null
     private var lastOcrBitmap: android.graphics.Bitmap? = null
-    private var lastEmbedding: FloatArray? = null
-    private var tfliteWrapper: com.albacontrol.ml.TFLiteMobileNetWrapper? = null
-    private var objectDetector: org.tensorflow.lite.task.vision.detector.ObjectDetector? = null
+    // TFLite variables removed (not used)
     private val photoPaths: MutableList<String> = mutableListOf()
     private val pendingDeletionRunnables: MutableMap<String, Runnable> = mutableMapOf()
     // Keep track of preprocessed PDF files created during this form session.
@@ -153,36 +151,7 @@ class NuevoAlbaranFragment : Fragment() {
             // protección adicional: si falla el registro, evitar crash posterior
         }
 
-        // Cargar modelo TFLite en background (no bloquear UI)
-        try {
-            tfliteWrapper = com.albacontrol.ml.TFLiteMobileNetWrapper(requireContext())
-            lifecycleScope.launch(Dispatchers.IO) {
-                try { tfliteWrapper?.loadModel() } catch (_: Exception) {}
-            }
-        } catch (_: Exception) {}
-
-        // Inicializar Tesseract OCR en background (para fallback cuando ML Kit falle)
-        lifecycleScope.launch(Dispatchers.IO) {
-            try {
-                Log.d("AlbaTpl", "Attempting to initialize Tesseract...")
-                val success = com.albacontrol.ml.TesseractOcrProcessor.init(requireContext())
-                if (success) {
-                    Log.d("AlbaTpl", "✓ Tesseract initialized successfully")
-                } else {
-                    Log.w("AlbaTpl", "✗ Tesseract initialization failed - check tessdata files")
-                    // Verificar si existen los archivos de datos
-                    val tessDataDir = requireContext().getExternalFilesDir("tessdata")
-                    Log.d("AlbaTpl", "TessData directory: ${tessDataDir?.absolutePath}")
-                    Log.d("AlbaTpl", "TessData exists: ${tessDataDir?.exists()}")
-                    tessDataDir?.listFiles()?.forEach { file ->
-                        Log.d("AlbaTpl", "TessData file: ${file.name} (${file.length()} bytes)")
-                    }
-                }
-            } catch (e: Exception) {
-                Log.e("AlbaTpl", "Tesseract init error: ${e.message}", e)
-                e.printStackTrace()
-            }
-        }
+        // TFLite and Tesseract initialization removed - App uses ML Kit OCR only
 
 
 
@@ -757,19 +726,7 @@ class NuevoAlbaranFragment : Fragment() {
             showAddDialog("recepcionistas", getString(R.string.new_receptionist), getString(R.string.new_receptionist_hint), spinnerRecep, "last_recepcionista")
         }
 
-        // Initialize Tesseract OCR engine in background
-        lifecycleScope.launch(Dispatchers.IO) {
-            try {
-                val initialized = com.albacontrol.ml.TesseractOcrProcessor.init(requireContext())
-                if (initialized) {
-                    Log.d("AlbaTpl", "NuevoAlbaranFragment: Tesseract initialized successfully")
-                } else {
-                    Log.w("AlbaTpl", "NuevoAlbaranFragment: Tesseract initialization failed")
-                }
-            } catch (e: Exception) {
-                Log.e("AlbaTpl", "NuevoAlbaranFragment: Tesseract init error: ${e.message}")
-            }
-        }
+        // Tesseract OCR initialization removed - App uses ML Kit only
 
         return view
     }
@@ -794,25 +751,7 @@ class NuevoAlbaranFragment : Fragment() {
         // Guardar copia de la foto y añadir a miniaturas (sincronizado Path handling)
         saveBitmapAndAdd(bitmap)
 
-        // Ejecutar inferencia TFLite para obtener embedding ligero (si está disponible)
-        try {
-            val wrapper = tfliteWrapper
-            if (wrapper != null) {
-                lifecycleScope.launch(Dispatchers.IO) {
-                    try {
-                        // redimensionar a 224x224 para MobileNet
-                        val inBmp = android.graphics.Bitmap.createScaledBitmap(bitmap, 224, 224, true)
-                        val emb = wrapper.runInference(inBmp)
-                        if (emb != null) {
-                            lastEmbedding = emb
-                            Log.d("AlbaTpl", "tflite: embedding length=${emb.size}")
-                        }
-                    } catch (e: Exception) {
-                        Log.d("AlbaTpl", "tflite inference error: ${e.message}")
-                    }
-                }
-            }
-        } catch (_: Exception) {}
+        // TFLite embedding inference - Disabled/Not implemented
         // Ejecutar preprocesado OpenCV antes del OCR (deskew / recorte / mejora)
         lifecycleScope.launch {
             val preprocessedBitmap = withContext(Dispatchers.IO) {
@@ -833,24 +772,9 @@ class NuevoAlbaranFragment : Fragment() {
                 }
             }
 
-            // Run object detector (TensorFlow Lite) on preprocessed image to find field regions
-            try {
-                withContext(Dispatchers.IO) {
-                    try {
-                        if (objectDetector == null) {
-                            // use model packaged under assets/models/model.tflite
-                            objectDetector = com.albacontrol.ml.DetectorHelper.createDetector(requireContext(), "models/model.tflite")
-                        }
-                        val det = objectDetector
-                        if (det != null) {
-                            val detections = com.albacontrol.ml.DetectorHelper.detectBitmap(det, preprocessedBitmap, requireContext())
-                            android.util.Log.d("AlbaTpl", "Detector run: detections=${detections.size}")
-                        }
-                    } catch (e: Exception) {
-                        android.util.Log.w("AlbaTpl", "Detector error: ${e.message}")
-                    }
-                }
-            } catch (_: Exception) {}
+            // Object detector (TensorFlow Lite) - Disabled/Not implemented
+            // The app uses ML Kit OCR + template matching instead
+            // Future enhancement: could add field detection model here
 
             // Process with Tesseract OCR (optimized for photographed documents)
             processWithTesseractOcr(preprocessedBitmap)
@@ -1202,31 +1126,15 @@ class NuevoAlbaranFragment : Fragment() {
                 }
                 val iouScore = if (iouCount == 0) 0.0 else iouSum / iouCount.toDouble()
 
-                var embScore = 0.0
-                try {
-                    val currentEmbedding = lastEmbedding
-                    if (currentEmbedding != null) {
-                        val tplSamples = allSamples.filter { it.providerNif.trim().lowercase() == t.providerNif.trim().lowercase() }
-                        var maxSim = 0.0
-                        for (s in tplSamples) {
-                            val embCsv = s.normalizedFields?.get("embedding")
-                            val emb = parseEmbeddingCsv(embCsv)
-                            if (emb != null) {
-                                val sim = cosineSim(currentEmbedding, emb)
-                                if (sim > maxSim) maxSim = sim
-                            }
-                        }
-                        embScore = maxSim
-                    }
-                } catch (_: Exception) {}
+                // Embedding score removed (not used)
+                val embScore = 0.0
 
                 val wIou = com.albacontrol.data.TemplateLearningConfig.IOU_WEIGHT
                 val wText = com.albacontrol.data.TemplateLearningConfig.TEXT_SIM_WEIGHT
-                val wEmb = com.albacontrol.data.TemplateLearningConfig.EMBEDDING_WEIGHT
-                val totalW = wIou + wText + wEmb
+                val totalW = wIou + wText
                 if (totalW <= 0.0) return 0.0
                 
-                val finalScore = (wIou * iouScore + wText * textScore + wEmb * embScore) / totalW
+                val finalScore = (wIou * iouScore + wText * textScore) / totalW
                 Log.d("AlbaTpl", "Template '${t.providerNif}': finalScore=$finalScore (iou=$iouScore text=$textScore emb=$embScore)")
                 return finalScore
             } catch (e: Exception) { 
@@ -2227,14 +2135,8 @@ class NuevoAlbaranFragment : Fragment() {
                     }
                 }
 
-                // include embedding (if available) in normalizedFields map
+                // Normalized fields (embedding removed - not used)
                 val normalized = mutableMapOf<String, String>()
-                try {
-                    lastEmbedding?.let { arr ->
-                        val embStr = arr.joinToString(",") { java.lang.Float.toString(it) }
-                        normalized["embedding"] = embStr
-                    }
-                } catch (_: Exception) {}
 
                 val sample = com.albacontrol.data.TemplateSample(providerNif = providerKey, imagePath = file.absolutePath, fieldMappings = fieldMappings, normalizedFields = if (normalized.isEmpty()) null else normalized)
                 var sampleId: Long = -1
@@ -2733,10 +2635,8 @@ class NuevoAlbaranFragment : Fragment() {
                     fieldMappings[k] = "$v::$recognized"
                 }
 
+                // Normalized fields (embedding removed - not used)
                 val normalized = mutableMapOf<String, String>()
-                try {
-                    lastEmbedding?.let { arr -> normalized["embedding"] = arr.joinToString(",") { java.lang.Float.toString(it) } }
-                } catch (_: Exception) {}
 
                 val sample = com.albacontrol.data.TemplateSample(providerNif = providerKey, imagePath = file.absolutePath, fieldMappings = fieldMappings, normalizedFields = if (normalized.isEmpty()) null else normalized)
                 try {
@@ -2936,12 +2836,7 @@ class NuevoAlbaranFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        try {
-            lifecycleScope.launch(Dispatchers.IO) {
-                try { tfliteWrapper?.close() } catch (_: Exception) {}
-                tfliteWrapper = null
-            }
-        } catch (_: Exception) {}
+        // TFLite cleanup - Disabled (not used)
     }
 
     // Save a draft silently when the user presses back

@@ -13,9 +13,15 @@
 # Artifacts y logs de pruebas
 artifacts_device/
 tmp/
+app/tmp/
 *.log
 *.tgz
 *.tar.gz
+
+# Build y cache
+.gradle/
+.kotlin/
+local.properties
 
 # Archivos temporales
 0{count++}END{print

@@ -18,14 +18,8 @@ object OcrAdapter {
     }
   }
 
-  // For Tess suspend signature: keep compatibility wrapper
+  // Tesseract OCR removed - App uses ML Kit only
   suspend fun processBitmapWithTess(context: Context, bitmap: Bitmap): OCRResult? {
-    return withContext(Dispatchers.IO) {
-      try {
-        com.albacontrol.ml.TessOcrProcessor.processBitmap(context, bitmap)
-      } catch (e: Exception) {
-        null
-      }
-    }
+    return null
   }
 }
