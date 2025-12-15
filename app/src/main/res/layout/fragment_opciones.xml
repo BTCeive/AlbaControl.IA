@@ -250,9 +250,10 @@
                 android:id="@+id/tvConfigArrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="▾"
-                android:textSize="18sp"
-                android:padding="4dp" />
+                android:text="▼"
+                android:textSize="16sp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp" />
 
         </LinearLayout>
 
@@ -628,31 +629,61 @@
                 android:paddingEnd="16dp"
                 android:paddingTop="8dp">
 
-                <!-- Ayuda detallada -->
-                <Button
-                    android:id="@+id/btnDetailedHelp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detailed_help_title"
-                    android:elevation="4dp"
-                    android:layout_marginBottom="12dp"
-                    android:clipToPadding="false" />
-
-                <!-- Contacto -->
+                <!-- Descripción de la app -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/contact_title"
-                    android:textStyle="bold"
+                    android:text="@string/app_description"
                     android:textSize="14sp"
                     android:paddingBottom="8dp" />
 
                 <TextView
-                    android:id="@+id/tvContactMessage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/app_version"
+                    android:textStyle="bold"
                     android:textSize="14sp"
                     android:paddingBottom="16dp" />
+
+                <!-- Información de la app -->
+                <Button
+                    android:id="@+id/btnTechnicalInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_technical_info"
+                    android:elevation="4dp"
+                    android:layout_marginBottom="12dp"
+                    android:clipToPadding="false" />
+
+                <!-- Ayuda modo de uso -->
+                <Button
+                    android:id="@+id/btnHelpUsage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/help_usage_mode"
+                    android:elevation="4dp"
+                    android:layout_marginBottom="12dp"
+                    android:clipToPadding="false" />
+
+                <!-- Ayuda configuración -->
+                <Button
+                    android:id="@+id/btnHelpConfiguration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/help_configuration"
+                    android:elevation="4dp"
+                    android:layout_marginBottom="12dp"
+                    android:clipToPadding="false" />
+
+                <!-- Contacto / Sugerencias -->
+                <Button
+                    android:id="@+id/btnContactSuggestions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contact_suggestions"
+                    android:elevation="4dp"
+                    android:layout_marginBottom="12dp"
+                    android:clipToPadding="false" />
 
             </LinearLayout>
 

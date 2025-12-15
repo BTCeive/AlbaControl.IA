@@ -1286,8 +1286,10 @@ class OpcionesFragment : Fragment() {
             val headerAppInfo = view?.findViewById<View>(R.id.headerAppInfo)
             val appInfoContent = view?.findViewById<View>(R.id.appInfoContent)
             val arrowAppInfo = view?.findViewById<TextView>(R.id.arrowAppInfo)
-            val btnDetailedHelp = view?.findViewById<Button>(R.id.btnDetailedHelp)
-            val tvContactMessage = view?.findViewById<TextView>(R.id.tvContactMessage)
+            val btnTechnicalInfo = view?.findViewById<Button>(R.id.btnTechnicalInfo)
+            val btnHelpUsage = view?.findViewById<Button>(R.id.btnHelpUsage)
+            val btnHelpConfiguration = view?.findViewById<Button>(R.id.btnHelpConfiguration)
+            val btnContactSuggestions = view?.findViewById<Button>(R.id.btnContactSuggestions)
 
             // Siempre empieza colapsado
             var collapsed = true
@@ -1301,43 +1303,24 @@ class OpcionesFragment : Fragment() {
                 arrowAppInfo?.animate()?.rotation(if (collapsed) -90f else 0f)?.setDuration(200)?.start()
             }
 
-            // Botón de ayuda detallada
-            btnDetailedHelp?.setOnClickListener {
-                showDetailedHelpDialog()
+            // Información técnica de la app
+            btnTechnicalInfo?.setOnClickListener {
+                showTechnicalInfoDialog()
             }
 
-            // Mensaje de contacto con enlace clickeable
-            tvContactMessage?.apply {
-                val message = getString(R.string.contact_message)
-                val here = getString(R.string.contact_here)
-                val fullText = "$message $here"
-                
-                text = fullText
-                setTextColor(android.graphics.Color.parseColor("#212121"))
-                
-                // Hacer clickeable la palabra "AQUÍ"
-                val spannableString = android.text.SpannableString(fullText)
-                val startIndex = fullText.indexOf(here)
-                if (startIndex >= 0) {
-                    val clickableSpan = object : android.text.style.ClickableSpan() {
-                        override fun onClick(widget: View) {
-                            openContactEmail()
-                        }
-                        override fun updateDrawState(ds: android.text.TextPaint) {
-                            super.updateDrawState(ds)
-                            ds.color = android.graphics.Color.parseColor("#1E88E5")
-                            ds.isUnderlineText = true
-                        }
-                    }
-                    spannableString.setSpan(
-                        clickableSpan,
-                        startIndex,
-                        startIndex + here.length,
-                        android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                    )
-                    text = spannableString
-                    movementMethod = android.text.method.LinkMovementMethod.getInstance()
-                }
+            // Ayuda modo de uso
+            btnHelpUsage?.setOnClickListener {
+                showHelpUsageDialog()
+            }
+
+            // Ayuda configuración
+            btnHelpConfiguration?.setOnClickListener {
+                showHelpConfigurationDialog()
+            }
+
+            // Contacto / Sugerencias
+            btnContactSuggestions?.setOnClickListener {
+                showContactSuggestionsDialog()
             }
         } catch (e: Exception) {
             Log.e(TAG, "setupAppInfoSection: error", e)
@@ -1400,6 +1383,46 @@ class OpcionesFragment : Fragment() {
         AlertDialog.Builder(requireContext())
             .setTitle(getString(R.string.detailed_help_title))
             .setView(scrollView)
+            .setPositiveButton("OK", null)
+            .show()
+    }
+
+    private fun showTechnicalInfoDialog() {
+        val message = getString(R.string.coming_soon)
+        
+        AlertDialog.Builder(requireContext())
+            .setTitle(getString(R.string.technical_specs_title))
+            .setMessage(message)
+            .setPositiveButton("OK", null)
+            .show()
+    }
+
+    private fun showHelpUsageDialog() {
+        val message = getString(R.string.coming_soon)
+        
+        AlertDialog.Builder(requireContext())
+            .setTitle(getString(R.string.help_usage_mode))
+            .setMessage(message)
+            .setPositiveButton("OK", null)
+            .show()
+    }
+
+    private fun showHelpConfigurationDialog() {
+        val message = getString(R.string.coming_soon)
+        
+        AlertDialog.Builder(requireContext())
+            .setTitle(getString(R.string.help_configuration))
+            .setMessage(message)
+            .setPositiveButton("OK", null)
+            .show()
+    }
+
+    private fun showContactSuggestionsDialog() {
+        val message = getString(R.string.coming_soon)
+        
+        AlertDialog.Builder(requireContext())
+            .setTitle(getString(R.string.contact_info_title))
+            .setMessage(message)
             .setPositiveButton("OK", null)
             .show()
     }
