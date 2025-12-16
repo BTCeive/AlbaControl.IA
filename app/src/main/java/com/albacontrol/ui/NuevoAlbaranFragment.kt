@@ -754,6 +754,21 @@ class NuevoAlbaranFragment : Fragment() {
         // New capture -> allow OCR/template to repopulate products and reset auto-populate lock
         productsManuallyEdited = false
         autoPopulateDone = false
+        
+        // CRÍTICO: Limpiar campos específicos del documento (fecha y número) cuando se sube nueva imagen
+        // Estos campos son específicos de cada documento y no deben persistir entre documentos
+        val view = requireView()
+        try {
+            view.findViewById<EditText>(R.id.etNumeroAlbaran).setText("")
+            view.findViewById<EditText>(R.id.etFechaAlbaran).setText("")
+            // Resetear flags de edición manual para estos campos
+            userEdited["numero_albaran"] = false
+            userEdited["fecha_albaran"] = false
+            Log.d("AlbaTpl", "onImageCaptured: cleared fecha and numero fields for new document")
+        } catch (e: Exception) {
+            Log.e("AlbaTpl", "onImageCaptured: error clearing fields: ${e.message}")
+        }
+        
         Log.d("AlbaTpl", "onImageCaptured: reset flags - autoPopulateDone=false, productsManuallyEdited=false")
         // Validate resolution
         if (bitmap.width < 500 || bitmap.height < 500) {
@@ -858,16 +873,18 @@ class NuevoAlbaranFragment : Fragment() {
                     Log.d("AlbaTpl", "OCR: success - proveedor='${ocrResult.proveedor}' nif='${ocrResult.nif}' numero='${ocrResult.numeroAlbaran}' fecha='${ocrResult.fechaAlbaran}' products=${ocrResult.products.size}")
                     lastOcrResult = ocrResult
                     
-                    // IMPORTANTE: Aplicar plantilla ANTES de OCR para que la plantilla tenga prioridad
+                    // IMPORTANTE: Aplicar OCR PRIMERO para fecha y número (específicos del documento)
+                    // Luego aplicar template para proveedor, NIF y productos (pueden ser del mismo proveedor)
                     try {
-                        Log.d("AlbaTpl", "Attempting to apply template before OCR form population")
+                        // Aplicar OCR primero para fecha y número (tienen prioridad sobre template)
+                        applyOcrResultToForm(ocrResult)
+                        
+                        // Luego aplicar template para proveedor, NIF y productos
+                        Log.d("AlbaTpl", "Attempting to apply template after OCR form population")
                         applyTemplateIfExists(ocrResult, bitmap)
                     } catch (e: Exception) {
                         Log.e("AlbaTpl", "Error applying template: ${e.message}", e)
                     }
-                    
-                    // Luego aplicar OCR solo si no hay plantilla o para campos vacíos
-                    applyOcrResultToForm(ocrResult)
                 } else {
                     Log.e("AlbaTpl", "Tesseract OCR: failed to process image")
                     Toast.makeText(requireContext(), "Error procesando documento. Intente de nuevo.", Toast.LENGTH_LONG).show()
@@ -1405,17 +1422,37 @@ class NuevoAlbaranFragment : Fragment() {
                                     }
                                     "numero_albaran" -> {
                                         val et = view.findViewById<EditText>(R.id.etNumeroAlbaran)
-                                if ((overwrite && (userEdited["numero_albaran"] != true)) || et.text.isBlank()) {
-                                    et.setText(text)
-                                    Log.d("AlbaTpl", "applyTemplate: set numero_albaran='$text'")
-                                }
+                                        // NO aplicar número del template si el OCR detectó un número diferente
+                                        // El número de albarán es específico de cada documento
+                                        val ocrNumero = result?.numeroAlbaran?.trim()
+                                        if (ocrNumero != null && ocrNumero.isNotEmpty() && ocrNumero != text.trim()) {
+                                            Log.d("AlbaTpl", "applyTemplate: skipping numero_albaran from template (OCR has different value: '$ocrNumero' vs template '$text')")
+                                            // Aplicar el del OCR en su lugar
+                                            if (et.text.isBlank() || userEdited["numero_albaran"] != true) {
+                                                et.setText(ocrNumero)
+                                                Log.d("AlbaTpl", "applyTemplate: set numero_albaran from OCR='$ocrNumero'")
+                                            }
+                                        } else if ((overwrite && (userEdited["numero_albaran"] != true)) || et.text.isBlank()) {
+                                            et.setText(text)
+                                            Log.d("AlbaTpl", "applyTemplate: set numero_albaran='$text'")
+                                        }
                                     }
                                     "fecha_albaran" -> {
                                         val et = view.findViewById<EditText>(R.id.etFechaAlbaran)
-                                if ((overwrite && (userEdited["fecha_albaran"] != true)) || et.text.isBlank()) {
-                                    et.setText(text)
-                                    Log.d("AlbaTpl", "applyTemplate: set fecha_albaran='$text'")
-                                }
+                                        // NO aplicar fecha del template si el OCR detectó una fecha diferente
+                                        // La fecha es específica de cada documento
+                                        val ocrFecha = result?.fechaAlbaran?.trim()
+                                        if (ocrFecha != null && ocrFecha.isNotEmpty() && ocrFecha != text.trim()) {
+                                            Log.d("AlbaTpl", "applyTemplate: skipping fecha_albaran from template (OCR has different value: '$ocrFecha' vs template '$text')")
+                                            // Aplicar la del OCR en su lugar
+                                            if (et.text.isBlank() || userEdited["fecha_albaran"] != true) {
+                                                et.setText(ocrFecha)
+                                                Log.d("AlbaTpl", "applyTemplate: set fecha_albaran from OCR='$ocrFecha'")
+                                            }
+                                        } else if ((overwrite && (userEdited["fecha_albaran"] != true)) || et.text.isBlank()) {
+                                            et.setText(text)
+                                            Log.d("AlbaTpl", "applyTemplate: set fecha_albaran='$text'")
+                                        }
                                     }
                                     else -> {}
                                 }
