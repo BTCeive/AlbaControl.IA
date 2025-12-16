@@ -1486,39 +1486,94 @@ class NuevoAlbaranFragment : Fragment() {
             }
         } catch (_: Exception) {}
         
-        // Aplicar productos guardados directamente desde las muestras (nuevo sistema)
+        // Aplicar productos guardados directamente desde las muestras (sistema mejorado basado en descripción)
         try {
-            // Agrupar productos por índice
-            val productIndices = mutableSetOf<Int>()
+            // Extraer todos los productos guardados (ahora por clave de descripción normalizada)
+            val savedProducts = mutableMapOf<String, MutableMap<String, String>>()
+            
             for (key in fieldTexts.keys) {
-                if (key.startsWith("product_") && key.contains("_desc")) {
-                    val idx = key.removePrefix("product_").removeSuffix("_desc").toIntOrNull()
-                    if (idx != null) productIndices.add(idx)
+                if (key.startsWith("product_") && key.contains("_")) {
+                    val parts = key.removePrefix("product_").split("_", limit = 2)
+                    if (parts.size == 2) {
+                        val productKey = parts[0]
+                        val fieldType = parts[1]
+                        
+                        if (!savedProducts.containsKey(productKey)) {
+                            savedProducts[productKey] = mutableMapOf()
+                        }
+                        savedProducts[productKey]!![fieldType] = fieldTexts[key] ?: ""
+                    }
                 }
             }
             
-            if (productIndices.isNotEmpty()) {
-                Log.d("AlbaTpl", "applyTemplate: found ${productIndices.size} products in samples")
+            if (savedProducts.isNotEmpty()) {
+                Log.d("AlbaTpl", "applyTemplate: found ${savedProducts.size} unique products in samples")
+                
                 withContext(Dispatchers.Main) {
-                    // Limpiar productos existentes y añadir los de la plantilla
-                    productContainer.removeAllViews()
-                    
-                    for (idx in productIndices.sorted()) {
-                        val desc = fieldTexts["product_${idx}_desc"] ?: ""
-                        val units = fieldTexts["product_${idx}_units"] ?: ""
-                        val price = fieldTexts["product_${idx}_price"] ?: ""
-                        val total = fieldTexts["product_${idx}_total"] ?: ""
-                        
+                    // Obtener productos actuales del OCR (si existen)
+                    val currentProducts = mutableListOf<String>()
+                    for (i in 0 until productContainer.childCount) {
+                        val item = productContainer.getChildAt(i)
+                        val desc = item.findViewById<EditText>(R.id.etDescripcion).text.toString().trim()
                         if (desc.isNotEmpty()) {
-                            val inflater = LayoutInflater.from(requireContext())
-                            val item = inflater.inflate(R.layout.product_item, productContainer, false)
-                            item.findViewById<EditText>(R.id.etDescripcion).setText(desc)
-                            item.findViewById<EditText>(R.id.etUnidades).setText(units)
-                            item.findViewById<EditText>(R.id.etPrecio).setText(price)
-                            item.findViewById<EditText>(R.id.etImporte).setText(total)
-                            attachWatchersToProductItem(item)
-                            productContainer.addView(item)
-                            Log.d("AlbaTpl", "applyTemplate: added product $idx: desc='$desc' units='$units' price='$price' total='$total'")
+                            currentProducts.add(desc)
+                        }
+                    }
+                    
+                    // Matching fuzzy: emparejar productos del OCR con productos guardados
+                    val matched = mutableSetOf<String>() // Claves de productos ya emparejados
+                    val SIMILARITY_THRESHOLD = 0.7 // 70% de similitud mínima
+                    
+                    for (i in 0 until productContainer.childCount) {
+                        val item = productContainer.getChildAt(i)
+                        val currentDesc = item.findViewById<EditText>(R.id.etDescripcion).text.toString().trim()
+                        
+                        if (currentDesc.isNotEmpty()) {
+                            // Buscar el producto guardado más similar
+                            var bestMatch: String? = null
+                            var bestSimilarity = 0.0
+                            
+                            for ((productKey, fields) in savedProducts) {
+                                if (matched.contains(productKey)) continue // Ya emparejado
+                                
+                                val savedDesc = fields["desc"] ?: ""
+                                if (savedDesc.isEmpty()) continue
+                                
+                                val similarity = productNameSimilarity(currentDesc, savedDesc)
+                                if (similarity > bestSimilarity && similarity >= SIMILARITY_THRESHOLD) {
+                                    bestSimilarity = similarity
+                                    bestMatch = productKey
+                                }
+                            }
+                            
+                            // Si encontramos un match, aplicar los datos guardados
+                            if (bestMatch != null) {
+                                val fields = savedProducts[bestMatch]!!
+                                item.findViewById<EditText>(R.id.etDescripcion).setText(fields["desc"] ?: currentDesc)
+                                item.findViewById<EditText>(R.id.etUnidades).setText(fields["units"] ?: "")
+                                item.findViewById<EditText>(R.id.etPrecio).setText(fields["price"] ?: "")
+                                item.findViewById<EditText>(R.id.etImporte).setText(fields["total"] ?: "")
+                                matched.add(bestMatch)
+                                Log.d("AlbaTpl", "applyTemplate: matched product '$currentDesc' -> '${fields["desc"]}' (similarity=${"%.2f".format(bestSimilarity)})")
+                            }
+                        }
+                    }
+                    
+                    // Añadir productos guardados que no se emparejaron (productos nuevos del proveedor)
+                    for ((productKey, fields) in savedProducts) {
+                        if (!matched.contains(productKey)) {
+                            val desc = fields["desc"] ?: ""
+                            if (desc.isNotEmpty()) {
+                                val inflater = LayoutInflater.from(requireContext())
+                                val item = inflater.inflate(R.layout.product_item, productContainer, false)
+                                item.findViewById<EditText>(R.id.etDescripcion).setText(desc)
+                                item.findViewById<EditText>(R.id.etUnidades).setText(fields["units"] ?: "")
+                                item.findViewById<EditText>(R.id.etPrecio).setText(fields["price"] ?: "")
+                                item.findViewById<EditText>(R.id.etImporte).setText(fields["total"] ?: "")
+                                attachWatchersToProductItem(item)
+                                productContainer.addView(item)
+                                Log.d("AlbaTpl", "applyTemplate: added new product from template: '$desc'")
+                            }
                         }
                     }
                 }
@@ -2135,7 +2190,7 @@ class NuevoAlbaranFragment : Fragment() {
                     Log.d("AlbaTpl", "savePattern: storing field=$k correctedText='$correctedText'")
                 }
                 
-                // Guardar productos individuales del formulario
+                // Guardar productos individuales del formulario (basado en descripción normalizada)
                 for (i in 0 until productContainer.childCount) {
                     val item = productContainer.getChildAt(i)
                     val desc = item.findViewById<EditText>(R.id.etDescripcion).text.toString().trim()
@@ -2144,12 +2199,13 @@ class NuevoAlbaranFragment : Fragment() {
                     val total = item.findViewById<EditText>(R.id.etImporte).text.toString().trim()
                     
                     if (desc.isNotEmpty()) {
-                        // Guardar cada campo del producto por separado
-                        fieldMappings["product_${i}_desc"] = "::$desc"
-                        if (units.isNotEmpty()) fieldMappings["product_${i}_units"] = "::$units"
-                        if (price.isNotEmpty()) fieldMappings["product_${i}_price"] = "::$price"
-                        if (total.isNotEmpty()) fieldMappings["product_${i}_total"] = "::$total"
-                        Log.d("AlbaTpl", "savePattern: storing product $i: desc='$desc' units='$units' price='$price' total='$total'")
+                        // Usar descripción normalizada como clave en lugar de índice
+                        val productKey = normalizeProductName(desc)
+                        fieldMappings["product_${productKey}_desc"] = "::$desc"
+                        if (units.isNotEmpty()) fieldMappings["product_${productKey}_units"] = "::$units"
+                        if (price.isNotEmpty()) fieldMappings["product_${productKey}_price"] = "::$price"
+                        if (total.isNotEmpty()) fieldMappings["product_${productKey}_total"] = "::$total"
+                        Log.d("AlbaTpl", "savePattern: storing product key='$productKey': desc='$desc' units='$units' price='$price' total='$total'")
                     }
                 }
 
@@ -2845,6 +2901,53 @@ class NuevoAlbaranFragment : Fragment() {
         val bottom = top + (parts[3] * bhf).toInt()
         if (right <= left || bottom <= top) return null
         return android.graphics.Rect(left, top, right.coerceAtMost(bwf.toInt()), bottom.coerceAtMost(bhf.toInt()))
+    }
+
+    /**
+     * Normaliza el nombre de un producto para usarlo como clave de identificación.
+     * Elimina espacios, puntuación, convierte a minúsculas.
+     */
+    private fun normalizeProductName(name: String): String {
+        return name.trim()
+            .lowercase()
+            .replace(Regex("[^a-z0-9áéíóúñü]"), "_")
+            .replace(Regex("_+"), "_")
+            .trim('_')
+            .take(50) // Limitar longitud
+    }
+
+    /**
+     * Calcula similitud entre dos nombres de productos (0.0 a 1.0).
+     */
+    private fun productNameSimilarity(name1: String, name2: String): Double {
+        val norm1 = normalizeProductName(name1)
+        val norm2 = normalizeProductName(name2)
+        
+        if (norm1 == norm2) return 1.0
+        if (norm1.isEmpty() || norm2.isEmpty()) return 0.0
+        
+        // Levenshtein distance
+        val len1 = norm1.length
+        val len2 = norm2.length
+        val dp = Array(len1 + 1) { IntArray(len2 + 1) }
+        
+        for (i in 0..len1) dp[i][0] = i
+        for (j in 0..len2) dp[0][j] = j
+        
+        for (i in 1..len1) {
+            for (j in 1..len2) {
+                val cost = if (norm1[i - 1] == norm2[j - 1]) 0 else 1
+                dp[i][j] = minOf(
+                    dp[i - 1][j] + 1,
+                    dp[i][j - 1] + 1,
+                    dp[i - 1][j - 1] + cost
+                )
+            }
+        }
+        
+        val distance = dp[len1][len2]
+        val maxLen = maxOf(len1, len2)
+        return 1.0 - (distance.toDouble() / maxLen)
     }
 
     // Render first page of a PDF file to a Bitmap (or null if fails)
