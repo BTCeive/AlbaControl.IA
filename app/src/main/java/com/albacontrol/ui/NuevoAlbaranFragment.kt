@@ -1755,11 +1755,16 @@ class NuevoAlbaranFragment : Fragment() {
         val etNumeroText = etNumero.text.toString().trim()
         val etFechaText = etFechaAlb.text.toString().trim()
 
+        // IMPORTANTE: Guardar siempre al finalizar para aprendizaje continuo
+        // No solo cuando hay correcciones, sino también cuando la plantilla funcionó bien
+        // Esto permite que el sistema aprenda y mejore continuamente
+        
         var corrections = 0
         if (!result.proveedor.isNullOrBlank() && result.proveedor.trim() != etProveedorText) corrections++
         if (!result.nif.isNullOrBlank() && result.nif.trim() != etNifText) corrections++
         if (!result.numeroAlbaran.isNullOrBlank() && result.numeroAlbaran.trim() != etNumeroText) corrections++
         if (!result.fechaAlbaran.isNullOrBlank() && result.fechaAlbaran.trim() != etFechaText) corrections++
+        
         // también comprobar productos: si hay diferencias en al menos una línea
         val prodDiff = run {
             try {
@@ -1785,9 +1790,25 @@ class NuevoAlbaranFragment : Fragment() {
         }
         if (prodDiff) corrections++
 
-        if (corrections == 0) {
-            Log.d("AlbaTpl", "savePatternFromCorrections: no corrections detected - aborting")
+        // Verificar si hay datos válidos para guardar (proveedor o productos)
+        val hasValidData = etProveedorText.isNotEmpty() || 
+                          (productContainer.childCount > 0 && 
+                           (0 until productContainer.childCount).any { i ->
+                               val item = productContainer.getChildAt(i)
+                               item.findViewById<EditText>(R.id.etDescripcion).text.toString().trim().isNotEmpty()
+                           })
+        
+        if (!hasValidData) {
+            Log.d("AlbaTpl", "savePatternFromCorrections: no valid data to save (no provider, no products) - aborting")
             return lifecycleScope.launch { }
+        }
+        
+        // Guardar siempre si hay datos válidos (aprendizaje continuo)
+        // Log informativo sobre correcciones detectadas
+        if (corrections > 0) {
+            Log.d("AlbaTpl", "savePatternFromCorrections: $corrections corrections detected, saving pattern")
+        } else {
+            Log.d("AlbaTpl", "savePatternFromCorrections: no corrections but valid data present, saving for continuous learning")
         }
 
         val mappings = mutableMapOf<String, String>()
