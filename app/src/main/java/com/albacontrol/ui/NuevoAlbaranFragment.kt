@@ -156,6 +156,12 @@ class NuevoAlbaranFragment : Fragment() {
 
 
 
+                // Inicializar vistas primero antes de usarlas
+                productContainer = view.findViewById(R.id.product_container)
+                btnAddProduct = view.findViewById(R.id.btnAddProduct)
+                checkSinAlbaran = view.findViewById(R.id.checkSinAlbaran)
+                checkIncidenciaAlbaran = view.findViewById(R.id.checkIncidenciaAlbaran)
+
                 // comentarios y productos (leer form_state si existe en argumentos o savedInstanceState)
                 val jo = try {
                     val s = arguments?.getString("form_state") ?: savedInstanceState?.getString("form_state") ?: "{}"
@@ -218,11 +224,6 @@ class NuevoAlbaranFragment : Fragment() {
         val tvCreatedAt = view.findViewById<TextView>(R.id.tvCreatedAt)
         val sdf = SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.getDefault())
         tvCreatedAt.text = getString(R.string.created_at, sdf.format(Date()))
-
-        productContainer = view.findViewById(R.id.product_container)
-        btnAddProduct = view.findViewById(R.id.btnAddProduct)
-        checkSinAlbaran = view.findViewById(R.id.checkSinAlbaran)
-        checkIncidenciaAlbaran = view.findViewById(R.id.checkIncidenciaAlbaran)
 
         // Añadir primer producto vacío al iniciar (solo si no se restauraron productos)
         if (!restoredFromState) {
@@ -1490,7 +1491,7 @@ class NuevoAlbaranFragment : Fragment() {
         // IMPORTANTE: Solo rellenar datos (unidades, precio, importe) de productos que coinciden
         // NO añadir productos guardados que no están en el OCR actual
         try {
-            // Extraer todos los productos guardados (ahora por clave de descripción normalizada)
+            // Extraer todos los productos guardados (soporta formato antiguo product_0_* y nuevo product_desc_*)
             val savedProducts = mutableMapOf<String, MutableMap<String, String>>()
             
             for (key in fieldTexts.keys) {
@@ -1500,10 +1501,21 @@ class NuevoAlbaranFragment : Fragment() {
                         val productKey = parts[0]
                         val fieldType = parts[1]
                         
-                        if (!savedProducts.containsKey(productKey)) {
-                            savedProducts[productKey] = mutableMapOf()
+                        // Si es formato antiguo (product_0_desc, product_1_desc), usar índice como clave temporal
+                        // Si es formato nuevo (product_desc_normalizada), usar la clave normalizada
+                        val finalKey = if (productKey.matches(Regex("^\\d+$"))) {
+                            // Formato antiguo: usar descripción del campo para crear clave normalizada
+                            val desc = fieldTexts["product_${productKey}_desc"] ?: ""
+                            if (desc.isNotEmpty()) normalizeProductName(desc) else "old_$productKey"
+                        } else {
+                            // Formato nuevo: usar la clave directamente
+                            productKey
                         }
-                        savedProducts[productKey]!![fieldType] = fieldTexts[key] ?: ""
+                        
+                        if (!savedProducts.containsKey(finalKey)) {
+                            savedProducts[finalKey] = mutableMapOf()
+                        }
+                        savedProducts[finalKey]!![fieldType] = fieldTexts[key] ?: ""
                     }
                 }
             }
