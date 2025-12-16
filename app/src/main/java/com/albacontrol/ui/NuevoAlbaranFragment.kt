@@ -63,6 +63,7 @@ class NuevoAlbaranFragment : Fragment() {
     private var lastOcrBitmap: android.graphics.Bitmap? = null
     // TFLite variables removed (not used)
     private val photoPaths: MutableList<String> = mutableListOf()
+    private var restoredFromState: Boolean = false
     private val pendingDeletionRunnables: MutableMap<String, Runnable> = mutableMapOf()
     // Keep track of preprocessed PDF files created during this form session.
     private val preprocPdfs: MutableList<String> = mutableListOf()
@@ -163,11 +164,20 @@ class NuevoAlbaranFragment : Fragment() {
 
                 try {
                     view.findViewById<EditText>(R.id.etComentarios).setText(jo.optString("comments", ""))
-                } catch (_: Exception) {}
+                    view.findViewById<EditText>(R.id.etProveedor).setText(jo.optString("proveedor", ""))
+                    view.findViewById<EditText>(R.id.etNif).setText(jo.optString("nif", ""))
+                    view.findViewById<EditText>(R.id.etNumeroAlbaran).setText(jo.optString("numero_albaran", ""))
+                    view.findViewById<EditText>(R.id.etFechaAlbaran).setText(jo.optString("fecha_albaran", ""))
+                    checkSinAlbaran.isChecked = jo.optBoolean("sin_albaran", false)
+                    checkIncidenciaAlbaran.isChecked = jo.optBoolean("tiene_incidencias", false)
+                    Log.d("AlbaTpl", "Restaurando estado: ${jo.optJSONArray("products")?.length() ?: 0} productos")
+                } catch (e: Exception) {
+                    Log.e("AlbaTpl", "Error restaurando campos", e)
+                }
 
                 try {
                     val productsArray = jo.optJSONArray("products")
-                    if (productsArray != null) {
+                    if (productsArray != null && productsArray.length() > 0) {
                         productContainer.removeAllViews()
                         for (i in 0 until productsArray.length()) {
                             val p = productsArray.getJSONObject(i)
@@ -179,6 +189,10 @@ class NuevoAlbaranFragment : Fragment() {
                             item.findViewById<EditText>(R.id.etImporte).setText(p.optString("importe", ""))
                             val inc = p.optBoolean("incidencia", false)
                             item.findViewById<CheckBox>(R.id.checkIncidencia).isChecked = inc
+                            
+                            // Attach watchers to restored product items
+                            attachWatchersToProductItem(item)
+                            
                             val btnDelete = item.findViewById<ImageButton>(R.id.btnDeleteProduct)
                             btnDelete.setOnClickListener {
                                 val dialog = AlertDialog.Builder(requireContext())
@@ -195,6 +209,8 @@ class NuevoAlbaranFragment : Fragment() {
                             }
                             productContainer.addView(item)
                         }
+                        // Mark that we restored products, so we don't add an empty one below
+                        restoredFromState = true
                     }
                 } catch (_: Exception) {}
 
@@ -208,8 +224,10 @@ class NuevoAlbaranFragment : Fragment() {
         checkSinAlbaran = view.findViewById(R.id.checkSinAlbaran)
         checkIncidenciaAlbaran = view.findViewById(R.id.checkIncidenciaAlbaran)
 
-        // Añadir primer producto vacío al iniciar
+        // Añadir primer producto vacío al iniciar (solo si no se restauraron productos)
+        if (!restoredFromState) {
         addProductBox()
+        }
 
         // Attach watchers to main form fields so we don't overwrite user edits
         try {
@@ -565,7 +583,7 @@ class NuevoAlbaranFragment : Fragment() {
                                 // Si la app no está instalada, mostrar chooser
                                 Log.w("AlbaTpl", "App preferida no disponible: $preferredEmailApp, mostrando chooser")
                                 email.setPackage(null)
-                                startActivity(Intent.createChooser(email, getString(R.string.send_chooser)))
+                        startActivity(Intent.createChooser(email, getString(R.string.send_chooser)))
                             }
                         } else {
                             // Mostrar chooser si no hay app preferida
@@ -1156,14 +1174,14 @@ class NuevoAlbaranFragment : Fragment() {
         }
 
         Log.d("AlbaTpl", "Template matching complete: bestScore=$bestScore threshold=${com.albacontrol.data.TemplateLearningConfig.SCORE_APPLY_THRESHOLD} bestTpl=${bestTpl?.providerNif}")
-        
+
         if (bestTpl != null && bestScore >= com.albacontrol.data.TemplateLearningConfig.SCORE_APPLY_THRESHOLD) {
              // Show feedback to user about template application
              withContext(Dispatchers.Main) {
                  val sampleCount = try {
                      val bestTplKey = normalizeProviderKey(bestTpl.providerNif)
                      allSamples.count { normalizeProviderKey(it.providerNif) == bestTplKey }
-                } catch (_: Exception) { 0 }
+                 } catch (_: Exception) { 0 }
                 // Plantilla aplicada silenciosamente (sin toast para usuario final)
             }
             Log.d("AlbaTpl", "Applying template '${bestTpl.providerNif}' with score $bestScore")
@@ -1339,47 +1357,47 @@ class NuevoAlbaranFragment : Fragment() {
                 val text = fieldTexts[field]
                 Log.d("AlbaTpl", "applyTemplate: field=$field using stored text='$text'")
                 
-                if (!text.isNullOrBlank()) {
-                    withContext(Dispatchers.Main) {
-                        val view = requireView()
-                        when (field) {
-                            "proveedor" -> {
-                                val et = view.findViewById<EditText>(R.id.etProveedor)
+                        if (!text.isNullOrBlank()) {
+                            withContext(Dispatchers.Main) {
+                                val view = requireView()
+                                when (field) {
+                                    "proveedor" -> {
+                                        val et = view.findViewById<EditText>(R.id.etProveedor)
                                 if ((overwrite && (userEdited["proveedor"] != true)) || et.text.isBlank()) {
                                     et.setText(text)
                                     Log.d("AlbaTpl", "applyTemplate: set proveedor='$text'")
                                 }
-                            }
-                            "nif" -> {
-                                val et = view.findViewById<EditText>(R.id.etNif)
+                                    }
+                                    "nif" -> {
+                                        val et = view.findViewById<EditText>(R.id.etNif)
                                 if ((overwrite && (userEdited["nif"] != true)) || et.text.isBlank()) {
                                     et.setText(text)
                                     Log.d("AlbaTpl", "applyTemplate: set nif='$text'")
                                 }
-                            }
-                            "numero_albaran" -> {
-                                val et = view.findViewById<EditText>(R.id.etNumeroAlbaran)
+                                    }
+                                    "numero_albaran" -> {
+                                        val et = view.findViewById<EditText>(R.id.etNumeroAlbaran)
                                 if ((overwrite && (userEdited["numero_albaran"] != true)) || et.text.isBlank()) {
                                     et.setText(text)
                                     Log.d("AlbaTpl", "applyTemplate: set numero_albaran='$text'")
                                 }
-                            }
-                            "fecha_albaran" -> {
-                                val et = view.findViewById<EditText>(R.id.etFechaAlbaran)
+                                    }
+                                    "fecha_albaran" -> {
+                                        val et = view.findViewById<EditText>(R.id.etFechaAlbaran)
                                 if ((overwrite && (userEdited["fecha_albaran"] != true)) || et.text.isBlank()) {
                                     et.setText(text)
                                     Log.d("AlbaTpl", "applyTemplate: set fecha_albaran='$text'")
                                 }
+                                    }
+                                    else -> {}
+                                }
                             }
-                            else -> {}
-                        }
-                    }
                 } else {
                     Log.w("AlbaTpl", "applyTemplate: field=$field has no stored text")
-                }
+                        }
             } catch (e: Exception) {
                 Log.e("AlbaTpl", "applyTemplate: error processing field=$field: ${e.message}", e)
-            }
+                    }
         }
 
         try {
@@ -2398,90 +2416,8 @@ class NuevoAlbaranFragment : Fragment() {
                     }
                 }
                 
-                // Construir correcciones de campos individuales
-                val fieldCorrections = mutableMapOf<String, com.albacontrol.util.CorrectionsApiClient.CorrectionFieldData>()
-                
-                // Helper para normalizar bbox a formato [x_min, y_min, x_max, y_max] 0..1
-                fun normalizeBBox(rect: android.graphics.Rect?): List<Double>? {
-                    if (rect == null || bitmap == null) return null
-                    val bw = bitmap.width.toFloat()
-                    val bh = bitmap.height.toFloat()
-                    if (bw <= 0 || bh <= 0) return null
-                    return listOf(
-                        (rect.left.toFloat() / bw).toDouble(),
-                        (rect.top.toFloat() / bh).toDouble(),
-                        (rect.right.toFloat() / bw).toDouble(),
-                        (rect.bottom.toFloat() / bh).toDouble()
-                    )
-                }
-                
-                // Proveedor
-                if (proveedorFinal.isNotEmpty() && ocrResult.proveedor?.trim() != proveedorFinal) {
-                    fieldCorrections["etProveedor"] = com.albacontrol.util.CorrectionsApiClient.CorrectionFieldData(
-                        correctedText = proveedorFinal,
-                        confidenceBefore = null, // TODO: obtener de OCR si está disponible
-                        bbox = normalizeBBox(ocrResult.proveedorBBox),
-                        notes = "Corregido de '${ocrResult.proveedor}' a '$proveedorFinal'"
-                    )
-                }
-                
-                // NIF
-                if (nifFinal.isNotEmpty() && ocrResult.nif?.trim() != nifFinal) {
-                    fieldCorrections["etNif"] = com.albacontrol.util.CorrectionsApiClient.CorrectionFieldData(
-                        correctedText = nifFinal,
-                        bbox = normalizeBBox(ocrResult.nifBBox),
-                        notes = "Corregido de '${ocrResult.nif}' a '$nifFinal'"
-                    )
-                }
-                
-                // Número albarán
-                if (numeroFinal.isNotEmpty() && ocrResult.numeroAlbaran?.trim() != numeroFinal) {
-                    fieldCorrections["etNumeroAlbaran"] = com.albacontrol.util.CorrectionsApiClient.CorrectionFieldData(
-                        correctedText = numeroFinal,
-                        bbox = normalizeBBox(ocrResult.numeroBBox),
-                        notes = "Corregido de '${ocrResult.numeroAlbaran}' a '$numeroFinal'"
-                    )
-                }
-                
-                // Fecha
-                if (fechaFinal.isNotEmpty() && ocrResult.fechaAlbaran?.trim() != fechaFinal) {
-                    fieldCorrections["etFechaAlbaran"] = com.albacontrol.util.CorrectionsApiClient.CorrectionFieldData(
-                        correctedText = fechaFinal,
-                        bbox = normalizeBBox(ocrResult.fechaBBox),
-                        notes = "Corregido de '${ocrResult.fechaAlbaran}' a '$fechaFinal'"
-                    )
-                }
-                
-                // Construir template_id si hay plantilla para este proveedor
-                val templateId = if (nifNormalized != null) {
-                    val db = com.albacontrol.data.AppDatabase.getInstance(requireContext())
-                    val templates = db.templateDao().getAllTemplates()
-                    templates.firstOrNull { 
-                        com.albacontrol.util.OcrUtils.normalizeToken(it.providerNif).uppercase() == nifNormalized 
-                    }?.let { "tpl_${nifNormalized}_v${it.version}" }
-                } else null
-                
-                val payload = com.albacontrol.util.CorrectionsApiClient.buildCorrectionPayload(
-                    debugId = debugId,
-                    nif = nifNormalized,
-                    proveedor = proveedorFinal.takeIf { it.isNotEmpty() },
-                    numeroAlbaran = numeroFinal.takeIf { it.isNotEmpty() },
-                    fechaAlbaran = fechaFinal.takeIf { it.isNotEmpty() },
-                    productos = productosBackend.takeIf { productosBackend.length() > 0 },
-                    templateId = templateId,
-                    fieldCorrections = fieldCorrections.takeIf { it.isNotEmpty() }
-                )
-                
-                // Enviar al backend
-                Log.d("AlbaTpl", "sendCorrectionToBackend: calling CorrectionsApiClient.sendCorrection with debugId=$debugId")
-                Log.d("AlbaTpl", "sendCorrectionToBackend: payload size=${payload.toString().length} bytes")
-                
-                val success = com.albacontrol.util.CorrectionsApiClient.sendCorrection(payload)
-                if (success) {
-                    Log.d("AlbaTpl", "✓ Corrección enviada exitosamente al backend: $debugId")
-                } else {
-                    Log.w("AlbaTpl", "✗ No se pudo enviar corrección al backend: $debugId")
-                }
+                // Backend API de correcciones deshabilitado (CorrectionsApiClient eliminado)
+                Log.d("AlbaTpl", "Correcciones backend: No disponible (API no implementada)")
             } catch (e: Exception) {
                 Log.e("AlbaTpl", "Error al construir/enviar corrección: ${e.message}", e)
                 e.printStackTrace()
@@ -2804,11 +2740,19 @@ class NuevoAlbaranFragment : Fragment() {
             val etNif = view.findViewById<EditText>(R.id.etNif)
             val etNumero = view.findViewById<EditText>(R.id.etNumeroAlbaran)
             val etFechaAlb = view.findViewById<EditText>(R.id.etFechaAlbaran)
+            val etComentarios = view.findViewById<EditText>(R.id.etComentarios)
+            val spinnerRecep = view.findViewById<Spinner>(R.id.spinnerRecepcionista)
+            val spinnerUbic = view.findViewById<Spinner>(R.id.spinnerUbicacion)
 
             json.put("proveedor", etProveedor.text.toString())
             json.put("nif", etNif.text.toString())
             json.put("numero_albaran", etNumero.text.toString())
             json.put("fecha_albaran", etFechaAlb.text.toString())
+            json.put("comments", etComentarios.text.toString())
+            json.put("recepcionista", spinnerRecep.selectedItem?.toString() ?: "")
+            json.put("ubicacion_recogida", spinnerUbic.selectedItem?.toString() ?: "")
+            json.put("sin_albaran", checkSinAlbaran.isChecked)
+            json.put("tiene_incidencias", checkIncidenciaAlbaran.isChecked)
             json.put("created_at", System.currentTimeMillis())
 
             val productsArray = JSONArray()
@@ -2831,7 +2775,10 @@ class NuevoAlbaranFragment : Fragment() {
             json.put("products", productsArray)
 
             outState.putString("form_state", json.toString())
-        } catch (_: Exception) {}
+            Log.d("AlbaTpl", "onSaveInstanceState: Guardados ${productsArray.length()} productos")
+        } catch (e: Exception) {
+            Log.e("AlbaTpl", "onSaveInstanceState: error", e)
+        }
     }
 
     override fun onDestroyView() {
