@@ -1523,6 +1523,11 @@ class NuevoAlbaranFragment : Fragment() {
             if (savedProducts.isNotEmpty()) {
                 Log.d("AlbaTpl", "applyTemplate: found ${savedProducts.size} unique products in samples")
                 
+                // Aprender variaciones comunes del proveedor (en background)
+                lifecycleScope.launch(Dispatchers.IO) {
+                    learnCommonVariations(chosenTpl.providerNif)
+                }
+                
                 withContext(Dispatchers.Main) {
                     // Limpiar productos existentes (del sistema de coordenadas que puede ser incorrecto)
                     productContainer.removeAllViews()
@@ -2933,31 +2938,162 @@ class NuevoAlbaranFragment : Fragment() {
     }
 
     /**
-     * Normaliza el nombre de un producto para usarlo como clave de identificación.
-     * Elimina espacios, puntuación, convierte a minúsculas.
+     * Variaciones comunes que se ignoran en el matching (tamaños, formatos, etc.)
+     */
+    private val commonVariations = mutableSetOf(
+        "x2", "x4", "x6", "x8", "x12", "x24",
+        "125g", "250g", "500g", "1kg", "1l", "500ml",
+        "pack", "unidad", "unidades", "ud", "uds",
+        "natural", "edulc", "edulcorado", "azucarado"
+    )
+
+    /**
+     * Aprende variaciones comunes de productos desde muestras guardadas.
+     * Extrae patrones como "X4", "125G", etc. que aparecen frecuentemente.
+     */
+    private suspend fun learnCommonVariations(providerNif: String) {
+        try {
+            val db = com.albacontrol.data.AppDatabase.getInstance(requireContext())
+            val providerKey = providerNif.trim().lowercase()
+            val samples = db.templateDao().getAllSamples().filter {
+                it.providerNif.trim().lowercase() == providerKey
+            }
+            
+            val variationCounts = mutableMapOf<String, Int>()
+            
+            // Extraer variaciones de todos los productos guardados
+            for (sample in samples) {
+                for ((key, value) in sample.fieldMappings) {
+                    if (key.startsWith("product_") && key.endsWith("_desc")) {
+                        val desc = value.substringAfter("::", "").trim()
+                        if (desc.isNotEmpty()) {
+                            // Extraer posibles variaciones (patrones comunes)
+                            val words = desc.lowercase()
+                                .replace(Regex("[^a-z0-9\\s]"), " ")
+                                .split(Regex("\\s+"))
+                                .filter { it.length in 2..6 }
+                            
+                            for (word in words) {
+                                // Detectar patrones de variación
+                                if (word.matches(Regex("x\\d+")) || // x2, x4, x12
+                                    word.matches(Regex("\\d+g")) ||  // 125g, 500g
+                                    word.matches(Regex("\\d+ml")) || // 500ml
+                                    word.matches(Regex("\\d+kg")) || // 1kg
+                                    word.matches(Regex("\\d+l"))) {  // 1l
+                                    variationCounts[word] = variationCounts.getOrDefault(word, 0) + 1
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // Añadir variaciones que aparecen en al menos 2 muestras
+            for ((variation, count) in variationCounts) {
+                if (count >= 2 && !commonVariations.contains(variation)) {
+                    commonVariations.add(variation)
+                    Log.d("AlbaTpl", "Learned common variation: '$variation' (appears in $count samples)")
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("AlbaTpl", "Error learning variations: ${e.message}", e)
+        }
+    }
+
+    /**
+     * Palabras comunes que se ignoran (artículos, preposiciones)
+     */
+    private val stopWords = setOf(
+        "el", "la", "los", "las", "de", "del", "y", "e", "o", "a", "en", "con"
+    )
+
+    /**
+     * Normaliza el nombre de un producto mejorado:
+     * - Tokeniza en palabras
+     * - Elimina variaciones comunes
+     * - Elimina stop words
+     * - Normaliza caracteres
      */
     private fun normalizeProductName(name: String): String {
         return name.trim()
             .lowercase()
-            .replace(Regex("[^a-z0-9áéíóúñü]"), "_")
-            .replace(Regex("_+"), "_")
-            .trim('_')
-            .take(50) // Limitar longitud
+            .replace(Regex("[^a-z0-9áéíóúñü\\s]"), " ")
+            .split(Regex("\\s+"))
+            .filter { it.isNotEmpty() }
+            .filterNot { it in stopWords }
+            .filterNot { it in commonVariations }
+            .joinToString("_")
+            .take(50)
     }
 
     /**
-     * Calcula similitud entre dos nombres de productos (0.0 a 1.0).
+     * Extrae palabras clave principales de un nombre de producto.
+     * Retorna las 2-3 palabras más significativas.
+     */
+    private fun extractKeyWords(name: String): Set<String> {
+        val normalized = name.trim()
+            .lowercase()
+            .replace(Regex("[^a-z0-9áéíóúñü\\s]"), " ")
+            .split(Regex("\\s+"))
+            .filter { it.isNotEmpty() }
+            .filterNot { it in stopWords }
+            .filterNot { it in commonVariations }
+        
+        // Retornar las palabras más significativas (excluyendo muy cortas)
+        return normalized
+            .filter { it.length >= 3 }
+            .take(3)
+            .toSet()
+    }
+
+    /**
+     * Calcula similitud mejorada entre dos nombres de productos (0.0 a 1.0).
+     * Combina múltiples estrategias:
+     * 1. Matching exacto normalizado
+     * 2. Matching por palabras clave (peso alto)
+     * 3. Levenshtein distance (peso bajo)
      */
     private fun productNameSimilarity(name1: String, name2: String): Double {
         val norm1 = normalizeProductName(name1)
         val norm2 = normalizeProductName(name2)
         
+        // 1. Matching exacto
         if (norm1 == norm2) return 1.0
         if (norm1.isEmpty() || norm2.isEmpty()) return 0.0
         
-        // Levenshtein distance
-        val len1 = norm1.length
-        val len2 = norm2.length
+        // 2. Matching por palabras clave (peso: 60%)
+        val keywords1 = extractKeyWords(name1)
+        val keywords2 = extractKeyWords(name2)
+        val keywordScore = if (keywords1.isEmpty() || keywords2.isEmpty()) {
+            0.0
+        } else {
+            val intersection = keywords1.intersect(keywords2).size
+            val union = keywords1.union(keywords2).size
+            if (union == 0) 0.0 else intersection.toDouble() / union
+        }
+        
+        // 3. Levenshtein distance mejorado (peso: 40%)
+        val levenshteinScore = calculateLevenshteinSimilarity(norm1, norm2)
+        
+        // 4. Bonus si hay palabras clave coincidentes
+        val keywordBonus = if (keywordScore > 0.5) 0.1 else 0.0
+        
+        // Combinar scores con pesos
+        val finalScore = (keywordScore * 0.6) + (levenshteinScore * 0.4) + keywordBonus
+        
+        return finalScore.coerceIn(0.0, 1.0)
+    }
+
+    /**
+     * Calcula similitud usando Levenshtein distance.
+     */
+    private fun calculateLevenshteinSimilarity(str1: String, str2: String): Double {
+        val len1 = str1.length
+        val len2 = str2.length
+        
+        if (len1 == 0 && len2 == 0) return 1.0
+        if (len1 == 0 || len2 == 0) return 0.0
+        
         val dp = Array(len1 + 1) { IntArray(len2 + 1) }
         
         for (i in 0..len1) dp[i][0] = i
@@ -2965,7 +3101,7 @@ class NuevoAlbaranFragment : Fragment() {
         
         for (i in 1..len1) {
             for (j in 1..len2) {
-                val cost = if (norm1[i - 1] == norm2[j - 1]) 0 else 1
+                val cost = if (str1[i - 1] == str2[j - 1]) 0 else 1
                 dp[i][j] = minOf(
                     dp[i - 1][j] + 1,
                     dp[i][j - 1] + 1,
