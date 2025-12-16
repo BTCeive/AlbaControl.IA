@@ -813,65 +813,18 @@ class NuevoAlbaranFragment : Fragment() {
                     show()
                 }
 
-                // Process with Enhanced OCR (ML Kit with table structure detection)
-                // Falls back to standard OCR if enhanced fails or detects too many false positives
+                // Process with Multi-Pass OCR (múltiples pasadas para mejor precisión)
+                // Combina resultados de diferentes preprocesamientos
                 val ocrResult = withContext(Dispatchers.IO) {
                     try {
-                        // Try enhanced OCR first (better table/product detection)
-                        val enhancedResult = com.albacontrol.ml.EnhancedOcrProcessor.processBitmapEnhanced(bitmap)
-                        if (enhancedResult != null && enhancedResult.products.isNotEmpty()) {
-                            // Validar que los productos detectados parecen reales (no headers/direcciones)
-                            val validProducts = enhancedResult.products.filter { product ->
-                                val desc = product.descripcion.lowercase()
-                                // Excluir productos que son claramente headers/direcciones
-                                val isHeader = desc.length < 5 || 
-                                              desc.contains("codigo") || 
-                                              desc.contains("ean") ||
-                                              desc.contains("total") ||
-                                              desc.contains("cliente") ||
-                                              desc.contains("documento") ||
-                                              desc.contains("ticket") ||
-                                              desc.contains("albaran") ||
-                                              desc.contains("barcelona") ||
-                                              desc.contains("madrid") ||
-                                              desc.contains("entregado") ||
-                                              desc.contains("ruta") ||
-                                              desc.matches(Regex("^[a-z]{1,2}\\d+")) // Códigos cortos como "AR644458"
-                                !isHeader
-                            }
-                            
-                            if (validProducts.size >= enhancedResult.products.size * 0.5) {
-                                // Si al menos 50% de productos son válidos, usar Enhanced OCR
-                                Log.d("AlbaTpl", "Enhanced OCR: detected ${enhancedResult.products.size} products (${validProducts.size} valid), using enhanced")
-                                com.albacontrol.ml.OCRResult(
-                                    proveedor = enhancedResult.proveedor,
-                                    proveedorBBox = enhancedResult.proveedorBBox,
-                                    nif = enhancedResult.nif,
-                                    nifBBox = enhancedResult.nifBBox,
-                                    numeroAlbaran = enhancedResult.numeroAlbaran,
-                                    numeroBBox = enhancedResult.numeroBBox,
-                                    fechaAlbaran = enhancedResult.fechaAlbaran,
-                                    fechaBBox = enhancedResult.fechaBBox,
-                                    products = validProducts,
-                                    allBlocks = enhancedResult.allBlocks
-                                )
-                            } else {
-                                // Demasiados falsos positivos, usar OCR estándar
-                                Log.d("AlbaTpl", "Enhanced OCR: too many false positives (${validProducts.size}/${enhancedResult.products.size} valid), using standard OCR")
-                                kotlinx.coroutines.suspendCancellableCoroutine<com.albacontrol.ml.OCRResult?> { cont ->
-                                    try {
-                                        com.albacontrol.ml.OcrProcessor.processBitmap(bitmap) { res, err ->
-                                            if (err != null) cont.resumeWith(Result.failure(err))
-                                            else cont.resumeWith(Result.success(res))
-                                        }
-                                    } catch (e: Exception) {
-                                        cont.resumeWith(Result.failure(e))
-                                    }
-                                }
-                            }
+                        // Usar Multi-Pass OCR que combina múltiples pasadas
+                        val multiPassResult = com.albacontrol.ml.MultiPassOcrProcessor.processBitmapMultiPass(bitmap)
+                        if (multiPassResult != null && multiPassResult.products.isNotEmpty()) {
+                            Log.d("AlbaTpl", "Multi-Pass OCR: success - ${multiPassResult.products.size} products from combined passes")
+                            multiPassResult
                         } else {
-                            // Fallback to standard OCR
-                            Log.d("AlbaTpl", "Enhanced OCR: no products found, using standard OCR")
+                            // Fallback to standard OCR if multi-pass fails
+                            Log.d("AlbaTpl", "Multi-Pass OCR: no products found, using standard OCR")
                             kotlinx.coroutines.suspendCancellableCoroutine<com.albacontrol.ml.OCRResult?> { cont ->
                                 try {
                                     com.albacontrol.ml.OcrProcessor.processBitmap(bitmap) { res, err ->
@@ -884,7 +837,7 @@ class NuevoAlbaranFragment : Fragment() {
                             }
                         }
                     } catch (e: Exception) {
-                        Log.e("AlbaTpl", "Enhanced OCR error, using standard OCR: ${e.message}")
+                        Log.e("AlbaTpl", "Multi-Pass OCR error, using standard OCR: ${e.message}")
                         // Fallback to standard OCR
                         kotlinx.coroutines.suspendCancellableCoroutine<com.albacontrol.ml.OCRResult?> { cont ->
                             try {
