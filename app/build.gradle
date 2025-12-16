@@ -50,6 +50,9 @@ dependencies {
 
     // ML Kit text recognition (on-device)
     implementation 'com.google.mlkit:text-recognition:16.0.1'
+    
+    // ML Kit Object Detection (for product region detection)
+    implementation 'com.google.mlkit:object-detection:17.0.1'
 
     // Room Database (latest stable)
     implementation 'androidx.room:room-runtime:2.6.1'

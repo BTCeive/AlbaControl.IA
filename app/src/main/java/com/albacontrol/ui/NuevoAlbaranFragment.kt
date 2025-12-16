@@ -813,36 +813,61 @@ class NuevoAlbaranFragment : Fragment() {
                     show()
                 }
 
-                // Process with OCR via centralized OcrProcessor (uses Tesseract under the hood)
-                val tesseractResult = withContext(Dispatchers.IO) {
-                    kotlinx.coroutines.suspendCancellableCoroutine<com.albacontrol.ml.OCRResult?> { cont ->
-                        try {
-                            com.albacontrol.ml.OcrProcessor.processBitmap(bitmap) { res, err ->
-                                if (err != null) cont.resumeWith(Result.failure(err))
-                                else cont.resumeWith(Result.success(res))
+                // Process with Enhanced OCR (ML Kit with table structure detection)
+                // Falls back to standard OCR if enhanced fails
+                val ocrResult = withContext(Dispatchers.IO) {
+                    try {
+                        // Try enhanced OCR first (better table/product detection)
+                        val enhancedResult = com.albacontrol.ml.EnhancedOcrProcessor.processBitmapEnhanced(bitmap)
+                        if (enhancedResult != null && enhancedResult.products.isNotEmpty()) {
+                            Log.d("AlbaTpl", "Enhanced OCR: detected ${enhancedResult.products.size} products")
+                            enhancedResult
+                        } else {
+                            // Fallback to standard OCR
+                            Log.d("AlbaTpl", "Enhanced OCR: no products found, using standard OCR")
+                            kotlinx.coroutines.suspendCancellableCoroutine<com.albacontrol.ml.OCRResult?> { cont ->
+                                try {
+                                    com.albacontrol.ml.OcrProcessor.processBitmap(bitmap) { res, err ->
+                                        if (err != null) cont.resumeWith(Result.failure(err))
+                                        else cont.resumeWith(Result.success(res))
+                                    }
+                                } catch (e: Exception) {
+                                    cont.resumeWith(Result.failure(e))
+                                }
                             }
-                        } catch (e: Exception) {
-                            cont.resumeWith(Result.failure(e))
+                        }
+                    } catch (e: Exception) {
+                        Log.e("AlbaTpl", "Enhanced OCR error, using standard OCR: ${e.message}")
+                        // Fallback to standard OCR
+                        kotlinx.coroutines.suspendCancellableCoroutine<com.albacontrol.ml.OCRResult?> { cont ->
+                            try {
+                                com.albacontrol.ml.OcrProcessor.processBitmap(bitmap) { res, err ->
+                                    if (err != null) cont.resumeWith(Result.failure(err))
+                                    else cont.resumeWith(Result.success(res))
+                                }
+                            } catch (e2: Exception) {
+                                cont.resumeWith(Result.failure(e2))
+                            }
                         }
                     }
                 }
 
                 progressDialog.dismiss()
 
-                if (tesseractResult != null) {
-                    Log.d("AlbaTpl", "Tesseract OCR: success - proveedor='${tesseractResult.proveedor}' nif='${tesseractResult.nif}' numero='${tesseractResult.numeroAlbaran}' fecha='${tesseractResult.fechaAlbaran}'")
-                    lastOcrResult = tesseractResult
+                if (ocrResult != null) {
+                    Log.d("AlbaTpl", "OCR: success - proveedor='${ocrResult.proveedor}' nif='${ocrResult.nif}' numero='${ocrResult.numeroAlbaran}' fecha='${ocrResult.fechaAlbaran}' products=${ocrResult.products.size}")
+                    lastOcrResult = ocrResult
                     
                     // IMPORTANTE: Aplicar plantilla ANTES de OCR para que la plantilla tenga prioridad
                     try {
                         Log.d("AlbaTpl", "Attempting to apply template before OCR form population")
-                        applyTemplateIfExists(tesseractResult, bitmap)
+                        applyTemplateIfExists(ocrResult, bitmap)
                     } catch (e: Exception) {
                         Log.e("AlbaTpl", "Error applying template: ${e.message}", e)
                     }
                     
                     // Luego aplicar OCR solo si no hay plantilla o para campos vacíos
-                    applyOcrResultToForm(tesseractResult)
+                    applyOcrResultToForm(ocrResult)
                 } else {
                     Log.e("AlbaTpl", "Tesseract OCR: failed to process image")
                     Toast.makeText(requireContext(), "Error procesando documento. Intente de nuevo.", Toast.LENGTH_LONG).show()
