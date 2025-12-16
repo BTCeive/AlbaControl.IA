@@ -814,14 +814,61 @@ class NuevoAlbaranFragment : Fragment() {
                 }
 
                 // Process with Enhanced OCR (ML Kit with table structure detection)
-                // Falls back to standard OCR if enhanced fails
+                // Falls back to standard OCR if enhanced fails or detects too many false positives
                 val ocrResult = withContext(Dispatchers.IO) {
                     try {
                         // Try enhanced OCR first (better table/product detection)
                         val enhancedResult = com.albacontrol.ml.EnhancedOcrProcessor.processBitmapEnhanced(bitmap)
                         if (enhancedResult != null && enhancedResult.products.isNotEmpty()) {
-                            Log.d("AlbaTpl", "Enhanced OCR: detected ${enhancedResult.products.size} products")
-                            enhancedResult
+                            // Validar que los productos detectados parecen reales (no headers/direcciones)
+                            val validProducts = enhancedResult.products.filter { product ->
+                                val desc = product.descripcion.lowercase()
+                                // Excluir productos que son claramente headers/direcciones
+                                val isHeader = desc.length < 5 || 
+                                              desc.contains("codigo") || 
+                                              desc.contains("ean") ||
+                                              desc.contains("total") ||
+                                              desc.contains("cliente") ||
+                                              desc.contains("documento") ||
+                                              desc.contains("ticket") ||
+                                              desc.contains("albaran") ||
+                                              desc.contains("barcelona") ||
+                                              desc.contains("madrid") ||
+                                              desc.contains("entregado") ||
+                                              desc.contains("ruta") ||
+                                              desc.matches(Regex("^[a-z]{1,2}\\d+")) // Códigos cortos como "AR644458"
+                                !isHeader
+                            }
+                            
+                            if (validProducts.size >= enhancedResult.products.size * 0.5) {
+                                // Si al menos 50% de productos son válidos, usar Enhanced OCR
+                                Log.d("AlbaTpl", "Enhanced OCR: detected ${enhancedResult.products.size} products (${validProducts.size} valid), using enhanced")
+                                com.albacontrol.ml.OCRResult(
+                                    proveedor = enhancedResult.proveedor,
+                                    proveedorBBox = enhancedResult.proveedorBBox,
+                                    nif = enhancedResult.nif,
+                                    nifBBox = enhancedResult.nifBBox,
+                                    numeroAlbaran = enhancedResult.numeroAlbaran,
+                                    numeroBBox = enhancedResult.numeroBBox,
+                                    fechaAlbaran = enhancedResult.fechaAlbaran,
+                                    fechaBBox = enhancedResult.fechaBBox,
+                                    products = validProducts,
+                                    allBlocks = enhancedResult.allBlocks
+                                )
+                            } else {
+                                // Demasiados falsos positivos, usar OCR estándar
+                                Log.d("AlbaTpl", "Enhanced OCR: too many false positives (${validProducts.size}/${enhancedResult.products.size} valid), using standard OCR")
+                                kotlinx.coroutines.suspendCancellableCoroutine<com.albacontrol.ml.OCRResult?> { cont ->
+                                    try {
+                                        com.albacontrol.ml.OcrProcessor.processBitmap(bitmap) { res, err ->
+                                            if (err != null) cont.resumeWith(Result.failure(err))
+                                            else cont.resumeWith(Result.success(res))
+                                        }
+                                    } catch (e: Exception) {
+                                        cont.resumeWith(Result.failure(e))
+                                    }
+                                }
+                            }
                         } else {
                             // Fallback to standard OCR
                             Log.d("AlbaTpl", "Enhanced OCR: no products found, using standard OCR")

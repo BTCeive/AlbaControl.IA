@@ -198,11 +198,36 @@ object EnhancedOcrProcessor {
 
         // Extraer productos de filas que parecen ser de tabla (múltiples columnas)
         val products = mutableListOf<OCRProduct>()
+        
+        // Palabras clave que indican que NO es un producto (headers, direcciones, etc.)
+        val nonProductKeywords = setOf(
+            "codigo", "ean", "total", "totales", "cliente", "proveedor", "nif", "cif",
+            "documento", "ticket", "albaran", "factura", "fecha", "entregado", "ruta",
+            "cial", "punto", "venta", "mercantil", "tomo", "folio", "hoja", "barcelona",
+            "madrid", "españa", "direccion", "dirección", "calle", "avenida", "plaza"
+        )
+        
         val productRows = tableStructure.rows.filter { row ->
+            val rowText = row.blocks.joinToString(" ").lowercase()
+            
+            // Excluir filas que contienen palabras clave de headers
+            if (nonProductKeywords.any { rowText.contains(it) }) {
+                return@filter false
+            }
+            
             // Filas de productos típicamente tienen múltiples bloques (columnas)
-            row.blocks.size >= 2 && 
-            row.blocks.any { it.text.any { char -> char.isLetter() } } && // Tiene texto
-            row.blocks.any { it.text.any { char -> char.isDigit() } }     // Tiene números
+            val hasMultipleBlocks = row.blocks.size >= 2
+            val hasText = row.blocks.any { it.text.any { char -> char.isLetter() } }
+            val hasNumbers = row.blocks.any { it.text.any { char -> char.isDigit() } }
+            
+            // La descripción debe tener al menos 3 caracteres de texto
+            val firstBlock = row.blocks.firstOrNull()
+            val descLength = firstBlock?.text?.filter { it.isLetter() }?.length ?: 0
+            
+            // Filas muy cortas probablemente no son productos
+            val isTooShort = rowText.length < 5
+            
+            hasMultipleBlocks && hasText && hasNumbers && descLength >= 3 && !isTooShort
         }
 
         for (row in productRows) {
