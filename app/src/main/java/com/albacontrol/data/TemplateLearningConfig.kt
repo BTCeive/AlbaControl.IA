@@ -6,9 +6,10 @@ object TemplateLearningConfig {
     const val MIN_SAMPLES_CREATE_TEMPLATE: Int = 1
 
     // Umbrales de scoring para aplicar/confirmar plantillas
-    // Reducido a 0.60 para permitir matching basado en IoU cuando OCR falla
-    const val SCORE_APPLY_THRESHOLD: Double = 0.60
-    const val SCORE_CONFIRM_THRESHOLD: Double = 0.45
+    // Reducido a 0.30 para permitir matching más flexible y aprendizaje más rápido
+    // Prioriza aprendizaje continuo sobre precisión estricta
+    const val SCORE_APPLY_THRESHOLD: Double = 0.30
+    const val SCORE_CONFIRM_THRESHOLD: Double = 0.25
 
     // Pesos para combinar IoU y similitud de texto en el scoring
     const val IOU_WEIGHT: Double = 0.7

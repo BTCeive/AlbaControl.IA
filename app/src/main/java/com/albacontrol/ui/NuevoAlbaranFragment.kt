@@ -1201,6 +1201,8 @@ class NuevoAlbaranFragment : Fragment() {
 
         Log.d("AlbaTpl", "Template matching complete: bestScore=$bestScore threshold=${com.albacontrol.data.TemplateLearningConfig.SCORE_APPLY_THRESHOLD} bestTpl=${bestTpl?.providerNif}")
 
+        // Aplicar plantilla si hay match, incluso con score bajo (aprendizaje continuo)
+        // Si no hay plantilla pero hay muestras, aplicar de todas formas para aprendizaje
         if (bestTpl != null && bestScore >= com.albacontrol.data.TemplateLearningConfig.SCORE_APPLY_THRESHOLD) {
              // Show feedback to user about template application
              withContext(Dispatchers.Main) {
@@ -1791,15 +1793,20 @@ class NuevoAlbaranFragment : Fragment() {
         if (prodDiff) corrections++
 
         // Verificar si hay datos válidos para guardar (proveedor o productos)
-        val hasValidData = etProveedorText.isNotEmpty() || 
-                          (productContainer.childCount > 0 && 
-                           (0 until productContainer.childCount).any { i ->
-                               val item = productContainer.getChildAt(i)
-                               item.findViewById<EditText>(R.id.etDescripcion).text.toString().trim().isNotEmpty()
-                           })
+        val productCount = productContainer.childCount
+        val hasProducts = productCount > 0 && 
+                         (0 until productCount).any { i ->
+                             try {
+                                 val item = productContainer.getChildAt(i)
+                                 item.findViewById<EditText>(R.id.etDescripcion).text.toString().trim().isNotEmpty()
+                             } catch (_: Exception) { false }
+                         }
+        val hasValidData = etProveedorText.isNotEmpty() || hasProducts
+        
+        Log.d("AlbaTpl", "savePatternFromCorrections: provider='$etProveedorText' products=$productCount hasProducts=$hasProducts hasValidData=$hasValidData")
         
         if (!hasValidData) {
-            Log.d("AlbaTpl", "savePatternFromCorrections: no valid data to save (no provider, no products) - aborting")
+            Log.w("AlbaTpl", "savePatternFromCorrections: no valid data to save (no provider, no products) - aborting")
             return lifecycleScope.launch { }
         }
         
@@ -2193,7 +2200,8 @@ class NuevoAlbaranFragment : Fragment() {
                     }
                     
                     Log.d("AlbaTpl", "savePattern: product UI='$uDesc' matched to OCR='${bestMatch?.descripcion}' score=$bestScore")
-                    if (bestMatch != null && bestScore >= 3 && bestMatch.bbox != null) {
+                    // Reducir threshold para guardar más productos (aprendizaje continuo)
+                    if (bestMatch != null && bestScore >= 1 && bestMatch.bbox != null) {
                         validProductBBoxes.add(bestMatch.bbox!!)
                         // collect numeric columns
                         bestMatch.unidadesBBox?.let { validUnidadesBBoxes.add(it) }
@@ -2295,8 +2303,9 @@ class NuevoAlbaranFragment : Fragment() {
                 val sample = com.albacontrol.data.TemplateSample(providerNif = providerKey, imagePath = file.absolutePath, fieldMappings = fieldMappings, normalizedFields = if (normalized.isEmpty()) null else normalized)
                 var sampleId: Long = -1
                 try {
+                    Log.d("AlbaTpl", "savePattern: inserting sample with ${fieldMappings.size} mappings, ${fieldMappings.keys.count { it.startsWith("product_") }} products")
                     sampleId = withContext(Dispatchers.IO) { db.templateDao().insertSample(sample) as Long }
-                    Log.d("AlbaTpl", "inserted TemplateSample id=${sampleId} provider='${providerKey}' image='${file.absolutePath}' mappings=${fieldMappings.keys}")
+                    Log.d("AlbaTpl", "✅ inserted TemplateSample id=${sampleId} provider='${providerKey}' image='${file.absolutePath}' mappings=${fieldMappings.keys.size} fields (${fieldMappings.keys.count { it.startsWith("product_") }} products)")
                         try {
                         withContext(Dispatchers.IO) {
                                 try {
