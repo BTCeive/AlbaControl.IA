@@ -263,27 +263,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvOcrTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ocr_system_title" />
-
-            <SeekBar
-                android:id="@+id/seekOcrPasses"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="9" />
-
-            <TextView
-                android:id="@+id/tvOcrNote"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ocr_system_warning"
-                android:textSize="12sp"
-                android:textStyle="italic"
-                android:paddingTop="4dp"
-                android:paddingBottom="12dp" />
+            <!-- OCR Multi-Pass: Sistema optimizado con 5 pasadas estándar fijas -->
+            <!-- El slider ha sido removido ya que el sistema está optimizado automáticamente -->
+            <!-- 5 pasadas proporcionan el mejor balance entre precisión y rendimiento -->
 
             <!-- Backups (expandable) -->
         <TextView

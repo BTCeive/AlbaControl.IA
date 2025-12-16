@@ -8,12 +8,13 @@ import kotlin.coroutines.resume
 
 /**
  * Procesador OCR con múltiples pasadas para mejorar precisión.
- * Realiza 2-3 pasadas con diferentes preprocesamientos y combina resultados.
+ * Realiza 5 pasadas con diferentes preprocesamientos y combina resultados.
+ * Más pasadas = mayor precisión, aunque ralentiza ~3-4 segundos adicionales.
  */
 object MultiPassOcrProcessor {
 
     /**
-     * Procesa bitmap con múltiples pasadas de OCR.
+     * Procesa bitmap con múltiples pasadas de OCR (5 pasadas estándar).
      * Combina resultados de diferentes preprocesamientos para mayor precisión.
      */
     suspend fun processBitmapMultiPass(bitmap: Bitmap): OCRResult? = withContext(Dispatchers.IO) {
@@ -82,12 +83,12 @@ object MultiPassOcrProcessor {
             android.util.Log.e("AlbaTpl", "MultiPass OCR: Pass 2 error: ${e.message}")
         }
         
-        // Pasada 3: OCR con imagen mejorada (si hay preprocesamiento disponible)
+        // Pasada 3: OCR con imagen mejorada (contraste aumentado)
         try {
-            val enhancedBitmap = enhanceImageForOcr(bitmap)
-            if (enhancedBitmap != null && enhancedBitmap != bitmap) {
+            val enhancedBitmap1 = enhanceImageForOcr(bitmap, contrast = 1.2f)
+            if (enhancedBitmap1 != null && enhancedBitmap1 != bitmap) {
                 val result3 = suspendCancellableCoroutine<OCRResult?> { cont ->
-                    OcrProcessor.processBitmap(enhancedBitmap) { res, err ->
+                    OcrProcessor.processBitmap(enhancedBitmap1) { res, err ->
                         if (err != null) {
                             cont.resume(null)
                         } else {
@@ -97,15 +98,88 @@ object MultiPassOcrProcessor {
                 }
                 if (result3 != null) {
                     results.add(result3)
-                    android.util.Log.d("AlbaTpl", "MultiPass OCR: Pass 3 (enhanced image) - ${result3.products.size} products")
+                    android.util.Log.d("AlbaTpl", "MultiPass OCR: Pass 3 (enhanced contrast 1.2x) - ${result3.products.size} products")
                 }
-                // Liberar bitmap mejorado si fue creado
-                if (enhancedBitmap != bitmap) {
-                    enhancedBitmap.recycle()
+                if (enhancedBitmap1 != bitmap) {
+                    enhancedBitmap1.recycle()
                 }
             }
         } catch (e: Exception) {
             android.util.Log.e("AlbaTpl", "MultiPass OCR: Pass 3 error: ${e.message}")
+        }
+        
+        // Pasada 4: OCR con imagen mejorada (contraste alto)
+        try {
+            val enhancedBitmap2 = enhanceImageForOcr(bitmap, contrast = 1.5f)
+            if (enhancedBitmap2 != null && enhancedBitmap2 != bitmap) {
+                val result4 = suspendCancellableCoroutine<OCRResult?> { cont ->
+                    OcrProcessor.processBitmap(enhancedBitmap2) { res, err ->
+                        if (err != null) {
+                            cont.resume(null)
+                        } else {
+                            cont.resume(res)
+                        }
+                    }
+                }
+                if (result4 != null) {
+                    results.add(result4)
+                    android.util.Log.d("AlbaTpl", "MultiPass OCR: Pass 4 (enhanced contrast 1.5x) - ${result4.products.size} products")
+                }
+                if (enhancedBitmap2 != bitmap) {
+                    enhancedBitmap2.recycle()
+                }
+            }
+        } catch (e: Exception) {
+            android.util.Log.e("AlbaTpl", "MultiPass OCR: Pass 4 error: ${e.message}")
+        }
+        
+        // Pasada 5: Enhanced OCR con imagen mejorada (combinación)
+        try {
+            val enhancedBitmap3 = enhanceImageForOcr(bitmap, contrast = 1.3f)
+            if (enhancedBitmap3 != null && enhancedBitmap3 != bitmap) {
+                val result5 = EnhancedOcrProcessor.processBitmapEnhanced(enhancedBitmap3)
+                if (result5 != null) {
+                    val validProducts = result5.products.filter { product ->
+                        val desc = product.descripcion.lowercase()
+                        val isHeader = desc.length < 5 || 
+                                      desc.contains("codigo") || 
+                                      desc.contains("ean") ||
+                                      desc.contains("total") ||
+                                      desc.contains("cliente") ||
+                                      desc.contains("documento") ||
+                                      desc.contains("ticket") ||
+                                      desc.contains("albaran") ||
+                                      desc.contains("barcelona") ||
+                                      desc.contains("madrid") ||
+                                      desc.contains("entregado") ||
+                                      desc.contains("ruta") ||
+                                      desc.matches(Regex("^[a-z]{1,2}\\d+"))
+                        !isHeader
+                    }
+                    
+                    if (validProducts.size >= result5.products.size * 0.5) {
+                        val filteredResult = OCRResult(
+                            proveedor = result5.proveedor,
+                            proveedorBBox = result5.proveedorBBox,
+                            nif = result5.nif,
+                            nifBBox = result5.nifBBox,
+                            numeroAlbaran = result5.numeroAlbaran,
+                            numeroBBox = result5.numeroBBox,
+                            fechaAlbaran = result5.fechaAlbaran,
+                            fechaBBox = result5.fechaBBox,
+                            products = validProducts,
+                            allBlocks = result5.allBlocks
+                        )
+                        results.add(filteredResult)
+                        android.util.Log.d("AlbaTpl", "MultiPass OCR: Pass 5 (enhanced + table structure) - ${result5.products.size} products (${validProducts.size} valid)")
+                    }
+                }
+                if (enhancedBitmap3 != bitmap) {
+                    enhancedBitmap3.recycle()
+                }
+            }
+        } catch (e: Exception) {
+            android.util.Log.e("AlbaTpl", "MultiPass OCR: Pass 5 error: ${e.message}")
         }
         
         if (results.isEmpty()) {
@@ -122,8 +196,9 @@ object MultiPassOcrProcessor {
 
     /**
      * Mejora imagen para OCR (contraste, nitidez, etc.)
+     * @param contrast Factor de contraste (1.0 = sin cambio, 1.2 = +20%, 1.5 = +50%)
      */
-    private fun enhanceImageForOcr(bitmap: Bitmap): Bitmap? {
+    private fun enhanceImageForOcr(bitmap: Bitmap, contrast: Float = 1.2f): Bitmap? {
         return try {
             // Crear copia mutable
             val enhanced = bitmap.copy(bitmap.config ?: android.graphics.Bitmap.Config.ARGB_8888, true)
@@ -138,7 +213,7 @@ object MultiPassOcrProcessor {
             // Aplicar matriz de color para mejorar contraste
             val colorMatrix = android.graphics.ColorMatrix().apply {
                 setSaturation(0f) // Escala de grises
-                setScale(1.2f, 1.2f, 1.2f, 1f) // Aumentar contraste
+                setScale(contrast, contrast, contrast, 1f) // Aumentar contraste según parámetro
             }
             val colorFilter = android.graphics.ColorMatrixColorFilter(colorMatrix)
             paint.colorFilter = colorFilter

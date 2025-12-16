@@ -52,7 +52,7 @@ class OpcionesFragment : Fragment() {
     private lateinit var containerUbic: LinearLayout
     private lateinit var containerEmails: LinearLayout
     private lateinit var spinnerLang: Spinner
-    private lateinit var seekOcr: SeekBar
+    // private lateinit var seekOcr: SeekBar // REMOVIDO - Sistema Multi-Pass OCR usa 5 pasadas fijas
     private lateinit var spinnerEmailApp: Spinner
     private var progressDialog: AlertDialog? = null
     private val TAG = "OpcionesFragment"
@@ -77,7 +77,7 @@ class OpcionesFragment : Fragment() {
         containerUbic = view.findViewById(R.id.containerUbicaciones)
         containerEmails = view.findViewById(R.id.containerEmails)
         spinnerLang = view.findViewById(R.id.spinnerLanguages)
-        seekOcr = view.findViewById(R.id.seekOcrPasses)
+        // seekOcr = view.findViewById(R.id.seekOcrPasses) // REMOVIDO
         spinnerEmailApp = view.findViewById(R.id.spinnerEmailApp)
         switchAutoDeleteAge = view.findViewById(R.id.switchAutoDeleteAge)
         etAutoDeleteDays = view.findViewById(R.id.etAutoDeleteDays)
@@ -157,20 +157,10 @@ class OpcionesFragment : Fragment() {
             Log.d(TAG, "No se pudo inicializar header collapsible: ${e.message}")
         }
 
-        // OCR SeekBar: values 1..10 (seekbar 0..9)
-        seekOcr.max = 9
-        val prefs = requireContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-        val ocrVal = prefs.getInt(KEY_OCR, 3)
-        seekOcr.progress = (ocrVal - 1).coerceIn(0, 9)
-        seekOcr.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {}
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                val passes = (seekBar?.progress ?: 0) + 1
-                prefs.edit().putInt(KEY_OCR, passes).apply()
-                Toast.makeText(requireContext(), getString(R.string.ocr_passes_toast, passes), Toast.LENGTH_SHORT).show()
-            }
-        })
+        // OCR SeekBar: REMOVIDO - Sistema Multi-Pass OCR ahora usa 5 pasadas estándar fijas
+        // El slider ya no es necesario ya que el sistema está optimizado con 5 pasadas
+        // que proporcionan el mejor balance entre precisión y rendimiento
+        // (La sección se ha removido del layout XML)
 
         return view
     }
