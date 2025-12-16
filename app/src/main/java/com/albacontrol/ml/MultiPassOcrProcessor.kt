@@ -43,24 +43,8 @@ object MultiPassOcrProcessor {
         try {
             val result2 = EnhancedOcrProcessor.processBitmapEnhanced(bitmap)
             if (result2 != null) {
-                // Filtrar productos válidos (no headers/direcciones)
-                val validProducts = result2.products.filter { product ->
-                    val desc = product.descripcion.lowercase()
-                    val isHeader = desc.length < 5 || 
-                                  desc.contains("codigo") || 
-                                  desc.contains("ean") ||
-                                  desc.contains("total") ||
-                                  desc.contains("cliente") ||
-                                  desc.contains("documento") ||
-                                  desc.contains("ticket") ||
-                                  desc.contains("albaran") ||
-                                  desc.contains("barcelona") ||
-                                  desc.contains("madrid") ||
-                                  desc.contains("entregado") ||
-                                  desc.contains("ruta") ||
-                                  desc.matches(Regex("^[a-z]{1,2}\\d+"))
-                    !isHeader
-                }
+                // Filtrar productos válidos usando ProductValidator mejorado
+                val validProducts = ProductValidator.filterValidProducts(result2.products)
                 
                 if (validProducts.size >= result2.products.size * 0.5) {
                     val filteredResult = OCRResult(
@@ -139,23 +123,8 @@ object MultiPassOcrProcessor {
             if (enhancedBitmap3 != null && enhancedBitmap3 != bitmap) {
                 val result5 = EnhancedOcrProcessor.processBitmapEnhanced(enhancedBitmap3)
                 if (result5 != null) {
-                    val validProducts = result5.products.filter { product ->
-                        val desc = product.descripcion.lowercase()
-                        val isHeader = desc.length < 5 || 
-                                      desc.contains("codigo") || 
-                                      desc.contains("ean") ||
-                                      desc.contains("total") ||
-                                      desc.contains("cliente") ||
-                                      desc.contains("documento") ||
-                                      desc.contains("ticket") ||
-                                      desc.contains("albaran") ||
-                                      desc.contains("barcelona") ||
-                                      desc.contains("madrid") ||
-                                      desc.contains("entregado") ||
-                                      desc.contains("ruta") ||
-                                      desc.matches(Regex("^[a-z]{1,2}\\d+"))
-                        !isHeader
-                    }
+                    // Filtrar productos válidos usando ProductValidator mejorado
+                    val validProducts = ProductValidator.filterValidProducts(result5.products)
                     
                     if (validProducts.size >= result5.products.size * 0.5) {
                         val filteredResult = OCRResult(

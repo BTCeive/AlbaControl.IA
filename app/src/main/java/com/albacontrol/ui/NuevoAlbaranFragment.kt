@@ -852,8 +852,8 @@ class NuevoAlbaranFragment : Fragment() {
                             Log.d("AlbaTpl", "Multi-Pass OCR: success - ${multiPassResult.products.size} products from combined passes")
                             multiPassResult
                         } else {
-                            // Fallback to standard OCR if multi-pass fails
-                            Log.d("AlbaTpl", "Multi-Pass OCR: no products found, using standard OCR")
+                            // Fallback to standard OCR if multi-pass fails or has too many false positives
+                            Log.d("AlbaTpl", "Multi-Pass OCR: no valid products found, using standard OCR")
                             kotlinx.coroutines.suspendCancellableCoroutine<com.albacontrol.ml.OCRResult?> { cont ->
                                 try {
                                     com.albacontrol.ml.OcrProcessor.processBitmap(bitmap) { res, err ->

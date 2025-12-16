@@ -13,6 +13,16 @@
 -keep class com.google.android.gms.** { *; }
 -dontwarn com.google.mlkit.**
 
+# TensorFlow Lite
+-keep class org.tensorflow.lite.** { *; }
+-keep class org.tensorflow.lite.support.** { *; }
+-dontwarn org.tensorflow.lite.**
+-dontwarn org.tensorflow.lite.support.**
+
+# Entity Extraction
+-keep class com.google.mlkit.nl.entityextraction.** { *; }
+-dontwarn com.google.mlkit.nl.entityextraction.**
+
 # Kotlin Coroutines
 -keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
 -keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}

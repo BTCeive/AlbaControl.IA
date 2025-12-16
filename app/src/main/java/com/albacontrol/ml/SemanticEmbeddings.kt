@@ -32,6 +32,10 @@ object SemanticEmbeddings {
     private var interpreter: Interpreter? = null
     private var isInitialized = false
     
+    // Cache de embeddings para mejorar rendimiento
+    private val embeddingCache = mutableMapOf<String, FloatArray>()
+    private const val MAX_CACHE_SIZE = 1000 // Limitar tamaño del cache
+    
     /**
      * Inicializa el modelo de embeddings.
      * Si el modelo no está disponible, funciona en modo degradado (sin embeddings).
@@ -83,12 +87,51 @@ object SemanticEmbeddings {
     
     /**
      * Genera embedding semántico para un texto.
+     * Usa cache para mejorar rendimiento.
      * Retorna null si el modelo no está disponible (modo degradado).
      */
     fun getEmbedding(text: String): FloatArray? {
+        // Verificar cache primero
+        val normalizedText = normalizeText(text)
+        embeddingCache[normalizedText]?.let {
+            return it
+        }
+        
         // Por ahora, retornar null (modo degradado)
         // Cuando se añada el modelo, generar embeddings reales aquí
         return null
+        
+        /* Código para cuando se añada el modelo:
+        if (!isInitialized || interpreter == null) {
+            return null
+        }
+        
+        return try {
+            // ... código de generación de embedding ...
+            
+            // Guardar en cache
+            if (embeddingCache.size >= MAX_CACHE_SIZE) {
+                // Eliminar entrada más antigua (FIFO simple)
+                val firstKey = embeddingCache.keys.firstOrNull()
+                if (firstKey != null) {
+                    embeddingCache.remove(firstKey)
+                }
+            }
+            embeddingCache[normalizedText] = embedding
+            
+            embedding
+        } catch (e: Exception) {
+            Log.e(TAG, "Error generating embedding: ${e.message}", e)
+            null
+        }
+        */
+    }
+    
+    /**
+     * Limpia el cache de embeddings.
+     */
+    fun clearCache() {
+        embeddingCache.clear()
     }
     
     /**
