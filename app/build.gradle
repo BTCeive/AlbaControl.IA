@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.albacontrol"
-        minSdk 21
+        minSdk 26  // Actualizado para Entity Extraction API (requiere minSdk 26)
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -53,6 +53,19 @@ dependencies {
     
     // ML Kit Object Detection (for product region detection)
     implementation 'com.google.mlkit:object-detection:17.0.1'
+    
+    // ML Kit Entity Extraction (for dates, numbers, addresses)
+    implementation 'com.google.mlkit:entity-extraction:16.0.0-beta6'
+    
+    // ML Kit Document Scanner (for better document preprocessing)
+    implementation 'com.google.android.gms:play-services-mlkit-document-scanner:16.0.0'
+    
+    // TensorFlow Lite for semantic embeddings
+    implementation 'org.tensorflow:tensorflow-lite:2.14.0'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.4.4'
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.4.4'
+    // Select TF Ops for USE Lite (required for custom operations)
+    implementation 'org.tensorflow:tensorflow-lite-select-tf-ops:2.14.0'
 
     // Room Database (latest stable)
     implementation 'androidx.room:room-runtime:2.6.1'

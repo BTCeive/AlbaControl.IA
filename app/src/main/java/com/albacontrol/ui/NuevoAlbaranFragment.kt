@@ -93,6 +93,20 @@ class NuevoAlbaranFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_nuevo_albaran, container, false)
 
         try { com.albacontrol.util.DebugLogger.init(requireContext()); com.albacontrol.util.DebugLogger.log("NuevoAlbaranFragment","onCreateView: start") } catch (_: Exception) {}
+        
+        // Inicializar embeddings semánticos en background
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val initialized = com.albacontrol.ml.SemanticEmbeddings.initialize(requireContext())
+                if (initialized) {
+                    Log.d("AlbaTpl", "Semantic embeddings initialized successfully")
+                } else {
+                    Log.w("AlbaTpl", "Semantic embeddings not available (model not found), using fallback mode")
+                }
+            } catch (e: Exception) {
+                Log.e("AlbaTpl", "Failed to initialize semantic embeddings: ${e.message}", e)
+            }
+        }
 
         // Inicializar ActivityResultLaunchers antes de que los botones los usen
         try {
@@ -871,6 +885,34 @@ class NuevoAlbaranFragment : Fragment() {
 
                 if (ocrResult != null) {
                     Log.d("AlbaTpl", "OCR: success - proveedor='${ocrResult.proveedor}' nif='${ocrResult.nif}' numero='${ocrResult.numeroAlbaran}' fecha='${ocrResult.fechaAlbaran}' products=${ocrResult.products.size}")
+                    
+                    // Mejorar extracción de fechas y números con Entity Extraction
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        try {
+                            val fullText = ocrResult.allBlocks.joinToString(" ") { it.first }
+                            
+                            // Extraer fecha mejorada
+                            val extractedDate = com.albacontrol.ml.EntityExtractor.extractDate(fullText)
+                            if (extractedDate != null && ocrResult.fechaAlbaran.isNullOrBlank()) {
+                                val normalizedDate = com.albacontrol.ml.EntityExtractor.normalizeDate(extractedDate)
+                                if (normalizedDate != null) {
+                                    Log.d("AlbaTpl", "Entity Extraction: improved date from '$extractedDate' to '$normalizedDate'")
+                                    // Actualizar resultado OCR con fecha mejorada
+                                    lastOcrResult = ocrResult.copy(fechaAlbaran = normalizedDate)
+                                }
+                            }
+                            
+                            // Extraer número de albarán mejorado
+                            val extractedNumber = com.albacontrol.ml.EntityExtractor.extractDocumentNumber(fullText)
+                            if (extractedNumber != null && ocrResult.numeroAlbaran.isNullOrBlank()) {
+                                Log.d("AlbaTpl", "Entity Extraction: improved document number to '$extractedNumber'")
+                                lastOcrResult = ocrResult.copy(numeroAlbaran = extractedNumber)
+                            }
+                        } catch (e: Exception) {
+                            Log.e("AlbaTpl", "Entity extraction error: ${e.message}", e)
+                        }
+                    }
+                    
                     lastOcrResult = ocrResult
                     
                     // IMPORTANTE: Aplicar OCR PRIMERO para fecha y número (específicos del documento)
@@ -1847,13 +1889,49 @@ class NuevoAlbaranFragment : Fragment() {
             return lifecycleScope.launch { }
         }
         
-        // Guardar siempre si hay datos válidos (aprendizaje continuo)
-        // Log informativo sobre correcciones detectadas
-        if (corrections > 0) {
-            Log.d("AlbaTpl", "savePatternFromCorrections: $corrections corrections detected, saving pattern")
-        } else {
-            Log.d("AlbaTpl", "savePatternFromCorrections: no corrections but valid data present, saving for continuous learning")
-        }
+                        // Guardar siempre si hay datos válidos (aprendizaje continuo)
+                        // Log informativo sobre correcciones detectadas
+                        if (corrections > 0) {
+                            Log.d("AlbaTpl", "savePatternFromCorrections: $corrections corrections detected, saving pattern")
+                        } else {
+                            Log.d("AlbaTpl", "savePatternFromCorrections: no corrections but valid data present, saving for continuous learning")
+                        }
+                        
+                        // Aplicar clustering para aprender variaciones de productos automáticamente
+                        lifecycleScope.launch(Dispatchers.IO) {
+                            try {
+                                val productNames = mutableListOf<String>()
+                                for (i in 0 until productContainer.childCount) {
+                                    try {
+                                        val item = productContainer.getChildAt(i)
+                                        val desc = item.findViewById<EditText>(R.id.etDescripcion).text.toString().trim()
+                                        if (desc.isNotEmpty()) {
+                                            productNames.add(desc)
+                                        }
+                                    } catch (_: Exception) {}
+                                }
+                                
+                                if (productNames.size > 1) {
+                                    // Generar embeddings para productos
+                                    val productEmbeddings = productNames.associateWith { name ->
+                                        com.albacontrol.ml.SemanticEmbeddings.getEmbedding(name)
+                                    }
+                                    
+                                    // Aplicar clustering
+                                    val variations = com.albacontrol.ml.ProductClustering.learnVariations(productNames, productEmbeddings)
+                                    
+                                    // Actualizar commonVariations con variaciones aprendidas
+                                    synchronized(commonVariations) {
+                                        for ((canonical, variants) in variations) {
+                                            commonVariations.addAll(variants.map { it.lowercase() })
+                                            Log.d("AlbaTpl", "Clustering learned variations for '$canonical': ${variants.joinToString(", ")}")
+                                        }
+                                    }
+                                }
+                            } catch (e: Exception) {
+                                Log.e("AlbaTpl", "Error in product clustering: ${e.message}", e)
+                            }
+                        }
 
         val mappings = mutableMapOf<String, String>()
         
@@ -3044,34 +3122,85 @@ class NuevoAlbaranFragment : Fragment() {
      * Extrae patrones como "X4", "125G", etc. que aparecen frecuentemente.
      */
     private suspend fun learnCommonVariations(providerNif: String) {
+        // Usar clustering mejorado para aprender variaciones automáticamente
         try {
             val db = com.albacontrol.data.AppDatabase.getInstance(requireContext())
             val providerKey = providerNif.trim().lowercase()
-            val samples = db.templateDao().getAllSamples().filter {
-                it.providerNif.trim().lowercase() == providerKey
+            val samples = withContext(Dispatchers.IO) {
+                db.templateDao().getAllSamples().filter {
+                    it.providerNif.trim().lowercase() == providerKey
+                }
             }
             
-            val variationCounts = mutableMapOf<String, Int>()
+            if (samples.isEmpty()) return
             
-            // Extraer variaciones de todos los productos guardados
+            // Extraer todos los productos de las muestras
+            val allProducts = mutableListOf<String>()
+            val productEmbeddings = mutableMapOf<String, FloatArray?>()
+            
+            for (sample in samples) {
+                val fieldMappings = sample.fieldMappings ?: emptyMap()
+                for ((key, value) in fieldMappings) {
+                    if (key.startsWith("product_") && key.endsWith("_desc")) {
+                        val productName = value.trim().substringBefore("::").trim()
+                        if (productName.isNotEmpty() && productName !in allProducts) {
+                            allProducts.add(productName)
+                            // Generar embedding para el producto (si está disponible)
+                            try {
+                                val embedding = com.albacontrol.ml.SemanticEmbeddings.getEmbedding(productName)
+                                productEmbeddings[productName] = embedding
+                            } catch (e: Exception) {
+                                // Embeddings no disponibles, usar fallback
+                                productEmbeddings[productName] = null
+                            }
+                        }
+                    }
+                }
+            }
+            
+            if (allProducts.size > 1) {
+                // Aplicar clustering para aprender variaciones
+                val productPairs = allProducts.map { name ->
+                    name to productEmbeddings[name]
+                }
+                val variations = com.albacontrol.ml.ProductClustering.learnVariations(allProducts, productEmbeddings)
+                
+                // Actualizar commonVariations con las variaciones aprendidas
+                synchronized(commonVariations) {
+                    for ((canonical, variants) in variations) {
+                        // Extraer palabras de variaciones para añadir a commonVariations
+                        for (variant in variants) {
+                            val words = variant.lowercase()
+                                .replace(Regex("[^a-z0-9\\s]"), " ")
+                                .split(Regex("\\s+"))
+                                .filter { it.length in 2..6 && it !in commonVariations }
+                            commonVariations.addAll(words)
+                        }
+                        Log.d("AlbaTpl", "Learned variations for '$canonical': ${variants.joinToString(", ")}")
+                    }
+                }
+                
+                Log.d("AlbaTpl", "learnCommonVariations: learned ${variations.size} product variations from ${allProducts.size} products")
+            }
+            
+            // También aprender variaciones tradicionales (patrones)
+            val variationCounts = mutableMapOf<String, Int>()
             for (sample in samples) {
                 for ((key, value) in sample.fieldMappings) {
                     if (key.startsWith("product_") && key.endsWith("_desc")) {
-                        val desc = value.substringAfter("::", "").trim()
+                        val desc = value.trim().substringBefore("::").trim()
                         if (desc.isNotEmpty()) {
-                            // Extraer posibles variaciones (patrones comunes)
                             val words = desc.lowercase()
                                 .replace(Regex("[^a-z0-9\\s]"), " ")
                                 .split(Regex("\\s+"))
                                 .filter { it.length in 2..6 }
                             
                             for (word in words) {
-                                // Detectar patrones de variación
-                                if (word.matches(Regex("x\\d+")) || // x2, x4, x12
-                                    word.matches(Regex("\\d+g")) ||  // 125g, 500g
-                                    word.matches(Regex("\\d+ml")) || // 500ml
-                                    word.matches(Regex("\\d+kg")) || // 1kg
-                                    word.matches(Regex("\\d+l"))) {  // 1l
+                                if (word.matches(Regex("x\\d+")) || 
+                                    word.matches(Regex("\\d+g")) || 
+                                    word.matches(Regex("\\d+ml")) || 
+                                    word.matches(Regex("\\d+kg")) || 
+                                    word.matches(Regex("\\d+l"))) {
                                     variationCounts[word] = variationCounts.getOrDefault(word, 0) + 1
                                 }
                             }
@@ -3080,7 +3209,7 @@ class NuevoAlbaranFragment : Fragment() {
                 }
             }
             
-            // Añadir variaciones que aparecen en al menos 2 muestras
+            // Añadir variaciones que aparecen frecuentemente
             for ((variation, count) in variationCounts) {
                 if (count >= 2 && !commonVariations.contains(variation)) {
                     commonVariations.add(variation)
@@ -3146,6 +3275,20 @@ class NuevoAlbaranFragment : Fragment() {
      * 3. Levenshtein distance (peso bajo)
      */
     private fun productNameSimilarity(name1: String, name2: String): Double {
+        // Usar embeddings semánticos si están disponibles (más robusto)
+        val semanticSimilarity = try {
+            com.albacontrol.ml.SemanticEmbeddings.semanticSimilarity(name1, name2)
+        } catch (e: Exception) {
+            Log.w("AlbaTpl", "Semantic similarity failed, using fallback: ${e.message}")
+            null
+        }
+        
+        // Si embeddings están disponibles y dan buena similitud, usarlos
+        if (semanticSimilarity != null && semanticSimilarity >= 0.5) {
+            return semanticSimilarity
+        }
+        
+        // Fallback a método tradicional
         val norm1 = normalizeProductName(name1)
         val norm2 = normalizeProductName(name2)
         

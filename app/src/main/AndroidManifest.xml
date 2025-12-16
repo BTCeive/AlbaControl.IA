@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.albacontrol">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Queries para Android 11+ (API 30+) - Permite ver apps de email instaladas -->
     <queries>
