@@ -1487,6 +1487,8 @@ class NuevoAlbaranFragment : Fragment() {
         } catch (_: Exception) {}
         
         // Aplicar productos guardados directamente desde las muestras (sistema mejorado basado en descripción)
+        // IMPORTANTE: Solo rellenar datos (unidades, precio, importe) de productos que coinciden
+        // NO añadir productos guardados que no están en el OCR actual
         try {
             // Extraer todos los productos guardados (ahora por clave de descripción normalizada)
             val savedProducts = mutableMapOf<String, MutableMap<String, String>>()
@@ -1510,20 +1512,11 @@ class NuevoAlbaranFragment : Fragment() {
                 Log.d("AlbaTpl", "applyTemplate: found ${savedProducts.size} unique products in samples")
                 
                 withContext(Dispatchers.Main) {
-                    // Obtener productos actuales del OCR (si existen)
-                    val currentProducts = mutableListOf<String>()
-                    for (i in 0 until productContainer.childCount) {
-                        val item = productContainer.getChildAt(i)
-                        val desc = item.findViewById<EditText>(R.id.etDescripcion).text.toString().trim()
-                        if (desc.isNotEmpty()) {
-                            currentProducts.add(desc)
-                        }
-                    }
-                    
-                    // Matching fuzzy: emparejar productos del OCR con productos guardados
-                    val matched = mutableSetOf<String>() // Claves de productos ya emparejados
+                    // Matching fuzzy: emparejar productos del contenedor (del OCR actual) con productos guardados
+                    val matched = mutableSetOf<String>() // Claves de productos guardados ya emparejados
                     val SIMILARITY_THRESHOLD = 0.7 // 70% de similitud mínima
                     
+                    // Iterar sobre productos actuales en el contenedor (del OCR)
                     for (i in 0 until productContainer.childCount) {
                         val item = productContainer.getChildAt(i)
                         val currentDesc = item.findViewById<EditText>(R.id.etDescripcion).text.toString().trim()
@@ -1532,6 +1525,7 @@ class NuevoAlbaranFragment : Fragment() {
                             // Buscar el producto guardado más similar
                             var bestMatch: String? = null
                             var bestSimilarity = 0.0
+                            var bestFields: MutableMap<String, String>? = null
                             
                             for ((productKey, fields) in savedProducts) {
                                 if (matched.contains(productKey)) continue // Ya emparejado
@@ -1543,38 +1537,43 @@ class NuevoAlbaranFragment : Fragment() {
                                 if (similarity > bestSimilarity && similarity >= SIMILARITY_THRESHOLD) {
                                     bestSimilarity = similarity
                                     bestMatch = productKey
+                                    bestFields = fields
                                 }
                             }
                             
-                            // Si encontramos un match, aplicar los datos guardados
-                            if (bestMatch != null) {
-                                val fields = savedProducts[bestMatch]!!
-                                item.findViewById<EditText>(R.id.etDescripcion).setText(fields["desc"] ?: currentDesc)
-                                item.findViewById<EditText>(R.id.etUnidades).setText(fields["units"] ?: "")
-                                item.findViewById<EditText>(R.id.etPrecio).setText(fields["price"] ?: "")
-                                item.findViewById<EditText>(R.id.etImporte).setText(fields["total"] ?: "")
+                            // Si encontramos un match, aplicar SOLO los datos guardados (unidades, precio, importe)
+                            // MANTENER la descripción del OCR actual (más precisa)
+                            if (bestMatch != null && bestFields != null) {
+                                // NO sobrescribir descripción - mantener la del OCR actual
+                                // Solo rellenar unidades, precio e importe si están vacíos o si el match es muy bueno
+                                val etUnidades = item.findViewById<EditText>(R.id.etUnidades)
+                                val etPrecio = item.findViewById<EditText>(R.id.etPrecio)
+                                val etImporte = item.findViewById<EditText>(R.id.etImporte)
+                                
+                                // Solo rellenar si el campo está vacío o si el match es excelente (>90%)
+                                if (bestSimilarity > 0.9 || etUnidades.text.isBlank()) {
+                                    etUnidades.setText(bestFields["units"] ?: "")
+                                }
+                                if (bestSimilarity > 0.9 || etPrecio.text.isBlank()) {
+                                    etPrecio.setText(bestFields["price"] ?: "")
+                                }
+                                if (bestSimilarity > 0.9 || etImporte.text.isBlank()) {
+                                    etImporte.setText(bestFields["total"] ?: "")
+                                }
+                                
                                 matched.add(bestMatch)
-                                Log.d("AlbaTpl", "applyTemplate: matched product '$currentDesc' -> '${fields["desc"]}' (similarity=${"%.2f".format(bestSimilarity)})")
+                                Log.d("AlbaTpl", "applyTemplate: matched product '$currentDesc' -> '${bestFields["desc"]}' (similarity=${"%.2f".format(bestSimilarity)}) - filled units/price/total")
+                            } else if (currentDesc.isNotEmpty()) {
+                                Log.d("AlbaTpl", "applyTemplate: product '$currentDesc' has no match in saved products (threshold=$SIMILARITY_THRESHOLD)")
                             }
                         }
                     }
                     
-                    // Añadir productos guardados que no se emparejaron (productos nuevos del proveedor)
-                    for ((productKey, fields) in savedProducts) {
-                        if (!matched.contains(productKey)) {
-                            val desc = fields["desc"] ?: ""
-                            if (desc.isNotEmpty()) {
-                                val inflater = LayoutInflater.from(requireContext())
-                                val item = inflater.inflate(R.layout.product_item, productContainer, false)
-                                item.findViewById<EditText>(R.id.etDescripcion).setText(desc)
-                                item.findViewById<EditText>(R.id.etUnidades).setText(fields["units"] ?: "")
-                                item.findViewById<EditText>(R.id.etPrecio).setText(fields["price"] ?: "")
-                                item.findViewById<EditText>(R.id.etImporte).setText(fields["total"] ?: "")
-                                attachWatchersToProductItem(item)
-                                productContainer.addView(item)
-                                Log.d("AlbaTpl", "applyTemplate: added new product from template: '$desc'")
-                            }
-                        }
+                    // NO añadir productos guardados que no se emparejaron
+                    // Solo mostrar en log para debugging
+                    val unmatchedCount = savedProducts.size - matched.size
+                    if (unmatchedCount > 0) {
+                        Log.d("AlbaTpl", "applyTemplate: $unmatchedCount saved products not found in current OCR (not adding to avoid duplicates)")
                     }
                 }
             } else {
